@@ -1,10 +1,2 @@
-# Android 14 EbiUI Development Dependencies
-# ------------------------------------------------------------
-# Note: This project currently runs entirely on Python's built-in 
-# standard libraries (http.server, socketserver, os) in app.py.
-# No external pip packages are required to run the preview server.
-#
-# If you add external Python packages in the future, list them below.
-
+Flask
 gunicorn
-
