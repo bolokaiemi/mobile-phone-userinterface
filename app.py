@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime
 
+
 # Initialize Flask app, pointing the static files folder to the root directory
 # to match the native structure of your GitHub Pages deployment.
 app = Flask(__name__, static_folder='.', static_url_path='')
