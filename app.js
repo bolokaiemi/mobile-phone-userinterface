@@ -5,10 +5,13 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Dynamic API Base URL logic matching active preview host (or falling back to 127.0.0.1 on file://)
-    const API_BASE = window.location.port === '8080'
-        ? ''
-        : (window.location.hostname ? window.location.protocol + '//' + window.location.hostname + ':8080' : 'http://127.0.0.1:8080');
+    // Dynamic API Base URL logic: relative in production/same-origin dev, local fallback otherwise
+    const isLocal = window.location.hostname === 'localhost' || 
+                    window.location.hostname === '127.0.0.1' || 
+                    window.location.protocol === 'file:';
+    const API_BASE = isLocal
+        ? (window.location.port === '8080' ? '' : 'http://127.0.0.1:8080')
+        : '';
 
     // Helper to conditionally inject credentials only on HTTP/HTTPS protocols (prevents browser block on file://)
     function getFetchOptions(options = {}) {
@@ -1625,7 +1628,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Robust date parsing helper for cross-browser compatibility (e.g. Safari space separator bug)
     function safeParseDate(dateStr) {
         if (!dateStr) return new Date(0);
-        const isoStr = dateStr.includes(' ') ? dateStr.replace(' ', 'T') : dateStr;
+        const str = String(dateStr);
+        const isoStr = str.includes(' ') ? str.replace(' ', 'T') : str;
         const d = new Date(isoStr);
         return isNaN(d.getTime()) ? new Date(0) : d;
     }
@@ -1647,69 +1651,84 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching comments from server:', error);
         }
         
-        // Load local fallback comments
-        const localComments = getLocalComments();
-        let allComments = [...localComments];
-        
-        // Merge server comments and avoid duplication
-        serverComments.forEach(sc => {
-            if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
-                allComments.push(sc);
-            }
-        });
-        
-        // Sort by created_at desc (newest first) using safe cross-browser date parsing
-        allComments.sort((a, b) => safeParseDate(b.created_at) - safeParseDate(a.created_at));
-        
-        if (allComments.length === 0) {
-            commentsListContainer.innerHTML = `
-                <div class="comment-empty-state">
-                    <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
-                    No feedback posted yet. Be the first!
-                </div>
-            `;
-            return;
-        }
-        
-        commentsListContainer.innerHTML = '';
-        allComments.forEach(comment => {
-            const commentEl = document.createElement('div');
-            commentEl.className = 'comment-item';
+        try {
+            // Load local fallback comments
+            const localComments = getLocalComments();
+            let allComments = [...localComments];
             
-            // Format star ratings
-            const ratingCount = comment.rating || 5;
-            const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
-            const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
-            
-            // Delete button only shown if the current logged in user is the author or local author
-            const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
-            const deleteButton = isOwner 
-                ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
-                : '';
-            
-            commentEl.innerHTML = `
-                <div class="comment-header">
-                    <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
-                    <span class="comment-time">${comment.created_at}</span>
-                </div>
-                ${starsHtml}
-                <div class="comment-text">${escapeHtml(comment.text)}</div>
-                ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
-            `;
-            
-            commentsListContainer.appendChild(commentEl);
-        });
-        
-        // Bind comments delete actions
-        const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
-        deleteButtons.forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const commentId = btn.getAttribute('data-id');
-                if (confirm('Are you sure you want to delete this comment?')) {
-                    await deleteComment(commentId);
+            // Merge server comments and avoid duplication
+            serverComments.forEach(sc => {
+                if (sc && !allComments.some(lc => lc && (lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username)))) {
+                    allComments.push(sc);
                 }
             });
-        });
+            
+            // Sort by created_at desc (newest first) using safe cross-browser date parsing
+            allComments.sort((a, b) => {
+                const dateA = a ? a.created_at : null;
+                const dateB = b ? b.created_at : null;
+                return safeParseDate(dateB) - safeParseDate(dateA);
+            });
+            
+            if (allComments.length === 0) {
+                commentsListContainer.innerHTML = `
+                    <div class="comment-empty-state">
+                        <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
+                        No feedback posted yet. Be the first!
+                    </div>
+                `;
+                return;
+            }
+            
+            commentsListContainer.innerHTML = '';
+            allComments.forEach(comment => {
+                if (!comment) return;
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment-item';
+                
+                // Format star ratings
+                const ratingCount = comment.rating || 5;
+                const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+                const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+                
+                // Delete button only shown if the current logged in user is the author or local author
+                const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
+                const deleteButton = isOwner 
+                    ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+                    : '';
+                
+                commentEl.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+                        <span class="comment-time">${comment.created_at || ''}</span>
+                    </div>
+                    ${starsHtml}
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+                `;
+                
+                commentsListContainer.appendChild(commentEl);
+            });
+            
+            // Bind comments delete actions
+            const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const commentId = btn.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this comment?')) {
+                        await deleteComment(commentId);
+                    }
+                });
+            });
+        } catch (renderError) {
+            console.error('Error rendering comments feed:', renderError);
+            commentsListContainer.innerHTML = `
+                <div class="comment-empty-state" style="color: #ef4444;">
+                    <i class="fa-solid fa-circle-exclamation" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+                    Failed to load reviews list.
+                </div>
+            `;
+        }
     }
 
     // Register Form Handler
