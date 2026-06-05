@@ -1676,7 +1676,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
             
             // Delete button only shown if the current logged in user is the author or local author
-            const isOwner = currentUser && (currentUser === comment.username || comment.id.toString().startsWith('local_'));
+            const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
             const deleteButton = isOwner 
                 ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
                 : '';
@@ -1889,7 +1889,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Delete Review Action
     async function deleteComment(id) {
         // If it is a local comment, delete it from localStorage
-        if (id.toString().startsWith('local_')) {
+        if (id && id.toString().startsWith('local_')) {
             try {
                 let comments = getLocalComments();
                 comments = comments.filter(c => c.id !== id);
