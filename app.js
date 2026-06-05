@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fr: "Partiellement Nuageux"
         },
         weather_city: {
-            en: "Lagos, NG",
-            nl: "Lagos, Nigeria",
-            de: "Lagos, Nigeria",
-            es: "Lagos, Nigeria",
-            fr: "Lagos, Nigeria"
+            en: "Herne, DE",
+            nl: "Herne, Deutschland",
+            de: "Herne, Deutschland",
+            es: "Herne, Deutschland",
+            fr: "Herne, Deutschland"
         },
         sys_bar_title: {
             en: "System Bar",
@@ -304,11 +304,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function updateClock() {
         const now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
         
-        hours = hours < 10 ? '0' + hours : hours;
-        minutes = minutes < 10 ? '0' + minutes : minutes;
+        // Lock time display to Germany (Europe/Berlin)
+        const timeOptions = {
+            timeZone: 'Europe/Berlin',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', timeOptions);
+        const parts = formatter.formatToParts(now);
+        const hours = parts.find(p => p.type === 'hour').value;
+        const minutes = parts.find(p => p.type === 'minute').value;
         
         const timeString = `${hours}:${minutes}`;
         if (statusTime) statusTime.textContent = timeString;
@@ -321,8 +328,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentLanguage === 'es') locale = 'es-ES';
         if (currentLanguage === 'fr') locale = 'fr-FR';
 
-        const options = { weekday: 'long', month: 'long', day: 'numeric' };
-        const dateString = now.toLocaleDateString(locale, options);
+        const dateOptions = { 
+            timeZone: 'Europe/Berlin',
+            weekday: 'long', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+        const dateString = now.toLocaleDateString(locale, dateOptions);
         if (widgetDate) widgetDate.textContent = dateString;
     }
     
