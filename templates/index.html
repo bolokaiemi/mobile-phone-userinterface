@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android 14 EbiUI - Interactive Mobile UI</title>
+    
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6.6.0 for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- App stylesheet -->
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <!-- Main Outer Phone Container: Emulates a physical smartphone -->
+    <div class="phone-container">
+        <!-- Physical hardware details -->
+        <div class="phone-speaker"></div>
+        <div class="phone-button power"></div>
+        <div class="phone-button volume-up"></div>
+        <div class="phone-button volume-down"></div>
+
+        <!-- Phone screen display -->
+        <div class="phone-screen" id="phone-screen">
+            
+            <!-- Dynamic Wallpaper Background Overlay -->
+            <div class="phone-wallpaper" id="phone-wallpaper"></div>
+            
+            <!-- Camera Notch (Punch hole) -->
+            <div class="phone-notch"></div>
+
+            <!-- 1. STATUS BAR -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span id="status-time">16:35</span>
+                </div>
+                <div class="status-right">
+                    <!-- Globe language trigger button -->
+                    <i class="fa-solid fa-globe" id="status-lang-trigger" title="Change Language / Taal wijzigen / Sprache ändern"></i>
+                    <i class="fa-solid fa-wifi" id="status-wifi" title="Toggle Wifi"></i>
+                    <i class="fa-solid fa-signal" title="Signal Strength"></i>
+                    <div class="battery-container" id="status-battery-btn" title="Toggle Charging">
+                        <span id="battery-level">85%</span>
+                        <i class="fa-solid fa-battery-three-quarters" id="battery-icon"></i>
+                        <i class="fa-solid fa-bolt" id="battery-charging-icon" style="display: none;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Language Dropdown Menu (Overlays on status bar trigger) -->
+            <div class="lang-dropdown" id="lang-dropdown">
+                <button class="lang-option" data-lang="en">🇺🇸 English</button>
+                <button class="lang-option" data-lang="nl">🇳🇱 Nederlands</button>
+                <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+                <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+                <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+            </div>
+
+            <!-- 2. MAIN APP LAUNCHER (HOME SCREEN) -->
+            <div class="screen-content" id="home-screen">
+                
+                <!-- TOP HEADER & TITLE -->
+                <div class="home-header">
+                    <h1>EbiUI</h1>
+                    <p class="subtitle" data-translate="sub_title">Android 14 Custom ROM</p>
+                </div>
+
+                <!-- WIDGETS SECTION (Material You Design) -->
+                <div class="widgets-container">
+                    <!-- Modern Clock Widget -->
+                    <div class="widget clock-widget" id="widget-clock-trigger">
+                        <div class="widget-clock-time" id="widget-time">16:35</div>
+                        <div class="widget-clock-date" id="widget-date">Friday, June 5</div>
+                    </div>
+
+                    <!-- Interactive Weather Widget -->
+                    <div class="widget weather-widget" id="widget-weather-trigger">
+                        <div class="weather-info">
+                            <i class="fa-solid fa-cloud-sun weather-icon animated"></i>
+                            <div class="weather-temp">24°C</div>
+                            <div class="weather-desc" data-translate="weather_desc">Partly Cloudy</div>
+                        </div>
+                        <div class="weather-city" data-translate="weather_city">Lagos, NG</div>
+                    </div>
+                </div>
+
+                <!-- QUICK CONTROLS HEADER (from user's WLAN bar) -->
+                <div class="quick-header">
+                    <div class="quick-title">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span data-translate="sys_bar_title">System Bar</span>
+                    </div>
+                    <nav class="quick-actions">
+                        <a href="https://play.google.com/store/apps/details?id=com.alesp.orologiomondiale&hl=en" class="quick-btn" title="World Clock">
+                            <img src="https://play-lh.googleusercontent.com/shJmLBj5zLzG_lpUEz6uLi1F9rXXpJ9BJ473lKgsnsA8IdW-KDAhwaPGlnEckNuKMHw=s96-rw" alt="Clock">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=de.avm.android.wlanapp&hl=de" class="quick-btn" title="WiFi Tester">
+                            <img src="https://cdn-icons-png.flaticon.com/512/93/93158.png" alt="WiFi">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.digibites.accubattery&hl=en" class="quick-btn" title="AccuBattery">
+                            <img src="https://img.freepik.com/premium-vector/battery-vector-icon-white-background-battery-icon-great-design-any-purposes_820464-372.jpg" alt="Battery">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=net.sourceforge.opencamera&hl=en" class="quick-btn" title="Open Camera">
+                            <img src="https://play-lh.googleusercontent.com/GkhngtFrSb3G9WXkWxJ9IRppbGVbNy7b_xyqa12Xa-Y3My_SXtsLamI5kR6or5zWGA=w480-h960-rw" alt="Camera">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.phuongpn.wifiroutersetup.wifinetworkinfo&hl=en" class="quick-btn" title="Router Setup">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6826/6826444.png" alt="Router">
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- APP GRID LAUNCHER -->
+                <div class="apps-grid">
+                    <!-- PLAYSTORE -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/games?hl=en">
+                        <img class="app-icon" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Play Store">
+                        <p class="app-label" data-translate="app_playstore">Play Store</p>
+                    </a>
+                    
+                    <!-- CALL -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="call">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/bk3e0glVbvRC4Z0uEZ5Oso5wjS89r1P_X5e-k3N_UBkTPXZLhGv50rRy7LAuDzzC9w=w480-h960-rw" alt="Call">
+                        <p class="app-label" data-translate="app_call">Phone</p>
+                    </a>
+
+                    <!-- PAYPAL -->
+                    <a class="app-icon-wrapper" href="https://www.paypal.com">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/xOKbvDt362x1uzW-nnggP-PgO9HM4L1vwBl5HgHFHy_n1X3mqeBtOSoIyNJzTS3rrj70=w480-h960-rw" alt="Paypal">
+                        <p class="app-label" data-translate="app_paypal">PayPal</p>
+                    </a>
+
+                    <!-- GOOGLE DRIVE -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.docs&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/t-juVwXA8lDAk8uQ2L6d6K83jpgQoqmK1icB_l9yvhIAQ2QT_1XbRwg5IpY08906qEw=w480-h960-rw" alt="Drive">
+                        <p class="app-label" data-translate="app_drive">Drive</p>
+                    </a>
+
+                    <!-- GOOGLE PHOTOS -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.photos&hl=en">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/ZyWNGIfzUyoajtFcD7NhMksHEZh37f-MkHVGr5Yfefa-IX7yj9SMfI82Z7a2wpdKCA=w480-h960-rw" alt="Photos">
+                        <p class="app-label" data-translate="app_photos">Photos</p>
+                    </a>
+
+                    <!-- GOOGLE CAMERA -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="camera">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/UEhZQtc_3LCwkKIayRjHG63EfC9bsXvJjuWiFMvVRAe_tHyk0pW4ZmCBJQCENxmYlYk=w480-h960-rw" alt="Camera">
+                        <p class="app-label" data-translate="app_camera">Camera</p>
+                    </a>
+
+                    <!-- MESSAGES -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.messaging&hl=en">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/9AZOTXU_CpreTFAXUPAmJNkm8VGCb1C90fjJ9pHGcVmpGMDSTq3cUbaQJdBT9Tdp9A=w480-h960-rw" alt="Messages">
+                        <p class="app-label" data-translate="app_messages">Messages</p>
+                    </a>
+
+                    <!-- CHROME -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.android.chrome&hl=en">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/QRRGW2tMZ4-FNw0XWk6WWiXHaQCGxuwM-92HrBhlA4WOd_AGmjVmQkiHyAqQjW2yByc=w480-h960-rw" alt="Chrome">
+                        <p class="app-label" data-translate="app_chrome">Chrome</p>
+                    </a>
+
+                    <!-- WHATSAPP -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="whatsapp">
+                        <img class="app-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                        <p class="app-label" data-translate="app_whatsapp">WhatsApp</p>
+                    </a>
+
+                    <!-- FIND MY DEVICE -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/search?q=find+my+device&c=apps&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/GCsSBgR93cedwf2weP7s6VPsBitwir9ioOO0DYjLydIjdCkfQEv0GQzK34ky96L6XMc=w480-h960-rw" alt="Find My">
+                        <p class="app-label" data-translate="app_findmydevice">Find Device</p>
+                    </a>
+
+                    <!-- GOOGLE PLAY -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox&hl=en">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w480-h960-rw" alt="Google">
+                        <p class="app-label" data-translate="app_google">Google</p>
+                    </a>
+
+                    <!-- YAHOO MAIL -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/search?q=yahoo+mail&c=apps&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/YtGn2T9ADy5Hs4cKVoDgGb7fPuMkdXVcszVE1oiozfE4AxhDNq0RkwajYs1FxcrMDpw=w480-h960-rw" alt="Yahoo">
+                        <p class="app-label" data-translate="app_yahoomail">Yahoo Mail</p>
+                    </a>
+
+                    <!-- GMAIL -->
+                    <a class="app-icon-wrapper" href="https://workspace.google.com/intl/de/gmail/">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/KSuaRLiI_FlDP8cM4MzJ23ml3og5Hxb9AapaGTMZ2GgR103mvJ3AAnoOFz1yheeQBBI=w480-h960-rw" alt="Gmail">
+                        <p class="app-label" data-translate="app_gmail">Gmail</p>
+                    </a>
+
+                    <!-- RINGTONES -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.bestringtonesapps.freeringtonesforandroid&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/wSVG-JSDw8ks-kB_wNLmpN1N60o_8dT2i2eJuPMAqsrY8fWL3CQQ0hpxcbOjrycX08s=s96-rw" alt="Ringtones">
+                        <p class="app-label" data-translate="app_ringtones">Ringtones</p>
+                    </a>
+
+                    <!-- YOUTUBE -->
+                    <a class="app-icon-wrapper" href="https://www.youtube.com/">
+                        <img class="app-icon" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube">
+                        <p class="app-label" data-translate="app_youtube">YouTube</p>
+                    </a>
+
+                    <!-- TIKTOK -->
+                    <a class="app-icon-wrapper" href="https://www.tiktok.com/@snb_said/video/7410389153805896968?is_from_webapp=1&sender_device=pc">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/dl42FLLV8o9mP-NOubtR-2rDzQkc4mqx6ctumDfqmhmvVeOTcxLQlCDvjQsm84Z2Ig=w480-h960-rw" alt="TikTok">
+                        <p class="app-label" data-translate="app_tiktok">TikTok</p>
+                    </a>
+
+                    <!-- CLOCK -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.deskclock&hl=en">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/k-K6mdmZJZrJiuMJCHILReDGjMl_2ljzFIz3QLULfKL1q0tWtTcAkc0RDsjg9QEuXYw=w480-h960-rw" alt="Clock">
+                        <p class="app-label" data-translate="app_clock">Clock</p>
+                    </a>
+
+                    <!-- OTTO -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=de.cellular.ottohybrid&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/Eloc_w2im-kncKoE8r-7NkKshOxTWLrL8DhzklATUf8TGQpumJiDjwPUKoylqHp9uQ=s96-rw" alt="Otto">
+                        <p class="app-label" data-translate="app_otto">Otto</p>
+                    </a>
+
+                    <!-- WEATHER -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.weather&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/wi5wjHKkIyvp6K-Py9T9qsBGOKyamJgqunun3kAUhnZAzpesclGRXhYFjeYjaWx1ynA=w480-h960-rw" alt="Weather">
+                        <p class="app-label" data-translate="app_weather">Weather</p>
+                    </a>
+
+                    <!-- INSTAGRAM -->
+                    <a class="app-icon-wrapper" href="https://www.microsoft.com/store/productId/9NBLGGH5L9XT?ocid=pdpshare">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/VRMWkE5p3CkWhJs6nv-9ZsLAs1QOg5ob1_3qg-rckwYW7yp1fMrYZqnEFpk0IoVP4LM=s96-rw" alt="Instagram">
+                        <p class="app-label" data-translate="app_instagram">Instagram</p>
+                    </a>
+
+                    <!-- MAP -->
+                    <a class="app-icon-wrapper" href="https://www.google.com/maps/@51.5571712,7.225344,13z?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/Kf8WTct65hFJxBUDm5E-EpYsiDoLQiGGbnuyP6HBNax43YShXti9THPon1YKB6zPYpA=w480-h960-rw" alt="Map">
+                        <p class="app-label" data-translate="app_map">Map</p>
+                    </a>
+
+                    <!-- CALENDAR -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.calendar&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/_bh6XK3B7TAk7kBXC1GHC0j9eS9cw9wQo2K7fiP7FDGAQlcOqgUPT2lx3WgZ0JlOJh8=w480-h960-rw" alt="Calendar">
+                        <p class="app-label" data-translate="app_calendar">Calendar</p>
+                    </a>
+
+                    <!-- MICROSOFT -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.microsoft.office.officehubrow&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/94uR6O49JmqiMMMsrfoDlWvWkqLf6rfE25zOH2BWnuzozzlfY1qnKaNzuQbUcupcpX9L=w480-h960-rw" alt="Microsoft">
+                        <p class="app-label" data-translate="app_microsoft">Microsoft</p>
+                    </a>
+
+                    <!-- RECORDER -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.recorder&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/OfRwK6rMr4i7gu1AKeNbK-qnYPuL6EVQ5j6AYYQc0ge-I-NPYoBUsweVPuJLSOtHYag=w480-h960-rw" alt="Recorder">
+                        <p class="app-label" data-translate="app_recorder">Recorder</p>
+                    </a>
+
+                    <!-- NOTES -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="notes">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/9bJoeaPbGTB8Tz_h4N-p-6ReRd8vSS-frZb2tmJulaGIoTKElKj3zpmcFJvnS96ANZP5=w480-h960-rw" alt="Notes">
+                        <p class="app-label" data-translate="app_notes">Notes</p>
+                    </a>
+
+                    <!-- GBOARD -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/X64En0aW6jkvDnd5kr16u-YuUsoJ1W2cBzJab3CQ5lObLeQ3T61DpB7AwIoZ7uqgCn4=w480-h960-rw" alt="Gboard">
+                        <p class="app-label" data-translate="app_gboard">Gboard</p>
+                    </a>
+
+                    <!-- YT MUSIC -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.music&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/GnYnNfKBr2nysHBYgYRCQtcv_RRNN0Sosn47F5ArKJu89DMR3_jHRAazoIVsPUoaMg=w480-h960-rw" alt="YT Music">
+                        <p class="app-label" data-translate="app_ytmusic">YT Music</p>
+                    </a>
+
+                    <!-- GOOGLE TV -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.videos&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/qaXTXjbeuD0m-JDrJ2Y76_5Ghr_UDGQOJRmuYfLGekbMK0s5VXkGFjNCHS4tUJxumQ=s96-rw" alt="Google TV">
+                        <p class="app-label" data-translate="app_googletv">Google TV</p>
+                    </a>
+
+                    <!-- GEMINI AI -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="gemini">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/dT-r_1Z9hUcif7CDSD5zOdOt4KodaGdtkbGszT6WPTqKQ-WxWxOepO6VX-B3YL290ydD=w480-h960-rw" alt="Gemini">
+                        <p class="app-label" data-translate="app_gemini">Gemini AI</p>
+                    </a>
+
+                    <!-- INTERNET -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.sec.android.app.sbrowser&gl=DE">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/wFAmWrV_t9YT75C6Vbyl1UupslTlq_lm7AcEPamSvWbqumIqKYfTpV_Ro_iC0fAjAQU=w480-h960-rw" alt="Internet">
+                        <p class="app-label" data-translate="app_internet">Internet</p>
+                    </a>
+
+                    <!-- FILES -->
+                    <a class="app-icon-wrapper" href="https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.files">
+                        <img class="app-icon" src="https://play-lh.googleusercontent.com/1nfAdJs2Ep2q1skM7QwJ1uHooWSbpFkbIBHhAX6EmdzEKmtk42713TiTU28mWlkcFKPA=w480-h960-rw" alt="Files">
+                        <p class="app-label" data-translate="app_files">Files</p>
+                    </a>
+
+                    <!-- SETTINGS (Custom addition for interaction) -->
+                    <a class="app-icon-wrapper" href="#" data-app-id="settings">
+                        <div class="app-icon settings-custom-icon">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                        <p class="app-label" data-translate="app_settings">Settings</p>
+                    </a>
+                </div>
+
+                <!-- FLOATING GOOGLE SEARCH WIDGET -->
+                <div class="google-search-bar">
+                    <a href="https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox" class="search-logo" title="Google Search">
+                        <img src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w480-h960-rw" alt="Google">
+                    </a>
+                    <input type="text" placeholder="Search..." id="launcher-search-input" data-translate-placeholder="search_placeholder">
+                    <div class="search-actions">
+                        <a href="https://play.google.com/store/search?q=google%20microphone%20free&c=apps&gl=DE" title="Voice Search">
+                            <img src="https://play-lh.googleusercontent.com/ORzWxi-sIo_hCgSa6uzVvBUE4osKUqRVzHnniUUxA2WXD7BnZ95BNVpWFLUTKRyJRdU=w480-h960-rw" alt="Mic">
+                        </a>
+                        <a href="https://play.google.com/store/search?q=google+lens+kostenlos&c=apps&gl=DE" title="Google Lens">
+                            <img src="https://play-lh.googleusercontent.com/Lf4wqYukj9swF-Gl2wvbus6cGoOoCylxbXTVmCO-6-eHWfhPNK78PngENEsWhEBiBw=w480-h960-rw" alt="Lens">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 3. INTERACTIVE SIMULATED APP OVERLAY VIEWPORT -->
+            <div class="app-overlay" id="app-overlay">
+                <!-- App header inside the screen -->
+                <div class="app-overlay-header">
+                    <!-- Prominent Return Home/Launcher Button inside the header -->
+                    <button class="app-header-home-btn" id="app-header-home-btn" title="Return to Launcher / Terug naar startscherm / Zum Startbildschirm">
+                        <i class="fa-solid fa-house"></i> <span data-translate="nav_home_btn">Home</span>
+                    </button>
+                    
+                    <span id="app-overlay-title">App Name</span>
+                    
+                    <button class="app-close-btn" id="app-close-btn" title="Close App / App sluiten / App schließen"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <!-- App viewport body (Dynamic components injected here) -->
+                <div class="app-overlay-body" id="app-overlay-body">
+                    
+                    <!-- DIALER / PHONE APP -->
+                    <div class="sim-app" id="app-call">
+                        <div class="dialer-screen">
+                            <input type="text" readonly id="dialer-display" placeholder="Dial number..." data-translate-placeholder="dialer_placeholder">
+                            <button id="dialer-backspace" class="dialer-backspace"><i class="fa-solid fa-delete-left"></i></button>
+                        </div>
+                        <div class="dialer-keypad">
+                            <button class="dial-key" data-val="1">1<span>&nbsp;</span></button>
+                            <button class="dial-key" data-val="2">2<span>A B C</span></button>
+                            <button class="dial-key" data-val="3">3<span>D E F</span></button>
+                            <button class="dial-key" data-val="4">4<span>G H I</span></button>
+                            <button class="dial-key" data-val="5">5<span>J K L</span></button>
+                            <button class="dial-key" data-val="6">6<span>M N O</span></button>
+                            <button class="dial-key" data-val="7">7<span>P Q R S</span></button>
+                            <button class="dial-key" data-val="8">8<span>T U V</span></button>
+                            <button class="dial-key" data-val="9">9<span>W X Y Z</span></button>
+                            <button class="dial-key" data-val="*">*<span>&nbsp;</span></button>
+                            <button class="dial-key" data-val="0">0<span>+</span></button>
+                            <button class="dial-key" data-val="#">#<span>&nbsp;</span></button>
+                        </div>
+                        <div class="dialer-actions">
+                            <button class="dial-btn-call" id="dial-call-trigger" title="Call"><i class="fa-solid fa-phone"></i></button>
+                        </div>
+                        
+                        <!-- Simulated Calling Interface overlay -->
+                        <div class="calling-overlay" id="calling-overlay">
+                            <div class="calling-avatar"><i class="fa-solid fa-user"></i></div>
+                            <h2 id="calling-number">Unknown</h2>
+                            <p class="calling-status" id="calling-status" data-translate="calling_status">Calling...</p>
+                            <button class="dial-btn-hangup" id="dial-hangup-trigger"><i class="fa-solid fa-phone-slash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- WHATSAPP APP -->
+                    <div class="sim-app" id="app-whatsapp">
+                        <div class="wa-chat-list" id="wa-chat-list">
+                            <div class="wa-contact" data-contact="mom">
+                                <div class="wa-avatar"><i class="fa-solid fa-circle-user"></i></div>
+                                <div class="wa-contact-info">
+                                    <h3>Mom ❤️</h3>
+                                    <p>Are you studying, Ebi?</p>
+                                </div>
+                            </div>
+                            <div class="wa-contact" data-contact="boss">
+                                <div class="wa-avatar"><i class="fa-solid fa-briefcase"></i></div>
+                                <div class="wa-contact-info">
+                                    <h3>Mr. Boss</h3>
+                                    <p>Great work on the UI design!</p>
+                                </div>
+                            </div>
+                            <div class="wa-contact" data-contact="gemini">
+                                <div class="wa-avatar" style="background: linear-gradient(135deg, #1A73E8, #8AB4F8);"><i class="fa-solid fa-sparkles"></i></div>
+                                <div class="wa-contact-info">
+                                    <h3>Gemini AI Bot</h3>
+                                    <p>How can I help you today?</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Conversation screen -->
+                        <div class="wa-chat-window" id="wa-chat-window">
+                            <div class="wa-chat-header">
+                                <button id="wa-chat-back"><i class="fa-solid fa-arrow-left"></i></button>
+                                <span id="wa-chat-name">Contact Name</span>
+                            </div>
+                            <div class="wa-chat-messages" id="wa-chat-messages">
+                                <!-- Messages will be dynamically appended here -->
+                            </div>
+                            <div class="wa-chat-input-bar">
+                                <input type="text" id="wa-message-input" placeholder="Type a message..." data-translate-placeholder="wa_placeholder">
+                                <button id="wa-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOTES APP -->
+                    <div class="sim-app" id="app-notes">
+                        <div class="notes-input-area">
+                            <input type="text" id="note-title-input" placeholder="Note Title..." data-translate-placeholder="notes_title_placeholder">
+                            <textarea id="note-body-input" placeholder="Write something..." data-translate-placeholder="notes_body_placeholder"></textarea>
+                            <button id="note-save-btn" class="btn-primary"><i class="fa-solid fa-floppy-disk"></i> <span data-translate="notes_save_btn">Save Note</span></button>
+                        </div>
+                        <div class="notes-list-header">
+                            <h3 data-translate="notes_saved_header">Saved Notes</h3>
+                        </div>
+                        <div class="notes-list" id="notes-list">
+                            <!-- Notes will be loaded here from localStorage -->
+                        </div>
+                    </div>
+
+                    <!-- CALCULATOR APP -->
+                    <div class="sim-app" id="app-calculator">
+                        <div class="calc-screen">
+                            <div class="calc-history" id="calc-history"></div>
+                            <div class="calc-result" id="calc-result">0</div>
+                        </div>
+                        <div class="calc-keypad">
+                            <button class="calc-key op-clear" data-action="clear">C</button>
+                            <button class="calc-key op-backspace" data-action="backspace"><i class="fa-solid fa-arrow-left-long"></i></button>
+                            <button class="calc-key op" data-action="/">/</button>
+                            <button class="calc-key op" data-action="*">&times;</button>
+                            
+                            <button class="calc-key num" data-val="7">7</button>
+                            <button class="calc-key num" data-val="8">8</button>
+                            <button class="calc-key num" data-val="9">9</button>
+                            <button class="calc-key op" data-action="-">-</button>
+                            
+                            <button class="calc-key num" data-val="4">4</button>
+                            <button class="calc-key num" data-val="5">5</button>
+                            <button class="calc-key num" data-val="6">6</button>
+                            <button class="calc-key op" data-action="+">+</button>
+                            
+                            <button class="calc-key num" data-val="1">1</button>
+                            <button class="calc-key num" data-val="2">2</button>
+                            <button class="calc-key num" data-val="3">3</button>
+                            <button class="calc-key op-equals" data-action="=">=</button>
+                            
+                            <button class="calc-key num double" data-val="0">0</button>
+                            <button class="calc-key num" data-val=".">.</button>
+                        </div>
+                    </div>
+
+                    <!-- CAMERA APP -->
+                    <div class="sim-app" id="app-camera">
+                        <div class="camera-viewfinder" id="camera-viewfinder">
+                            <span class="viewfinder-grid-line h1"></span>
+                            <span class="viewfinder-grid-line h2"></span>
+                            <span class="viewfinder-grid-line v1"></span>
+                            <span class="viewfinder-grid-line v2"></span>
+                            <div class="sim-viewfinder-image" id="camera-stream-fallback"></div>
+                        </div>
+                        
+                        <div class="camera-filters">
+                            <button class="filter-btn active" data-filter="none">Normal</button>
+                            <button class="filter-btn" data-filter="grayscale(1)">B&W</button>
+                            <button class="filter-btn" data-filter="sepia(0.8)">Retro</button>
+                            <button class="filter-btn" data-filter="rose">Rose</button>
+                        </div>
+                        
+                        <div class="camera-shutter-bar">
+                            <button class="cam-gallery-btn" id="camera-gallery-trigger"><i class="fa-solid fa-images"></i></button>
+                            <button class="cam-shutter-btn" id="camera-shutter-trigger"></button>
+                            <button class="cam-switch-btn" id="camera-filter-next"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- GEMINI AI APP -->
+                    <div class="sim-app" id="app-gemini">
+                        <div class="gemini-header">
+                            <i class="fa-solid fa-sparkles gemini-sparkle"></i>
+                            <span>Gemini Advanced</span>
+                        </div>
+                        <div class="gemini-chat-area" id="gemini-chat-area">
+                            <div class="gemini-bubble ai" id="gemini-initial-bubble">
+                                Hello! I'm Gemini, your virtual assistant built into EbiUI. Ask me anything, or type command hints like "help", "wallpaper", "time", or "joke".
+                            </div>
+                        </div>
+                        <div class="gemini-input-bar">
+                            <input type="text" id="gemini-message-input" placeholder="Ask Gemini..." data-translate-placeholder="gemini_placeholder">
+                            <button id="gemini-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- SETTINGS APP -->
+                    <div class="sim-app" id="app-settings">
+                        <!-- New Language Selector Settings Card -->
+                        <div class="settings-section">
+                            <h3 data-translate="settings_sec_lang"><i class="fa-solid fa-language"></i> Language</h3>
+                            <div class="settings-row">
+                                <span data-translate="settings_sys_lang">System Language</span>
+                                <select id="settings-lang-select" class="settings-select">
+                                    <option value="en">🇺🇸 English</option>
+                                    <option value="nl">🇳🇱 Nederlands</option>
+                                    <option value="de">🇩🇪 Deutsch</option>
+                                    <option value="es">🇪🇸 Español</option>
+                                    <option value="fr">🇫🇷 Français</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 data-translate="settings_sec_theme"><i class="fa-solid fa-paintbrush"></i> Display & Theme</h3>
+                            <div class="settings-row">
+                                <span data-translate="settings_dark_mode">Dark Mode</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="settings-darkmode-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-row">
+                                <span data-translate="settings_theme_color">Theme Primary Color</span>
+                                <div class="color-picker-row">
+                                    <span class="color-dot default" data-hue="220" title="Blue"></span>
+                                    <span class="color-dot violet" data-hue="280" title="Purple"></span>
+                                    <span class="color-dot green" data-hue="140" title="Green"></span>
+                                    <span class="color-dot orange" data-hue="30" title="Orange"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3 data-translate="settings_sec_wallpaper"><i class="fa-solid fa-image"></i> Change Wallpaper</h3>
+                            <div class="wallpaper-grid">
+                                <div class="wallpaper-thumb wp-grad1" data-wp="grad1"></div>
+                                <div class="wallpaper-thumb wp-grad2" data-wp="grad2"></div>
+                                <div class="wallpaper-thumb wp-grad3" data-wp="grad3"></div>
+                                <div class="wallpaper-thumb wp-grad4" data-wp="grad4"></div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <h3 data-translate="settings_sec_about"><i class="fa-solid fa-circle-info"></i> About EbiUI</h3>
+                            <div class="settings-about-box">
+                                <p><strong data-translate="about_model">Model:</strong> <span>Ebi Phone Pro Max</span></p>
+                                <p><strong data-translate="about_version">OS Version:</strong> <span>Android 14 (EbiUI v1.0.0)</span></p>
+                                <p><strong data-translate="about_developer">Developer:</strong> <span>Bolokaiemi Ebi</span></p>
+                                <p><strong data-translate="about_build">Build:</strong> <span data-translate="about_build_val">Stable Core OS</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 4. PHYSICAL ANDROID NAVIGATION BAR -->
+            <div class="navigation-bar">
+                <button class="nav-btn" id="nav-back" title="Back"><i class="fa-solid fa-play fa-rotate-180"></i></button>
+                <button class="nav-btn" id="nav-home" title="Home"><i class="fa-regular fa-circle"></i></button>
+                <button class="nav-btn" id="nav-recents" title="Recents"><i class="fa-solid fa-stop"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Info Overlay for Desktop users explaining how to interact -->
+    <div class="desktop-tips">
+        <h2 data-translate="tips_header">Android 14 EbiUI Launcher</h2>
+        <p data-translate="tips_subtitle">Interactive emulator designed by <strong>Bolokaiemi Ebi</strong>.</p>
+        <ul>
+            <li data-translate="tips_item_1"><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+            <li data-translate="tips_item_2"><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> to toggle Dark Mode, change theme accents, and change wallpapers.</li>
+            <li data-translate="tips_item_3"><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+            <li data-translate="tips_item_4"><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+            <li data-translate="tips_item_5"><i class="fa-solid fa-mobile-screen-button"></i> Fully responsive! Try resizing your browser window or view on a phone.</li>
+        </ul>
+        <div class="desktop-action-bar">
+            <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+                <i class="fa-solid fa-file-code"></i> <span data-translate="tips_view_original">View Raw Original Page</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Script loading -->
+    <script src="app.js"></script>
+</body>
+</html>

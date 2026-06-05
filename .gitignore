@@ -1,0 +1,14 @@
+# Python Virtual Environment
+.venv/
+venv/
+ENV/
+
+# PyCharm IDE Metadata
+.idea/
+
+# Python Cache
+**/__pycache__/
+*.pyc
+
+# Local Environment Variables / Temporary scripts
+.env.py
