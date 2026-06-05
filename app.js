@@ -10,6 +10,43 @@ document.addEventListener('DOMContentLoaded', () => {
         ? ''
         : 'http://localhost:8080';
 
+    // Dynamic Admin Console URL resolution
+    const navAdminLink = document.getElementById('nav-admin-link');
+    if (navAdminLink) {
+        navAdminLink.href = API_BASE ? API_BASE + '/admin' : '/admin';
+    }
+
+    // Server connection status badge ping logic
+    const connectionStatusBadge = document.getElementById('connection-status-badge');
+
+    async function checkServerConnection() {
+        try {
+            const response = await fetch(API_BASE + '/api/user', { credentials: 'include' });
+            if (response.ok || response.status === 401 || response.status === 200) {
+                setConnectionStatus(true);
+            } else {
+                setConnectionStatus(false);
+            }
+        } catch (error) {
+            setConnectionStatus(false);
+        }
+    }
+
+    function setConnectionStatus(connected) {
+        if (!connectionStatusBadge) return;
+        if (connected) {
+            connectionStatusBadge.className = 'connection-badge online';
+            connectionStatusBadge.innerHTML = '<i class="fa-solid fa-circle"></i> Server Connected';
+        } else {
+            connectionStatusBadge.className = 'connection-badge offline';
+            connectionStatusBadge.innerHTML = '<i class="fa-solid fa-circle"></i> Server Offline';
+        }
+    }
+
+    // Start checking connection status
+    checkServerConnection();
+    setInterval(checkServerConnection, 15000);
+
     // -------------------------------------------------------------
     // MULTI-LANGUAGE TRANSLATION DICTIONARY
     // -------------------------------------------------------------
@@ -464,7 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (appId) {
                 // If it has data-app-id, it is a simulated app. Prevent default link redirect and open overlay.
                 e.preventDefault();
-                const label = wrapper.querySelector('.app-label').textContent;
+                const labelEl = wrapper.querySelector('.app-label');
+                const label = labelEl ? labelEl.textContent : '';
                 openApp(appId, label);
             }
             // Otherwise, it is a direct external anchor tag. Let the browser open the link natively.
@@ -1326,6 +1364,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentUser = null;
 
+    // Courses Dropdown and Dynamic List Selectors
+    const navCoursesDropdownWrapper = document.getElementById('nav-courses-dropdown-wrapper');
+    const navCoursesMenu = document.getElementById('nav-courses-menu');
+    const navCoursesBtn = document.getElementById('nav-courses-btn');
+    const courseListUl = document.querySelector('.course-list');
+
     // View toggling tabs (especially on mobile layouts)
     function switchTab(targetTab) {
         if (targetTab === 'home') {
@@ -1384,7 +1428,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     async function checkAuthStatus() {
         try {
-            const response = await fetch(API_BASE + '/api/user');
+            const response = await fetch(API_BASE + '/api/user', { credentials: 'include' });
             const data = await response.json();
             if (data.user) {
                 currentUser = data.user.username;
@@ -1404,6 +1448,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileUsernameText) profileUsernameText.textContent = username;
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
         if (studentDashboard) studentDashboard.style.display = 'block';
+        if (navCoursesDropdownWrapper) navCoursesDropdownWrapper.style.display = 'inline-block';
+        loadCourses();
     }
 
     function showAuthForms() {
@@ -1413,6 +1459,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
         if (studentDashboard) studentDashboard.style.display = 'none';
+        if (navCoursesDropdownWrapper) navCoursesDropdownWrapper.style.display = 'none';
     }
 
     // -------------------------------------------------------------
@@ -1520,7 +1567,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!commentsListContainer) return;
         
         try {
-            const response = await fetch(API_BASE + '/api/comments');
+            const response = await fetch(API_BASE + '/api/comments', { credentials: 'include' });
             const data = await response.json();
             const comments = data.comments || [];
             
@@ -1599,6 +1646,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(API_BASE + '/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify({ username, password })
                 });
                 
@@ -1636,6 +1684,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(API_BASE + '/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify({ username, password })
                 });
 
@@ -1663,7 +1712,10 @@ document.addEventListener('DOMContentLoaded', () => {
         authLogoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
-                const response = await fetch(API_BASE + '/api/logout', { method: 'POST' });
+                const response = await fetch(API_BASE + '/api/logout', { 
+                    method: 'POST',
+                    credentials: 'include'
+                });
                 if (response.ok) {
                     currentUser = null;
                     showAuthForms();
@@ -1696,6 +1748,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(API_BASE + '/api/comments', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify({ text, guest_name: guestName, rating: rating })
                 });
 
@@ -1722,7 +1775,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function deleteComment(id) {
         try {
             const response = await fetch(API_BASE + `/api/comments/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                credentials: 'include'
             });
 
             const data = await response.json();
@@ -1734,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification(data.error || 'Failed to delete review.');
             }
         } catch (error) {
-            print(error);
+            console.error('Delete review error:', error);
             showNotification('Connection error.');
         }
     }
@@ -1892,6 +1946,134 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1800);
         });
     }
+
+    // -------------------------------------------------------------
+    // DYNAMIC COURSES LOADING & MODAL BINDINGS
+    // -------------------------------------------------------------
+    let coursesData = [];
+
+    async function loadCourses() {
+        try {
+            const response = await fetch(API_BASE + '/api/courses', { credentials: 'include' });
+            const data = await response.json();
+            coursesData = data.courses || [];
+            
+            renderCoursesUI();
+        } catch (error) {
+            console.error('Error loading courses:', error);
+        }
+    }
+
+    function renderCoursesUI() {
+        // 1. Populate navbar dropdown
+        if (navCoursesMenu) {
+            navCoursesMenu.innerHTML = '';
+            coursesData.forEach(course => {
+                const btn = document.createElement('button');
+                btn.className = 'dropdown-item';
+                btn.innerHTML = `<i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i> ${course.title}`;
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Close dropdown menu
+                    navCoursesMenu.classList.remove('active');
+                    openCourseModal(course);
+                });
+                navCoursesMenu.appendChild(btn);
+            });
+        }
+
+        // 2. Populate Available Courses in Dashboard
+        if (courseListUl) {
+            courseListUl.innerHTML = '';
+            coursesData.forEach(course => {
+                const li = document.createElement('li');
+                li.className = 'course-item-card';
+                li.innerHTML = `
+                    <div class="course-main-row">
+                        <div class="course-icon"><i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i></div>
+                        <div class="course-info">
+                            <span class="course-name">${course.title}</span>
+                            <span class="course-meta">${course.meta}</span>
+                        </div>
+                        <div class="course-actions">
+                            <button class="course-action-btn" data-id="${course.id}">
+                                <i class="fa-solid fa-graduation-cap"></i> View
+                            </button>
+                        </div>
+                    </div>
+                    <div class="live-upgrade-wrapper">
+                        <label class="live-upgrade-label">
+                            <input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}">
+                            <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                        </label>
+                    </div>
+                `;
+
+                // Bind click to View button
+                const viewBtn = li.querySelector('.course-action-btn');
+                if (viewBtn) {
+                    viewBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openCourseModal(course, li.querySelector('.live-upgrade-checkbox'));
+                    });
+                }
+
+                courseListUl.appendChild(li);
+            });
+        }
+    }
+
+    function openCourseModal(course, correspondingCheckbox = null) {
+        currentSelectedCourseCheckbox = correspondingCheckbox;
+        if (!correspondingCheckbox) {
+            // Find it in the dashboard if not passed directly (e.g. if opened from navbar)
+            if (courseListUl) {
+                const cb = courseListUl.querySelector(`.live-upgrade-checkbox[data-course="${course.title}"]`);
+                currentSelectedCourseCheckbox = cb;
+            }
+        }
+
+        if (courseModalBadge) courseModalBadge.textContent = course.badge;
+        if (courseModalTitle) courseModalTitle.textContent = course.title;
+        if (courseModalDesc) courseModalDesc.textContent = course.desc;
+
+        if (courseTopicsList) {
+            courseTopicsList.innerHTML = '';
+            const topics = course.topics ? course.topics.split(',') : [];
+            topics.forEach(topic => {
+                const li = document.createElement('li');
+                li.textContent = topic;
+                courseTopicsList.appendChild(li);
+            });
+        }
+
+        if (courseModalActionBtn) {
+            courseModalActionBtn.innerHTML = `<i class="fa-solid ${course.icon_class || 'fa-file-pdf'}"></i> ${course.action_text}`;
+            courseModalActionBtn.onclick = () => {
+                alert(`Accessing course materials for: ${course.title}`);
+                if (courseModal) courseModal.style.display = 'none';
+            };
+        }
+
+        if (courseModal) courseModal.style.display = 'flex';
+    }
+
+    // Bind Navbar Dropdown toggling
+    if (navCoursesBtn) {
+        navCoursesBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navCoursesMenu) {
+                navCoursesMenu.classList.toggle('active');
+            }
+        });
+    }
+
+    // Close dropdown on click outside
+    document.addEventListener('click', () => {
+        if (navCoursesMenu) {
+            navCoursesMenu.classList.remove('active');
+        }
+    });
 
     // Trigger Initial Checks
     checkAuthStatus();

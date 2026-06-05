@@ -17,19 +17,29 @@ if database_url.startswith("postgres://"):
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Enable CORS for development/testing origins
+# Enable CORS for development/testing origins supporting cookies/credentials
 @app.before_request
 def handle_options():
     if request.method == 'OPTIONS':
         response = make_response()
-        response.headers['Access-Control-Allow-Origin'] = '*'
+        origin = request.headers.get('Origin')
+        if origin:
+            response.headers['Access-Control-Allow-Origin'] = origin
+            response.headers['Access-Control-Allow-Credentials'] = 'true'
+        else:
+            response.headers['Access-Control-Allow-Origin'] = '*'
         response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
         response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
         return response
 
 @app.after_request
 def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    origin = request.headers.get('Origin')
+    if origin:
+        response.headers['Access-Control-Allow-Origin'] = origin
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+    else:
+        response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
     response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
     return response
@@ -227,11 +237,29 @@ def admin_stats():
     if total_comments > 0:
         avg_rating = sum(c.rating for c in comments) / total_comments
         
+    # Get absolute path to the SQLite database
+    db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+    if db_uri.startswith('sqlite:///'):
+        db_path = os.path.abspath(os.path.join(app.instance_path, 'ebiui.db'))
+    else:
+        db_path = db_uri
+        
     return jsonify({
         'total_reviews': total_comments,
         'total_students': total_users,
-        'average_rating': round(avg_rating, 2)
+        'average_rating': round(avg_rating, 2),
+        'db_path': db_path
     })
+
+@app.route('/api/admin/db-download', methods=['GET'])
+def admin_db_download():
+    # Only allow downloading for SQLite database
+    db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+    if db_uri.startswith('sqlite:///'):
+        from flask import send_from_directory
+        return send_from_directory(app.instance_path, 'ebiui.db', as_attachment=True)
+    else:
+        return jsonify({'error': 'Database is hosted on a remote server (PostgreSQL).'}), 400
 
 @app.route('/api/admin/data', methods=['GET'])
 def admin_data():
@@ -267,6 +295,73 @@ def admin_export_csv():
     output.headers["Content-Disposition"] = "attachment; filename=ebiui_reviews_export.csv"
     output.headers["Content-type"] = "text/csv"
     return output
+
+COURSES = [
+    {
+        'id': 'html5',
+        'badge': 'HTML5',
+        'title': 'HTML5 Fundamentals',
+        'desc': 'Master the foundations of the web: semantic structure, document hierarchy, web forms, layouts, and embedded media assets.',
+        'topics': 'Semantic HTML5 layouts,Form elements & inputs validation,Media elements (Audio/Video),HTML5 API integration',
+        'action_text': 'Download Syllabus PDF',
+        'icon_class': 'fa-file-pdf',
+        'brand_icon': 'fa-html5',
+        'brand_color': '#e34c26',
+        'meta': 'Study Guide & Syllabus (PDF)'
+    },
+    {
+        'id': 'css3',
+        'badge': 'CSS3',
+        'title': 'CSS3 Layouts & Styling',
+        'desc': 'Design modern, responsive user interfaces using Flexbox, CSS Grid, custom keyframe transitions, variables, and glassmorphism styling.',
+        'topics': 'Flexbox & Grid layouts,CSS Custom Variables (Theming),Animations & Keyframes,Glassmorphic styling systems',
+        'action_text': 'Play Lecture Video',
+        'icon_class': 'fa-video',
+        'brand_icon': 'fa-css3-alt',
+        'brand_color': '#264de4',
+        'meta': 'Video Lecture & Sandbox Practice'
+    },
+    {
+        'id': 'js',
+        'badge': 'JavaScript',
+        'title': 'JavaScript Programming',
+        'desc': 'Learn modern scripting with ES6+ syntax: control statements, document object model (DOM) manipulation, event handling, and API fetch transactions.',
+        'topics': 'ES6+ Syntax & Scope,DOM Manipulation & Event Handlers,Asynchronous Fetch API & JSON,State Management',
+        'action_text': 'Launch Sandbox',
+        'icon_class': 'fa-code',
+        'brand_icon': 'fa-js',
+        'brand_color': '#f7df1e',
+        'meta': 'Interactive Exercises & Sandbox'
+    },
+    {
+        'id': 'python',
+        'badge': 'Python',
+        'title': 'Python & Flask Development',
+        'desc': 'Build powerful backend web applications and REST APIs using Python, object-oriented concepts, Flask routing, templates, and server deployment.',
+        'topics': 'Python OOP & syntax,Flask routing & templates,JSON API development,Middleware & application state',
+        'action_text': 'Download Source Code',
+        'icon_class': 'fa-file-zipper',
+        'brand_icon': 'fa-python',
+        'brand_color': '#3776ab',
+        'meta': 'Source Code & Backend Guide'
+    },
+    {
+        'id': 'sql',
+        'badge': 'SQL & DB',
+        'title': 'SQL & SQLite Database',
+        'desc': 'Design relational database schemas, write optimized SQL queries, manage tables, and implement CRUD transactions using SQLite.',
+        'topics': 'Relational DB concepts,SQL queries & joins,CRUD transactions,SQLite & SQLAlchemy integration',
+        'action_text': 'Launch SQLite Console',
+        'icon_class': 'fa-database',
+        'brand_icon': 'fa-database',
+        'brand_color': '#003b57',
+        'meta': 'SQLite Sandbox & Query Guide'
+    }
+]
+
+@app.route('/api/courses', methods=['GET'])
+def get_courses():
+    return jsonify({'courses': COURSES})
 
 if __name__ == '__main__':
     # Capture PORT from environment variables (defaults to 8000 for local development)

@@ -343,6 +343,7 @@
             </div>
             <div class="action-header">
                 <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Go to Live Site</a>
+                <a href="/api/admin/db-download" class="btn btn-secondary" id="btn-download-db"><i class="fa-solid fa-database"></i> Download Database</a>
                 <a href="/api/admin/export" class="btn btn-primary"><i class="fa-solid fa-file-csv"></i> Export CSV</a>
             </div>
         </header>
@@ -368,6 +369,14 @@
                 <div class="stat-info">
                     <h3>Registered Students</h3>
                     <p id="stat-students">0</p>
+                </div>
+            </div>
+            <!-- SQLite Database File Location Card -->
+            <div class="stat-card" style="grid-column: 1 / -1; background: rgba(59, 130, 246, 0.04); display: flex; flex-direction: row; align-items: center; gap: 20px;">
+                <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-color);"><i class="fa-solid fa-database"></i></div>
+                <div class="stat-info" style="flex-grow: 1;">
+                    <h3 style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 500;">SQLite Database Location</h3>
+                    <p id="db-filepath-text" style="font-size: 1rem; font-weight: 500; font-family: monospace; color: #60a5fa; margin-top: 4px; word-break: break-all;">Loading path...</p>
                 </div>
             </div>
         </div>
@@ -434,6 +443,11 @@
                     document.getElementById('stat-avg').textContent = stats.average_rating.toFixed(1) + ' / 5.0';
                     document.getElementById('stat-students').textContent = stats.total_students;
                     document.getElementById('reviews-count-badge').textContent = stats.total_reviews + ' items';
+                    
+                    const dbPathText = document.getElementById('db-filepath-text');
+                    if (dbPathText) {
+                        dbPathText.textContent = stats.db_path || 'sqlite:///instance/ebiui.db';
+                    }
 
                     // 2. Fetch Review and Student Data
                     const dataResponse = await fetch('/api/admin/data');
