@@ -3,6 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime
+from dotenv import load_dotenv
+# =========================================
+# LOAD ENV
+# =========================================
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 # Initialize Flask app, pointing the static files folder to the root directory
