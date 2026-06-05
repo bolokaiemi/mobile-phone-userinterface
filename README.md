@@ -1,83 +1,97 @@
-# Android 14 EbiUI - Interactive Mobile UI Emulator
+# EbiUI Hub: Interactive Mobile UI Emulator & Learning Portal
 
-EbiUI is a modern, high-fidelity web-based Android 14 Custom ROM emulator. Built using HTML5, Vanilla CSS3, and ES6 JavaScript, this application wraps a simulated Android launcher inside a realistic physical smartphone bezel mockup. On mobile devices, it responsively collapses the outer chassis to act as a native fullscreen web app.
+EbiUI is a modern, high-fidelity web-based Android 14 Custom ROM emulator. In this version, the phone emulator is wrapped in a premium modern web dashboard. The project now features a public review feed with star ratings and social media sharing integration, alongside a secure, dedicated student portal for accessing educational resources.
 
-[View Live Project Demo (GitHub Pages)](https://YOUR_USERNAME.github.io/mobileuserinterfaceProject6/)
+The application uses a **Flask** backend with **SQLAlchemy** (supporting both SQLite for local development and PostgreSQL for production deployments).
 
 ---
 
 ## Key Features
 
-- 📱 **Realistic Device Chassis Mockup**: Physical-looking bezels, camera notch/punch-hole, side power/volume keys, and speaker grille details.
-- 🌐 **Multi-Language Support (i18n)**: Toggle system languages between English (🇺🇸), Dutch (🇳🇱), German (🇩🇪), Spanish (🇪🇸), and French (🇫🇷) dynamically using the status bar globe icon or the Settings App.
-- 🎨 **Material You Dynamic Theming**: Shift the entire accent color system (buttons, headers, inputs) dynamically via settings, inspired by Android 14 design language.
+- 📱 **Realistic Device Chassis Mockup**: Physical-looking bezels, camera notch/punch-hole, side power/volume keys, speaker grille details, and responsive collapse.
+- 🌐 **Multi-Language Support (i18n)**: Toggle system languages dynamically between English (🇺🇸), Dutch (🇳🇱), German (🇩🇪), Spanish (🇪🇸), and French (🇫🇷).
+- 🎨 **Material You Dynamic Theming**: Shift the entire accent color system (buttons, headers, inputs) via Settings App.
 - 🌗 **Light / Dark Mode Selector**: Instantly switches theme configurations and display contrasts.
 - 🖼️ **Interactive Wallpaper Chooser**: Cycle through custom abstract backgrounds, including a premium default neon liquid wave gradient.
-- ⚙️ **Status Bar Toggles**: Click the battery icon to simulate charging animations, or toggle the WiFi indicator state with live status toast alerts.
-- 💬 **Gemini AI Assistant**: A built-in terminal chat bot that handles interactive commands:
-  - Type `help` to list commands.
-  - Type `wallpaper [1-4]` to change launcher wallpaper dynamically.
-  - Type `joke` to receive funny programmer jokes.
-  - Type `dark` or `light` to swap visual layouts.
-- 📞 **Dialer / Phone App**: Operable number dial keypad emitting simulated DTMF beep tones (using Web Audio synthesizer) and simulated call connect overlay.
-- 💬 **WhatsApp Simulation**: Select Mr. Boss, Mom, or Gemini AI Bot from the chat log and interact using automated message delays and response scripts that translate dynamically!
-- 📝 **Notes App**: Create note titles and descriptions, save notes, and delete them. Notes are fully stored and persisted across page reloads via `localStorage`.
-- 🧮 **Calculator App**: Operable mathematical calculation grid.
-- 📷 **Camera Viewfinder Filter Mode**: Toggle different visual styles (grayscale, retro sepia, neon hue-rotate) in the viewfinder stream, with simulated photo capture screen flashes.
-- 🛍️ **Direct Download / Installation Links**: Non-simulated apps (such as PayPal, Google Drive, Gmail, Gboard, Yahoo Mail, etc.) redirect directly to their official Google Play Store download listings in the current browser window, matching standard launcher behaviors.
+- 💬 **Gemini AI Assistant**: A built-in terminal chat bot that handles interactive commands (`joke`, `wallpaper`, `dark`, `light`, etc.).
+- 📞 **Dialer / Phone App**: Operable number dial keypad emitting synthesized DTMF beep tones (Web Audio API) and call connect overlays.
+- 💬 **WhatsApp Simulation**: Select Mr. Boss, Mom, or Gemini AI Bot from the chat log and interact using automated message delays and response scripts.
+- 📷 **Camera Viewfinder Filter Mode**: Toggle visual styles (grayscale, retro sepia, neon hue-rotate) with simulated photo capture screen flashes.
+- 🛍️ **Direct Download / Installation Links**: Simulates redirection to official Google Play Store download listings in the browser.
+
+### New Features in this Version
+- 💬 **Public Review System (No Login Required)**:
+  - Users can submit feedback directly using an interactive **1-to-5 star rating selector** and a review comment box.
+  - Optional custom display names (defaults to "Anonymous Guest" if left blank).
+- 📢 **Social Media Sharing**:
+  - Automatically pops up a sharing dialog after a review is submitted.
+  - Includes custom, encouraging labels: `share on WhatsApp`, `share on Facebook`, and `share on Instagram`.
+  - Copy-to-clipboard integration for platforms like Instagram that do not support pre-filled message links.
+- 🎓 **Student Learning Portal**:
+  - Secure authentication and registration forms separated into a dedicated portal card.
+  - Unlocks a modern student dashboard with downloadable course syllabi, lecture video launch buttons, and coding sandboxes once logged in.
 
 ---
 
 ## Technical Stack
 
-- **Frontend Core**: Semantic HTML5 & ES6 JavaScript
-- **Styling**: Modern CSS3 (CSS Variables, Flexbox, CSS Grid, Glassmorphism, Keyframe Animations)
+- **Frontend Core**: Semantic HTML5, Vanilla CSS3 (flexbox, grid, glassmorphism, keyframe animations), ES6 JavaScript
+- **Backend Core**: Python, Flask, Flask-SQLAlchemy
+- **Database**: SQLite (local dev), PostgreSQL (production)
 - **Icons**: Font Awesome 6.6.0
 - **Typography**: Google Fonts (Outfit)
-- **Web APIs**: Web Audio API (Synthesized tone pad beeps), Web Storage API (`localStorage` for note persistence)
-- **Local Dev Server**: Python HTTP Server
 
 ---
 
 ## Getting Started Locally
 
 ### Prerequisites
-Make sure you have Python installed on your machine to host the local directory.
+Make sure you have **Python 3.x** installed.
 
-### Quick Start
+### Installation & Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/mobileuserinterfaceProject6.git
+   git clone https://github.com/Bolokaiemi/mobile-phone-userinterface.git
+   cd mobile-phone-userinterface
    ```
-2. Navigate into the project folder:
+2. Set up a virtual environment and activate it:
    ```bash
-   cd mobileuserinterfaceProject6
+   python -m venv .venv
+   # Windows (CMD):
+   .venv\Scripts\activate.bat
+   # Windows (PowerShell):
+   .\.venv\Scripts\Activate.ps1
+   # macOS/Linux:
+   source .venv/bin/activate
    ```
-3. Run the development server script:
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the Flask development server:
    ```bash
    python app.py
    ```
-   *(Or if using the PyCharm local virtual environment on Windows)*:
-   ```bash
-   .\.venv\Scripts\python.exe app.py
-   ```
-4. Open your browser and navigate to **`http://localhost:8000`**.
+5. Open your browser and navigate to **`http://localhost:8080`**.
 
 ---
 
 ## Project Structure
 
 ```text
-mobileuserinterfaceProject6/
-├── index.html          # Main HTML structure & phone chassis skeleton
-├── app.js              # State management, clock tasks, mini-app logic & simulated databases
-├── app.py              # Light Python caching-disabled local preview server
-├── wallpaper_neon.png  # Generated abstract default UI wallpaper asset
-├── README.md           # Documentation for Github profiles
-├── static/             # Static assets folder
-│   └── styles.css      # Theme tokens, glassmorphism, app views, responsive media queries
-└── templates/          # Templates folder (e.g. for Flask deployment)
-    ├── index.html      # Synchronized copy of main HTML
+mobile-phone-userinterface/
+├── app.py              # Flask server with SQL models and REST API routes
+├── app.js              # State management, emulator applications, and API fetch events
+├── index.html          # Main HTML structure and dashboard wrapper layout
+├── wallpaper_neon.png  # Neon liquid wallpaper asset
+├── requirements.txt    # Python packages (Flask, Flask-SQLAlchemy, etc.)
+├── README.md           # Project documentation
+├── instance/
+│   └── ebiui.db        # Local SQLite database
+├── static/
+│   └── styles.css      # Custom dashboard tokens, glassmorphism, responsive styles
+└── templates/
+    ├── index.html      # Synchronized template backup of index.html
     └── mobilephone.html # Original static reference file
 ```
 
