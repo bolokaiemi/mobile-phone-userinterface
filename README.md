@@ -17,7 +17,7 @@ The application uses a **Flask** backend with **SQLAlchemy** (supporting both SQ
 - 📞 **Dialer / Phone App**: Operable number dial keypad emitting synthesized DTMF beep tones (Web Audio API) and call connect overlays.
 - 💬 **WhatsApp Simulation**: Select Mr. Boss, Mom, or Gemini AI Bot from the chat log and interact using automated message delays and response scripts.
 - 📷 **Camera Viewfinder Filter Mode**: Toggle visual styles (grayscale, retro sepia, neon hue-rotate) with simulated photo capture screen flashes.
-- 🛍️ **Direct Download / Installation Links**: Simulates redirection to official Google Play Store download listings in the browser.
+- 🛒 **Web Preview Mode**: Simulates app launcher grids leading to official Google Play Store, PayPal, TikTok, and Chrome previews.
 
 ### New Features in this Version
 - 💬 **Public Review System (No Login Required)**:
@@ -26,17 +26,28 @@ The application uses a **Flask** backend with **SQLAlchemy** (supporting both SQ
 - 📢 **Social Media Sharing**:
   - Automatically pops up a sharing dialog after a review is submitted.
   - Includes custom, encouraging labels: `share on WhatsApp`, `share on Facebook`, and `share on Instagram`.
-  - Copy-to-clipboard integration for platforms like Instagram that do not support pre-filled message links.
-- 🎓 **Student Learning Portal**:
+- 🎓 **Student Learning Portal & Dynamic Navbar Dropdown**:
   - Secure authentication and registration forms separated into a dedicated portal card.
   - Unlocks a modern student dashboard with downloadable course syllabi, lecture video launch buttons, and coding sandboxes once logged in.
+  - **Courses Navbar Dropdown**: Automatically populates courses (HTML5, CSS3, JavaScript, Python, SQL Database) in the header navigation upon student login. Clicking any course item redirects the page to the portal view and opens its details modal.
+- 💳 **Premium Live Tutoring Upgrade**:
+  - Integrated a direct premium payment checkout modal for live 1-on-1 mentorship with Mr. Bolokaiemi Ebi.
+  - Accessible via dashboard checkboxes, details modals, and footer shortcuts.
+- 🌅 **Premium Glassmorphic Footer**:
+  - Displays a clean copyright showing the year **2026** (when EbiUI was created).
+  - Contains an About section, list of course details links (restricted to logged-in students), and quick contact credentials (phone, email, academy location).
+  - Features a **"Book Live Session"** call-to-action button that triggers the mentorship payment gateway directly.
+- ⚠️ **Disclaimer Notice**:
+  - Added a notice to the Emulator Tips panel advising users that the site is an interactive web preview and that they should view links online rather than downloading files onto their local machines.
+- 🛠️ **Admin Dashboard Cross-Origin Support**:
+  - Resolved dynamic `API_BASE` links inside the Admin Dashboard. Total comments, student accounts, rating stats, database downloads, and CSV exports load successfully regardless of whether the console is run via Flask, local file protocol (`file://`), or local preview web servers.
 
 ---
 
 ## Technical Stack
 
-- **Frontend Core**: Semantic HTML5, Vanilla CSS3 (flexbox, grid, glassmorphism, keyframe animations), ES6 JavaScript
-- **Backend Core**: Python, Flask, Flask-SQLAlchemy
+- **Frontend Core**: Semantic HTML5, Vanilla CSS3 (flexbox, grid, glassmorphic card components, keyframe animations), ES6 JavaScript
+- **Backend Core**: Python, Flask, Flask-SQLAlchemy (supporting dynamic CORS configurations)
 - **Database**: SQLite (local dev), PostgreSQL (production)
 - **Icons**: Font Awesome 6.6.0
 - **Typography**: Google Fonts (Outfit)
@@ -92,7 +103,8 @@ mobile-phone-userinterface/
 │   └── styles.css      # Custom dashboard tokens, glassmorphism, responsive styles
 └── templates/
     ├── index.html      # Synchronized template backup of index.html
-    └── mobilephone.html # Original static reference file
+    ├── admin.html      # Admin Feedback & Student Dashboard console
+    └── mobilephone.html # Original static reference design file
 ```
 
 ---

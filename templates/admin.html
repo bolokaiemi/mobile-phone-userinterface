@@ -431,33 +431,118 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Dynamic API Base URL logic matching active host (e.g. port 8080)
+            const API_BASE = window.location.port === '8080'
+                ? ''
+                : (window.location.hostname ? window.location.protocol + '//' + window.location.hostname + ':8080' : 'http://127.0.0.1:8080');
+
+            // Dynamically resolve export and download URLs
+            const btnDownloadDb = document.getElementById('btn-download-db');
+            if (btnDownloadDb) {
+                btnDownloadDb.href = API_BASE ? API_BASE + '/api/admin/db-download' : '/api/admin/db-download';
+            }
+            const btnExportCsv = document.querySelector('a[href="/api/admin/export"]');
+            if (btnExportCsv) {
+                btnExportCsv.href = API_BASE ? API_BASE + '/api/admin/export' : '/api/admin/export';
+            }
+
+            // Local Storage Helpers for Offline/CORS-proof fallbacks
+            function getLocalComments() {
+                try {
+                    return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            function getLocalUsers() {
+                try {
+                    return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
             // Fetch Stats and Table Data
             loadDashboardData();
 
             async function loadDashboardData() {
+                let serverStats = null;
+                let serverData = null;
+                
                 try {
                     // 1. Fetch Stats
-                    const statsResponse = await fetch('/api/admin/stats');
-                    const stats = await statsResponse.json();
-                    document.getElementById('stat-reviews').textContent = stats.total_reviews;
-                    document.getElementById('stat-avg').textContent = stats.average_rating.toFixed(1) + ' / 5.0';
-                    document.getElementById('stat-students').textContent = stats.total_students;
-                    document.getElementById('reviews-count-badge').textContent = stats.total_reviews + ' items';
-                    
-                    const dbPathText = document.getElementById('db-filepath-text');
-                    if (dbPathText) {
-                        dbPathText.textContent = stats.db_path || 'sqlite:///instance/ebiui.db';
+                    const statsResponse = await fetch(API_BASE + '/api/admin/stats');
+                    if (statsResponse.ok) {
+                        serverStats = await statsResponse.json();
                     }
-
-                    // 2. Fetch Review and Student Data
-                    const dataResponse = await fetch('/api/admin/data');
-                    const data = await dataResponse.json();
-                    
-                    renderReviews(data.comments);
-                    renderStudents(data.users);
                 } catch (error) {
-                    console.error('Error loading dashboard data:', error);
+                    console.warn('Failed to fetch admin stats from server:', error);
                 }
+
+                try {
+                    // 2. Fetch Review and Student Data
+                    const dataResponse = await fetch(API_BASE + '/api/admin/data');
+                    if (dataResponse.ok) {
+                        serverData = await dataResponse.json();
+                    }
+                } catch (error) {
+                    console.warn('Failed to fetch admin data from server:', error);
+                }
+
+                // Merge local comments
+                const localComments = getLocalComments();
+                let allComments = [...localComments];
+                
+                if (serverData && serverData.comments) {
+                    serverData.comments.forEach(sc => {
+                        if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
+                            allComments.push(sc);
+                        }
+                    });
+                }
+                
+                // Sort comments by created_at desc
+                allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+                // Merge local users (registered students fallback)
+                const localUsers = getLocalUsers();
+                let allUsers = [];
+                localUsers.forEach(lu => {
+                    allUsers.push({
+                        id: 'local_' + lu.username,
+                        username: lu.username,
+                        created_at: 'Offline Mode'
+                    });
+                });
+                
+                if (serverData && serverData.users) {
+                    serverData.users.forEach(su => {
+                        if (!allUsers.some(lu => lu.username === su.username)) {
+                            allUsers.push(su);
+                        }
+                    });
+                }
+
+                // Calculate local stats if server stats is unavailable
+                const totalComments = allComments.length;
+                const totalUsers = allUsers.length;
+                const avgRating = totalComments > 0 
+                    ? allComments.reduce((acc, c) => acc + c.rating, 0) / totalComments 
+                    : 0;
+                
+                document.getElementById('stat-reviews').textContent = serverStats ? serverStats.total_reviews : totalComments;
+                document.getElementById('stat-avg').textContent = (serverStats ? serverStats.average_rating : avgRating).toFixed(1) + ' / 5.0';
+                document.getElementById('stat-students').textContent = serverStats ? serverStats.total_students : totalUsers;
+                document.getElementById('reviews-count-badge').textContent = (serverStats ? serverStats.total_reviews : totalComments) + ' items';
+                
+                const dbPathText = document.getElementById('db-filepath-text');
+                if (dbPathText) {
+                    dbPathText.textContent = (serverStats && serverStats.db_path) ? serverStats.db_path : 'Local Browser Database (Offline)';
+                }
+
+                renderReviews(allComments);
+                renderStudents(allUsers);
             }
 
             function renderReviews(comments) {

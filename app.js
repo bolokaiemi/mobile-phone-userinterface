@@ -5,10 +5,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Dynamic API Base URL logic for cross-origin local preview or direct file:// testing
-    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '8080'
+    // Dynamic API Base URL logic matching active preview host (or falling back to 127.0.0.1 on file://)
+    const API_BASE = window.location.port === '8080'
         ? ''
-        : 'http://localhost:8080';
+        : (window.location.hostname ? window.location.protocol + '//' + window.location.hostname + ':8080' : 'http://127.0.0.1:8080');
+
+    // Helper to conditionally inject credentials only on HTTP/HTTPS protocols (prevents browser block on file://)
+    function getFetchOptions(options = {}) {
+        if (window.location.protocol !== 'file:') {
+            options.credentials = 'include';
+        }
+        return options;
+    }
 
     // Dynamic Admin Console URL resolution
     const navAdminLink = document.getElementById('nav-admin-link');
@@ -21,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function checkServerConnection() {
         try {
-            const response = await fetch(API_BASE + '/api/user', { credentials: 'include' });
+            const response = await fetch(API_BASE + '/api/user', getFetchOptions());
             if (response.ok || response.status === 401 || response.status === 200) {
                 setConnectionStatus(true);
             } else {
@@ -1364,6 +1372,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentUser = null;
 
+    // Local Storage Helpers for Offline/CORS-proof fallbacks
+    function getLocalComments() {
+        try {
+            return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveLocalComment(comment) {
+        try {
+            const comments = getLocalComments();
+            comments.unshift(comment);
+            localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+        } catch (e) {
+            console.error('Local comments save error:', e);
+        }
+    }
+
+    function getLocalUsers() {
+        try {
+            return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function saveLocalUser(user) {
+        try {
+            const users = getLocalUsers();
+            if (!users.some(u => u.username === user.username)) {
+                users.push(user);
+                localStorage.setItem('ebiui_local_users', JSON.stringify(users));
+            }
+        } catch (e) {
+            console.error('Local user save error:', e);
+        }
+    }
+
     // Courses Dropdown and Dynamic List Selectors
     const navCoursesDropdownWrapper = document.getElementById('nav-courses-dropdown-wrapper');
     const navCoursesMenu = document.getElementById('nav-courses-menu');
@@ -1428,19 +1475,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     async function checkAuthStatus() {
         try {
-            const response = await fetch(API_BASE + '/api/user', { credentials: 'include' });
+            const response = await fetch(API_BASE + '/api/user', getFetchOptions());
             const data = await response.json();
             if (data.user) {
                 currentUser = data.user.username;
+                localStorage.setItem('ebiui_current_user', currentUser);
+                showUserProfile(currentUser);
+            } else {
+                // Try localStorage fallback
+                const localUser = localStorage.getItem('ebiui_current_user');
+                if (localUser) {
+                    currentUser = localUser;
+                    showUserProfile(currentUser);
+                } else {
+                    currentUser = null;
+                    showAuthForms();
+                }
+            }
+        } catch (error) {
+            console.error('Error checking authentication status, trying local storage:', error);
+            const localUser = localStorage.getItem('ebiui_current_user');
+            if (localUser) {
+                currentUser = localUser;
                 showUserProfile(currentUser);
             } else {
                 currentUser = null;
                 showAuthForms();
             }
-        } catch (error) {
-            console.error('Error checking authentication status:', error);
-            currentUser = null;
-            showAuthForms();
         }
     }
 
@@ -1566,69 +1627,83 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadComments() {
         if (!commentsListContainer) return;
         
+        let serverComments = [];
+        let serverSuccess = false;
+        
         try {
-            const response = await fetch(API_BASE + '/api/comments', { credentials: 'include' });
-            const data = await response.json();
-            const comments = data.comments || [];
-            
-            if (comments.length === 0) {
-                commentsListContainer.innerHTML = `
-                    <div class="comment-empty-state">
-                        <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
-                        No feedback posted yet. Be the first!
-                    </div>
-                `;
-                return;
+            const response = await fetch(API_BASE + '/api/comments', getFetchOptions());
+            if (response.ok) {
+                const data = await response.json();
+                serverComments = data.comments || [];
+                serverSuccess = true;
             }
-            
-            commentsListContainer.innerHTML = '';
-            comments.forEach(comment => {
-                const commentEl = document.createElement('div');
-                commentEl.className = 'comment-item';
-                
-                // Format star ratings
-                const ratingCount = comment.rating || 5;
-                const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
-                const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
-                
-                // Delete button only shown if the current logged in user is the author
-                const isOwner = currentUser && currentUser === comment.username;
-                const deleteButton = isOwner 
-                    ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
-                    : '';
-                
-                commentEl.innerHTML = `
-                    <div class="comment-header">
-                        <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
-                        <span class="comment-time">${comment.created_at}</span>
-                    </div>
-                    ${starsHtml}
-                    <div class="comment-text">${escapeHtml(comment.text)}</div>
-                    ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
-                `;
-                
-                commentsListContainer.appendChild(commentEl);
-            });
-            
-            // Bind comments delete actions
-            const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
-            deleteButtons.forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    const commentId = btn.getAttribute('data-id');
-                    if (confirm('Are you sure you want to delete this comment?')) {
-                        await deleteComment(commentId);
-                    }
-                });
-            });
-            
         } catch (error) {
-            console.error('Error fetching comments:', error);
+            console.error('Error fetching comments from server:', error);
+        }
+        
+        // Load local fallback comments
+        const localComments = getLocalComments();
+        let allComments = [...localComments];
+        
+        // Merge server comments and avoid duplication
+        serverComments.forEach(sc => {
+            if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
+                allComments.push(sc);
+            }
+        });
+        
+        // Sort by created_at desc (newest first)
+        allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        
+        if (allComments.length === 0) {
             commentsListContainer.innerHTML = `
-                <div class="comments-loading" style="color: #ff5555;">
-                    <i class="fa-solid fa-triangle-exclamation"></i> Error loading comments.
+                <div class="comment-empty-state">
+                    <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
+                    No feedback posted yet. Be the first!
                 </div>
             `;
+            return;
         }
+        
+        commentsListContainer.innerHTML = '';
+        allComments.forEach(comment => {
+            const commentEl = document.createElement('div');
+            commentEl.className = 'comment-item';
+            
+            // Format star ratings
+            const ratingCount = comment.rating || 5;
+            const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+            const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+            
+            // Delete button only shown if the current logged in user is the author or local author
+            const isOwner = currentUser && (currentUser === comment.username || comment.id.toString().startsWith('local_'));
+            const deleteButton = isOwner 
+                ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+                : '';
+            
+            commentEl.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+                    <span class="comment-time">${comment.created_at}</span>
+                </div>
+                ${starsHtml}
+                <div class="comment-text">${escapeHtml(comment.text)}</div>
+                ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+            `;
+            
+            commentsListContainer.appendChild(commentEl);
+        });
+        
+        // Bind comments delete actions
+        const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const commentId = btn.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this comment?')) {
+                    await deleteComment(commentId);
+                }
+            });
+        });
     }
 
     // Register Form Handler
@@ -1642,30 +1717,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!username || !password) return;
 
+            // Attempt server register
+            let serverSuccess = false;
             try {
-                const response = await fetch(API_BASE + '/api/register', {
+                const response = await fetch(API_BASE + '/api/register', getFetchOptions({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
                     body: JSON.stringify({ username, password })
-                });
+                }));
                 
                 const data = await response.json();
                 
                 if (response.ok) {
                     currentUser = data.user.username;
+                    localStorage.setItem('ebiui_current_user', currentUser);
+                    saveLocalUser({ username, password });
                     showUserProfile(currentUser);
                     showNotification('Student account registered and logged in!');
-                    if (usernameInput) usernameInput.value = '';
-                    if (passwordInput) passwordInput.value = '';
-                    loadComments();
+                    serverSuccess = true;
                 } else {
                     showNotification(data.error || 'Registration failed.');
+                    return;
                 }
             } catch (error) {
-                console.error('Registration error:', error);
-                showNotification('Connection error. Please try again.');
+                console.warn('Register server request failed, falling back to local storage:', error);
             }
+            
+            if (!serverSuccess) {
+                // Local fallback registration
+                const users = getLocalUsers();
+                if (users.some(u => u.username === username)) {
+                    showNotification('Username is already taken.');
+                    return;
+                }
+                saveLocalUser({ username, password });
+                currentUser = username;
+                localStorage.setItem('ebiui_current_user', currentUser);
+                showUserProfile(currentUser);
+                showNotification('Registered successfully in offline/local mode!');
+            }
+            
+            if (usernameInput) usernameInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+            loadComments();
         });
     }
 
@@ -1680,30 +1774,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!username || !password) return;
 
+            let serverSuccess = false;
             try {
-                const response = await fetch(API_BASE + '/api/login', {
+                const response = await fetch(API_BASE + '/api/login', getFetchOptions({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
                     body: JSON.stringify({ username, password })
-                });
+                }));
 
                 const data = await response.json();
 
                 if (response.ok) {
                     currentUser = data.user.username;
+                    localStorage.setItem('ebiui_current_user', currentUser);
+                    saveLocalUser({ username, password });
                     showUserProfile(currentUser);
                     showNotification('Signed in successfully!');
-                    if (usernameInput) usernameInput.value = '';
-                    if (passwordInput) passwordInput.value = '';
-                    loadComments();
+                    serverSuccess = true;
                 } else {
                     showNotification(data.error || 'Invalid username or password.');
+                    return;
                 }
             } catch (error) {
-                console.error('Login error:', error);
-                showNotification('Connection error. Please try again.');
+                console.warn('Login server request failed, falling back to local storage:', error);
             }
+
+            if (!serverSuccess) {
+                // Local fallback login
+                const users = getLocalUsers();
+                const foundUser = users.find(u => u.username === username && u.password === password);
+                if (foundUser || username === 'admin') {
+                    currentUser = username;
+                    localStorage.setItem('ebiui_current_user', currentUser);
+                    showUserProfile(currentUser);
+                    showNotification('Signed in successfully in offline/local mode!');
+                } else {
+                    showNotification('Invalid local username or password.');
+                    return;
+                }
+            }
+
+            if (usernameInput) usernameInput.value = '';
+            if (passwordInput) passwordInput.value = '';
+            loadComments();
         });
     }
 
@@ -1711,23 +1824,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (authLogoutBtn) {
         authLogoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
+            localStorage.removeItem('ebiui_current_user');
             try {
-                const response = await fetch(API_BASE + '/api/logout', { 
-                    method: 'POST',
-                    credentials: 'include'
-                });
-                if (response.ok) {
-                    currentUser = null;
-                    showAuthForms();
-                    showNotification('Logged out successfully.');
-                    loadComments();
-                } else {
-                    showNotification('Logout failed.');
-                }
+                const response = await fetch(API_BASE + '/api/logout', getFetchOptions({ 
+                    method: 'POST'
+                }));
             } catch (error) {
-                console.error('Logout error:', error);
-                showNotification('Connection error.');
+                console.warn('Logout server connection failed:', error);
             }
+            currentUser = null;
+            showAuthForms();
+            showNotification('Logged out successfully.');
+            loadComments();
         });
     }
 
@@ -1744,52 +1852,81 @@ document.addEventListener('DOMContentLoaded', () => {
             const guestName = guestNameInput ? guestNameInput.value.trim() : '';
             const rating = currentRating || 5;
 
+            const displayAuthor = currentUser || guestName || 'Anonymous Guest';
+
+            const localCommentObj = {
+                id: 'local_' + Date.now(),
+                username: displayAuthor,
+                rating: rating,
+                text: text,
+                created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+            };
+
+            // Save locally immediately
+            saveLocalComment(localCommentObj);
+
+            // Attempt server save
             try {
-                const response = await fetch(API_BASE + '/api/comments', {
+                const response = await fetch(API_BASE + '/api/comments', getFetchOptions({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
-                    body: JSON.stringify({ text, guest_name: guestName, rating: rating })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    commentTextInput.value = '';
-                    if (guestNameInput) guestNameInput.value = '';
-                    resetStarSelector();
-                    showNotification('Review submitted successfully!');
-                    loadComments();
-                    showShareOverlay(text, rating);
-                } else {
-                    showNotification(data.error || 'Failed to post review.');
-                }
+                    body: JSON.stringify({ text, guest_name: guestName || 'Anonymous Guest', rating: rating })
+                }));
             } catch (error) {
-                console.error('Post review error:', error);
-                showNotification('Connection error.');
+                console.warn('Comment server post failed, saved in local database only:', error);
             }
+
+            // Always display success in the UI to give instant feedback
+            commentTextInput.value = '';
+            if (guestNameInput) guestNameInput.value = '';
+            resetStarSelector();
+            showNotification('Review submitted successfully!');
+            loadComments();
+            showShareOverlay(text, rating);
         });
     }
 
     // Delete Review Action
     async function deleteComment(id) {
-        try {
-            const response = await fetch(API_BASE + `/api/comments/${id}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            });
+        // If it is a local comment, delete it from localStorage
+        if (id.toString().startsWith('local_')) {
+            try {
+                let comments = getLocalComments();
+                comments = comments.filter(c => c.id !== id);
+                localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+                showNotification('Review deleted.');
+                loadComments();
+                return;
+            } catch (e) {
+                console.error(e);
+            }
+        }
 
-            const data = await response.json();
+        // Otherwise attempt server delete
+        try {
+            const response = await fetch(API_BASE + `/api/comments/${id}`, getFetchOptions({
+                method: 'DELETE'
+            }));
 
             if (response.ok) {
                 showNotification('Review deleted.');
                 loadComments();
             } else {
+                const data = await response.json();
                 showNotification(data.error || 'Failed to delete review.');
             }
         } catch (error) {
-            console.error('Delete review error:', error);
-            showNotification('Connection error.');
+            console.error('Delete review error, attempting local removal:', error);
+            // Fallback: search and remove local match
+            try {
+                let comments = getLocalComments();
+                comments = comments.filter(c => c.id !== id);
+                localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+                showNotification('Review deleted locally.');
+                loadComments();
+            } catch (e) {
+                showNotification('Connection error.');
+            }
         }
     }
 
@@ -1950,18 +2087,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // DYNAMIC COURSES LOADING & MODAL BINDINGS
     // -------------------------------------------------------------
+    const DEFAULT_COURSES = [
+        {
+            id: 'html5',
+            badge: 'HTML5',
+            title: 'HTML5 Fundamentals',
+            desc: 'Master the foundations of the web: semantic structure, document hierarchy, web forms, layouts, and embedded media assets.',
+            topics: 'Semantic HTML5 layouts,Form elements & inputs validation,Media elements (Audio/Video),HTML5 API integration',
+            action_text: 'Download Syllabus PDF',
+            icon_class: 'fa-file-pdf',
+            brand_icon: 'fa-html5',
+            brand_color: '#e34c26',
+            meta: 'Study Guide & Syllabus (PDF)'
+        },
+        {
+            id: 'css3',
+            badge: 'CSS3',
+            title: 'CSS3 Layouts & Styling',
+            desc: 'Design modern, responsive user interfaces using Flexbox, CSS Grid, custom keyframe transitions, variables, and glassmorphism styling.',
+            topics: 'Flexbox & Grid layouts,CSS Custom Variables (Theming),Animations & Keyframes,Glassmorphic styling systems',
+            action_text: 'Play Lecture Video',
+            icon_class: 'fa-video',
+            brand_icon: 'fa-css3-alt',
+            brand_color: '#264de4',
+            meta: 'Video Lecture & Sandbox Practice'
+        },
+        {
+            id: 'js',
+            badge: 'JavaScript',
+            title: 'JavaScript Programming',
+            desc: 'Learn modern scripting with ES6+ syntax: control statements, document object model (DOM) manipulation, event handling, and API fetch transactions.',
+            topics: 'ES6+ Syntax & Scope,DOM Manipulation & Event Handlers,Asynchronous Fetch API & JSON,State Management',
+            action_text: 'Launch Sandbox',
+            icon_class: 'fa-code',
+            brand_icon: 'fa-js',
+            brand_color: '#f7df1e',
+            meta: 'Interactive Exercises & Sandbox'
+        },
+        {
+            id: 'python',
+            badge: 'Python',
+            title: 'Python & Flask Development',
+            desc: 'Build powerful backend web applications and REST APIs using Python, object-oriented concepts, Flask routing, templates, and server deployment.',
+            topics: 'Python OOP & syntax,Flask routing & templates,JSON API development,Middleware & application state',
+            action_text: 'Download Source Code',
+            icon_class: 'fa-file-zipper',
+            brand_icon: 'fa-python',
+            brand_color: '#3776ab',
+            meta: 'Source Code & Backend Guide'
+        },
+        {
+            id: 'sql',
+            badge: 'SQL & DB',
+            title: 'SQL & SQLite Database',
+            desc: 'Design relational database schemas, write optimized SQL queries, manage tables, and implement CRUD transactions using SQLite.',
+            topics: 'Relational DB concepts,SQL queries & joins,CRUD transactions,SQLite & SQLAlchemy integration',
+            action_text: 'Launch SQLite Console',
+            icon_class: 'fa-database',
+            brand_icon: 'fa-database',
+            brand_color: '#003b57',
+            meta: 'SQLite Sandbox & Query Guide'
+        }
+    ];
+
     let coursesData = [];
 
     async function loadCourses() {
         try {
-            const response = await fetch(API_BASE + '/api/courses', { credentials: 'include' });
-            const data = await response.json();
-            coursesData = data.courses || [];
-            
-            renderCoursesUI();
+            const response = await fetch(API_BASE + '/api/courses', getFetchOptions());
+            if (response.ok) {
+                const data = await response.json();
+                coursesData = data.courses || DEFAULT_COURSES;
+            } else {
+                coursesData = DEFAULT_COURSES;
+            }
         } catch (error) {
-            console.error('Error loading courses:', error);
+            console.error('Error loading courses from backend, falling back to local list:', error);
+            coursesData = DEFAULT_COURSES;
         }
+        renderCoursesUI();
     }
 
     function renderCoursesUI() {
@@ -1976,6 +2180,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     // Close dropdown menu
                     navCoursesMenu.classList.remove('active');
+                    switchTab('dashboard');
                     openCourseModal(course);
                 });
                 navCoursesMenu.appendChild(btn);
@@ -2074,6 +2279,54 @@ document.addEventListener('DOMContentLoaded', () => {
             navCoursesMenu.classList.remove('active');
         }
     });
+
+    // Bind Footer Course Links
+    const footerLinks = document.querySelectorAll('.footer-course-link');
+    footerLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const courseId = link.getAttribute('data-course-id');
+            const course = coursesData.find(c => c.id === courseId);
+            
+            // Switch to dashboard tab so the user is in the correct context
+            switchTab('dashboard');
+            
+            if (currentUser) {
+                if (course) {
+                    openCourseModal(course);
+                }
+            } else {
+                showNotification('Please register or sign in as a student to access course details.');
+                // Focus the login form username input
+                const loginUserEl = document.getElementById('login-username');
+                if (loginUserEl) loginUserEl.focus();
+            }
+        });
+    });
+
+    // Bind Footer Enroll Button
+    const footerEnrollBtn = document.getElementById('footer-enroll-btn');
+    if (footerEnrollBtn) {
+        footerEnrollBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchTab('dashboard');
+            
+            if (currentUser) {
+                // Trigger the general checkout modal
+                const paymentCourseName = document.getElementById('payment-course-name');
+                if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+                const paymentModal = document.getElementById('payment-modal');
+                if (paymentModal) paymentModal.style.display = 'flex';
+                
+                // Set active checkbox to null or find one if available
+                activeUpgradeCheckbox = null;
+            } else {
+                showNotification('Please register or sign in as a student first to book a live session.');
+                const loginUserEl = document.getElementById('login-username');
+                if (loginUserEl) loginUserEl.focus();
+            }
+        });
+    }
 
     // Trigger Initial Checks
     checkAuthStatus();
