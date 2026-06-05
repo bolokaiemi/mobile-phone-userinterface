@@ -5,6 +5,11 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic API Base URL logic for cross-origin local preview or direct file:// testing
+    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port === '8080'
+        ? ''
+        : 'http://localhost:8080';
+
     // -------------------------------------------------------------
     // MULTI-LANGUAGE TRANSLATION DICTIONARY
     // -------------------------------------------------------------
@@ -1379,7 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     async function checkAuthStatus() {
         try {
-            const response = await fetch('/api/user');
+            const response = await fetch(API_BASE + '/api/user');
             const data = await response.json();
             if (data.user) {
                 currentUser = data.user.username;
@@ -1515,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!commentsListContainer) return;
         
         try {
-            const response = await fetch('/api/comments');
+            const response = await fetch(API_BASE + '/api/comments');
             const data = await response.json();
             const comments = data.comments || [];
             
@@ -1591,7 +1596,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!username || !password) return;
 
             try {
-                const response = await fetch('/api/register', {
+                const response = await fetch(API_BASE + '/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -1628,7 +1633,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!username || !password) return;
 
             try {
-                const response = await fetch('/api/login', {
+                const response = await fetch(API_BASE + '/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -1658,7 +1663,7 @@ document.addEventListener('DOMContentLoaded', () => {
         authLogoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
-                const response = await fetch('/api/logout', { method: 'POST' });
+                const response = await fetch(API_BASE + '/api/logout', { method: 'POST' });
                 if (response.ok) {
                     currentUser = null;
                     showAuthForms();
@@ -1688,7 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rating = currentRating || 5;
 
             try {
-                const response = await fetch('/api/comments', {
+                const response = await fetch(API_BASE + '/api/comments', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text, guest_name: guestName, rating: rating })
@@ -1716,7 +1721,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Delete Review Action
     async function deleteComment(id) {
         try {
-            const response = await fetch(`/api/comments/${id}`, {
+            const response = await fetch(API_BASE + `/api/comments/${id}`, {
                 method: 'DELETE'
             });
 
