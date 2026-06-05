@@ -195,6 +195,62 @@ def delete_comment(comment_id):
     
     return jsonify({'message': 'Comment deleted successfully.'})
 
+@app.route('/admin')
+def admin_dashboard():
+    # Serve the admin dashboard HTML file from templates directory
+    return send_from_directory('templates', 'admin.html')
+
+@app.route('/api/admin/stats', methods=['GET'])
+def admin_stats():
+    total_comments = Comment.query.count()
+    total_users = User.query.count()
+    
+    comments = Comment.query.all()
+    avg_rating = 0.0
+    if total_comments > 0:
+        avg_rating = sum(c.rating for c in comments) / total_comments
+        
+    return jsonify({
+        'total_reviews': total_comments,
+        'total_students': total_users,
+        'average_rating': round(avg_rating, 2)
+    })
+
+@app.route('/api/admin/data', methods=['GET'])
+def admin_data():
+    all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+    all_users = User.query.order_by(User.created_at.desc()).all()
+    
+    return jsonify({
+        'comments': [c.to_dict() for c in all_comments],
+        'users': [{
+            'id': u.id,
+            'username': u.username,
+            'created_at': u.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        } for u in all_users]
+    })
+
+@app.route('/api/admin/export', methods=['GET'])
+def admin_export_csv():
+    import csv
+    from io import StringIO
+    from flask import make_response
+    
+    all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+    
+    si = StringIO()
+    cw = csv.writer(si)
+    cw.writerow(['ID', 'Author/Guest Name', 'Rating (Stars)', 'Comment Text', 'Submitted At'])
+    
+    for c in all_comments:
+        username = c.user.username if c.user else (c.guest_name or 'Anonymous Guest')
+        cw.writerow([c.id, username, c.rating, c.text, c.created_at.strftime('%Y-%m-%d %H:%M:%S')])
+        
+    output = make_response(si.getvalue())
+    output.headers["Content-Disposition"] = "attachment; filename=ebiui_reviews_export.csv"
+    output.headers["Content-type"] = "text/csv"
+    return output
+
 if __name__ == '__main__':
     # Capture PORT from environment variables (defaults to 8000 for local development)
     PORT = int(os.environ.get('PORT', 8080))
