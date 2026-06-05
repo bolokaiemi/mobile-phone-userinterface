@@ -620,6 +620,7 @@
                             <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
                         </div>
                         <button type="submit" class="btn-primary">Sign In</button>
+                        <p class="auth-helper-text">New user? <a href="#" id="link-to-register">Create an account</a></p>
                     </form>
                     
                     <!-- Register Form -->
@@ -633,6 +634,7 @@
                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
                         </div>
                         <button type="submit" class="btn-primary">Create Account</button>
+                        <p class="auth-helper-text">Already have an account? <a href="#" id="link-to-login">Sign In</a></p>
                     </form>
                 </div>
 
@@ -671,7 +673,11 @@
                 <!-- Locked Prompt -->
                 <div class="comment-locked-prompt" id="comment-locked-prompt">
                     <i class="fa-solid fa-lock"></i>
-                    <p>Please log in or register above to submit public feedback.</p>
+                    <p>Please log in or create an account to submit public feedback.</p>
+                    <div class="locked-prompt-actions">
+                        <button class="btn-secondary" id="prompt-login-btn">Sign In</button>
+                        <button class="btn-primary" id="prompt-register-btn">Create Account</button>
+                    </div>
                 </div>
             </div>
 

@@ -1370,6 +1370,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Helper Links & Prompt Actions bindings
+    const linkToRegister = document.getElementById('link-to-register');
+    const linkToLogin = document.getElementById('link-to-login');
+    const promptLoginBtn = document.getElementById('prompt-login-btn');
+    const promptRegisterBtn = document.getElementById('prompt-register-btn');
+
+    function switchToRegisterTab(e) {
+        if (e) e.preventDefault();
+        if (toggleRegisterBtn) toggleRegisterBtn.click();
+    }
+
+    function switchToLoginTab(e) {
+        if (e) e.preventDefault();
+        if (toggleLoginBtn) toggleLoginBtn.click();
+    }
+
+    if (linkToRegister) linkToRegister.addEventListener('click', switchToRegisterTab);
+    if (promptRegisterBtn) promptRegisterBtn.addEventListener('click', switchToRegisterTab);
+
+    if (linkToLogin) linkToLogin.addEventListener('click', switchToLoginTab);
+    if (promptLoginBtn) promptLoginBtn.addEventListener('click', switchToLoginTab);
+
     // Helper: Escape user input to prevent HTML injection XSS
     function escapeHtml(text) {
         const map = {

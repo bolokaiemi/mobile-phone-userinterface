@@ -2199,6 +2199,44 @@ body {
     margin: 0;
 }
 
+/* Auth helper link texts */
+.auth-helper-text {
+    font-size: 0.82rem;
+    color: var(--theme-text-muted);
+    text-align: center;
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+
+.auth-helper-text a {
+    color: var(--theme-primary-light);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.light-theme .auth-helper-text a {
+    color: var(--theme-primary);
+}
+
+.auth-helper-text a:hover {
+    color: var(--theme-text-light);
+}
+
+/* Locked prompt quick action buttons */
+.locked-prompt-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.locked-prompt-actions button {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+}
+
 /* Emulator Tips Card List */
 .tips-list {
     list-style: none;
