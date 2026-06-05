@@ -1305,14 +1305,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabViewHome = document.getElementById('tab-view-home');
     const tabViewDashboard = document.getElementById('tab-view-dashboard');
 
-    const toggleLoginBtn = document.getElementById('toggle-login-btn');
-    const toggleRegisterBtn = document.getElementById('toggle-register-btn');
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
-    const authFormsWrapper = document.getElementById('auth-forms-wrapper');
-    const userProfileWrapper = document.getElementById('user-profile-wrapper');
     const profileUsernameText = document.getElementById('profile-username-text');
     const authLogoutBtn = document.getElementById('auth-logout-btn');
+    const authSectionTitle = document.getElementById('auth-section-title');
 
     const commentsListContainer = document.getElementById('comments-list-container');
     const commentInputWrapper = document.getElementById('comment-input-wrapper');
@@ -1342,55 +1339,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
 
     // Authenticate Form Views Toggle
-    if (toggleLoginBtn && toggleRegisterBtn) {
-        toggleLoginBtn.addEventListener('click', () => {
-            toggleLoginBtn.classList.add('active');
-            toggleRegisterBtn.classList.remove('active');
-            if (loginForm) {
-                loginForm.style.display = 'flex';
-                loginForm.classList.add('active-form');
-            }
-            if (registerForm) {
-                registerForm.style.display = 'none';
-                registerForm.classList.remove('active-form');
-            }
-        });
-
-        toggleRegisterBtn.addEventListener('click', () => {
-            toggleRegisterBtn.classList.add('active');
-            toggleLoginBtn.classList.remove('active');
-            if (registerForm) {
-                registerForm.style.display = 'flex';
-                registerForm.classList.add('active-form');
-            }
-            if (loginForm) {
-                loginForm.style.display = 'none';
-                loginForm.classList.remove('active-form');
-            }
-        });
-    }
-
-    // Helper Links & Prompt Actions bindings
     const linkToRegister = document.getElementById('link-to-register');
     const linkToLogin = document.getElementById('link-to-login');
-    const promptLoginBtn = document.getElementById('prompt-login-btn');
-    const promptRegisterBtn = document.getElementById('prompt-register-btn');
 
-    function switchToRegisterTab(e) {
-        if (e) e.preventDefault();
-        if (toggleRegisterBtn) toggleRegisterBtn.click();
+    if (linkToRegister) {
+        linkToRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (loginForm) loginForm.style.display = 'none';
+            if (registerForm) registerForm.style.display = 'flex';
+            if (authSectionTitle) authSectionTitle.textContent = 'Create an Account to Post Feedback';
+        });
     }
 
-    function switchToLoginTab(e) {
-        if (e) e.preventDefault();
-        if (toggleLoginBtn) toggleLoginBtn.click();
+    if (linkToLogin) {
+        linkToLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (registerForm) registerForm.style.display = 'none';
+            if (loginForm) loginForm.style.display = 'flex';
+            if (authSectionTitle) authSectionTitle.textContent = 'Sign In to Post Feedback';
+        });
     }
-
-    if (linkToRegister) linkToRegister.addEventListener('click', switchToRegisterTab);
-    if (promptRegisterBtn) promptRegisterBtn.addEventListener('click', switchToRegisterTab);
-
-    if (linkToLogin) linkToLogin.addEventListener('click', switchToLoginTab);
-    if (promptLoginBtn) promptLoginBtn.addEventListener('click', switchToLoginTab);
 
     // Helper: Escape user input to prevent HTML injection XSS
     function escapeHtml(text) {
@@ -1424,8 +1392,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showUserProfile(username) {
-        if (authFormsWrapper) authFormsWrapper.style.display = 'none';
-        if (userProfileWrapper) userProfileWrapper.style.display = 'flex';
         if (profileUsernameText) profileUsernameText.textContent = username;
 
         // Unlock comment fields
@@ -1434,24 +1400,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showAuthForms() {
-        if (authFormsWrapper) authFormsWrapper.style.display = 'block';
-        if (userProfileWrapper) userProfileWrapper.style.display = 'none';
-
-        // Reset forms to Login tab visibility by default
-        if (toggleLoginBtn) toggleLoginBtn.classList.add('active');
-        if (toggleRegisterBtn) toggleRegisterBtn.classList.remove('active');
-        if (loginForm) {
-            loginForm.style.display = 'flex';
-            loginForm.classList.add('active-form');
-        }
-        if (registerForm) {
-            registerForm.style.display = 'none';
-            registerForm.classList.remove('active-form');
-        }
+        // Reset forms to Login view by default
+        if (loginForm) loginForm.style.display = 'flex';
+        if (registerForm) registerForm.style.display = 'none';
+        if (authSectionTitle) authSectionTitle.textContent = 'Sign In to Post Feedback';
 
         // Lock comment fields
         if (commentInputWrapper) commentInputWrapper.style.display = 'none';
-        if (commentLockedPrompt) commentLockedPrompt.style.display = 'flex';
+        if (commentLockedPrompt) commentLockedPrompt.style.display = 'block';
     }
 
     // Fetch and Render Comment Feed

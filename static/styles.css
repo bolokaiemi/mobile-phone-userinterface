@@ -2204,7 +2204,7 @@ body {
     font-size: 0.82rem;
     color: var(--theme-text-muted);
     text-align: center;
-    margin-top: 14px;
+    margin-top: 10px;
     margin-bottom: 0;
 }
 
@@ -2223,18 +2223,77 @@ body {
     color: var(--theme-text-light);
 }
 
-/* Locked prompt quick action buttons */
-.locked-prompt-actions {
+/* Horizontal Form Rows */
+.form-row {
     display: flex;
-    gap: 12px;
-    margin-top: 10px;
+    gap: 8px;
+    width: 100%;
 }
 
-.locked-prompt-actions button {
-    padding: 6px 14px !important;
-    font-size: 0.78rem !important;
+.form-row input {
+    flex: 2;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--theme-border-glass);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--theme-text-light);
+    font-size: 0.85rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.light-theme .form-row input {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.form-row input:focus {
+    border-color: var(--theme-primary);
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 2px rgba(var(--theme-hue), 85%, 55%, 0.15);
+}
+
+.form-row button {
+    flex: 1;
+    padding: 8px 16px !important;
+    font-size: 0.85rem !important;
     border-radius: 8px !important;
-    cursor: pointer;
+}
+
+/* Comment submission status row */
+.comment-submit-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.user-status-text {
+    font-size: 0.78rem;
+    color: var(--theme-text-muted);
+}
+
+.user-status-text a {
+    color: var(--theme-primary-light);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.light-theme .user-status-text a {
+    color: var(--theme-primary);
+}
+
+.user-status-text a:hover {
+    color: var(--theme-text-light);
+}
+
+/* Auth section heading */
+.auth-section-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--theme-text-light);
+    text-align: center;
 }
 
 /* Emulator Tips Card List */
