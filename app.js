@@ -1509,7 +1509,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileUsernameText) profileUsernameText.textContent = username;
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
         if (studentDashboard) studentDashboard.style.display = 'block';
-        if (navCoursesDropdownWrapper) navCoursesDropdownWrapper.style.display = 'inline-block';
         loadCourses();
     }
 
@@ -1520,7 +1519,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
         if (studentDashboard) studentDashboard.style.display = 'none';
-        if (navCoursesDropdownWrapper) navCoursesDropdownWrapper.style.display = 'none';
     }
 
     // -------------------------------------------------------------
@@ -1624,6 +1622,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // FETCH AND RENDER REVIEWS FEED
     // -------------------------------------------------------------
+    // Robust date parsing helper for cross-browser compatibility (e.g. Safari space separator bug)
+    function safeParseDate(dateStr) {
+        if (!dateStr) return new Date(0);
+        const isoStr = dateStr.includes(' ') ? dateStr.replace(' ', 'T') : dateStr;
+        const d = new Date(isoStr);
+        return isNaN(d.getTime()) ? new Date(0) : d;
+    }
+
     async function loadComments() {
         if (!commentsListContainer) return;
         
@@ -1652,8 +1658,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Sort by created_at desc (newest first)
-        allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        // Sort by created_at desc (newest first) using safe cross-browser date parsing
+        allComments.sort((a, b) => safeParseDate(b.created_at) - safeParseDate(a.created_at));
         
         if (allComments.length === 0) {
             commentsListContainer.innerHTML = `
@@ -1736,8 +1742,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     showNotification('Student account registered and logged in!');
                     serverSuccess = true;
                 } else {
-                    showNotification(data.error || 'Registration failed.');
-                    return;
+                    if (data.error && data.error.includes('taken')) {
+                        showNotification(data.error);
+                        return;
+                    }
+                    console.warn('Server register rejected, checking local database:', data.error);
                 }
             } catch (error) {
                 console.warn('Register server request failed, falling back to local storage:', error);
@@ -1792,8 +1801,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showNotification('Signed in successfully!');
                     serverSuccess = true;
                 } else {
-                    showNotification(data.error || 'Invalid username or password.');
-                    return;
+                    console.warn('Server login rejected, checking local database:', data.error);
                 }
             } catch (error) {
                 console.warn('Login server request failed, falling back to local storage:', error);
@@ -1809,7 +1817,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     showUserProfile(currentUser);
                     showNotification('Signed in successfully in offline/local mode!');
                 } else {
-                    showNotification('Invalid local username or password.');
+                    showNotification('Invalid username or password.');
                     return;
                 }
             }
@@ -1955,6 +1963,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (courseModalUpgradeBtn) {
         courseModalUpgradeBtn.addEventListener('click', () => {
+            if (!currentUser) {
+                showNotification('Please register or sign in as a student first to request live mentorship.');
+                switchTab('dashboard');
+                const loginUserEl = document.getElementById('login-username');
+                if (loginUserEl) loginUserEl.focus();
+                if (courseModal) courseModal.style.display = 'none';
+                return;
+            }
             if (courseModal) courseModal.style.display = 'none';
             if (currentSelectedCourseCheckbox) {
                 // Check it to trigger the checkout modal
@@ -1962,6 +1978,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Dispatch change event to trigger checkbox change event handler
                 currentSelectedCourseCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
                 currentSelectedCourseCheckbox = null;
+            } else {
+                // Opened from dropdown/footer where checkbox context doesn't exist
+                const courseTitle = courseModalTitle ? courseModalTitle.textContent : 'Selected Course';
+                if (paymentCourseName) paymentCourseName.textContent = courseTitle;
+                if (paymentModal) paymentModal.style.display = 'flex';
             }
         });
     }
@@ -1976,11 +1997,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const paymentSubmitBtn = document.getElementById('payment-submit-btn');
     let activeUpgradeCheckbox = null;
 
-    // Delegate checkbox changes in the student dashboard
-    if (studentDashboard) {
-        studentDashboard.addEventListener('change', (e) => {
+    // Delegate checkbox changes in the available courses list (always visible to everyone)
+    if (courseListUl) {
+        courseListUl.addEventListener('change', (e) => {
             if (e.target.classList.contains('live-upgrade-checkbox')) {
                 const checkbox = e.target;
+                
+                // If not logged in, prevent check and prompt to log in/register
+                if (!currentUser) {
+                    checkbox.checked = false;
+                    showNotification('Please register or sign in as a student first to request live mentorship.');
+                    switchTab('dashboard');
+                    const loginUserEl = document.getElementById('login-username');
+                    if (loginUserEl) loginUserEl.focus();
+                    return;
+                }
+
                 if (checkbox.checked) {
                     activeUpgradeCheckbox = checkbox;
                     const courseName = checkbox.getAttribute('data-course');
@@ -2229,8 +2261,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (courseModalActionBtn) {
             courseModalActionBtn.innerHTML = `<i class="fa-solid ${course.icon_class || 'fa-file-pdf'}"></i> ${course.action_text}`;
             courseModalActionBtn.onclick = () => {
-                alert(`Accessing course materials for: ${course.title}`);
-                if (courseModal) courseModal.style.display = 'none';
+                if (!currentUser) {
+                    showNotification('Please register or sign in as a student to access official course materials.');
+                    switchTab('dashboard');
+                    const loginUserEl = document.getElementById('login-username');
+                    if (loginUserEl) loginUserEl.focus();
+                    if (courseModal) courseModal.style.display = 'none';
+                } else {
+                    alert(`Accessing course materials for: ${course.title}`);
+                    if (courseModal) courseModal.style.display = 'none';
+                }
             };
         }
 
@@ -2262,18 +2302,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const courseId = link.getAttribute('data-course-id');
             const course = coursesData.find(c => c.id === courseId);
             
-            // Switch to dashboard tab so the user is in the correct context
-            switchTab('dashboard');
-            
-            if (currentUser) {
-                if (course) {
-                    openCourseModal(course);
-                }
-            } else {
-                showNotification('Please register or sign in as a student to access course details.');
-                // Focus the login form username input
-                const loginUserEl = document.getElementById('login-username');
-                if (loginUserEl) loginUserEl.focus();
+            if (course) {
+                // Switch to dashboard tab so they are in the correct context
+                switchTab('dashboard');
+                openCourseModal(course);
             }
         });
     });
@@ -2304,6 +2336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trigger Initial Checks
     checkAuthStatus();
+    loadCourses(); // Render courses for both guest and student views
     loadComments();
 });
 

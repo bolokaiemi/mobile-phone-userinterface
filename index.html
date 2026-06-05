@@ -27,8 +27,8 @@
             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
             <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Comments Feed</button>
             
-            <!-- Courses Dropdown (Visible only to logged in users) -->
-            <div class="nav-dropdown-wrapper" id="nav-courses-dropdown-wrapper" style="display: none;">
+            <!-- Courses Dropdown -->
+            <div class="nav-dropdown-wrapper" id="nav-courses-dropdown-wrapper" style="display: inline-block;">
                 <button class="nav-tab dropdown-trigger" id="nav-courses-btn">
                     <i class="fa-solid fa-graduation-cap"></i> Courses <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
                 </button>
@@ -687,6 +687,10 @@
                     <div class="student-profile-header">
                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
                     </div>
+                </div>
+
+                <!-- Available Courses (Publicly accessible) -->
+                <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
                     <ul class="course-list">
                         <!-- Populated dynamically via JS -->
