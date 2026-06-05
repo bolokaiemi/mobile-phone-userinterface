@@ -1309,7 +1309,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('register-form');
     const profileUsernameText = document.getElementById('profile-username-text');
     const authLogoutBtn = document.getElementById('auth-logout-btn');
-    const authSectionTitle = document.getElementById('auth-section-title');
+    const studentAuthTitle = document.getElementById('student-auth-title');
+    const studentAuthWrapper = document.getElementById('student-auth-wrapper');
+    const studentDashboard = document.getElementById('student-dashboard');
 
     const commentsListContainer = document.getElementById('comments-list-container');
     const commentInputWrapper = document.getElementById('comment-input-wrapper');
@@ -1338,7 +1340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
 
-    // Authenticate Form Views Toggle
+    // Student Login/Register Forms Toggling Link
     const linkToRegister = document.getElementById('link-to-register');
     const linkToLogin = document.getElementById('link-to-login');
 
@@ -1347,7 +1349,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (loginForm) loginForm.style.display = 'none';
             if (registerForm) registerForm.style.display = 'flex';
-            if (authSectionTitle) authSectionTitle.textContent = 'Create an Account to Post Feedback';
+            if (studentAuthTitle) studentAuthTitle.textContent = 'Register a Student Account';
         });
     }
 
@@ -1356,7 +1358,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             if (registerForm) registerForm.style.display = 'none';
             if (loginForm) loginForm.style.display = 'flex';
-            if (authSectionTitle) authSectionTitle.textContent = 'Sign In to Post Feedback';
+            if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
         });
     }
 
@@ -1372,7 +1374,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
-    // Check Active Auth Session
+    // -------------------------------------------------------------
+    // STUDENT PORTAL AUTH STATUS & ROUTING
+    // -------------------------------------------------------------
     async function checkAuthStatus() {
         try {
             const response = await fetch('/api/user');
@@ -1393,24 +1397,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showUserProfile(username) {
         if (profileUsernameText) profileUsernameText.textContent = username;
-
-        // Unlock comment fields
-        if (commentInputWrapper) commentInputWrapper.style.display = 'block';
-        if (commentLockedPrompt) commentLockedPrompt.style.display = 'none';
+        if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
+        if (studentDashboard) studentDashboard.style.display = 'block';
     }
 
     function showAuthForms() {
-        // Reset forms to Login view by default
         if (loginForm) loginForm.style.display = 'flex';
         if (registerForm) registerForm.style.display = 'none';
-        if (authSectionTitle) authSectionTitle.textContent = 'Sign In to Post Feedback';
-
-        // Lock comment fields
-        if (commentInputWrapper) commentInputWrapper.style.display = 'none';
-        if (commentLockedPrompt) commentLockedPrompt.style.display = 'block';
+        if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+        
+        if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
+        if (studentDashboard) studentDashboard.style.display = 'none';
     }
 
-    // Fetch and Render Comment Feed
+    // -------------------------------------------------------------
+    // PUBLIC REVIEW STAR RATING & SOCIAL SHARING LOGIC
+    // -------------------------------------------------------------
+    const starRatingSelector = document.getElementById('star-rating-selector');
+    let currentRating = 5;
+
+    if (starRatingSelector) {
+        const stars = starRatingSelector.querySelectorAll('.star-icon');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const val = parseInt(star.getAttribute('data-value'));
+                currentRating = val;
+                
+                stars.forEach(s => {
+                    const sVal = parseInt(s.getAttribute('data-value'));
+                    if (sVal <= val) {
+                        s.classList.add('active');
+                        s.querySelector('i').className = 'fa-solid fa-star';
+                    } else {
+                        s.classList.remove('active');
+                        s.querySelector('i').className = 'fa-regular fa-star';
+                    }
+                });
+            });
+
+            star.addEventListener('mouseenter', () => {
+                const val = parseInt(star.getAttribute('data-value'));
+                stars.forEach(s => {
+                    const sVal = parseInt(s.getAttribute('data-value'));
+                    if (sVal <= val) {
+                        s.style.transform = 'scale(1.2)';
+                    }
+                });
+            });
+
+            star.addEventListener('mouseleave', () => {
+                stars.forEach(s => {
+                    s.style.transform = '';
+                });
+            });
+        });
+    }
+
+    function resetStarSelector() {
+        currentRating = 5;
+        if (starRatingSelector) {
+            const stars = starRatingSelector.querySelectorAll('.star-icon');
+            stars.forEach(s => {
+                s.classList.add('active');
+                s.querySelector('i').className = 'fa-solid fa-star';
+            });
+        }
+    }
+
+    // Social share overlay selectors
+    const shareOverlay = document.getElementById('share-overlay');
+    const shareWhatsapp = document.getElementById('share-whatsapp');
+    const shareFacebook = document.getElementById('share-facebook');
+    const shareInstagram = document.getElementById('share-instagram');
+    const closeShareBtn = document.getElementById('close-share-btn');
+
+    function showShareOverlay(reviewText, rating) {
+        if (!shareOverlay) return;
+
+        // Custom sharing contents
+        const shareUrl = encodeURIComponent('https://bolokaiemi.github.io/mobile-phone-userinterface/');
+        const reviewExcerpt = reviewText.length > 50 ? reviewText.substring(0, 47) + '...' : reviewText;
+        const starEmoji = '⭐'.repeat(rating);
+        const textToShare = encodeURIComponent(`I just gave EbiUI a ${rating}-star review (${starEmoji})!\n"${reviewExcerpt}"\nCheck out the emulator here:`);
+        
+        if (shareWhatsapp) {
+            shareWhatsapp.href = `https://api.whatsapp.com/send?text=${textToShare}%20${shareUrl}`;
+        }
+        
+        if (shareFacebook) {
+            shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+        }
+
+        if (shareInstagram) {
+            // Instagram doesn't support direct pre-fill, copy link and review so user can post easily
+            shareInstagram.onclick = (e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(`I gave EbiUI a ${rating}-star review (${starEmoji})!\n"${reviewText}"\n${window.location.origin || 'https://bolokaiemi.github.io/mobile-phone-userinterface/'}`);
+                showNotification('Review copied! Paste it into your Instagram post.');
+            };
+        }
+
+        shareOverlay.style.display = 'block';
+        if (commentInputWrapper) commentInputWrapper.style.display = 'none';
+    }
+
+    if (closeShareBtn) {
+        closeShareBtn.addEventListener('click', () => {
+            if (shareOverlay) shareOverlay.style.display = 'none';
+            if (commentInputWrapper) commentInputWrapper.style.display = 'block';
+        });
+    }
+
+    // -------------------------------------------------------------
+    // FETCH AND RENDER REVIEWS FEED
+    // -------------------------------------------------------------
     async function loadComments() {
         if (!commentsListContainer) return;
         
@@ -1434,7 +1534,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const commentEl = document.createElement('div');
                 commentEl.className = 'comment-item';
                 
-                // Show delete button only if logged in user is the author
+                // Format star ratings
+                const ratingCount = comment.rating || 5;
+                const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+                const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+                
+                // Delete button only shown if the current logged in user is the author
                 const isOwner = currentUser && currentUser === comment.username;
                 const deleteButton = isOwner 
                     ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
@@ -1445,6 +1550,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
                         <span class="comment-time">${comment.created_at}</span>
                     </div>
+                    ${starsHtml}
                     <div class="comment-text">${escapeHtml(comment.text)}</div>
                     ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
                 `;
@@ -1496,7 +1602,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     currentUser = data.user.username;
                     showUserProfile(currentUser);
-                    showNotification('Account registered and logged in!');
+                    showNotification('Student account registered and logged in!');
                     if (usernameInput) usernameInput.value = '';
                     if (passwordInput) passwordInput.value = '';
                     loadComments();
@@ -1549,7 +1655,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Logout Action
     if (authLogoutBtn) {
-        authLogoutBtn.addEventListener('click', async () => {
+        authLogoutBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
             try {
                 const response = await fetch('/api/logout', { method: 'POST' });
                 if (response.ok) {
@@ -1567,39 +1674,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Submit Comment Handler
+    // Submit Public Review Handler
     if (commentSubmitBtn && commentTextInput) {
         commentSubmitBtn.addEventListener('click', async () => {
             const text = commentTextInput.value.trim();
             if (!text) {
-                showNotification('Feedback comment cannot be empty.');
+                showNotification('Review content cannot be empty.');
                 return;
             }
+
+            const guestNameInput = document.getElementById('review-guest-name');
+            const guestName = guestNameInput ? guestNameInput.value.trim() : '';
+            const rating = currentRating || 5;
 
             try {
                 const response = await fetch('/api/comments', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text })
+                    body: JSON.stringify({ text, guest_name: guestName, rating: rating })
                 });
 
                 const data = await response.json();
 
                 if (response.ok) {
                     commentTextInput.value = '';
-                    showNotification('Feedback posted!');
+                    if (guestNameInput) guestNameInput.value = '';
+                    resetStarSelector();
+                    showNotification('Review submitted successfully!');
                     loadComments();
+                    showShareOverlay(text, rating);
                 } else {
-                    showNotification(data.error || 'Failed to post feedback.');
+                    showNotification(data.error || 'Failed to post review.');
                 }
             } catch (error) {
-                console.error('Post comment error:', error);
+                console.error('Post review error:', error);
                 showNotification('Connection error.');
             }
         });
     }
 
-    // Delete Comment Action
+    // Delete Review Action
     async function deleteComment(id) {
         try {
             const response = await fetch(`/api/comments/${id}`, {
@@ -1609,13 +1723,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                showNotification('Feedback deleted.');
+                showNotification('Review deleted.');
                 loadComments();
             } else {
-                showNotification(data.error || 'Failed to delete comment.');
+                showNotification(data.error || 'Failed to delete review.');
             }
         } catch (error) {
-            console.error('Delete comment error:', error);
+            print(error);
             showNotification('Connection error.');
         }
     }
@@ -1624,3 +1738,4 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuthStatus();
     loadComments();
 });
+

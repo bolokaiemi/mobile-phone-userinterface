@@ -2296,6 +2296,222 @@ body {
     text-align: center;
 }
 
+/* Review Meta Row and Star Ratings */
+.review-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.review-name-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid var(--theme-border-glass) !important;
+    border-radius: 8px !important;
+    padding: 6px 12px !important;
+    color: var(--theme-text-light) !important;
+    font-size: 0.82rem !important;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.review-name-input:focus {
+    border-color: var(--theme-primary) !important;
+}
+
+.light-theme .review-name-input {
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+.star-rating {
+    display: flex;
+    gap: 4px;
+}
+
+.star-icon {
+    font-size: 1.1rem;
+    color: var(--theme-text-muted);
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.star-icon:hover {
+    transform: scale(1.15);
+}
+
+.star-icon.active {
+    color: #ffb703; /* Gold */
+}
+
+/* Inline Comments Render for Stars */
+.comment-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+    color: #ffb703;
+}
+
+/* Social Sharing Overlay */
+.share-overlay {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px dashed var(--theme-border-glass);
+    border-radius: 14px;
+    padding: 16px;
+    animation: fadeIn 0.3s ease;
+}
+
+.light-theme .share-overlay {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.share-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+}
+
+.share-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--theme-text-light);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.share-desc {
+    font-size: 0.78rem;
+    color: var(--theme-text-muted);
+    margin: 0 0 8px 0;
+}
+
+.share-buttons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #ffffff !important;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.share-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+
+.share-btn.whatsapp {
+    background: #25d366;
+}
+
+.share-btn.facebook {
+    background: #1877f2;
+}
+
+.share-btn.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* Student Course List */
+.student-profile-header {
+    border-bottom: 1px solid var(--theme-border-glass);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.course-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.course-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--theme-border-glass);
+    border-radius: 12px;
+    padding: 10px 12px;
+    gap: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.light-theme .course-list li {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.course-list li:hover {
+    background: rgba(var(--theme-hue), 85%, 55%, 0.05);
+}
+
+.course-icon {
+    font-size: 1.25rem;
+    color: var(--theme-primary-light);
+    width: 24px;
+    text-align: center;
+}
+
+.light-theme .course-icon {
+    color: var(--theme-primary);
+}
+
+.course-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.course-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--theme-text-light);
+}
+
+.course-meta {
+    font-size: 0.7rem;
+    color: var(--theme-text-muted);
+}
+
+.course-action-btn {
+    color: var(--theme-text-muted);
+    font-size: 0.85rem;
+    padding: 6px;
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s;
+}
+
+.course-action-btn:hover {
+    color: var(--theme-primary-light);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.light-theme .course-action-btn:hover {
+    color: var(--theme-primary);
+    background: rgba(0, 0, 0, 0.04);
+}
+
 /* Emulator Tips Card List */
 .tips-list {
     list-style: none;

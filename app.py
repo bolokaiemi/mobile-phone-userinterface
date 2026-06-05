@@ -30,7 +30,9 @@ class User(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # Optional for anonymous reviews
+    guest_name = db.Column(db.String(80), nullable=True) # For guest users
+    rating = db.Column(db.Integer, default=5, nullable=False) # Star rating (1-5)
     text = db.Column(db.String(500), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
@@ -40,7 +42,8 @@ class Comment(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.user.username,
+            'username': self.user.username if self.user else (self.guest_name or 'Anonymous Guest'),
+            'rating': self.rating,
             'text': self.text,
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
         }
@@ -142,12 +145,10 @@ def comments():
         return jsonify({'comments': [c.to_dict() for c in all_comments]})
         
     elif request.method == 'POST':
-        # Reject creation if user is not authenticated
-        if 'user_id' not in session:
-            return jsonify({'error': 'Authentication required. Please log in.'}), 401
-            
         data = request.get_json() or {}
         text = data.get('text', '').strip()
+        rating = data.get('rating', 5)
+        guest_name = data.get('guest_name', '').strip()
         
         if not text:
             return jsonify({'error': 'Comment content cannot be empty.'}), 400
@@ -155,7 +156,21 @@ def comments():
         if len(text) > 500:
             return jsonify({'error': 'Comment exceeds the 500 character limit.'}), 400
             
-        new_comment = Comment(user_id=session['user_id'], text=text)
+        try:
+            rating = int(rating)
+            if rating < 1 or rating > 5:
+                rating = 5
+        except (ValueError, TypeError):
+            rating = 5
+
+        # Save comment: link user_id if logged in, otherwise save guest name
+        if 'user_id' in session:
+            new_comment = Comment(user_id=session['user_id'], text=text, rating=rating)
+        else:
+            if not guest_name:
+                guest_name = 'Anonymous Guest'
+            new_comment = Comment(user_id=None, guest_name=guest_name, text=text, rating=rating)
+            
         db.session.add(new_comment)
         db.session.commit()
         
@@ -182,6 +197,6 @@ def delete_comment(comment_id):
 
 if __name__ == '__main__':
     # Capture PORT from environment variables (defaults to 8000 for local development)
-    PORT = int(os.environ.get('PORT', 8000))
+    PORT = int(os.environ.get('PORT', 8080))
     print(f"Starting Flask development server at http://localhost:{PORT}")
     app.run(host='0.0.0.0', port=PORT, debug=True)

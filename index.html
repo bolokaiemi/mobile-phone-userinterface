@@ -598,7 +598,7 @@
 
         <!-- Comments & Auth Dashboard Section -->
         <section class="dashboard-panel" id="tab-view-dashboard">
-            <!-- Unified Feedback Feed & Account Card -->
+            <!-- Unified Feedback Feed & Review Card -->
             <div class="dash-card comments-card">
                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
                 
@@ -609,20 +609,46 @@
                     </div>
                 </div>
 
-                <!-- Comment Input Area (unlocked for authed users) -->
-                <div class="comment-input-wrapper" id="comment-input-wrapper" style="display: none;">
+                <!-- Public Review Input Area (No login required!) -->
+                <div class="comment-input-wrapper" id="comment-input-wrapper">
                     <div class="comment-input-group">
-                        <textarea id="comment-text-input" placeholder="Post public feedback on EbiUI... (max 500 characters)"></textarea>
-                        <div class="comment-submit-row">
-                            <span class="user-status-text">Logged in as <strong id="profile-username-text">username</strong> | <a href="#" id="auth-logout-btn">Sign Out</a></span>
-                            <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Post</button>
+                        <div class="review-meta-row">
+                            <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+                            <div class="star-rating" id="star-rating-selector">
+                                <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+                            </div>
                         </div>
+                        <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+                        <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
                     </div>
                 </div>
+
+                <!-- Social Sharing Overlay (appears right after submitting) -->
+                <div class="share-overlay" id="share-overlay" style="display: none;">
+                    <div class="share-card">
+                        <h4 class="share-title"><i class="fa-solid fa-circle-check" style="color: #4caf50;"></i> Review Submitted!</h4>
+                        <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+                        <div class="share-buttons-grid">
+                            <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+                            <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+                            <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+                        </div>
+                        <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student & Learning Portal Card -->
+            <div class="dash-card student-card">
+                <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
                 
-                <!-- Locked Prompt / Inline Auth Forms -->
-                <div class="comment-locked-prompt" id="comment-locked-prompt">
-                    <h4 class="auth-section-title" id="auth-section-title">Sign In to Post Feedback</h4>
+                <!-- If Logged Out: Show Student Login Forms -->
+                <div class="student-auth-wrapper" id="student-auth-wrapper">
+                    <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
                     
                     <!-- Login Form -->
                     <form class="auth-form active-form" id="login-form">
@@ -631,7 +657,7 @@
                             <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
                             <button type="submit" class="btn-primary">Sign In</button>
                         </div>
-                        <p class="auth-helper-text">New user? <a href="#" id="link-to-register">Create an account</a></p>
+                        <p class="auth-helper-text">New student? <a href="#" id="link-to-register">Register here</a></p>
                     </form>
                     
                     <!-- Register Form -->
@@ -639,10 +665,43 @@
                         <div class="form-row">
                             <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username">
                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
-                            <button type="submit" class="btn-primary">Create Account</button>
+                            <button type="submit" class="btn-primary">Register</button>
                         </div>
-                        <p class="auth-helper-text">Already have an account? <a href="#" id="link-to-login">Sign In</a></p>
+                        <p class="auth-helper-text">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
                     </form>
+                </div>
+
+                <!-- If Logged In: Show Student Courses Dashboard -->
+                <div class="student-dashboard" id="student-dashboard" style="display: none;">
+                    <div class="student-profile-header">
+                        <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+                    </div>
+                    <ul class="course-list">
+                        <li>
+                            <div class="course-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                            <div class="course-info">
+                                <span class="course-name">1. Introduction to Mobile UI Design</span>
+                                <span class="course-meta">Study Guide & Syllabus (PDF)</span>
+                            </div>
+                            <a href="#" class="course-action-btn" onclick="alert('Downloading Syllabus...')"><i class="fa-solid fa-download"></i></a>
+                        </li>
+                        <li>
+                            <div class="course-icon"><i class="fa-solid fa-video"></i></div>
+                            <div class="course-info">
+                                <span class="course-name">2. Android 14 Core OS Architecture</span>
+                                <span class="course-meta">Video Lecture (45 mins)</span>
+                            </div>
+                            <a href="#" class="course-action-btn" onclick="alert('Launching video lecture...')"><i class="fa-solid fa-play"></i></a>
+                        </li>
+                        <li>
+                            <div class="course-icon"><i class="fa-solid fa-cubes"></i></div>
+                            <div class="course-info">
+                                <span class="course-name">3. Glassmorphic Styling Masterclass</span>
+                                <span class="course-meta">Interactive Sandbox Exercise</span>
+                            </div>
+                            <a href="#" class="course-action-btn" onclick="alert('Opening styling sandbox...')"><i class="fa-solid fa-code"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
