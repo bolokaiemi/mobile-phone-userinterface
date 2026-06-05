@@ -1944,50 +1944,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSelectedCourseCheckbox = null;
 
-    if (studentDashboard) {
-        studentDashboard.addEventListener('click', (e) => {
-            const btn = e.target.closest('.course-action-btn');
-            if (btn) {
-                e.preventDefault();
-                
-                const cId = btn.getAttribute('data-course-id');
-                const badge = btn.getAttribute('data-course-badge');
-                const title = btn.getAttribute('data-course-title');
-                const desc = btn.getAttribute('data-course-desc');
-                const topicsStr = btn.getAttribute('data-course-topics');
-                const actionText = btn.getAttribute('data-course-action');
-                const iconClass = btn.getAttribute('data-course-icon');
 
-                // Find corresponding checkbox for "Enroll in Live School" shortcut
-                const card = btn.closest('.course-item-card');
-                currentSelectedCourseCheckbox = card ? card.querySelector('.live-upgrade-checkbox') : null;
-
-                if (courseModalBadge) courseModalBadge.textContent = badge;
-                if (courseModalTitle) courseModalTitle.textContent = title;
-                if (courseModalDesc) courseModalDesc.textContent = desc;
-
-                if (courseTopicsList) {
-                    courseTopicsList.innerHTML = '';
-                    const topics = topicsStr ? topicsStr.split(',') : [];
-                    topics.forEach(topic => {
-                        const li = document.createElement('li');
-                        li.textContent = topic;
-                        courseTopicsList.appendChild(li);
-                    });
-                }
-
-                if (courseModalActionBtn) {
-                    courseModalActionBtn.innerHTML = `<i class="fa-solid ${iconClass || 'fa-file-pdf'}"></i> ${actionText}`;
-                    courseModalActionBtn.onclick = () => {
-                        alert(`Accessing course materials for: ${title}`);
-                        if (courseModal) courseModal.style.display = 'none';
-                    };
-                }
-
-                if (courseModal) courseModal.style.display = 'flex';
-            }
-        });
-    }
 
     if (courseModalClose) {
         courseModalClose.addEventListener('click', () => {
@@ -2098,7 +2055,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon_class: 'fa-file-pdf',
             brand_icon: 'fa-html5',
             brand_color: '#e34c26',
-            meta: 'Study Guide & Syllabus (PDF)'
+            meta: 'Study Guide & Syllabus (PDF)',
+            w3_link: 'https://www.w3schools.com/html/'
         },
         {
             id: 'css3',
@@ -2110,7 +2068,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon_class: 'fa-video',
             brand_icon: 'fa-css3-alt',
             brand_color: '#264de4',
-            meta: 'Video Lecture & Sandbox Practice'
+            meta: 'Video Lecture & Sandbox Practice',
+            w3_link: 'https://www.w3schools.com/css/'
         },
         {
             id: 'js',
@@ -2122,7 +2081,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon_class: 'fa-code',
             brand_icon: 'fa-js',
             brand_color: '#f7df1e',
-            meta: 'Interactive Exercises & Sandbox'
+            meta: 'Interactive Exercises & Sandbox',
+            w3_link: 'https://www.w3schools.com/js/'
         },
         {
             id: 'python',
@@ -2134,7 +2094,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon_class: 'fa-file-zipper',
             brand_icon: 'fa-python',
             brand_color: '#3776ab',
-            meta: 'Source Code & Backend Guide'
+            meta: 'Source Code & Backend Guide',
+            w3_link: 'https://www.w3schools.com/python/'
         },
         {
             id: 'sql',
@@ -2146,7 +2107,8 @@ document.addEventListener('DOMContentLoaded', () => {
             icon_class: 'fa-database',
             brand_icon: 'fa-database',
             brand_color: '#003b57',
-            meta: 'SQLite Sandbox & Query Guide'
+            meta: 'SQLite Sandbox & Query Guide',
+            w3_link: 'https://www.w3schools.com/sql/'
         }
     ];
 
@@ -2250,6 +2212,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.textContent = topic;
                 courseTopicsList.appendChild(li);
             });
+        }
+
+        // Dynamically bind W3Schools link details
+        const w3schoolsLink = document.getElementById('course-w3schools-link');
+        const w3schoolsBox = document.getElementById('course-w3schools-box');
+        if (w3schoolsBox && w3schoolsLink) {
+            if (course.w3_link) {
+                w3schoolsLink.href = course.w3_link;
+                w3schoolsBox.style.display = 'block';
+            } else {
+                w3schoolsBox.style.display = 'none';
+            }
         }
 
         if (courseModalActionBtn) {

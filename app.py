@@ -308,7 +308,8 @@ COURSES = [
         'icon_class': 'fa-file-pdf',
         'brand_icon': 'fa-html5',
         'brand_color': '#e34c26',
-        'meta': 'Study Guide & Syllabus (PDF)'
+        'meta': 'Study Guide & Syllabus (PDF)',
+        'w3_link': 'https://www.w3schools.com/html/'
     },
     {
         'id': 'css3',
@@ -320,7 +321,8 @@ COURSES = [
         'icon_class': 'fa-video',
         'brand_icon': 'fa-css3-alt',
         'brand_color': '#264de4',
-        'meta': 'Video Lecture & Sandbox Practice'
+        'meta': 'Video Lecture & Sandbox Practice',
+        'w3_link': 'https://www.w3schools.com/css/'
     },
     {
         'id': 'js',
@@ -332,7 +334,8 @@ COURSES = [
         'icon_class': 'fa-code',
         'brand_icon': 'fa-js',
         'brand_color': '#f7df1e',
-        'meta': 'Interactive Exercises & Sandbox'
+        'meta': 'Interactive Exercises & Sandbox',
+        'w3_link': 'https://www.w3schools.com/js/'
     },
     {
         'id': 'python',
@@ -344,7 +347,8 @@ COURSES = [
         'icon_class': 'fa-file-zipper',
         'brand_icon': 'fa-python',
         'brand_color': '#3776ab',
-        'meta': 'Source Code & Backend Guide'
+        'meta': 'Source Code & Backend Guide',
+        'w3_link': 'https://www.w3schools.com/python/'
     },
     {
         'id': 'sql',
@@ -356,7 +360,8 @@ COURSES = [
         'icon_class': 'fa-database',
         'brand_icon': 'fa-database',
         'brand_color': '#003b57',
-        'meta': 'SQLite Sandbox & Query Guide'
+        'meta': 'SQLite Sandbox & Query Guide',
+        'w3_link': 'https://www.w3schools.com/sql/'
     }
 ]
 

@@ -2898,6 +2898,13 @@ body {
     border: 1px solid rgba(139, 92, 246, 0.2);
     border-radius: 10px;
     padding: 12px;
+    transition: all 0.3s ease;
+}
+
+.school-promo-box:hover {
+    background: rgba(139, 92, 246, 0.12);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15);
 }
 
 .school-promo-header {
@@ -2914,6 +2921,57 @@ body {
     font-size: 0.76rem;
     color: #cbd5e1;
     line-height: 1.4;
+}
+
+/* W3Schools Self-Study Links box styles */
+.w3schools-link-box {
+    margin-top: 15px;
+    background: rgba(59, 130, 246, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px dashed rgba(59, 130, 246, 0.2);
+    text-align: left;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.w3schools-link-box:hover {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.w3schools-link-header {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #3b82f6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.w3schools-link-desc {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+}
+
+.w3schools-link-anchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: #10b981;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.w3schools-link-anchor:hover {
+    color: #34d399;
+    transform: translateX(3px);
 }
 
 .course-modal-actions {
