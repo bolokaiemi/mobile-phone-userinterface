@@ -1346,15 +1346,27 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleLoginBtn.addEventListener('click', () => {
             toggleLoginBtn.classList.add('active');
             toggleRegisterBtn.classList.remove('active');
-            if (loginForm) loginForm.classList.add('active-form');
-            if (registerForm) registerForm.classList.remove('active-form');
+            if (loginForm) {
+                loginForm.style.display = 'flex';
+                loginForm.classList.add('active-form');
+            }
+            if (registerForm) {
+                registerForm.style.display = 'none';
+                registerForm.classList.remove('active-form');
+            }
         });
 
         toggleRegisterBtn.addEventListener('click', () => {
             toggleRegisterBtn.classList.add('active');
             toggleLoginBtn.classList.remove('active');
-            if (registerForm) registerForm.classList.add('active-form');
-            if (loginForm) loginForm.classList.remove('active-form');
+            if (registerForm) {
+                registerForm.style.display = 'flex';
+                registerForm.classList.add('active-form');
+            }
+            if (loginForm) {
+                loginForm.style.display = 'none';
+                loginForm.classList.remove('active-form');
+            }
         });
     }
 
@@ -1402,6 +1414,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function showAuthForms() {
         if (authFormsWrapper) authFormsWrapper.style.display = 'block';
         if (userProfileWrapper) userProfileWrapper.style.display = 'none';
+
+        // Reset forms to Login tab visibility by default
+        if (toggleLoginBtn) toggleLoginBtn.classList.add('active');
+        if (toggleRegisterBtn) toggleRegisterBtn.classList.remove('active');
+        if (loginForm) {
+            loginForm.style.display = 'flex';
+            loginForm.classList.add('active-form');
+        }
+        if (registerForm) {
+            registerForm.style.display = 'none';
+            registerForm.classList.remove('active-form');
+        }
 
         // Lock comment fields
         if (commentInputWrapper) commentInputWrapper.style.display = 'none';
