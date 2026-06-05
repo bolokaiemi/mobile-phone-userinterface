@@ -342,7 +342,7 @@
                 <p>Track public ratings, user feedback, and student registration progress</p>
             </div>
             <div class="action-header">
-                <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Go to Live Site</a>
+                <a href="/" class="btn btn-secondary" id="btn-back-to-site"><i class="fa-solid fa-arrow-left"></i> Go to Live Site</a>
                 <a href="/api/admin/db-download" class="btn btn-secondary" id="btn-download-db"><i class="fa-solid fa-database"></i> Download Database</a>
                 <a href="/api/admin/export" class="btn btn-primary"><i class="fa-solid fa-file-csv"></i> Export CSV</a>
             </div>
@@ -448,6 +448,26 @@
             if (btnExportCsv) {
                 btnExportCsv.href = API_BASE ? API_BASE + '/api/admin/export' : '/api/admin/export';
             }
+
+            // Dynamically resolve Back to Live Site link for file:// protocol support
+            const btnBackToSite = document.getElementById('btn-back-to-site');
+            if (btnBackToSite) {
+                if (window.location.protocol === 'file:') {
+                    btnBackToSite.href = '../index.html';
+                } else {
+                    btnBackToSite.href = '/';
+                }
+            }
+
+            // Automatically make all external links open in a new tab
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
 
             // Local Storage Helpers for Offline/CORS-proof fallbacks
             function getLocalComments() {

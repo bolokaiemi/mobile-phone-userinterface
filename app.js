@@ -1513,6 +1513,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
         if (studentDashboard) studentDashboard.style.display = 'block';
         loadCourses();
+        
+        // Smooth scroll to the student dashboard/courses section
+        setTimeout(() => {
+            if (studentDashboard) {
+                studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 150);
     }
 
     function showAuthForms() {
@@ -2352,6 +2359,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Bind Dashboard Back Button
+    const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+    if (dashboardBackBtn) {
+        dashboardBackBtn.addEventListener('click', () => {
+            switchTab('home');
+        });
+    }
+
+    // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+    const allLinks = document.querySelectorAll('a');
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
 
     // Trigger Initial Checks
     checkAuthStatus();

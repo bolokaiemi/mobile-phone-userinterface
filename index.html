@@ -609,6 +609,13 @@
 
         <!-- Comments & Auth Dashboard Section -->
         <section class="dashboard-panel" id="tab-view-dashboard">
+            <!-- Unified Navigation Back Shortcut -->
+            <div class="dashboard-back-bar" style="margin-bottom: 20px; display: flex; justify-content: flex-start; width: 100%;">
+                <button class="btn-secondary" id="dashboard-back-btn" style="padding: 10px 18px; font-size: 0.9rem; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; border: 1px solid var(--theme-border-glass); background: var(--theme-bg-glass); color: var(--text-primary); transition: all 0.3s ease;">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Phone Emulator
+                </button>
+            </div>
+
             <!-- Unified Feedback Feed & Review Card -->
             <div class="dash-card comments-card">
                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
@@ -686,6 +693,14 @@
                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
                     <div class="student-profile-header">
                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+                    </div>
+                    <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+                        <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+                        <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                            <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+                            <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+                            <li><strong>Live Mentorship:</strong> Check the <strong>Meet Teacher Direct</strong> box on any course to book a direct 1-on-1 session with Mr. Ebi.</li>
+                        </ul>
                     </div>
                 </div>
 
