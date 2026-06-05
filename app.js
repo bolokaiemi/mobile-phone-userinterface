@@ -1734,6 +1734,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // -------------------------------------------------------------
+    // PREMIUM LIVE TUTORING CHECKOUT HANDLERS
+    // -------------------------------------------------------------
+    const paymentModal = document.getElementById('payment-modal');
+    const paymentCourseName = document.getElementById('payment-course-name');
+    const paymentCancelBtn = document.getElementById('payment-cancel-btn');
+    const premiumPaymentForm = document.getElementById('premium-payment-form');
+    const paymentSubmitBtn = document.getElementById('payment-submit-btn');
+    let activeUpgradeCheckbox = null;
+
+    // Delegate checkbox changes in the student dashboard
+    if (studentDashboard) {
+        studentDashboard.addEventListener('change', (e) => {
+            if (e.target.classList.contains('live-upgrade-checkbox')) {
+                const checkbox = e.target;
+                if (checkbox.checked) {
+                    activeUpgradeCheckbox = checkbox;
+                    const courseName = checkbox.getAttribute('data-course');
+                    if (paymentCourseName) paymentCourseName.textContent = courseName;
+                    if (paymentModal) paymentModal.style.display = 'flex';
+                } else {
+                    // Reset styling/label if they uncheck
+                    const labelSpan = checkbox.nextElementSibling;
+                    if (labelSpan) {
+                        labelSpan.innerHTML = `Meet Teacher Direct (Live 1-on-1)`;
+                        labelSpan.style.color = '';
+                    }
+                }
+            }
+        });
+    }
+
+    if (paymentCancelBtn) {
+        paymentCancelBtn.addEventListener('click', () => {
+            if (paymentModal) paymentModal.style.display = 'none';
+            if (activeUpgradeCheckbox) {
+                activeUpgradeCheckbox.checked = false;
+                activeUpgradeCheckbox = null;
+            }
+        });
+    }
+
+    if (premiumPaymentForm) {
+        premiumPaymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (paymentSubmitBtn) {
+                paymentSubmitBtn.disabled = true;
+                paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+            }
+
+            // Simulate server transaction delay
+            setTimeout(() => {
+                if (paymentModal) paymentModal.style.display = 'none';
+                showNotification('Upgrade successful! Mr. Bolokaiemi Ebi has been notified of your payment.');
+                
+                if (activeUpgradeCheckbox) {
+                    const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+                    if (labelSpan) {
+                        labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+                        labelSpan.style.color = '#10b981';
+                    }
+                    activeUpgradeCheckbox = null;
+                }
+
+                // Reset payment form fields
+                premiumPaymentForm.reset();
+                if (paymentSubmitBtn) {
+                    paymentSubmitBtn.disabled = false;
+                    paymentSubmitBtn.innerHTML = `Complete Checkout`;
+                }
+            }, 1800);
+        });
+    }
+
     // Trigger Initial Checks
     checkAuthStatus();
     loadComments();

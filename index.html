@@ -26,6 +26,7 @@
             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
             <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Comments Feed</button>
             <a href="https://github.com/bolokaiemi/mobile-phone-userinterface" class="nav-link-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="/admin" class="nav-link-btn" target="_blank"><i class="fa-solid fa-gears"></i> Admin Console</a>
         </nav>
     </header>
 
@@ -676,30 +677,106 @@
                     <div class="student-profile-header">
                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
                     </div>
+                    <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
                     <ul class="course-list">
-                        <li>
-                            <div class="course-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                            <div class="course-info">
-                                <span class="course-name">1. Introduction to Mobile UI Design</span>
-                                <span class="course-meta">Study Guide & Syllabus (PDF)</span>
+                        <!-- Course 1: HTML -->
+                        <li class="course-item-card">
+                            <div class="course-main-row">
+                                <div class="course-icon"><i class="fa-brands fa-html5" style="color: #e34c26;"></i></div>
+                                <div class="course-info">
+                                    <span class="course-name">HTML5 Fundamentals</span>
+                                    <span class="course-meta">Study Guide & Syllabus (PDF)</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="course-action-btn" onclick="alert('Downloading HTML5 Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                </div>
                             </div>
-                            <a href="#" class="course-action-btn" onclick="alert('Downloading Syllabus...')"><i class="fa-solid fa-download"></i></a>
+                            <div class="live-upgrade-wrapper">
+                                <label class="live-upgrade-label">
+                                    <input type="checkbox" class="live-upgrade-checkbox" data-course="HTML5 Fundamentals">
+                                    <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                                </label>
+                            </div>
                         </li>
-                        <li>
-                            <div class="course-icon"><i class="fa-solid fa-video"></i></div>
-                            <div class="course-info">
-                                <span class="course-name">2. Android 14 Core OS Architecture</span>
-                                <span class="course-meta">Video Lecture (45 mins)</span>
+                        
+                        <!-- Course 2: CSS -->
+                        <li class="course-item-card">
+                            <div class="course-main-row">
+                                <div class="course-icon"><i class="fa-brands fa-css3-alt" style="color: #264de4;"></i></div>
+                                <div class="course-info">
+                                    <span class="course-name">CSS3 Layouts & Styling</span>
+                                    <span class="course-meta">Video Lecture & Sandbox Practice</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="course-action-btn" onclick="alert('Launching CSS3 Masterclass video...')"><i class="fa-solid fa-play"></i></button>
+                                </div>
                             </div>
-                            <a href="#" class="course-action-btn" onclick="alert('Launching video lecture...')"><i class="fa-solid fa-play"></i></a>
+                            <div class="live-upgrade-wrapper">
+                                <label class="live-upgrade-label">
+                                    <input type="checkbox" class="live-upgrade-checkbox" data-course="CSS3 Layouts & Styling">
+                                    <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                                </label>
+                            </div>
                         </li>
-                        <li>
-                            <div class="course-icon"><i class="fa-solid fa-cubes"></i></div>
-                            <div class="course-info">
-                                <span class="course-name">3. Glassmorphic Styling Masterclass</span>
-                                <span class="course-meta">Interactive Sandbox Exercise</span>
+                        
+                        <!-- Course 3: JS -->
+                        <li class="course-item-card">
+                            <div class="course-main-row">
+                                <div class="course-icon"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
+                                <div class="course-info">
+                                    <span class="course-name">JavaScript Programming</span>
+                                    <span class="course-meta">Interactive Exercises & Sandbox</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="course-action-btn" onclick="alert('Launching JS Programming Sandbox...')"><i class="fa-solid fa-code"></i></button>
+                                </div>
                             </div>
-                            <a href="#" class="course-action-btn" onclick="alert('Opening styling sandbox...')"><i class="fa-solid fa-code"></i></a>
+                            <div class="live-upgrade-wrapper">
+                                <label class="live-upgrade-label">
+                                    <input type="checkbox" class="live-upgrade-checkbox" data-course="JavaScript Programming">
+                                    <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                                </label>
+                            </div>
+                        </li>
+                        
+                        <!-- Course 4: Python -->
+                        <li class="course-item-card">
+                            <div class="course-main-row">
+                                <div class="course-icon"><i class="fa-brands fa-python" style="color: #3776ab;"></i></div>
+                                <div class="course-info">
+                                    <span class="course-name">Python Backend & Flask</span>
+                                    <span class="course-meta">Full Syllabus PDF & Guide</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="course-action-btn" onclick="alert('Downloading Python Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="live-upgrade-wrapper">
+                                <label class="live-upgrade-label">
+                                    <input type="checkbox" class="live-upgrade-checkbox" data-course="Python Backend & Flask">
+                                    <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                                </label>
+                            </div>
+                        </li>
+                        
+                        <!-- Course 5: SQL & SQLite -->
+                        <li class="course-item-card">
+                            <div class="course-main-row">
+                                <div class="course-icon"><i class="fa-solid fa-database" style="color: #00f2fe;"></i></div>
+                                <div class="course-info">
+                                    <span class="course-name">SQL & SQLite Databases</span>
+                                    <span class="course-meta">Syllabus PDF & SQL Practice Sandbox</span>
+                                </div>
+                                <div class="course-actions">
+                                    <button class="course-action-btn" onclick="alert('Downloading SQL Database Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                </div>
+                            </div>
+                            <div class="live-upgrade-wrapper">
+                                <label class="live-upgrade-label">
+                                    <input type="checkbox" class="live-upgrade-checkbox" data-course="SQL & SQLite Databases">
+                                    <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+                                </label>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -723,6 +800,42 @@
             </div>
         </section>
     </main>
+
+    <!-- Direct Course Payment Modal -->
+    <div class="payment-modal" id="payment-modal" style="display: none;">
+        <div class="payment-modal-card">
+            <h4 class="payment-modal-title"><i class="fa-solid fa-chalkboard-user"></i> Live Direct Tutoring Premium Upgrade</h4>
+            <p class="payment-modal-desc">Upgrade your access for <strong id="payment-course-name">Course Name</strong> to meet <strong>Mr. Bolokaiemi Ebi</strong> directly as your teacher.</p>
+            
+            <div class="payment-features-list">
+                <div><i class="fa-solid fa-check"></i> Live 1-on-1 online classes (1 hr/session)</div>
+                <div><i class="fa-solid fa-check"></i> Custom project-based curriculum</div>
+                <div><i class="fa-solid fa-check"></i> Direct WhatsApp assistance & code reviews</div>
+            </div>
+            
+            <div class="pricing-summary-box">
+                <span class="price-label">Direct Tutor Price:</span>
+                <span class="price-value">$199 <span class="price-period">/ month</span></span>
+            </div>
+            
+            <form id="premium-payment-form">
+                <div class="payment-form-row">
+                    <input type="text" id="billing-name" placeholder="Full Billing Name" required>
+                </div>
+                <div class="payment-form-row card-row">
+                    <input type="text" id="card-number" placeholder="Card Number (Demo: 4111 ...)" required>
+                </div>
+                <div class="payment-form-row card-meta-row" style="display: flex; justify-content: space-between;">
+                    <input type="text" id="card-expiry" placeholder="MM/YY" required style="width: 45%;">
+                    <input type="text" id="card-cvc" placeholder="CVC" required style="width: 45%;">
+                </div>
+                <div class="payment-modal-actions">
+                    <button type="button" class="btn-secondary" id="payment-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn-primary" id="payment-submit-btn">Complete Checkout</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Script loading -->
     <script src="app.js"></script>
