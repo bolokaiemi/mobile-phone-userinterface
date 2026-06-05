@@ -25,6 +25,34 @@ if database_url.startswith("postgres://"):
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# -------------------------------------------------------------
+# FLASK-MAIL CONFIGURATION
+# -------------------------------------------------------------
+from flask_mail import Mail, Message
+
+app.config['MAIL_SERVER'] = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
+app.config['MAIL_PORT'] = int(os.environ.get('SMTP_PORT', 587))
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.environ.get('SMTP_EMAIL')
+app.config['MAIL_PASSWORD'] = os.environ.get('SMTP_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('SMTP_EMAIL')
+
+mail = Mail(app)
+
+def send_notification_email(subject, body):
+    try:
+        recipient = os.environ.get('SMTP_EMAIL')
+        if recipient:
+            msg = Message(subject, recipients=[recipient])
+            msg.body = body
+            mail.send(msg)
+            print(f"Notification email sent: {subject}")
+        else:
+            print("No recipient defined for notification email.")
+    except Exception as e:
+        print(f"Failed to send notification email: {e}")
+
 # Enable CORS for development/testing origins supporting cookies/credentials
 @app.before_request
 def handle_options():
@@ -130,6 +158,12 @@ def register():
     session['user_id'] = new_user.id
     session['username'] = new_user.username
     
+    # Send email notification alert
+    send_notification_email(
+        subject="[EbiUI Alert] New Student Registered",
+        body=f"Hello,\n\nA new student has registered on EbiUI!\n\nUsername: {new_user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
+    )
+    
     return jsonify({
         'message': 'Registration successful!',
         'user': {'username': new_user.username}
@@ -151,6 +185,12 @@ def login():
     # Store active session identifiers
     session['user_id'] = user.id
     session['username'] = user.username
+    
+    # Send email notification alert
+    send_notification_email(
+        subject="[EbiUI Alert] Student Signed In",
+        body=f"Hello,\n\nA student has successfully logged in to EbiUI.\n\nUsername: {user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
+    )
     
     return jsonify({
         'message': 'Login successful!',
