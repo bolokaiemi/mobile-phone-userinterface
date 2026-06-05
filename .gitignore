@@ -12,3 +12,8 @@ ENV/
 
 # Local Environment Variables / Temporary scripts
 .env.py
+.env
+
+# Local Databases and Instance files
+instance/
+*.db

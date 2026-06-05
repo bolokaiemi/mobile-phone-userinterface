@@ -17,9 +17,23 @@
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
+    <!-- 1. TOP HUB NAVIGATION BAR -->
+    <header class="top-navbar">
+        <div class="nav-brand">
+            <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+        </div>
+        <nav class="nav-links">
+            <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+            <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Comments Feed</button>
+            <a href="https://github.com/bolokaiemi/mobile-phone-userinterface" class="nav-link-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        </nav>
+    </header>
 
-    <!-- Main Outer Phone Container: Emulates a physical smartphone -->
-    <div class="phone-container">
+    <!-- 2. MAIN HUB CONTENT CONTAINER -->
+    <main class="hub-container">
+        <!-- Phone View Section -->
+        <div class="phone-view-section active-tab-view" id="tab-view-home">
+            <div class="phone-container">
         <!-- Physical hardware details -->
         <div class="phone-speaker"></div>
         <div class="phone-button power"></div>
@@ -579,25 +593,106 @@
             </div>
 
         </div>
-    </div>
-
-    <!-- Info Overlay for Desktop users explaining how to interact -->
-    <div class="desktop-tips">
-        <h2 data-translate="tips_header">Android 14 EbiUI Launcher</h2>
-        <p data-translate="tips_subtitle">Interactive emulator designed by <strong>Bolokaiemi Ebi</strong>.</p>
-        <ul>
-            <li data-translate="tips_item_1"><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
-            <li data-translate="tips_item_2"><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> to toggle Dark Mode, change theme accents, and change wallpapers.</li>
-            <li data-translate="tips_item_3"><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
-            <li data-translate="tips_item_4"><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
-            <li data-translate="tips_item_5"><i class="fa-solid fa-mobile-screen-button"></i> Fully responsive! Try resizing your browser window or view on a phone.</li>
-        </ul>
-        <div class="desktop-action-bar">
-            <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
-                <i class="fa-solid fa-file-code"></i> <span data-translate="tips_view_original">View Raw Original Page</span>
-            </a>
+            </div>
         </div>
-    </div>
+
+        <!-- Comments & Auth Dashboard Section -->
+        <section class="dashboard-panel" id="tab-view-dashboard">
+            <!-- User Authentication Card -->
+            <div class="dash-card auth-card">
+                <h3 class="card-title"><i class="fa-solid fa-circle-user"></i> User Account</h3>
+                
+                <!-- Toggle Login/Register Forms -->
+                <div class="auth-forms-wrapper" id="auth-forms-wrapper">
+                    <div class="auth-toggle-tabs">
+                        <button class="auth-toggle-btn active" id="toggle-login-btn">Sign In</button>
+                        <button class="auth-toggle-btn" id="toggle-register-btn">Register</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form class="auth-form active-form" id="login-form">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" placeholder="Username" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn-primary">Sign In</button>
+                    </form>
+                    
+                    <!-- Register Form -->
+                    <form class="auth-form" id="register-form">
+                        <div class="form-group">
+                            <label for="register-username">Username (min 3 chars)</label>
+                            <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password (min 4 chars)</label>
+                            <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </form>
+                </div>
+
+                <!-- User Logged In Profile -->
+                <div class="user-profile-wrapper" id="user-profile-wrapper" style="display: none;">
+                    <div class="profile-info">
+                        <div class="profile-avatar"><i class="fa-solid fa-user-check"></i></div>
+                        <div>
+                            <p class="profile-welcome">Logged in as</p>
+                            <h4 class="profile-username" id="profile-username-text">username</h4>
+                        </div>
+                    </div>
+                    <button class="btn-secondary" id="auth-logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+                </div>
+            </div>
+
+            <!-- Comments Card -->
+            <div class="dash-card comments-card">
+                <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
+                
+                <!-- Live comments feed -->
+                <div class="comments-list" id="comments-list-container">
+                    <div class="comments-loading">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+                    </div>
+                </div>
+
+                <!-- Comment Input Area (unlocked for authed users) -->
+                <div class="comment-input-wrapper" id="comment-input-wrapper" style="display: none;">
+                    <div class="comment-input-group">
+                        <textarea id="comment-text-input" placeholder="Post public feedback on EbiUI... (max 500 characters)"></textarea>
+                        <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Post</button>
+                    </div>
+                </div>
+                
+                <!-- Locked Prompt -->
+                <div class="comment-locked-prompt" id="comment-locked-prompt">
+                    <i class="fa-solid fa-lock"></i>
+                    <p>Please log in or register above to submit public feedback.</p>
+                </div>
+            </div>
+
+            <!-- Emulator Tips Card (migrated layout) -->
+            <div class="dash-card tips-card">
+                <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+                <ul class="tips-list">
+                    <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+                    <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+                    <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+                    <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+                    <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+                </ul>
+                <div class="tips-action-bar">
+                    <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+                        <i class="fa-solid fa-file-code"></i> View Raw Original Page
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Script loading -->
     <script src="app.js"></script>

@@ -1284,4 +1284,329 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // -------------------------------------------------------------
+    // HUB NAVIGATION & AUTH/COMMENT DASHBOARD LOGIC
+    // -------------------------------------------------------------
+    const navHomeTab = document.getElementById('nav-home-tab');
+    const navDashboardTab = document.getElementById('nav-dashboard-tab');
+    const tabViewHome = document.getElementById('tab-view-home');
+    const tabViewDashboard = document.getElementById('tab-view-dashboard');
+
+    const toggleLoginBtn = document.getElementById('toggle-login-btn');
+    const toggleRegisterBtn = document.getElementById('toggle-register-btn');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const authFormsWrapper = document.getElementById('auth-forms-wrapper');
+    const userProfileWrapper = document.getElementById('user-profile-wrapper');
+    const profileUsernameText = document.getElementById('profile-username-text');
+    const authLogoutBtn = document.getElementById('auth-logout-btn');
+
+    const commentsListContainer = document.getElementById('comments-list-container');
+    const commentInputWrapper = document.getElementById('comment-input-wrapper');
+    const commentLockedPrompt = document.getElementById('comment-locked-prompt');
+    const commentTextInput = document.getElementById('comment-text-input');
+    const commentSubmitBtn = document.getElementById('comment-submit-btn');
+
+    let currentUser = null;
+
+    // View toggling tabs (especially on mobile layouts)
+    function switchTab(targetTab) {
+        if (targetTab === 'home') {
+            if (navHomeTab) navHomeTab.classList.add('active');
+            if (navDashboardTab) navDashboardTab.classList.remove('active');
+            if (tabViewHome) tabViewHome.classList.add('active-tab-view');
+            if (tabViewDashboard) tabViewDashboard.classList.remove('active-tab-view');
+        } else if (targetTab === 'dashboard') {
+            if (navDashboardTab) navDashboardTab.classList.add('active');
+            if (navHomeTab) navHomeTab.classList.remove('active');
+            if (tabViewDashboard) tabViewDashboard.classList.add('active-tab-view');
+            if (tabViewHome) tabViewHome.classList.remove('active-tab-view');
+            loadComments();
+        }
+    }
+
+    if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
+    if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
+
+    // Authenticate Form Views Toggle
+    if (toggleLoginBtn && toggleRegisterBtn) {
+        toggleLoginBtn.addEventListener('click', () => {
+            toggleLoginBtn.classList.add('active');
+            toggleRegisterBtn.classList.remove('active');
+            if (loginForm) loginForm.classList.add('active-form');
+            if (registerForm) registerForm.classList.remove('active-form');
+        });
+
+        toggleRegisterBtn.addEventListener('click', () => {
+            toggleRegisterBtn.classList.add('active');
+            toggleLoginBtn.classList.remove('active');
+            if (registerForm) registerForm.classList.add('active-form');
+            if (loginForm) loginForm.classList.remove('active-form');
+        });
+    }
+
+    // Helper: Escape user input to prevent HTML injection XSS
+    function escapeHtml(text) {
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+
+    // Check Active Auth Session
+    async function checkAuthStatus() {
+        try {
+            const response = await fetch('/api/user');
+            const data = await response.json();
+            if (data.user) {
+                currentUser = data.user.username;
+                showUserProfile(currentUser);
+            } else {
+                currentUser = null;
+                showAuthForms();
+            }
+        } catch (error) {
+            console.error('Error checking authentication status:', error);
+            currentUser = null;
+            showAuthForms();
+        }
+    }
+
+    function showUserProfile(username) {
+        if (authFormsWrapper) authFormsWrapper.style.display = 'none';
+        if (userProfileWrapper) userProfileWrapper.style.display = 'flex';
+        if (profileUsernameText) profileUsernameText.textContent = username;
+
+        // Unlock comment fields
+        if (commentInputWrapper) commentInputWrapper.style.display = 'block';
+        if (commentLockedPrompt) commentLockedPrompt.style.display = 'none';
+    }
+
+    function showAuthForms() {
+        if (authFormsWrapper) authFormsWrapper.style.display = 'block';
+        if (userProfileWrapper) userProfileWrapper.style.display = 'none';
+
+        // Lock comment fields
+        if (commentInputWrapper) commentInputWrapper.style.display = 'none';
+        if (commentLockedPrompt) commentLockedPrompt.style.display = 'flex';
+    }
+
+    // Fetch and Render Comment Feed
+    async function loadComments() {
+        if (!commentsListContainer) return;
+        
+        try {
+            const response = await fetch('/api/comments');
+            const data = await response.json();
+            const comments = data.comments || [];
+            
+            if (comments.length === 0) {
+                commentsListContainer.innerHTML = `
+                    <div class="comment-empty-state">
+                        <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
+                        No feedback posted yet. Be the first!
+                    </div>
+                `;
+                return;
+            }
+            
+            commentsListContainer.innerHTML = '';
+            comments.forEach(comment => {
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment-item';
+                
+                // Show delete button only if logged in user is the author
+                const isOwner = currentUser && currentUser === comment.username;
+                const deleteButton = isOwner 
+                    ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+                    : '';
+                
+                commentEl.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+                        <span class="comment-time">${comment.created_at}</span>
+                    </div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                    ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+                `;
+                
+                commentsListContainer.appendChild(commentEl);
+            });
+            
+            // Bind comments delete actions
+            const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const commentId = btn.getAttribute('data-id');
+                    if (confirm('Are you sure you want to delete this comment?')) {
+                        await deleteComment(commentId);
+                    }
+                });
+            });
+            
+        } catch (error) {
+            console.error('Error fetching comments:', error);
+            commentsListContainer.innerHTML = `
+                <div class="comments-loading" style="color: #ff5555;">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Error loading comments.
+                </div>
+            `;
+        }
+    }
+
+    // Register Form Handler
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usernameInput = document.getElementById('register-username');
+            const passwordInput = document.getElementById('register-password');
+            const username = usernameInput ? usernameInput.value.trim() : '';
+            const password = passwordInput ? passwordInput.value.trim() : '';
+
+            if (!username || !password) return;
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    currentUser = data.user.username;
+                    showUserProfile(currentUser);
+                    showNotification('Account registered and logged in!');
+                    if (usernameInput) usernameInput.value = '';
+                    if (passwordInput) passwordInput.value = '';
+                    loadComments();
+                } else {
+                    showNotification(data.error || 'Registration failed.');
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                showNotification('Connection error. Please try again.');
+            }
+        });
+    }
+
+    // Login Form Handler
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const usernameInput = document.getElementById('login-username');
+            const passwordInput = document.getElementById('login-password');
+            const username = usernameInput ? usernameInput.value.trim() : '';
+            const password = passwordInput ? passwordInput.value.trim() : '';
+
+            if (!username || !password) return;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    currentUser = data.user.username;
+                    showUserProfile(currentUser);
+                    showNotification('Signed in successfully!');
+                    if (usernameInput) usernameInput.value = '';
+                    if (passwordInput) passwordInput.value = '';
+                    loadComments();
+                } else {
+                    showNotification(data.error || 'Invalid username or password.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showNotification('Connection error. Please try again.');
+            }
+        });
+    }
+
+    // Logout Action
+    if (authLogoutBtn) {
+        authLogoutBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch('/api/logout', { method: 'POST' });
+                if (response.ok) {
+                    currentUser = null;
+                    showAuthForms();
+                    showNotification('Logged out successfully.');
+                    loadComments();
+                } else {
+                    showNotification('Logout failed.');
+                }
+            } catch (error) {
+                console.error('Logout error:', error);
+                showNotification('Connection error.');
+            }
+        });
+    }
+
+    // Submit Comment Handler
+    if (commentSubmitBtn && commentTextInput) {
+        commentSubmitBtn.addEventListener('click', async () => {
+            const text = commentTextInput.value.trim();
+            if (!text) {
+                showNotification('Feedback comment cannot be empty.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    commentTextInput.value = '';
+                    showNotification('Feedback posted!');
+                    loadComments();
+                } else {
+                    showNotification(data.error || 'Failed to post feedback.');
+                }
+            } catch (error) {
+                console.error('Post comment error:', error);
+                showNotification('Connection error.');
+            }
+        });
+    }
+
+    // Delete Comment Action
+    async function deleteComment(id) {
+        try {
+            const response = await fetch(`/api/comments/${id}`, {
+                method: 'DELETE'
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                showNotification('Feedback deleted.');
+                loadComments();
+            } else {
+                showNotification(data.error || 'Failed to delete comment.');
+            }
+        } catch (error) {
+            console.error('Delete comment error:', error);
+            showNotification('Connection error.');
+        }
+    }
+
+    // Trigger Initial Checks
+    checkAuthStatus();
+    loadComments();
 });
