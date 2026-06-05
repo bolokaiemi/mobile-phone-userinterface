@@ -688,7 +688,16 @@
                                     <span class="course-meta">Study Guide & Syllabus (PDF)</span>
                                 </div>
                                 <div class="course-actions">
-                                    <button class="course-action-btn" onclick="alert('Downloading HTML5 Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                    <button class="course-action-btn" 
+                                            data-course-id="html5" 
+                                            data-course-badge="HTML5" 
+                                            data-course-title="HTML5 Fundamentals" 
+                                            data-course-desc="Master the foundations of the web: semantic structure, document hierarchy, web forms, layouts, and embedded media assets."
+                                            data-course-topics="Semantic HTML5 layouts,Form elements & inputs validation,Media elements (Audio/Video),HTML5 API integration" 
+                                            data-course-action="Download Syllabus PDF"
+                                            data-course-icon="fa-file-pdf">
+                                        <i class="fa-solid fa-graduation-cap"></i> View
+                                    </button>
                                 </div>
                             </div>
                             <div class="live-upgrade-wrapper">
@@ -708,7 +717,16 @@
                                     <span class="course-meta">Video Lecture & Sandbox Practice</span>
                                 </div>
                                 <div class="course-actions">
-                                    <button class="course-action-btn" onclick="alert('Launching CSS3 Masterclass video...')"><i class="fa-solid fa-play"></i></button>
+                                    <button class="course-action-btn" 
+                                            data-course-id="css3" 
+                                            data-course-badge="CSS3" 
+                                            data-course-title="CSS3 Layouts & Styling" 
+                                            data-course-desc="Design modern, responsive user interfaces using Flexbox, CSS Grid, custom keyframe transitions, variables, and glassmorphism styling."
+                                            data-course-topics="Flexbox & Grid layouts,CSS Custom Variables (Theming),Animations & Keyframes,Glassmorphic styling systems" 
+                                            data-course-action="Play Lecture Video"
+                                            data-course-icon="fa-video">
+                                        <i class="fa-solid fa-graduation-cap"></i> View
+                                    </button>
                                 </div>
                             </div>
                             <div class="live-upgrade-wrapper">
@@ -728,7 +746,16 @@
                                     <span class="course-meta">Interactive Exercises & Sandbox</span>
                                 </div>
                                 <div class="course-actions">
-                                    <button class="course-action-btn" onclick="alert('Launching JS Programming Sandbox...')"><i class="fa-solid fa-code"></i></button>
+                                    <button class="course-action-btn" 
+                                            data-course-id="js" 
+                                            data-course-badge="JavaScript" 
+                                            data-course-title="JavaScript Programming" 
+                                            data-course-desc="Learn modern scripting with ES6+ syntax: control statements, document object model (DOM) manipulation, event handling, and API fetch transactions."
+                                            data-course-topics="ES6+ Syntax & Scope,DOM Manipulation & Event Handlers,Asynchronous Fetch API & JSON,State Management" 
+                                            data-course-action="Launch Sandbox"
+                                            data-course-icon="fa-code">
+                                        <i class="fa-solid fa-graduation-cap"></i> View
+                                    </button>
                                 </div>
                             </div>
                             <div class="live-upgrade-wrapper">
@@ -748,7 +775,16 @@
                                     <span class="course-meta">Full Syllabus PDF & Guide</span>
                                 </div>
                                 <div class="course-actions">
-                                    <button class="course-action-btn" onclick="alert('Downloading Python Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                    <button class="course-action-btn" 
+                                            data-course-id="python" 
+                                            data-course-badge="Python & Flask" 
+                                            data-course-title="Python Backend & Flask" 
+                                            data-course-desc="Implement robust backend servers using Flask. Learn dynamic routing, handling sessions, secure cookies, and designing REST API JSON endpoints."
+                                            data-course-topics="Python Syntax & structures,Flask server architectures,REST API endpoint schemas,Session & Cookie management" 
+                                            data-course-action="Download Backend Syllabus"
+                                            data-course-icon="fa-file-pdf">
+                                        <i class="fa-solid fa-graduation-cap"></i> View
+                                    </button>
                                 </div>
                             </div>
                             <div class="live-upgrade-wrapper">
@@ -768,7 +804,16 @@
                                     <span class="course-meta">Syllabus PDF & SQL Practice Sandbox</span>
                                 </div>
                                 <div class="course-actions">
-                                    <button class="course-action-btn" onclick="alert('Downloading SQL Database Syllabus PDF...')"><i class="fa-solid fa-download"></i></button>
+                                    <button class="course-action-btn" 
+                                            data-course-id="sql" 
+                                            data-course-badge="SQL & SQLite" 
+                                            data-course-title="SQL & SQLite Databases" 
+                                            data-course-desc="Learn data persistence and modeling. Write schemas, insert rows, query tables, configure relationships, and interface Flask using SQLAlchemy ORM."
+                                            data-course-topics="Relational Database schemas,SQLite database files,SQL query structures (CRUD),Flask SQLAlchemy ORM bindings" 
+                                            data-course-action="Download Database Syllabus"
+                                            data-course-icon="fa-file-pdf">
+                                        <i class="fa-solid fa-graduation-cap"></i> View
+                                    </button>
                                 </div>
                             </div>
                             <div class="live-upgrade-wrapper">
@@ -800,6 +845,41 @@
             </div>
         </section>
     </main>
+
+    <!-- Course Access Modal -->
+    <div class="course-modal" id="course-modal" style="display: none;">
+        <div class="course-modal-card">
+            <div class="course-modal-header">
+                <span class="course-modal-badge" id="course-modal-badge">HTML5</span>
+                <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+            </div>
+            
+            <div class="course-modal-body">
+                <p class="course-modal-desc" id="course-modal-desc">Learn the foundation of web development, including semantic tags, forms, media elements, and accessibility guidelines.</p>
+                
+                <div class="course-topics-box">
+                    <h5><i class="fa-solid fa-list-check"></i> What you will learn:</h5>
+                    <ul id="course-topics-list">
+                        <!-- topics injected dynamically -->
+                    </ul>
+                </div>
+
+                <div class="school-promo-box">
+                    <div class="school-promo-header">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Struggling with the concepts?</span>
+                    </div>
+                    <p>Attend <strong>Mr. Bolokaiemi Ebi's Online School</strong> for direct mentorship, live 1-on-1 help, and custom projects.</p>
+                </div>
+            </div>
+
+            <div class="course-modal-actions">
+                <button class="btn-secondary" id="course-modal-close">Close</button>
+                <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-chalkboard-user"></i> Enroll in Live School</button>
+                <button class="btn-primary" id="course-modal-action-btn"><i class="fa-solid fa-file-pdf"></i> Access Materials</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Direct Course Payment Modal -->
     <div class="payment-modal" id="payment-modal" style="display: none;">

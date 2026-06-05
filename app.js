@@ -1740,6 +1740,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
+    // INTERACTIVE COURSE ACCESS MODAL HANDLERS
+    // -------------------------------------------------------------
+    const courseModal = document.getElementById('course-modal');
+    const courseModalBadge = document.getElementById('course-modal-badge');
+    const courseModalTitle = document.getElementById('course-modal-title');
+    const courseModalDesc = document.getElementById('course-modal-desc');
+    const courseTopicsList = document.getElementById('course-topics-list');
+    const courseModalClose = document.getElementById('course-modal-close');
+    const courseModalUpgradeBtn = document.getElementById('course-modal-upgrade-btn');
+    const courseModalActionBtn = document.getElementById('course-modal-action-btn');
+
+    let currentSelectedCourseCheckbox = null;
+
+    if (studentDashboard) {
+        studentDashboard.addEventListener('click', (e) => {
+            const btn = e.target.closest('.course-action-btn');
+            if (btn) {
+                e.preventDefault();
+                
+                const cId = btn.getAttribute('data-course-id');
+                const badge = btn.getAttribute('data-course-badge');
+                const title = btn.getAttribute('data-course-title');
+                const desc = btn.getAttribute('data-course-desc');
+                const topicsStr = btn.getAttribute('data-course-topics');
+                const actionText = btn.getAttribute('data-course-action');
+                const iconClass = btn.getAttribute('data-course-icon');
+
+                // Find corresponding checkbox for "Enroll in Live School" shortcut
+                const card = btn.closest('.course-item-card');
+                currentSelectedCourseCheckbox = card ? card.querySelector('.live-upgrade-checkbox') : null;
+
+                if (courseModalBadge) courseModalBadge.textContent = badge;
+                if (courseModalTitle) courseModalTitle.textContent = title;
+                if (courseModalDesc) courseModalDesc.textContent = desc;
+
+                if (courseTopicsList) {
+                    courseTopicsList.innerHTML = '';
+                    const topics = topicsStr ? topicsStr.split(',') : [];
+                    topics.forEach(topic => {
+                        const li = document.createElement('li');
+                        li.textContent = topic;
+                        courseTopicsList.appendChild(li);
+                    });
+                }
+
+                if (courseModalActionBtn) {
+                    courseModalActionBtn.innerHTML = `<i class="fa-solid ${iconClass || 'fa-file-pdf'}"></i> ${actionText}`;
+                    courseModalActionBtn.onclick = () => {
+                        alert(`Accessing course materials for: ${title}`);
+                        if (courseModal) courseModal.style.display = 'none';
+                    };
+                }
+
+                if (courseModal) courseModal.style.display = 'flex';
+            }
+        });
+    }
+
+    if (courseModalClose) {
+        courseModalClose.addEventListener('click', () => {
+            if (courseModal) courseModal.style.display = 'none';
+            currentSelectedCourseCheckbox = null;
+        });
+    }
+
+    if (courseModalUpgradeBtn) {
+        courseModalUpgradeBtn.addEventListener('click', () => {
+            if (courseModal) courseModal.style.display = 'none';
+            if (currentSelectedCourseCheckbox) {
+                // Check it to trigger the checkout modal
+                currentSelectedCourseCheckbox.checked = true;
+                // Dispatch change event to trigger checkbox change event handler
+                currentSelectedCourseCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+                currentSelectedCourseCheckbox = null;
+            }
+        });
+    }
+
+    // -------------------------------------------------------------
     // PREMIUM LIVE TUTORING CHECKOUT HANDLERS
     // -------------------------------------------------------------
     const paymentModal = document.getElementById('payment-modal');
