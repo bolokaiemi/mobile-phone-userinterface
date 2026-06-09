@@ -1,0 +1,51 @@
+Created At: 2026-06-08T05:08:41Z
+Completed At: 2026-06-08T05:08:42Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 819 to 875
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+819:                                 <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+820:                                     <div class="milestone-progress-bar-fill" id="milestone-students-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #7c3aed); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+821:                                 </div>
+822:                             </div>
+823:                             
+824:                             <!-- Positive Comments Progress -->
+825:                             <div class="milestone-progress-item">
+826:                                 <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+827:                                     <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-comments"></i> Positive Comments Goal</span>
+828:                                     <span style="color: #34d399;" id="milestone-comments-count">0 / 50,000</span>
+829:                                 </div>
+830:                                 <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+831:                                     <div class="milestone-progress-bar-fill" id="milestone-comments-bar" style="width: 0%; height: 100%; background: linear-g
+<truncated 1661 bytes>
+er; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+848:                                 No Zoom lessons booked yet. Book a course below to schedule your class!
+849:                             </div>
+850:                         </div>
+851:                     </div>
+852:                 </div>
+853: 
+854:                 <!-- Available Courses (Publicly accessible) -->
+855:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+856:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+857:                     
+858:                     <!-- Dynamic selector to avoid list repetition -->
+859:                     <div class="course-selector-wrapper" style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+860:                         <label for="dashboard-course-select" style="font-size: 0.8rem; color: var(--theme-text-muted); font-weight: 500; min-width: fit-content;"><i class="fa-solid fa-filter"></i> Choose Course:</label>
+861:                         <select id="dashboard-course-select">
+862:                             <!-- Dynamically populated options -->
+863:                         </select>
+864:                     </div>
+865: 
+866:                     <ul class="course-list">
+867:                         <!-- Populated dynamically via JS -->
+868:                     </ul>
+869:                 </div>
+870:             </div>
+871: 
+872:             <!-- Emulator Tips Card (migrated layout) -->
+873:             <div class="dash-card tips-card">
+874:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+875:                 <ul class="tips-list">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

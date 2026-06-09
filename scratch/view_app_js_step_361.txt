@@ -1,0 +1,53 @@
+Created At: 2026-06-06T22:46:41Z
+Completed At: 2026-06-06T22:46:41Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/walkthrough.md`
+Total Lines: 52
+Total Bytes: 4345
+Showing lines 1 to 52
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # EbiUI Bug Fixes & Navigation Walkthrough
+2: 
+3: We have successfully resolved all the bugs and implemented layout and flow improvements to make EbiUI a seamless experience.
+4: 
+5: ## Changes Made
+6: 
+7: ### 1. Fixed Stuck Loading in Admin Console
+8: - **Problem**: In `templates/admin.html`, parsing comments' space-separated date strings with `new Date()` returned `Invalid Date` (NaN) on some browsers. This broke the sorting process, preventing comments and student lists from rendering.
+9: - **Solution**: Added the cross-browser `safeParseDate` parsing helper (originally in `app.js`) to [admin.html](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html) and used it inside the sort function. Also added null-safety checks when merging server and local comments.
+10: 
+11: ### 2. Available Courses Links Directly to W3Schools
+12: - **Problem**: Available course cards previously only opened the details modal, rather than linking directly to the learning materials.
+13: - **Solution**:
+14:   - Updated `renderCoursesUI` in [app.js](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js) to:
+15:     - Add a styled **W3Schools** direct action button to each card.
+16:     - Make the course name a clickable link to W3Schools (in a new tab).
+17:     - Update uncheck reset labels to match the new mentorship text.
+18:   - Updated footer "Free Courses" links in both [index.html](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html) and [templates/index.html](f
+<truncated 1016 bytes>
+de. Showing active tab buttons and a "Back to Phone Emulator" button was redundant and confusing.
+28: - **Solution**: Added CSS media queries in [styles.css](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css) to hide `#nav-home-tab`, `#nav-dashboard-tab`, and `#dashboard-back-btn` in desktop view.
+29: 
+30: ### 5. Seamless Guest Booking & Mentorship Text REST
+31: - **Problem**: References to "Mr. Bolokaiemi Ebi" / "Mrs" were wrong, and clicking the "Book Live Session" button was stagnant for guests because login was required.
+32: - **Solution**:
+33:   - Replaced all mentorship text references with: *"Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class."*
+34:   - Renamed the booking button to **Book for Lesson**.
+35:   - Enabled guest users to book live sessions directly. If not logged in, the checkout form dynamically shows an email field (`#payment-email-row`), requiring it to send details.
+36:   - Updated the submit handler in [app.js](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js) to show a detailed success notice including the guest's email.
+37: 
+38: ---
+39: 
+40: ## Verification & Testing
+41: We verified the backend and frontend changes using an automated verification script:
+42: ```powershell
+43: .venv\Scripts\python.exe scratch\verify.py
+44: ```
+45: **Test Results**:
+46: - **Courses API**: Verified. All 5 courses loaded successfully with valid W3Schools links.
+47: - **Admin Stats**: Verified. Key attributes returned correctly.
+48: - **Admin Data Feed**: Verified. Correct user/comments arrays.
+49: - **Guest Comments Post**: Verified. Successful guest review creation.
+50: - **Comment Inclusion**: Verified. Posted review successfully parsed and listed in the admin data feed.
+51: - **Media query visibility**: Verified. Top tabs and back buttons hid as expected when screen size is > 1000px.
+52: 
+The above content shows the entire, complete file contents of the requested file.

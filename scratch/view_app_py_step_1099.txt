@@ -1,0 +1,54 @@
+Created At: 2026-06-07T21:33:26Z
+Completed At: 2026-06-07T21:33:26Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74402
+Showing lines 3080 to 3125
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3080:     .top-navbar {
+3081:         padding: 0 20px;
+3082:     }
+3083: 
+3084:     .hub-container {
+3085:         flex-direction: column;
+3086:         align-items: center;
+3087:         gap: 20px;
+3088:         padding: 0;
+3089:     }
+3090: 
+3091:     .phone-view-section, .dashboard-panel {
+3092:         display: none !important;
+3093:         width: 100% !important;
+3094:         max-width: 385px !important; /* Lock to phone chassis size on mobile tabs */
+3095:     }
+3096: 
+3097:     /* Reveal only the tab page currently selected in Javascript */
+3098:     .phone-view-section.active-tab-view, .dashboard-panel.active-tab-view {
+3099:         display: flex !important;
+3100:     }
+3101:     
+3102:     .dashboard-panel {
+3103:         width: 100% !important;
+3104:         max-width: 440px !important; /* Give dashboard card slightly more breathing room if needed */
+3105:     }
+3106: }
+3107: 
+3108: @media (min-width: 1001px) {
+3109:     /* Enforce side-by-side display on desktop resolutions, regardless of mobile tab classes */
+3110:     .phone-view-section {
+3111:         display: flex !important;
+3112:     }
+3113:     
+3114:     .dashboard-panel {
+3115:         display: flex !important;
+3116:     }
+3117: 
+3118:     /* Hide mobile-only tabs and buttons on desktop screens */
+3119:     #nav-home-tab,
+3120:     #nav-dashboard-tab,
+3121:     #dashboard-back-btn {
+3122:         display: none !important;
+3123:     }
+3124: }
+3125: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

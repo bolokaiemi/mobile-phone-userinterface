@@ -1,0 +1,29 @@
+Created At: 2026-06-06T22:18:47Z
+Completed At: 2026-06-06T22:18:47Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/task.md`
+Total Lines: 21
+Total Bytes: 1644
+Showing lines 1 to 21
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: - [x] Implement robust date parsing and merge checks in admin console console to fix stuck loading bug
+2:   - [x] Add `safeParseDate` to `templates/admin.html`
+3:   - [x] Use `safeParseDate` in `allComments.sort` inside `templates/admin.html`
+4:   - [x] Update merge logics for comments/users with null-safety checks in `templates/admin.html`
+5: - [x] Add direct W3Schools buttons and name links to available course cards
+6:   - [x] Update card design in `app.js` `renderCoursesUI`
+7:   - [x] Update footer links in `index.html` and `templates/index.html` to point to W3Schools directly
+8: - [x] Refine portal & login/registration redirection logic
+9:   - [x] Rename "Comments Feed" tab to "Portal & Reviews" in `index.html` and `templates/index.html`
+10:   - [x] Save redirect state in `app.js` for pending actions (course materials view, mentorship enrollment)
+11:   - [x] Auto-trigger pending action after successful login or registration in `app.js`
+12: - [x] Hide redundant buttons/tabs on desktop view via CSS media queries
+13:   - [x] Hide `#dashboard-back-btn` on screens > 1000px in `static/styles.css`
+14:   - [x] Hide `#nav-home-tab` and `#nav-dashboard-tab` on screens > 1000px in `static/styles.css`
+15: - [ ] Restructure mentorship text and guest booking flow
+16:   - [ ] Update mentorship text references in `index.html`, `templates/index.html` and `app.js` to reference AB direct
+17:   - [ ] Rename button "Book Live Session" to "Book for Lesson"
+18:   - [ ] Enable guest user live mentorship booking without authentication by showing email input dynamically
+19:   - [ ] Update checkout submit logic to handle guest checkout in `app.js`
+20: - [ ] Verify everything locally and record walkthrough
+21: 
+The above content shows the entire, complete file contents of the requested file.

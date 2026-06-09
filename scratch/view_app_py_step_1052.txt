@@ -1,0 +1,20 @@
+Created At: 2026-06-07T21:27:39Z
+Completed At: 2026-06-07T21:27:39Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 658
+Total Bytes: 27888
+Showing lines 134 to 145
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+134:         }
+135: 
+136: # Milestone targets to control registration features
+137: REVIEWS_MILESTONE = 5
+138: STUDENTS_MILESTONE = 3
+139: 
+140: # Automatically create/upgrade SQL tables on application start
+141: with app.app_context():
+142:     try:
+143:         # Check if email column exists in User table
+144:         db.session.execute(db.text("SELECT email FROM user LIMIT 1"))
+145:     except Exception:
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

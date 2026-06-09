@@ -1,0 +1,49 @@
+Created At: 2026-06-06T23:24:09Z
+Completed At: 2026-06-06T23:24:09Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74396
+Showing lines 1870 to 1910
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1870: 
+1871: .light-theme .auth-toggle-btn.active {
+1872:     background: rgba(255, 255, 255, 0.9);
+1873:     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+1874: }
+1875: 
+1876: .auth-form {
+1877:     display: none;
+1878:     flex-direction: column;
+1879:     gap: 16px;
+1880: }
+1881: 
+1882: .auth-form.active-form {
+1883:     display: flex;
+1884: }
+1885: 
+1886: .form-group {
+1887:     display: flex;
+1888:     flex-direction: column;
+1889:     gap: 6px;
+1890: }
+1891: 
+1892: .form-group label {
+1893:     font-size: 0.78rem;
+1894:     font-weight: 700;
+1895:     color: var(--theme-text-muted);
+1896:     text-transform: uppercase;
+1897:     letter-spacing: 0.5px;
+1898: }
+1899: 
+1900: .form-group input {
+1901:     background: rgba(0, 0, 0, 0.15);
+1902:     border: 1px solid var(--theme-border-glass);
+1903:     border-radius: 10px;
+1904:     padding: 10px 14px;
+1905:     color: var(--theme-text-light);
+1906:     font-size: 0.9rem;
+1907:     outline: none;
+1908:     transition: all 0.2s ease;
+1909: }
+1910: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

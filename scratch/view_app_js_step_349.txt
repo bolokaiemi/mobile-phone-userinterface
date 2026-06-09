@@ -1,0 +1,84 @@
+Created At: 2026-06-06T22:45:10Z
+Completed At: 2026-06-06T22:45:10Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/scratch/verify.py`
+Total Lines: 78
+Total Bytes: 3442
+Showing lines 1 to 78
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import urllib.request
+2: import json
+3: 
+4: def test_endpoint(url, method='GET', data=None, headers=None):
+5:     if headers is None:
+6:         headers = {}
+7:     
+8:     req_data = None
+9:     if data:
+10:         req_data = json.dumps(data).encode('utf-8')
+11:         headers['Content-Type'] = 'application/json'
+12:         
+13:     req = urllib.request.Request(url, data=req_data, headers=headers, method=method)
+14:     
+15:     try:
+16:         with urllib.request.urlopen(req) as response:
+17:             status = response.status
+18:             body = response.read().decode('utf-8')
+19:             return status, json.loads(body) if body else {}
+20:     except urllib.error.HTTPError as e:
+21:         body = e.read().decode('utf-8')
+22:         return e.code, json.loads(body) if body else {}
+23:     except Exception as e:
+24:         return 500, {'error': str(e)}
+25: 
+26: def verify_all():
+27:     print("=== Starting EbiUI Backend Verification ===")
+28:     
+29:     # 1. Test Courses Endpoint
+30:     status, res = test_endpoint('http://localhost:8080/api/courses')
+31:     assert status == 200, f"Expected 200, got {status}"
+32:     assert 'courses' in res, "Expected 'courses' key in response"
+33:     assert len(res['courses']) == 5, f"Expected 5 courses, got {len(res['courses'])}"
+34:     for course in res['courses']:
+35:         assert 'w3_link' in course, f"Course {course.get('id')} is missing w3_link"
+36:         assert course['w3_link'].startswith('https://www.w3schools.com/'), f"Invalid w3_link: {course['w3_link']}"
+37:     print("[SUCCESS] 
+<truncated 201 bytes>
+ed 200, got {status}"
+42:     for key in ['total_reviews', 'total_students', 'average_rating', 'db_path']:
+43:         assert key in res, f"Expected key '{key}' in admin stats response"
+44:     print("[SUCCESS] Admin stats endpoint verified successfully.")
+45: 
+46:     # 3. Test Admin Data Endpoint
+47:     status, res = test_endpoint('http://localhost:8080/api/admin/data')
+48:     assert status == 200, f"Expected 200, got {status}"
+49:     assert 'comments' in res, "Expected 'comments' in admin data response"
+50:     assert 'users' in res, "Expected 'users' in admin data response"
+51:     print("[SUCCESS] Admin data endpoint verified successfully.")
+52: 
+53:     # 4. Test Comment Posting
+54:     test_comment = {
+55:         "text": "Automated verification test review",
+56:         "rating": 5,
+57:         "guest_name": "Test Runner"
+58:     }
+59:     status, res = test_endpoint('http://localhost:8080/api/comments', method='POST', data=test_comment)
+60:     assert status == 201, f"Expected 201, got {status}"
+61:     assert 'comment' in res, "Expected 'comment' in response"
+62:     assert res['comment']['username'] == 'Test Runner', f"Expected username 'Test Runner', got {res['comment']['username']}"
+63:     assert res['comment']['rating'] == 5, f"Expected rating 5, got {res['comment']['rating']}"
+64:     print("[SUCCESS] Guest review posting verified successfully.")
+65: 
+66:     # 5. Verify the posted comment appears in admin data and has valid created_at
+67:     status, res = test_endpoint('http://localhost:8080/api/admin/data')
+68:     assert status == 200
+69:     latest_comment = res['comments'][0]
+70:     assert latest_comment['text'] == "Automated verification test review"
+71:     assert "created_at" in latest_comment
+72:     print("[SUCCESS] Admin data feed inclusion verified successfully.")
+73: 
+74:     print("\n=== ALL BACKEND ENDPOINTS VERIFIED SUCCESSFULLY ===")
+75: 
+76: if __name__ == '__main__':
+77:     verify_all()
+78: 
+The above content shows the entire, complete file contents of the requested file.

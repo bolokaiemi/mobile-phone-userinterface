@@ -1,0 +1,59 @@
+Created At: 2026-06-07T20:39:54Z
+Completed At: 2026-06-07T20:39:54Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2905
+Total Bytes: 137439
+Showing lines 2480 to 2530
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2480:     }
+2481: 
+2482:     if (premiumPaymentForm) {
+2483:         premiumPaymentForm.addEventListener('submit', async (e) => {
+2484:             e.preventDefault();
+2485:             
+2486:             if (paymentSubmitBtn) {
+2487:                 paymentSubmitBtn.disabled = true;
+2488:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2489:             }
+2490: 
+2491:             const billingNameVal = document.getElementById('billing-name') ? document.getElementById('billing-name').value.trim() : '';
+2492:             const billingEmailVal = document.getElementById('billing-email') ? document.getElementById('billing-email').value.trim() : '';
+2493:             const courseName = paymentCourseName ? paymentCourseName.textContent : 'Live Mentorship';
+2494: 
+2495:             let serverSuccess = false;
+2496:             let generatedZoomLink = '';
+2497: 
+2498:             try {
+2499:                 const response = await fetch(API_BASE + '/api/book-lesson', getFetchOptions({
+2500:                     method: 'POST',
+2501:                     headers: { 'Content-Type': 'application/json' },
+2502:                     body: JSON.stringify({
+2503:                         billing_name: billingNameVal,
+2504:                         course_name: courseName,
+2505:                         guest_email: billingEmailVal,
+2506:                         username: currentUser || ''
+2507:                     })
+2508:                 }));
+2509:                 
+2510:                 const data = await response.json();
+2511:                 
+2512:                 if (response.ok) {
+2513:                     serverSuccess = true;
+2514:                     if (data.booking) {
+2515:                         generatedZoomLink = data.booking.zoom_link;
+2516:                     }
+2517:                 } else {
+2518:                     console.warn('Server booking failed:', data.error);
+2519:                 }
+2520:             } catch (error) {
+2521:                 console.error('Network error booking lesson:', error);
+2522:             }
+2523: 
+2524:             if (paymentModal) paymentModal.style.display = 'none';
+2525: 
+2526:             if (serverSuccess) {
+2527:                 if (!currentUser && billingEmailVal) {
+2528:                     showNotification(`Upgrade successful! Lesson details and Zoom link sent to ${billingEmailVal}. AB has been notified.`);
+2529:                 } else {
+2530:                     showNotification('Upgrade successful! Zoom lesson scheduled in your dashboard. AB has been notified.');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

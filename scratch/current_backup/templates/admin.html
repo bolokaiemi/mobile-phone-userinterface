@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EbiUI - Admin Feedback & Student Dashboard</title>
+    <!-- Outfit Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #3b82f6; /* Modern Blue */
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --accent-success: #10b981;
+            --accent-warning: #f59e0b;
+            --font-family: 'Outfit', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 20px;
+        }
+
+        .logo-section h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-section p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        .action-header {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            font-family: var(--font-family);
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            padding: 24px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--accent-warning);
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-success);
+        }
+
+        .stat-info h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-info p {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 4px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Dashboard Main Layout */
+        .dashboard-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 968px) {
+            .dashboard-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tables & Lists */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.92rem;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-primary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .stars-display {
+            color: var(--accent-warning);
+            letter-spacing: 2px;
+        }
+
+        .user-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .comment-text-col {
+            max-width: 350px;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+        .date-col {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Student Accounts Sidebar List */
+        .student-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .student-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+        }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .student-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .student-details .name {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .student-details .date {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            margin-top: 2px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            opacity: 0.5;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-section">
+                <h1><i class="fa-solid fa-gears"></i> EbiUI Admin Console</h1>
+                <p>Track public ratings, user feedback, and student registration progress</p>
+            </div>
+            <div class="action-header">
+                <a href="/" class="btn btn-secondary" id="btn-back-to-site"><i class="fa-solid fa-arrow-left"></i> Go to Live Site</a>
+                <a href="/api/admin/db-download" class="btn btn-secondary" id="btn-download-db"><i class="fa-solid fa-database"></i> Download Database</a>
+                <a href="/api/admin/export" class="btn btn-primary"><i class="fa-solid fa-file-csv"></i> Export CSV</a>
+            </div>
+        </header>
+
+        <!-- Stats Overview Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="stat-info">
+                    <h3>Total Reviews</h3>
+                    <p id="stat-reviews">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+                <div class="stat-info">
+                    <h3>Average Rating</h3>
+                    <p id="stat-avg">0.0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-user-graduate"></i></div>
+                <div class="stat-info">
+                    <h3>Registered Students</h3>
+                    <p id="stat-students">0</p>
+                </div>
+            </div>
+            <!-- SQLite Database File Location Card -->
+            <div class="stat-card" style="grid-column: 1 / -1; background: rgba(59, 130, 246, 0.04); display: flex; flex-direction: row; align-items: center; gap: 20px;">
+                <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-color);"><i class="fa-solid fa-database"></i></div>
+                <div class="stat-info" style="flex-grow: 1;">
+                    <h3 style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; font-weight: 500;">SQLite Database Location</h3>
+                    <p id="db-filepath-text" style="font-size: 1rem; font-weight: 500; font-family: monospace; color: #60a5fa; margin-top: 4px; word-break: break-all;">Loading path...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Workspace Tables -->
+        <div class="dashboard-body">
+            <!-- Left Side: Public Reviews Table -->
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2 class="panel-title"><i class="fa-solid fa-comments"></i> Public Feedback Feed</h2>
+                    <span id="reviews-count-badge" style="background: rgba(59, 130, 246, 0.15); color: var(--accent-color); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">0 items</span>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">ID</th>
+                                <th>Name / User</th>
+                                <th style="width: 110px;">Rating</th>
+                                <th>Comment</th>
+                                <th style="width: 160px;">Submitted At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviews-table-body">
+                            <!-- Injected Dynamically -->
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    <i class="fa-solid fa-circle-notch fa-spin"></i> Loading reviews...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Right Side: Student Accounts List -->
+            <div class="panel-card">
+                <div class="panel-header">
+                    <h2 class="panel-title"><i class="fa-solid fa-user-graduate"></i> Registered Students</h2>
+                </div>
+                
+                <ul class="student-list" id="student-list-container">
+                    <!-- Injected Dynamically -->
+                    <li class="empty-state">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Loading student accounts...
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dynamic API Base URL logic: relative in production/same-origin dev, local fallback otherwise
+            const isLocal = window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.0.1' || 
+                            window.location.protocol === 'file:';
+            const API_BASE = isLocal
+                ? (window.location.port === '8080' ? '' : 'http://127.0.0.1:8080')
+                : '';
+
+            // Dynamically resolve export and download URLs
+            const btnDownloadDb = document.getElementById('btn-download-db');
+            if (btnDownloadDb) {
+                btnDownloadDb.href = API_BASE ? API_BASE + '/api/admin/db-download' : '/api/admin/db-download';
+            }
+            const btnExportCsv = document.querySelector('a[href="/api/admin/export"]');
+            if (btnExportCsv) {
+                btnExportCsv.href = API_BASE ? API_BASE + '/api/admin/export' : '/api/admin/export';
+            }
+
+            // Dynamically resolve Back to Live Site link for file:// protocol support
+            const btnBackToSite = document.getElementById('btn-back-to-site');
+            if (btnBackToSite) {
+                if (window.location.protocol === 'file:') {
+                    btnBackToSite.href = '../index.html';
+                } else {
+                    btnBackToSite.href = '/';
+                }
+            }
+
+            // Automatically make all external links open in a new tab
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            });
+
+            // Local Storage Helpers for Offline/CORS-proof fallbacks
+            function getLocalComments() {
+                try {
+                    return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            function getLocalUsers() {
+                try {
+                    return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            // Fetch Stats and Table Data
+            loadDashboardData();
+
+            async function loadDashboardData() {
+                let serverStats = null;
+                let serverData = null;
+                
+                try {
+                    // 1. Fetch Stats
+                    const statsResponse = await fetch(API_BASE + '/api/admin/stats');
+                    if (statsResponse.ok) {
+                        serverStats = await statsResponse.json();
+                    }
+                } catch (error) {
+                    console.warn('Failed to fetch admin stats from server:', error);
+                }
+
+                try {
+                    // 2. Fetch Review and Student Data
+                    const dataResponse = await fetch(API_BASE + '/api/admin/data');
+                    if (dataResponse.ok) {
+                        serverData = await dataResponse.json();
+                    }
+                } catch (error) {
+                    console.warn('Failed to fetch admin data from server:', error);
+                }
+
+                // Merge local comments
+                const localComments = getLocalComments();
+                let allComments = [...localComments];
+                
+                if (serverData && serverData.comments) {
+                    serverData.comments.forEach(sc => {
+                        if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
+                            allComments.push(sc);
+                        }
+                    });
+                }
+                
+                // Sort comments by created_at desc
+                allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+                // Merge local users (registered students fallback)
+                const localUsers = getLocalUsers();
+                let allUsers = [];
+                localUsers.forEach(lu => {
+                    allUsers.push({
+                        id: 'local_' + lu.username,
+                        username: lu.username,
+                        created_at: 'Offline Mode'
+                    });
+                });
+                
+                if (serverData && serverData.users) {
+                    serverData.users.forEach(su => {
+                        if (!allUsers.some(lu => lu.username === su.username)) {
+                            allUsers.push(su);
+                        }
+                    });
+                }
+
+                // Calculate local stats if server stats is unavailable
+                const totalComments = allComments.length;
+                const totalUsers = allUsers.length;
+                const avgRating = totalComments > 0 
+                    ? allComments.reduce((acc, c) => acc + c.rating, 0) / totalComments 
+                    : 0;
+                
+                document.getElementById('stat-reviews').textContent = serverStats ? serverStats.total_reviews : totalComments;
+                document.getElementById('stat-avg').textContent = (serverStats ? serverStats.average_rating : avgRating).toFixed(1) + ' / 5.0';
+                document.getElementById('stat-students').textContent = serverStats ? serverStats.total_students : totalUsers;
+                document.getElementById('reviews-count-badge').textContent = (serverStats ? serverStats.total_reviews : totalComments) + ' items';
+                
+                const dbPathText = document.getElementById('db-filepath-text');
+                if (dbPathText) {
+                    dbPathText.textContent = (serverStats && serverStats.db_path) ? serverStats.db_path : 'Local Browser Database (Offline)';
+                }
+
+                renderReviews(allComments);
+                renderStudents(allUsers);
+            }
+
+            function renderReviews(comments) {
+                const tbody = document.getElementById('reviews-table-body');
+                if (!comments || comments.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="5" class="empty-state" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                                <i class="fa-regular fa-comment-dots" style="font-size: 2rem; margin-bottom: 8px; opacity: 0.5; display:block;"></i>
+                                No feedback comments recorded.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tbody.innerHTML = '';
+                comments.forEach(c => {
+                    let r = parseInt(c.rating);
+                    if (isNaN(r) || r < 1 || r > 5) r = 5;
+                    const stars = '★'.repeat(r) + '☆'.repeat(5 - r);
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td>${c.id}</td>
+                        <td><span class="user-pill"><i class="fa-regular fa-user"></i> ${escapeHtml(c.username)}</span></td>
+                        <td><span class="stars-display">${stars}</span></td>
+                        <td class="comment-text-col">${escapeHtml(c.text)}</td>
+                        <td class="date-col">${c.created_at}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+
+            function renderStudents(users) {
+                const container = document.getElementById('student-list-container');
+                if (!users || users.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-users-slash"></i>
+                            No students registered yet.
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = '';
+                users.forEach(u => {
+                    const initial = (u.full_name || u.username).charAt(0).toUpperCase();
+                    const li = document.createElement('li');
+                    li.className = 'student-item';
+                    
+                    li.innerHTML = `
+                        <div class="student-info">
+                            <div class="student-avatar">${initial}</div>
+                            <div class="student-details">
+                                <div class="name" style="font-weight: 600; color: var(--text-light);">${escapeHtml(u.full_name || u.username)}</div>
+                                <div style="font-size: 0.72rem; color: var(--text-secondary); margin: 2px 0;">ID: ${escapeHtml(u.username)} | ${escapeHtml(u.email)}</div>
+                                <div class="date">Joined: ${u.created_at}</div>
+                            </div>
+                        </div>
+                        <span style="font-size: 0.8rem; opacity: 0.5;">ID: #${u.id}</span>
+                    `;
+                    container.appendChild(li);
+                });
+            }
+
+            function escapeHtml(text) {
+                if (text === null || text === undefined) return '';
+                const str = String(text);
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return str.replace(/[&<>"']/g, function(m) { return map[m]; });
+            }
+        });
+    </script>
+</body>
+</html>

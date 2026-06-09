@@ -1,0 +1,24 @@
+Created At: 2026-06-06T22:18:14Z
+Completed At: 2026-06-06T22:18:14Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2392
+Total Bytes: 112364
+Showing lines 1370 to 1385
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1370:     const commentsListContainer = document.getElementById('comments-list-container');
+1371:     const commentInputWrapper = document.getElementById('comment-input-wrapper');
+1372:     const commentLockedPrompt = document.getElementById('comment-locked-prompt');
+1373:     const commentTextInput = document.getElementById('comment-text-input');
+1374:     const commentSubmitBtn = document.getElementById('comment-submit-btn');
+1375: 
+1376:     let currentUser = null;
+1377: 
+1378:     // Local Storage Helpers for Offline/CORS-proof fallbacks
+1379:     function getLocalComments() {
+1380:         try {
+1381:             return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+1382:         } catch (e) {
+1383:             return [];
+1384:         }
+1385:     }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

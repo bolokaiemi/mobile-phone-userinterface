@@ -1,0 +1,39 @@
+Created At: 2026-06-08T04:36:40Z
+Completed At: 2026-06-08T04:36:40Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74805
+Showing lines 15 to 45
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+15:     
+16:     <!-- App stylesheet -->
+17:     <link rel="stylesheet" href="static/styles.css?v=4.0">
+18: </head>
+19: <body>
+20:     <!-- Floating Social Plugins Sidebar -->
+21:     <div class="floating-social-sidebar" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 9999;">
+22:         <a href="https://wa.me/2348031234567" target="_blank" title="WhatsApp Chat" style="width: 44px; height: 44px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(37,211,102,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+23:             <i class="fa-brands fa-whatsapp"></i>
+24:         </a>
+25:         <a href="https://facebook.com" target="_blank" title="Facebook Page" style="width: 44px; height: 44px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(24,119,242,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+26:             <i class="fa-brands fa-facebook-f"></i>
+27:         </a>
+28:         <a href="https://instagram.com" target="_blank" title="Instagram Profile" style="width: 44px; height: 44px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(225,48,108,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+29:             <i class="fa-brands fa-instagram"></i>
+30:         </a>
+31:         <a href="https://youtube.com" target="_blank" title="YouTube Academy" style="width: 44px; height: 44px; background: #ff0000; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(255,0,0,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+32:             <i class="fa-brands fa-youtube"></i>
+33:         </a>
+34:     </div>
+35:     <!-- 1. TOP HUB NAVIGATION BAR -->
+36:     <header class="top-navbar">
+37:         <div class="nav-brand">
+38:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+39:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+40:         </div>
+41:         <nav class="nav-links">
+42:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+43:             <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Portal & Reviews</button>
+44:             
+45:             <!-- Courses Dropdown -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

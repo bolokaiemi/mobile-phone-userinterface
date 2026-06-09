@@ -1,0 +1,39 @@
+Created At: 2026-06-08T04:50:49Z
+Completed At: 2026-06-08T04:50:50Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1035
+Total Bytes: 74576
+Showing lines 715 to 745
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+715:                     </div>
+716:                 </div>
+717: 
+718:                 <!-- Public Review Input Area (No login required!) -->
+719:                 <div class="comment-input-wrapper" id="comment-input-wrapper">
+720:                     <div class="comment-input-group">
+721:                         <div class="review-meta-row">
+722:                             <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+723:                             <div class="star-rating" id="star-rating-selector">
+724:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+725:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+726:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+727:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+728:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+729:                             </div>
+730:                         </div>
+731:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+732:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+733:                     </div>
+734:                 </div>
+735: 
+736:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+737:                 <div class="share-overlay" id="share-overlay" style="display: none;">
+738:                     <div class="share-card">
+739:                         <h4 class="share-title"><i class="fa-solid fa-circle-check" style="color: #4caf50;"></i> Review Submitted!</h4>
+740:                         <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+741:                         <div class="share-buttons-grid">
+742:                             <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+743:                             <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+744:                             <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+745:                         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

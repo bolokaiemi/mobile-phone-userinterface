@@ -1,0 +1,84 @@
+Created At: 2026-06-06T22:44:43Z
+Completed At: 2026-06-06T22:44:43Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2440
+Total Bytes: 114365
+Showing lines 1480 to 1565
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1480:             "'": '&#039;'
+1481:         };
+1482:         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+1483:     }
+1484: 
+1485:     // -------------------------------------------------------------
+1486:     // STUDENT PORTAL AUTH STATUS & ROUTING
+1487:     // -------------------------------------------------------------
+1488:     async function checkAuthStatus() {
+1489:         try {
+1490:             const response = await fetch(API_BASE + '/api/user', getFetchOptions());
+1491:             const data = await response.json();
+1492:             if (data.user) {
+1493:                 currentUser = data.user.username;
+1494:                 localStorage.setItem('ebiui_current_user', currentUser);
+1495:                 showUserProfile(currentUser);
+1496:             } else {
+1497:                 // Try localStorage fallback
+1498:                 const localUser = localStorage.getItem('ebiui_current_user');
+1499:                 if (localUser) {
+1500:                     currentUser = localUser;
+1501:                     showUserProfile(currentUser);
+1502:                 } else {
+1503:                     currentUser = null;
+1504:                     showAuthForms();
+1505:                 }
+1506:             }
+1507:         } catch (error) {
+1508:             console.error('Error checking authentication status, trying local storage:', error);
+1509:             const localUser = localStorage.getItem('ebiui_current_user');
+1510:             if (localUser) {
+1511:                 currentUser = localUser;
+1512:                 showUserPro
+<truncated 472 bytes>
+524:         loadCourses();
+1525:         
+1526:         // Smooth scroll to the student dashboard/courses section
+1527:         setTimeout(() => {
+1528:             if (studentDashboard) {
+1529:                 studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+1530:             }
+1531:             executePendingAction();
+1532:         }, 150);
+1533:     }
+1534: 
+1535:     function executePendingAction() {
+1536:         if (!pendingAction) return;
+1537:         const action = pendingAction;
+1538:         pendingAction = null;
+1539: 
+1540:         if (action.type === 'view_course_materials') {
+1541:             openCourseModal(action.course);
+1542:             showNotification(`Accessing materials for: ${action.course.title}`);
+1543:             setTimeout(() => {
+1544:                 alert(`Accessing course materials for: ${action.course.title}`);
+1545:                 if (courseModal) courseModal.style.display = 'none';
+1546:             }, 600);
+1547:         }
+1548:     }
+1549: 
+1550:     function showAuthForms() {
+1551:         if (loginForm) loginForm.style.display = 'flex';
+1552:         if (registerForm) registerForm.style.display = 'none';
+1553:         if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+1554:         
+1555:         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
+1556:         if (studentDashboard) studentDashboard.style.display = 'none';
+1557:     }
+1558: 
+1559:     // -------------------------------------------------------------
+1560:     // PUBLIC REVIEW STAR RATING & SOCIAL SHARING LOGIC
+1561:     // -------------------------------------------------------------
+1562:     const starRatingSelector = document.getElementById('star-rating-selector');
+1563:     let currentRating = 5;
+1564: 
+1565:     if (starRatingSelector) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

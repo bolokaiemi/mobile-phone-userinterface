@@ -1,0 +1,80 @@
+Created At: 2026-06-06T22:16:18Z
+Completed At: 2026-06-06T22:16:18Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2387
+Total Bytes: 111055
+Showing lines 2095 to 2387
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2095:                     paymentSubmitBtn.disabled = false;
+2096:                     paymentSubmitBtn.innerHTML = `Complete Checkout`;
+2097:                 }
+2098:             }, 1800);
+2099:         });
+2100:     }
+2101: 
+2102:     // -------------------------------------------------------------
+2103:     // DYNAMIC COURSES LOADING & MODAL BINDINGS
+2104:     // -------------------------------------------------------------
+2105:     const DEFAULT_COURSES = [
+2106:         {
+2107:             id: 'html5',
+2108:             badge: 'HTML5',
+2109:             title: 'HTML5 Fundamentals',
+2110:             desc: 'Master the foundations of the web: semantic structure, document hierarchy, web forms, layouts, and embedded media assets.',
+2111:             topics: 'Semantic HTML5 layouts,Form elements & inputs validation,Media elements (Audio/Video),HTML5 API integration',
+2112:             action_text: 'Download Syllabus PDF',
+2113:             icon_class: 'fa-file-pdf',
+2114:             brand_icon: 'fa-html5',
+2115:             brand_color: '#e34c26',
+2116:             meta: 'Study Guide & Syllabus (PDF)',
+2117:             w3_link: 'https://www.w3schools.com/html/'
+2118:         },
+2119:         {
+2120:             id: 'css3',
+2121:             badge: 'CSS3',
+2122:             title: 'CSS3 Layouts & Styling',
+2123:             desc: 'Design modern, responsive user interfaces using Flexbox, CSS Grid, custom keyframe transitions, variables, and glassmorphism styling.',
+2124:             topics: 'Flexbox & Grid layouts,CSS Custom Variables (Theming),Animations
+<truncated 10957 bytes>
+
+2348:                 const paymentCourseName = document.getElementById('payment-course-name');
+2349:                 if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+2350:                 const paymentModal = document.getElementById('payment-modal');
+2351:                 if (paymentModal) paymentModal.style.display = 'flex';
+2352:                 
+2353:                 // Set active checkbox to null or find one if available
+2354:                 activeUpgradeCheckbox = null;
+2355:             } else {
+2356:                 showNotification('Please register or sign in as a student first to book a live session.');
+2357:                 const loginUserEl = document.getElementById('login-username');
+2358:                 if (loginUserEl) loginUserEl.focus();
+2359:             }
+2360:         });
+2361:     }
+2362: 
+2363:     // Bind Dashboard Back Button
+2364:     const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+2365:     if (dashboardBackBtn) {
+2366:         dashboardBackBtn.addEventListener('click', () => {
+2367:             switchTab('home');
+2368:         });
+2369:     }
+2370: 
+2371:     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+2372:     const allLinks = document.querySelectorAll('a');
+2373:     allLinks.forEach(link => {
+2374:         const href = link.getAttribute('href');
+2375:         if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+2376:             link.setAttribute('target', '_blank');
+2377:             link.setAttribute('rel', 'noopener noreferrer');
+2378:         }
+2379:     });
+2380: 
+2381:     // Trigger Initial Checks
+2382:     checkAuthStatus();
+2383:     loadCourses(); // Render courses for both guest and student views
+2384:     loadComments();
+2385: });
+2386: 
+2387: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

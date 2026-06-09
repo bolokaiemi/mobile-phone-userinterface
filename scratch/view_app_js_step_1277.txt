@@ -1,0 +1,29 @@
+Created At: 2026-06-08T04:36:55Z
+Completed At: 2026-06-08T04:36:55Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3735
+Total Bytes: 80489
+Showing lines 1600 to 1620
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1600:     padding-left: 20px;
+1601: }
+1602: 
+1603: /* Settings Dropdown Select Element */
+1604: .settings-select {
+1605:     background-color: #262930;
+1606:     border: 1px solid rgba(255, 255, 255, 0.12);
+1607:     color: white;
+1608:     padding: 6px 12px;
+1609:     border-radius: 8px;
+1610:     font-size: 0.8rem;
+1611:     font-weight: 500;
+1612:     outline: none;
+1613:     cursor: pointer;
+1614:     transition: border-color 0.2s;
+1615: }
+1616: .settings-select:focus {
+1617:     border-color: var(--theme-primary);
+1618: }
+1619: 
+1620: /* App Overlay Header Home Button */
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

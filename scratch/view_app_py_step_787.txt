@@ -1,0 +1,36 @@
+Created At: 2026-06-07T00:48:55Z
+Completed At: 2026-06-07T00:48:55Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2639
+Total Bytes: 122807
+Showing lines 2596 to 2623
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2596:     }
+2597: 
+2598:     // Bind Footer Register School Button
+2599:     const footerRegisterSchoolBtn = document.getElementById('footer-register-school-btn');
+2600:     if (footerRegisterSchoolBtn) {
+2601:         footerRegisterSchoolBtn.addEventListener('click', () => {
+2602:             // 1. Switch to dashboard tab (Portal & Reviews)
+2603:             switchTab('dashboard');
+2604:             
+2605:             // 2. Make sure we show the register form if it was hidden
+2606:             if (loginForm) loginForm.style.display = 'none';
+2607:             if (registerForm) registerForm.style.display = 'flex';
+2608:             if (studentAuthTitle) studentAuthTitle.textContent = 'Register a Student Account';
+2609:             
+2610:             // 3. Smooth scroll to the registration card/form
+2611:             if (studentAuthWrapper) {
+2612:                 studentAuthWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+2613:             }
+2614:             
+2615:             // 4. Autofocus on the Full Name input field
+2616:             const registerFullname = document.getElementById('register-fullname');
+2617:             if (registerFullname) {
+2618:                 setTimeout(() => registerFullname.focus(), 500);
+2619:             }
+2620:         });
+2621:     }
+2622: 
+2623:     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,37 @@
+Created At: 2026-06-08T04:31:04Z
+Completed At: 2026-06-08T04:31:04Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2927
+Total Bytes: 138389
+Showing lines 2680 to 2708
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2680:                 coursesData = DEFAULT_COURSES;
+2681:             }
+2682:         } catch (error) {
+2683:             console.error('Error loading courses from backend, falling back to local list:', error);
+2684:             coursesData = DEFAULT_COURSES;
+2685:         }
+2686:         renderCoursesUI();
+2687:     }
+2688: 
+2689:     function renderCoursesUI() {
+2690:         // 1. Populate navbar dropdown
+2691:         if (navCoursesMenu) {
+2692:             navCoursesMenu.innerHTML = '';
+2693:             coursesData.forEach(course => {
+2694:                 const btn = document.createElement('button');
+2695:                 btn.className = 'dropdown-item';
+2696:                 btn.innerHTML = `<i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i> ${course.title}`;
+2697:                 btn.addEventListener('click', (e) => {
+2698:                     e.preventDefault();
+2699:                     // Close dropdown menu
+2700:                     navCoursesMenu.classList.remove('active');
+2701:                     switchTab('dashboard');
+2702:                     openCourseModal(course);
+2703:                 });
+2704:                 navCoursesMenu.appendChild(btn);
+2705:             });
+2706:         }
+2707: 
+2708:         // 2. Populate Available Courses in Dashboard
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

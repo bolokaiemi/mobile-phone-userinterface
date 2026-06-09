@@ -1,0 +1,32 @@
+Created At: 2026-06-06T22:43:02Z
+Completed At: 2026-06-06T22:43:02Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 424
+Total Bytes: 16990
+Showing lines 95 to 118
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+95:     id = db.Column(db.Integer, primary_key=True)
+96:     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # Optional for anonymous reviews
+97:     guest_name = db.Column(db.String(80), nullable=True) # For guest users
+98:     rating = db.Column(db.Integer, default=5, nullable=False) # Star rating (1-5)
+99:     text = db.Column(db.String(500), nullable=False)
+100:     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+101:     
+102:     # Relationship to user
+103:     user = db.relationship('User', backref=db.backref('comments', lazy=True))
+104: 
+105:     def to_dict(self):
+106:         return {
+107:             'id': self.id,
+108:             'username': self.user.username if self.user else (self.guest_name or 'Anonymous Guest'),
+109:             'rating': self.rating,
+110:             'text': self.text,
+111:             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+112:         }
+113: 
+114: # Automatically create SQL tables on application start
+115: with app.app_context():
+116:     db.create_all()
+117: 
+118: # -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

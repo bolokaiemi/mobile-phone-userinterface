@@ -1,0 +1,54 @@
+Created At: 2026-06-06T22:17:19Z
+Completed At: 2026-06-06T22:17:19Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 647
+Total Bytes: 23524
+Showing lines 525 to 570
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+525:                     });
+526:                 }
+527:                 
+528:                 // Sort comments by created_at desc
+529:                 allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+530: 
+531:                 // Merge local users (registered students fallback)
+532:                 const localUsers = getLocalUsers();
+533:                 let allUsers = [];
+534:                 localUsers.forEach(lu => {
+535:                     allUsers.push({
+536:                         id: 'local_' + lu.username,
+537:                         username: lu.username,
+538:                         created_at: 'Offline Mode'
+539:                     });
+540:                 });
+541:                 
+542:                 if (serverData && serverData.users) {
+543:                     serverData.users.forEach(su => {
+544:                         if (!allUsers.some(lu => lu.username === su.username)) {
+545:                             allUsers.push(su);
+546:                         }
+547:                     });
+548:                 }
+549: 
+550:                 // Calculate local stats if server stats is unavailable
+551:                 const totalComments = allComments.length;
+552:                 const totalUsers = allUsers.length;
+553:                 const avgRating = totalComments > 0 
+554:                     ? allComments.reduce((acc, c) => acc + c.rating, 0) / totalComments 
+555:                     : 0;
+556:                 
+557:                 document.getElementById('stat-reviews').textContent = serverStats ? serverStats.total_reviews : totalComments;
+558:                 document.getElementById('stat-avg').textContent = (serverStats ? serverStats.average_rating : avgRating).toFixed(1) + ' / 5.0';
+559:                 document.getElementById('stat-students').textContent = serverStats ? serverStats.total_students : totalUsers;
+560:                 document.getElementById('reviews-count-badge').textContent = (serverStats ? serverStats.total_reviews : totalComments) + ' items';
+561:                 
+562:                 const dbPathText = document.getElementById('db-filepath-text');
+563:                 if (dbPathText) {
+564:                     dbPathText.textContent = (serverStats && serverStats.db_path) ? serverStats.db_path : 'Local Browser Database (Offline)';
+565:                 }
+566: 
+567:                 renderReviews(allComments);
+568:                 renderStudents(allUsers);
+569:             }
+570: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

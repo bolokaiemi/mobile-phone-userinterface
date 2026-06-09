@@ -1,0 +1,48 @@
+Created At: 2026-06-07T20:39:55Z
+Completed At: 2026-06-07T20:39:56Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2905
+Total Bytes: 137439
+Showing lines 2531 to 2570
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2531:                 }
+2532:             } else {
+2533:                 // Offline fallback
+2534:                 const mockMeetingId = Math.floor(Math.random() * 9000000000) + 1000000000;
+2535:                 const mockPasscode = Math.random().toString(36).substring(2, 8);
+2536:                 const zoomLink = `https://zoom.us/j/{mockMeetingId}?pwd={mockPasscode}`;
+2537:                 generatedZoomLink = zoomLink;
+2538:                 const localBooking = {
+2539:                     id: 'local_booking_' + Date.now(),
+2540:                     username: currentUser || '',
+2541:                     guest_email: billingEmailVal || '',
+2542:                     billing_name: billingNameVal,
+2543:                     course_name: courseName,
+2544:                     zoom_link: zoomLink,
+2545:                     created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+2546:                 };
+2547:                 try {
+2548:                     const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+2549:                     localBookings.unshift(localBooking);
+2550:                     localStorage.setItem('ebiui_local_bookings', JSON.stringify(localBookings));
+2551:                 } catch (e) {
+2552:                     console.error('Error saving local booking:', e);
+2553:                 }
+2554: 
+2555:                 if (!currentUser && billingEmailVal) {
+2556:                     showNotification(`Offline mode: Upgrade successful! Lesson details sent to ${billingEmailVal}.`);
+2557:                 } else {
+2558:                     showNotification('Offline mode: Upgrade successful! Zoom lesson scheduled.');
+2559:                 }
+2560:             }
+2561: 
+2562:             // Reload bookings and refresh course lists
+2563:             if (currentUser) {
+2564:                 loadBookings();
+2565:             } else {
+2566:                 renderCoursesUI();
+2567:             }
+2568: 
+2569:             // Reset payment form fields
+2570:             premiumPaymentForm.reset();
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

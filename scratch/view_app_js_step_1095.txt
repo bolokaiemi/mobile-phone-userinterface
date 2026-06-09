@@ -1,0 +1,44 @@
+Created At: 2026-06-07T21:33:22Z
+Completed At: 2026-06-07T21:33:23Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2905
+Total Bytes: 137550
+Showing lines 1445 to 1480
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1445:         }
+1446:     }
+1447: 
+1448:     // Courses Dropdown and Dynamic List Selectors
+1449:     const navCoursesDropdownWrapper = document.getElementById('nav-courses-dropdown-wrapper');
+1450:     const navCoursesMenu = document.getElementById('nav-courses-menu');
+1451:     const navCoursesBtn = document.getElementById('nav-courses-btn');
+1452:     const courseListUl = document.querySelector('.course-list');
+1453: 
+1454:     // View toggling tabs (especially on mobile layouts)
+1455:     function switchTab(targetTab) {
+1456:         if (targetTab === 'home') {
+1457:             if (navHomeTab) navHomeTab.classList.add('active');
+1458:             if (navDashboardTab) navDashboardTab.classList.remove('active');
+1459:             if (tabViewHome) tabViewHome.classList.add('active-tab-view');
+1460:             if (tabViewDashboard) tabViewDashboard.classList.remove('active-tab-view');
+1461:         } else if (targetTab === 'dashboard') {
+1462:             if (navDashboardTab) navDashboardTab.classList.add('active');
+1463:             if (navHomeTab) navHomeTab.classList.remove('active');
+1464:             if (tabViewDashboard) tabViewDashboard.classList.add('active-tab-view');
+1465:             if (tabViewHome) tabViewHome.classList.remove('active-tab-view');
+1466:             loadComments();
+1467:         }
+1468:     }
+1469: 
+1470:     if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
+1471:     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
+1472: 
+1473:     // Student Login/Register Forms Toggling Link
+1474:     const linkToRegister = document.getElementById('link-to-register');
+1475:     const linkToLogin = document.getElementById('link-to-login');
+1476: 
+1477:     if (linkToRegister) {
+1478:         linkToRegister.addEventListener('click', (e) => {
+1479:             e.preventDefault();
+1480:             if (loginForm) loginForm.style.display = 'none';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

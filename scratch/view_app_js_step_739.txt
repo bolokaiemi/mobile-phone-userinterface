@@ -1,0 +1,28 @@
+Created At: 2026-06-07T00:39:40Z
+Completed At: 2026-06-07T00:39:41Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/walkthrough.md`
+Total Lines: 84
+Total Bytes: 6402
+Showing lines 65 to 84
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+65: === Starting EbiUI Backend Verification ===
+66: [SUCCESS] Courses endpoint verified successfully.
+67: [SUCCESS] Admin stats endpoint verified successfully.
+68: [SUCCESS] Admin data endpoint verified successfully.
+69: [SUCCESS] Guest review posting verified successfully.
+70: [SUCCESS] Admin data feed inclusion verified successfully.
+71: [SUCCESS] Book lesson endpoint verified successfully.
+72: [SUCCESS] Bookings retrieval endpoint verified successfully.
+73: 
+74: === ALL BACKEND ENDPOINTS VERIFIED SUCCESSFULLY ===
+75: ```
+76: 
+77: ### Manual Verification Steps:
+78: 1. **Comment Posting**: Register a student, post a comment, and verify the comment ownership persists and maps to the correct user in the admin console.
+79: 2. **Zoom Lesson Checkout**: Click **Book for Lesson** on any course, fill in your details (name, email if guest, demo card number), and complete checkout. 
+80:    - For logged-in students: The "My Scheduled Zoom Lessons" card will appear instantly showing the new class and a valid Zoom join link.
+81:    - For guests: The course upgrade card locks with a green active badge showing that the session is active.
+82: 3. **SMTP Console Notification**: On lesson booking, verify that the console outputs:
+83:    `Notification email sent: [EbiUI Alert] New Lesson Booked: HTML5 Fundamentals`
+84: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

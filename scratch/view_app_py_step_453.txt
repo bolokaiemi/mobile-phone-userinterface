@@ -1,0 +1,39 @@
+Created At: 2026-06-06T23:17:47Z
+Completed At: 2026-06-06T23:17:47Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61475
+Showing lines 625 to 655
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+625: 
+626:             <!-- Unified Feedback Feed & Review Card -->
+627:             <div class="dash-card comments-card">
+628:                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
+629:                 
+630:                 <!-- Live comments feed -->
+631:                 <div class="comments-list" id="comments-list-container">
+632:                     <div class="comments-loading">
+633:                         <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+634:                     </div>
+635:                 </div>
+636: 
+637:                 <!-- Public Review Input Area (No login required!) -->
+638:                 <div class="comment-input-wrapper" id="comment-input-wrapper">
+639:                     <div class="comment-input-group">
+640:                         <div class="review-meta-row">
+641:                             <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+642:                             <div class="star-rating" id="star-rating-selector">
+643:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+644:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+645:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+646:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+647:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+648:                             </div>
+649:                         </div>
+650:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+651:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+652:                     </div>
+653:                 </div>
+654: 
+655:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

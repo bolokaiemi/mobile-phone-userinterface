@@ -1,0 +1,58 @@
+Created At: 2026-06-06T22:16:22Z
+Completed At: 2026-06-06T22:16:22Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2387
+Total Bytes: 111055
+Showing lines 1 to 50
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /**
+2:  * Android 14 EbiUI - Interactive Emulator Application Logic
+3:  * Created by: Bolokaiemi Ebi
+4:  * Upgraded with Multi-Language Translation and Enhanced Home Navigation
+5:  */
+6: 
+7: document.addEventListener('DOMContentLoaded', () => {
+8:     // Dynamic API Base URL logic: relative in production/same-origin dev, local fallback otherwise
+9:     const isLocal = window.location.hostname === 'localhost' || 
+10:                     window.location.hostname === '127.0.0.1' || 
+11:                     window.location.protocol === 'file:';
+12:     const API_BASE = isLocal
+13:         ? (window.location.port === '8080' ? '' : 'http://127.0.0.1:8080')
+14:         : '';
+15: 
+16:     // Helper to conditionally inject credentials only on HTTP/HTTPS protocols (prevents browser block on file://)
+17:     function getFetchOptions(options = {}) {
+18:         if (window.location.protocol !== 'file:') {
+19:             options.credentials = 'include';
+20:         }
+21:         return options;
+22:     }
+23: 
+24:     // Dynamic Admin Console URL resolution
+25:     const navAdminLink = document.getElementById('nav-admin-link');
+26:     if (navAdminLink) {
+27:         navAdminLink.href = API_BASE ? API_BASE + '/admin' : '/admin';
+28:     }
+29: 
+30:     // Server connection status badge ping logic
+31:     const connectionStatusBadge = document.getElementById('connection-status-badge');
+32: 
+33:     async function checkServerConnection() {
+34:         try {
+35:             const response = await fetch(API_BASE + '/api/user', getFetchOptions());
+36:             if (response.ok || response.status === 401 || response.status === 200) {
+37:                 setConnectionStatus(true);
+38:             } else {
+39:                 setConnectionStatus(false);
+40:             }
+41:         } catch (error) {
+42:             setConnectionStatus(false);
+43:         }
+44:     }
+45: 
+46:     function setConnectionStatus(connected) {
+47:         if (!connectionStatusBadge) return;
+48:         if (connected) {
+49:             connectionStatusBadge.className = 'connection-badge online';
+50:             connectionStatusBadge.innerHTML = '<i class="fa-solid fa-circle"></i> Server Connected';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

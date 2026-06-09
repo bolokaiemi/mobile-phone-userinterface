@@ -1,0 +1,28 @@
+Created At: 2026-06-06T22:43:08Z
+Completed At: 2026-06-06T22:43:08Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 444
+Total Bytes: 17833
+Showing lines 261 to 280
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+261:         # Save comment: link user_id if logged in, otherwise save guest name
+262:         if 'user_id' in session:
+263:             new_comment = Comment(user_id=session['user_id'], text=text, rating=rating)
+264:         else:
+265:             if not guest_name:
+266:                 guest_name = 'Anonymous Guest'
+267:             new_comment = Comment(user_id=None, guest_name=guest_name, text=text, rating=rating)
+268:             
+269:         db.session.add(new_comment)
+270:         db.session.commit()
+271:         
+272:         return jsonify({
+273:             'message': 'Comment posted!',
+274:             'comment': new_comment.to_dict()
+275:         }), 201
+276: 
+277: @app.route('/api/comments/<int:comment_id>', methods=['DELETE'])
+278: def delete_comment(comment_id):
+279:     if 'user_id' not in session:
+280:         return jsonify({'error': 'Authentication required.'}), 401
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

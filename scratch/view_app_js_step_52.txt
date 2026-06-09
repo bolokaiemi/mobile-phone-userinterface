@@ -1,0 +1,49 @@
+Created At: 2026-06-06T22:16:53Z
+Completed At: 2026-06-06T22:16:53Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3348
+Total Bytes: 71785
+Showing lines 1715 to 1755
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1715:     gap: 12px;
+1716: }
+1717: 
+1718: .nav-tab {
+1719:     background: transparent;
+1720:     border: none;
+1721:     outline: none;
+1722:     color: var(--theme-text-muted);
+1723:     padding: 8px 16px;
+1724:     font-size: 0.9rem;
+1725:     font-weight: 600;
+1726:     border-radius: 20px;
+1727:     cursor: pointer;
+1728:     display: flex;
+1729:     align-items: center;
+1730:     gap: 8px;
+1731:     transition: all 0.25s ease;
+1732: }
+1733: 
+1734: .nav-tab:hover {
+1735:     color: var(--theme-text-light);
+1736:     background: rgba(255, 255, 255, 0.06);
+1737: }
+1738: 
+1739: .light-theme .nav-tab:hover {
+1740:     background: rgba(0, 0, 0, 0.04);
+1741: }
+1742: 
+1743: .nav-tab.active {
+1744:     color: #ffffff !important;
+1745:     background: var(--theme-primary);
+1746:     box-shadow: 0 4px 15px rgba(var(--theme-hue), 85%, 55%, 0.35);
+1747: }
+1748: 
+1749: .nav-link-btn {
+1750:     background: rgba(255, 255, 255, 0.08);
+1751:     border: 1px solid var(--theme-border-glass);
+1752:     border-radius: 20px;
+1753:     padding: 8px 16px;
+1754:     font-size: 0.88rem;
+1755:     font-weight: 600;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

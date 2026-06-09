@@ -1,0 +1,65 @@
+Created At: 2026-06-07T00:14:56Z
+Completed At: 2026-06-07T00:14:56Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/emulator.html`
+Total Lines: 897
+Total Bytes: 63209
+Showing lines 1 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>Android 14 EbiUI - Interactive Mobile UI</title>
+7:     
+8:     <!-- Google Fonts for premium typography -->
+9:     <link rel="preconnect" href="https://fonts.googleapis.com">
+10:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+11:     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+12:     
+13:     <!-- Font Awesome 6.6.0 for modern icons -->
+14:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+15:     
+16:     <!-- App stylesheet -->
+17: 
+18: </head>  <link rel="stylesheet" href="static/styles.css?v=4.0">
+19: <body>
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+26:         <nav class="nav-links">
+27:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+28:   
+<truncated 45283 bytes>
+ents feed -->
+631:                 <div class="comments-list" id="comments-list-container">
+632:                     <div class="comments-loading">
+633:                         <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+634:                     </div>
+635:                 </div>
+636: 
+637:                 <!-- Public Review Input Area (No login required!) -->
+638:                 <div class="comment-input-wrapper" id="comment-input-wrapper">
+639:                     <div class="comment-input-group">
+640:                         <div class="review-meta-row">
+641:                             <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+642:                             <div class="star-rating" id="star-rating-selector">
+643:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+644:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+645:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+646:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+647:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+648:                             </div>
+649:                         </div>
+650:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+651:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+652:                     </div>
+653:                 </div>
+654: 
+655:
+<truncated 12886 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

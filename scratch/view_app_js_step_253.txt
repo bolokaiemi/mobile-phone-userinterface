@@ -1,0 +1,87 @@
+Created At: 2026-06-06T22:44:04Z
+Completed At: 2026-06-06T22:44:05Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 530
+Total Bytes: 21264
+Showing lines 1 to 530
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: from flask import Flask, send_from_directory, request, jsonify, session, make_response
+2: from flask_sqlalchemy import SQLAlchemy
+3: from werkzeug.security import generate_password_hash, check_password_hash
+4: import os
+5: from datetime import datetime
+6: from dotenv import load_dotenv
+7: # =========================================
+8: # LOAD ENV
+9: # =========================================
+10: load_dotenv()
+11: 
+12: OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+13: 
+14: 
+15: # Initialize Flask app, pointing the static files folder to the root directory
+16: # to match the native structure of your GitHub Pages deployment.
+17: app = Flask(__name__, static_folder='.', static_url_path='')
+18: app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'ebiui-secure-dev-key')
+19: 
+20: # Capture database configuration: SQLite for local dev, PostgreSQL for production on Render
+21: database_url = os.environ.get('DATABASE_URL', 'sqlite:///ebiui.db')
+22: if database_url.startswith("postgres://"):
+23:     database_url = database_url.replace("postgres://", "postgresql://", 1)
+24: 
+25: app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+26: app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+27: 
+28: # -------------------------------------------------------------
+29: # FLASK-MAIL CONFIGURATION
+30: # -------------------------------------------------------------
+31: from flask_mail import Mail, Message
+32: 
+33: app.config['MAIL_SERVER'] = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
+34: app.config['MAIL_PORT'] = int(os.environ.get('SMTP_PORT', 587))
+35: app.config['MAIL_U
+<truncated 20254 bytes>
+88:     if user:
+489:         email_body += f"Registered Student: {user.username}\n"
+490:     else:
+491:         email_body += f"Guest Email: {guest_email}\n"
+492:     email_body += f"Zoom Meeting Link: {zoom_link}\n"
+493:     email_body += f"Booking Time: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n"
+494:     email_body += "Please be ready to host the class at the agreed slot.\n\nBest regards,\nEbiUI Auto-Notification System"
+495:     
+496:     send_notification_email(
+497:         subject=f"[EbiUI Alert] New Lesson Booked: {course_name}",
+498:         body=email_body
+499:     )
+500:     
+501:     return jsonify({
+502:         'message': 'Booking successful!',
+503:         'booking': new_booking.to_dict()
+504:     }), 201
+505: 
+506: @app.route('/api/bookings', methods=['GET'])
+507: def get_bookings():
+508:     # Resolve user via session or URL param fallback (for file:// protocol)
+509:     user = None
+510:     if 'user_id' in session:
+511:         user = User.query.get(session['user_id'])
+512:     
+513:     username_payload = request.args.get('username', '').strip()
+514:     if not user and username_payload:
+515:         user = User.query.filter_by(username=username_payload).first()
+516:         
+517:     if not user:
+518:         # For guests, return empty list (guest bookings are stored but shown via guest confirmation)
+519:         return jsonify({'bookings': []})
+520:         
+521:     # Get all bookings for this user
+522:     user_bookings = Booking.query.filter_by(user_id=user.id).order_by(Booking.created_at.desc()).all()
+523:     return jsonify({'bookings': [b.to_dict() for b in user_bookings]})
+524: 
+525: if __name__ == '__main__':
+526:     # Capture PORT from environment variables (defaults to 8000 for local development)
+527:     PORT = int(os.environ.get('PORT', 8080))
+528:     print(f"Starting Flask development server at http://localhost:{PORT}")
+529:     app.run(host='0.0.0.0', port=PORT, debug=True)
+530: 
+The above content shows the entire, complete file contents of the requested file.

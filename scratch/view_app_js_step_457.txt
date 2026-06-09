@@ -1,0 +1,29 @@
+Created At: 2026-06-06T23:17:54Z
+Completed At: 2026-06-06T23:17:54Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 660
+Total Bytes: 24122
+Showing lines 640 to 660
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+640:                         <span style="font-size: 0.8rem; opacity: 0.5;">ID: #${u.id}</span>
+641:                     `;
+642:                     container.appendChild(li);
+643:                 });
+644:             }
+645: 
+646:             function escapeHtml(text) {
+647:                 const map = {
+648:                     '&': '&amp;',
+649:                     '<': '&lt;',
+650:                     '>': '&gt;',
+651:                     '"': '&quot;',
+652:                     "'": '&#039;'
+653:                 };
+654:                 return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+655:             }
+656:         });
+657:     </script>
+658: </body>
+659: </html>
+660: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

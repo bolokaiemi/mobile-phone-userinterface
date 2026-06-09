@@ -1,0 +1,18 @@
+Created At: 2026-06-07T00:15:14Z
+Completed At: 2026-06-07T00:15:14Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 503 to 512
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+503:     // -------------------------------------------------------------
+504:     // NAVIGATION ROUTER (LAUNCHER / OVERLAYS)
+505:     // -------------------------------------------------------------
+506:     const appIcons = document.querySelectorAll('.app-icon-wrapper');
+507:     let activeAppId = null;
+508: 
+509:     appIcons.forEach(wrapper => {
+510:         wrapper.addEventListener('click', (e) => {
+511:             const appId = wrapper.getAttribute('data-app-id');
+512:             if (appId) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

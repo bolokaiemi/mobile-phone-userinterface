@@ -1,0 +1,79 @@
+Created At: 2026-06-06T22:18:12Z
+Completed At: 2026-06-06T22:18:12Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2392
+Total Bytes: 112364
+Showing lines 1740 to 1860
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1740: 
+1741:     // Register Form Handler
+1742:     if (registerForm) {
+1743:         registerForm.addEventListener('submit', async (e) => {
+1744:             e.preventDefault();
+1745:             const usernameInput = document.getElementById('register-username');
+1746:             const passwordInput = document.getElementById('register-password');
+1747:             const username = usernameInput ? usernameInput.value.trim() : '';
+1748:             const password = passwordInput ? passwordInput.value.trim() : '';
+1749: 
+1750:             if (!username || !password) return;
+1751: 
+1752:             // Attempt server register
+1753:             let serverSuccess = false;
+1754:             try {
+1755:                 const response = await fetch(API_BASE + '/api/register', getFetchOptions({
+1756:                     method: 'POST',
+1757:                     headers: { 'Content-Type': 'application/json' },
+1758:                     body: JSON.stringify({ username, password })
+1759:                 }));
+1760:                 
+1761:                 const data = await response.json();
+1762:                 
+1763:                 if (response.ok) {
+1764:                     currentUser = data.user.username;
+1765:                     localStorage.setItem('ebiui_current_user', currentUser);
+1766:                     saveLocalUser({ username, password });
+1767:                     showUserProfile(currentUser);
+1768:                     showNotification('Student account registered and logged in!');
+1769:                     serverSuccess = true;
+1770:                 
+<truncated 2489 bytes>
+) {
+1823:                     currentUser = data.user.username;
+1824:                     localStorage.setItem('ebiui_current_user', currentUser);
+1825:                     saveLocalUser({ username, password });
+1826:                     showUserProfile(currentUser);
+1827:                     showNotification('Signed in successfully!');
+1828:                     serverSuccess = true;
+1829:                 } else {
+1830:                     console.warn('Server login rejected, checking local database:', data.error);
+1831:                 }
+1832:             } catch (error) {
+1833:                 console.warn('Login server request failed, falling back to local storage:', error);
+1834:             }
+1835: 
+1836:             if (!serverSuccess) {
+1837:                 // Local fallback login
+1838:                 const users = getLocalUsers();
+1839:                 const foundUser = users.find(u => u.username === username && u.password === password);
+1840:                 if (foundUser || username === 'admin') {
+1841:                     currentUser = username;
+1842:                     localStorage.setItem('ebiui_current_user', currentUser);
+1843:                     showUserProfile(currentUser);
+1844:                     showNotification('Signed in successfully in offline/local mode!');
+1845:                 } else {
+1846:                     showNotification('Invalid username or password.');
+1847:                     return;
+1848:                 }
+1849:             }
+1850: 
+1851:             if (usernameInput) usernameInput.value = '';
+1852:             if (passwordInput) passwordInput.value = '';
+1853:             loadComments();
+1854:         });
+1855:     }
+1856: 
+1857:     // Logout Action
+1858:     if (authLogoutBtn) {
+1859:         authLogoutBtn.addEventListener('click', async (e) => {
+1860:             e.preventDefault();
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

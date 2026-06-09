@@ -1,0 +1,29 @@
+Created At: 2026-06-06T22:18:33Z
+Completed At: 2026-06-06T22:18:33Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2410
+Total Bytes: 113059
+Showing lines 2360 to 2380
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2360:     });
+2361: 
+2362:     // Bind Footer Enroll Button
+2363:     const footerEnrollBtn = document.getElementById('footer-enroll-btn');
+2364:     if (footerEnrollBtn) {
+2365:         footerEnrollBtn.addEventListener('click', (e) => {
+2366:             e.preventDefault();
+2367:             switchTab('dashboard');
+2368:             
+2369:             if (currentUser) {
+2370:                 // Trigger the general checkout modal
+2371:                 const paymentCourseName = document.getElementById('payment-course-name');
+2372:                 if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+2373:                 const paymentModal = document.getElementById('payment-modal');
+2374:                 if (paymentModal) paymentModal.style.display = 'flex';
+2375:                 
+2376:                 // Set active checkbox to null or find one if available
+2377:                 activeUpgradeCheckbox = null;
+2378:             } else {
+2379:                 showNotification('Please register or sign in as a student first to book a live session.');
+2380:                 const loginUserEl = document.getElementById('login-username');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

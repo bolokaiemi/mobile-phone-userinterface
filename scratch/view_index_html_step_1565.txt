@@ -1,0 +1,38 @@
+Created At: 2026-06-08T05:07:48Z
+Completed At: 2026-06-08T05:07:48Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1051
+Total Bytes: 76205
+Showing lines 750 to 850
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+750:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+751:                <!-- Emulator Tips Card (migrated layout) -->
+752:             <div class="dash-card tips-card">
+753:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+754:                 <ul class="tips-list">
+755:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+756:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+757:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+758:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+759:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+760:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+761:                 </ul>
+762:                 <div class="tips-action-bar">
+763:                     <a href="templates
+<truncated 7106 bytes>
+ background: rgba(168, 85, 247, 0.04); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 10px; padding: 14px;">
+837:                             <h4 class="student-section-title" style="color: #c084fc; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-flag-checkered"></i> School Kick-off Milestones</h4>
+838:                             <div class="milestones-progress-list" style="display: flex; flex-direction: column; gap: 12px;">
+839:                                 <!-- Enrollment Progress -->
+840:                                 <div class="milestone-progress-item">
+841:                                     <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+842:                                         <span style="color: var(--theme-text-light); font-weight: 500;"><i class="fa-solid fa-user-graduate"></i> Enrolled Students Goal</span>
+843:                                         <span style="color: #c084fc;" id="milestone-students-count">0 / 20</span>
+844:                                     </div>
+845:                                     <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+846:                                         <div class="milestone-progress-bar-fill" id="milestone-students-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #7c3aed); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+847:                                     </div>
+848:                                 </div>
+849:                                 
+850:                                 <!-- Positive Comments Progress -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

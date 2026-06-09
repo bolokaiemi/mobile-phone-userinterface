@@ -1,0 +1,54 @@
+Created At: 2026-06-07T20:39:07Z
+Completed At: 2026-06-07T20:39:07Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 1740 to 1785
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1740:                     ratingCount = 5;
+1741:                 }
+1742:                 const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+1743:                 const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+1744:                 
+1745:                 // Delete button only shown if the current logged in user is the author or local author
+1746:                 const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
+1747:                 const deleteButton = isOwner 
+1748:                     ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+1749:                     : '';
+1750:                 
+1751:                 commentEl.innerHTML = `
+1752:                     <div class="comment-header">
+1753:                         <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+1754:                         <span class="comment-time">${comment.created_at || ''}</span>
+1755:                     </div>
+1756:                     ${starsHtml}
+1757:                     <div class="comment-text">${escapeHtml(comment.text)}</div>
+1758:                     ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+1759:                 `;
+1760:                 
+1761:                 commentsListContainer.appendChild(commentEl);
+1762:             });
+1763:             
+1764:             // Bind comments delete actions
+1765:             const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+1766:             deleteButtons.forEach(btn => {
+1767:                 btn.addEventListener('click', async () => {
+1768:                     const commentId = btn.getAttribute('data-id');
+1769:                     if (confirm('Are you sure you want to delete this comment?')) {
+1770:                         await deleteComment(commentId);
+1771:                     }
+1772:                 });
+1773:             });
+1774:         } catch (renderError) {
+1775:             console.error('Error rendering comments feed:', renderError);
+1776:             commentsListContainer.innerHTML = `
+1777:                 <div class="comment-empty-state" style="color: #ef4444;">
+1778:                     <i class="fa-solid fa-circle-exclamation" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+1779:                     Failed to load reviews list.
+1780:                 </div>
+1781:             `;
+1782:         }
+1783:     }
+1784: 
+1785:     // -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

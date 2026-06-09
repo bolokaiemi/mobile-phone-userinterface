@@ -1,0 +1,43 @@
+Created At: 2026-06-07T00:39:20Z
+Completed At: 2026-06-07T00:39:20Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2614
+Total Bytes: 121663
+Showing lines 2580 to 2614
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2580:             const paymentCourseName = document.getElementById('payment-course-name');
+2581:             if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+2582:             const paymentModal = document.getElementById('payment-modal');
+2583:             if (paymentModal) paymentModal.style.display = 'flex';
+2584:             
+2585:             // Set active checkbox to null or find one if available
+2586:             activeUpgradeCheckbox = null;
+2587:         });
+2588:     }
+2589: 
+2590:     // Bind Dashboard Back Button
+2591:     const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+2592:     if (dashboardBackBtn) {
+2593:         dashboardBackBtn.addEventListener('click', () => {
+2594:             switchTab('home');
+2595:         });
+2596:     }
+2597: 
+2598:     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+2599:     const allLinks = document.querySelectorAll('a');
+2600:     allLinks.forEach(link => {
+2601:         const href = link.getAttribute('href');
+2602:         if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+2603:             link.setAttribute('target', '_blank');
+2604:             link.setAttribute('rel', 'noopener noreferrer');
+2605:         }
+2606:     });
+2607: 
+2608:     // Trigger Initial Checks
+2609:     checkAuthStatus();
+2610:     loadCourses(); // Render courses for both guest and student views
+2611:     loadComments();
+2612: });
+2613: 
+2614: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

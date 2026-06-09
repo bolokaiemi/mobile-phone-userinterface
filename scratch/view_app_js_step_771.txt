@@ -1,0 +1,44 @@
+Created At: 2026-06-07T00:48:41Z
+Completed At: 2026-06-07T00:48:41Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 548
+Total Bytes: 22287
+Showing lines 130 to 165
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+130:             'billing_name': self.billing_name,
+131:             'course_name': self.course_name,
+132:             'zoom_link': self.zoom_link,
+133:             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+134:         }
+135: 
+136: # Automatically create/upgrade SQL tables on application start
+137: with app.app_context():
+138:     try:
+139:         # Check if email column exists in User table
+140:         db.session.execute(db.text("SELECT email FROM user LIMIT 1"))
+141:     except Exception:
+142:         # Recreate tables to apply the new schema
+143:         print("[EbiUI Database] Recreating database tables for new schema...")
+144:         db.drop_all()
+145:     db.create_all()
+146: 
+147: # -------------------------------------------------------------
+148: # WEB PAGE TEMPLATE/STATIC ROUTES
+149: # -------------------------------------------------------------
+150: @app.route('/')
+151: def emulator():
+152:     # Serve the main emulator.html file from the root directory
+153:     return app.send_static_file('emulator.html')
+154: 
+155: @app.route('/templates/<path:path>')
+156: def send_template(path):
+157:     # Serve reference files like templates/mobilephone.html
+158:     return send_from_directory('templates', path)
+159: 
+160: # -------------------------------------------------------------
+161: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+162: # -------------------------------------------------------------
+163: @app.route('/api/register', methods=['POST'])
+164: def register():
+165:     data = request.get_json() or {}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

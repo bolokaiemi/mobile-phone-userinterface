@@ -1,0 +1,29 @@
+Created At: 2026-06-07T00:48:39Z
+Completed At: 2026-06-07T00:48:39Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 548
+Total Bytes: 22287
+Showing lines 80 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+80:     response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE,OPTIONS'
+81:     return response
+82: 
+83: db = SQLAlchemy(app)
+84: 
+85: # -------------------------------------------------------------
+86: # DATABASE MODELS
+87: # -------------------------------------------------------------
+88: class User(db.Model):
+89:     id = db.Column(db.Integer, primary_key=True)
+90:     username = db.Column(db.String(80), unique=True, nullable=False)
+91:     email = db.Column(db.String(120), unique=True, nullable=True)
+92:     full_name = db.Column(db.String(100), nullable=True)
+93:     password_hash = db.Column(db.String(255), nullable=False)
+94:     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+95: 
+96: class Comment(db.Model):
+97:     id = db.Column(db.Integer, primary_key=True)
+98:     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # Optional for anonymous reviews
+99:     guest_name = db.Column(db.String(80), nullable=True) # For guest users
+100:     rating = db.Column(db.Integer, default=5, nullable=False) # Star rating (1-5)
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

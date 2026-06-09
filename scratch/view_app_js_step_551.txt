@@ -1,0 +1,49 @@
+Created At: 2026-06-06T23:24:29Z
+Completed At: 2026-06-06T23:24:29Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 539
+Total Bytes: 21700
+Showing lines 160 to 200
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+160: # -------------------------------------------------------------
+161: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+162: # -------------------------------------------------------------
+163: @app.route('/api/register', methods=['POST'])
+164: def register():
+165:     data = request.get_json() or {}
+166:     username = data.get('username', '').strip()
+167:     password = data.get('password', '').strip()
+168:     
+169:     if not username or not password:
+170:         return jsonify({'error': 'Username and password are required.'}), 400
+171:         
+172:     if len(username) < 3 or len(password) < 4:
+173:         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
+174: 
+175:     # Ensure username is unique
+176:     existing_user = User.query.filter_by(username=username).first()
+177:     if existing_user:
+178:         return jsonify({'error': 'Username is already taken.'}), 400
+179:         
+180:     # Store hashed password to protect credentials
+181:     password_hash = generate_password_hash(password)
+182:     new_user = User(username=username, password_hash=password_hash)
+183:     db.session.add(new_user)
+184:     db.session.commit()
+185:     
+186:     # Auto-login session after registration
+187:     session['user_id'] = new_user.id
+188:     session['username'] = new_user.username
+189:     
+190:     # Send email notification alert
+191:     send_notification_email(
+192:         subject="[EbiUI Alert] New Student Registered",
+193:         body=f"Hello,\n\nA new student has registered on EbiUI!\n\nUsername: {new_user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
+194:     )
+195:     
+196:     return jsonify({
+197:         'message': 'Registration successful!',
+198:         'user': {'username': new_user.username}
+199:     }), 201
+200: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,65 @@
+Created At: 2026-06-06T22:16:25Z
+Completed At: 2026-06-06T22:16:25Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 700 to 867
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+700:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+701:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+702:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet Teacher Direct</strong> box on any course to book a direct 1-on-1 session with Mr. Ebi.</li>
+703:                         </ul>
+704:                     </div>
+705:                 </div>
+706: 
+707:                 <!-- Available Courses (Publicly accessible) -->
+708:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+709:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+710:                     <ul class="course-list">
+711:                         <!-- Populated dynamically via JS -->
+712:                     </ul>
+713:                 </div>
+714:             </div>
+715: 
+716:             <!-- Emulator Tips Card (migrated layout) -->
+717:             <div class="dash-card tips-card">
+718:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+719:                 <ul class="tips-list">
+720:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click a
+<truncated 7638 bytes>
+i>
+834:                     <li><a href="#" class="footer-course-link" data-course-id="js">JavaScript Programming</a></li>
+835:                     <li><a href="#" class="footer-course-link" data-course-id="python">Python & Flask Backend</a></li>
+836:                     <li><a href="#" class="footer-course-link" data-course-id="sql">SQL Database Design</a></li>
+837:                 </ul>
+838:             </div>
+839:             
+840:             <div class="footer-col contact-col">
+841:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+842:                 <ul class="footer-contact-info">
+843:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+844:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+845:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+846:                 </ul>
+847:             </div>
+848: 
+849:             <div class="footer-col action-col">
+850:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+851:                 <p class="footer-text">Need one-on-one help? Meet Mr. Bolokaiemi Ebi directly for a live session.</p>
+852:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+853:                     <i class="fa-solid fa-credit-card"></i> Book Live Session
+854:                 </button>
+855:             </div>
+856:         </div>
+857:         
+858:         <div class="footer-bottom">
+859:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+860:         </div>
+861:     </footer>
+862: 
+863:     <!-- Script loading -->
+864:     <script src="app.js?v=4.0"></script>
+865: </body>
+866: </html>
+867: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,29 @@
+Created At: 2026-06-06T23:00:37Z
+Completed At: 2026-06-06T23:00:37Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2591
+Total Bytes: 120481
+Showing lines 2095 to 2115
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2095:     const courseModalBadge = document.getElementById('course-modal-badge');
+2096:     const courseModalTitle = document.getElementById('course-modal-title');
+2097:     const courseModalDesc = document.getElementById('course-modal-desc');
+2098:     const courseTopicsList = document.getElementById('course-topics-list');
+2099:     const courseModalClose = document.getElementById('course-modal-close');
+2100:     const courseModalUpgradeBtn = document.getElementById('course-modal-upgrade-btn');
+2101:     const courseModalActionBtn = document.getElementById('course-modal-action-btn');
+2102: 
+2103:     let currentSelectedCourseCheckbox = null;
+2104: 
+2105: 
+2106: 
+2107:     if (courseModalClose) {
+2108:         courseModalClose.addEventListener('click', () => {
+2109:             if (courseModal) courseModal.style.display = 'none';
+2110:             currentSelectedCourseCheckbox = null;
+2111:         });
+2112:     }
+2113: 
+2114:     if (courseModalUpgradeBtn) {
+2115:         courseModalUpgradeBtn.addEventListener('click', () => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

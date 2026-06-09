@@ -1,0 +1,61 @@
+Created At: 2026-06-06T22:44:27Z
+Completed At: 2026-06-06T22:44:27Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61482
+Showing lines 800 to 860
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+800:     <!-- Direct Course Payment Modal -->
+801:     <div class="payment-modal" id="payment-modal" style="display: none;">
+802:         <div class="payment-modal-card">
+803:             <h4 class="payment-modal-title"><i class="fa-solid fa-chalkboard-user"></i> Live Direct Tutoring Premium Upgrade</h4>
+804:             <p class="payment-modal-desc">Upgrade your access for <strong id="payment-course-name">Course Name</strong> to meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+805:             
+806:             <div class="payment-features-list">
+807:                 <div><i class="fa-solid fa-check"></i> Live 1-on-1 online classes (1 hr/session)</div>
+808:                 <div><i class="fa-solid fa-check"></i> Custom project-based curriculum</div>
+809:                 <div><i class="fa-solid fa-check"></i> Direct WhatsApp assistance & code reviews</div>
+810:             </div>
+811:             
+812:             <div class="pricing-summary-box">
+813:                 <span class="price-label">Direct Tutor Price:</span>
+814:                 <span class="price-value">$199 <span class="price-period">/ month</span></span>
+815:             </div>
+816:             
+817:             <form id="premium-payment-form">
+818:                 <div class="payment-form-row" id="payment-email-row" style="display: none;">
+819:                     <input type="email" id="billing-email" placeholder="Email Address (for lesson details)">
+820:                 </div>
+821:              
+<truncated 772 bytes>
+lass="payment-modal-actions">
+832:                     <button type="button" class="btn-secondary" id="payment-cancel-btn">Cancel</button>
+833:                     <button type="submit" class="btn-primary" id="payment-submit-btn">Complete Checkout</button>
+834:                 </div>
+835:             </form>
+836:         </div>
+837:     </div>
+838: 
+839:     <!-- 3. PREMIUM HUB FOOTER -->
+840:     <footer class="hub-footer">
+841:         <div class="footer-container">
+842:             <div class="footer-col about-col">
+843:                 <h5 class="footer-title"><i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher</h5>
+844:                 <p class="footer-text">
+845:                     An advanced interactive Android 14 Emulator and comprehensive Web Development Academy. Learn frontend & backend technologies step-by-step.
+846:                 </p>
+847:             </div>
+848:             
+849:             <div class="footer-col links-col">
+850:                 <h5 class="footer-title"><i class="fa-solid fa-graduation-cap"></i> Free Courses</h5>
+851:                 <ul class="footer-links">
+852:                     <li><a href="https://www.w3schools.com/html/" target="_blank">HTML5 Fundamentals</a></li>
+853:                     <li><a href="https://www.w3schools.com/css/" target="_blank">CSS3 Layouts & Styling</a></li>
+854:                     <li><a href="https://www.w3schools.com/js/" target="_blank">JavaScript Programming</a></li>
+855:                     <li><a href="https://www.w3schools.com/python/" target="_blank">Python & Flask Backend</a></li>
+856:                     <li><a href="https://www.w3schools.com/sql/" target="_blank">SQL Database Design</a></li>
+857:                 </ul>
+858:             </div>
+859:             
+860:             <div class="footer-col contact-col">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

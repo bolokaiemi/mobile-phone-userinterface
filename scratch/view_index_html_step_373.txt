@@ -1,0 +1,36 @@
+Created At: 2026-06-06T22:59:55Z
+Completed At: 2026-06-06T22:59:55Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61485
+Showing lines 860 to 887
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+860:             <div class="footer-col contact-col">
+861:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+862:                 <ul class="footer-contact-info">
+863:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+864:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+865:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+866:                 </ul>
+867:             </div>
+868: 
+869:             <div class="footer-col action-col">
+870:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+871:                 <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+872:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+873:                     <i class="fa-solid fa-credit-card"></i> Book for Lesson
+874:                 </button>
+875:             </div>
+876:         </div>
+877:         
+878:         <div class="footer-bottom">
+879:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+880:         </div>
+881:     </footer>
+882: 
+883:     <!-- Script loading -->
+884:     <script src="app.js?v=4.0"></script>
+885: </body>
+886: </html>
+887: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

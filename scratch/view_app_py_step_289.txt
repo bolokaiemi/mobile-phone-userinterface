@@ -1,0 +1,79 @@
+Created At: 2026-06-06T22:44:22Z
+Completed At: 2026-06-06T22:44:22Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 1350 to 1420
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1350:             }
+1351:         });
+1352:     }
+1353: 
+1354:     // -------------------------------------------------------------
+1355:     // HUB NAVIGATION & AUTH/COMMENT DASHBOARD LOGIC
+1356:     // -------------------------------------------------------------
+1357:     const navHomeTab = document.getElementById('nav-home-tab');
+1358:     const navDashboardTab = document.getElementById('nav-dashboard-tab');
+1359:     const tabViewHome = document.getElementById('tab-view-home');
+1360:     const tabViewDashboard = document.getElementById('tab-view-dashboard');
+1361: 
+1362:     const loginForm = document.getElementById('login-form');
+1363:     const registerForm = document.getElementById('register-form');
+1364:     const profileUsernameText = document.getElementById('profile-username-text');
+1365:     const authLogoutBtn = document.getElementById('auth-logout-btn');
+1366:     const studentAuthTitle = document.getElementById('student-auth-title');
+1367:     const studentAuthWrapper = document.getElementById('student-auth-wrapper');
+1368:     const studentDashboard = document.getElementById('student-dashboard');
+1369: 
+1370:     const commentsListContainer = document.getElementById('comments-list-container');
+1371:     const commentInputWrapper = document.getElementById('comment-input-wrapper');
+1372:     const commentLockedPrompt = document.getElementById('comment-locked-prompt');
+1373:     const commentTextInput = document.getElementById('comment-text-input');
+1374:     const commentSubmitBtn = document.getElementById('comment-submit-btn');
+1375: 
+1376:     let currentUser = null;
+1377:     let pendingAction = null;
+1378: 
+1379:     // Local Storage Helpers for Offline/CORS-proof fallbacks
+1380:     function getLocalComments() {
+1381:         try {
+1382:             return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+1383:         } catch (e) {
+1384:             return [];
+1385:         }
+1386:     }
+1387: 
+1388:     function saveLocalComment(comment) {
+1389:         try {
+1390:             const comments = getLocalComments();
+1391:             comments.unshift(comment);
+1392:             localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+1393:         } catch (e) {
+1394:             console.error('Local comments save error:', e);
+1395:         }
+1396:     }
+1397: 
+1398:     function getLocalUsers() {
+1399:         try {
+1400:             return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+1401:         } catch (e) {
+1402:             return [];
+1403:         }
+1404:     }
+1405: 
+1406:     function saveLocalUser(user) {
+1407:         try {
+1408:             const users = getLocalUsers();
+1409:             if (!users.some(u => u.username === user.username)) {
+1410:                 users.push(user);
+1411:                 localStorage.setItem('ebiui_local_users', JSON.stringify(users));
+1412:             }
+1413:         } catch (e) {
+1414:             console.error('Local user save error:', e);
+1415:         }
+1416:     }
+1417: 
+1418:     // Courses Dropdown and Dynamic List Selectors
+1419:     const navCoursesDropdownWrapper = document.getElementById('nav-courses-dropdown-wrapper');
+1420:     const navCoursesMenu = document.getElementById('nav-courses-menu');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

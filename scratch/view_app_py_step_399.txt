@@ -1,0 +1,59 @@
+Created At: 2026-06-06T23:00:22Z
+Completed At: 2026-06-06T23:00:22Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2606
+Total Bytes: 121347
+Showing lines 2240 to 2290
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2240:                 // Offline fallback
+2241:                 const mockMeetingId = Math.floor(Math.random() * 9000000000) + 1000000000;
+2242:                 const mockPasscode = Math.random().toString(36).substring(2, 8);
+2243:                 const zoomLink = `https://zoom.us/j/{mockMeetingId}?pwd={mockPasscode}`;
+2244:                 generatedZoomLink = zoomLink;
+2245:                 const localBooking = {
+2246:                     id: 'local_booking_' + Date.now(),
+2247:                     username: currentUser || '',
+2248:                     guest_email: billingEmailVal || '',
+2249:                     billing_name: billingNameVal,
+2250:                     course_name: courseName,
+2251:                     zoom_link: zoomLink,
+2252:                     created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+2253:                 };
+2254:                 try {
+2255:                     const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+2256:                     localBookings.unshift(localBooking);
+2257:                     localStorage.setItem('ebiui_local_bookings', JSON.stringify(localBookings));
+2258:                 } catch (e) {
+2259:                     console.error('Error saving local booking:', e);
+2260:                 }
+2261: 
+2262:                 if (!currentUser && billingEmailVal) {
+2263:                     showNotification(`Offline mode: Upgrade successful! Lesson details sent to ${billingEmailVal}.`);
+2264:                 } else {
+2265:                     showNotification('Offline mode: Upgrade successful! Zoom lesson scheduled.');
+2266:                 }
+2267:             }
+2268: 
+2269:             if (activeUpgradeCheckbox) {
+2270:                 const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+2271:                 if (labelSpan) {
+2272:                     labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+2273:                     labelSpan.style.color = '#10b981';
+2274:                 }
+2275:                 activeUpgradeCheckbox = null;
+2276:             }
+2277: 
+2278:             // Reload bookings and refresh course checkboxes
+2279:             if (currentUser) {
+2280:                 loadBookings();
+2281:             }
+2282: 
+2283:             // Reset payment form fields
+2284:             premiumPaymentForm.reset();
+2285:             if (paymentSubmitBtn) {
+2286:                 paymentSubmitBtn.disabled = false;
+2287:                 paymentSubmitBtn.innerHTML = `Complete Checkout`;
+2288:             }
+2289:         });
+2290:     }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

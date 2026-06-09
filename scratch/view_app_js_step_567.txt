@@ -1,0 +1,74 @@
+Created At: 2026-06-06T23:24:47Z
+Completed At: 2026-06-06T23:24:47Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2594
+Total Bytes: 120697
+Showing lines 1855 to 1920
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1855:         }
+1856:     }
+1857: 
+1858:     // Register Form Handler
+1859:     if (registerForm) {
+1860:         registerForm.addEventListener('submit', async (e) => {
+1861:             e.preventDefault();
+1862:             const usernameInput = document.getElementById('register-username');
+1863:             const passwordInput = document.getElementById('register-password');
+1864:             const username = usernameInput ? usernameInput.value.trim() : '';
+1865:             const password = passwordInput ? passwordInput.value.trim() : '';
+1866: 
+1867:             if (!username || !password) return;
+1868: 
+1869:             // Attempt server register
+1870:             let serverSuccess = false;
+1871:             try {
+1872:                 const response = await fetch(API_BASE + '/api/register', getFetchOptions({
+1873:                     method: 'POST',
+1874:                     headers: { 'Content-Type': 'application/json' },
+1875:                     body: JSON.stringify({ username, password })
+1876:                 }));
+1877:                 
+1878:                 const data = await response.json();
+1879:                 
+1880:                 if (response.ok) {
+1881:                     currentUser = data.user.username;
+1882:                     localStorage.setItem('ebiui_current_user', currentUser);
+1883:                     saveLocalUser({ username, password });
+1884:                     showUserProfile(currentUser);
+1885:                     showNotification('Student account registered and logged in!');
+1886:                     serverSuccess = true;
+1887:                 } else {
+1888:                     if (data.error && data.error.includes('taken')) {
+1889:                         showNotification(data.error);
+1890:                         return;
+1891:                     }
+1892:                     console.warn('Server register rejected, checking local database:', data.error);
+1893:                 }
+1894:             } catch (error) {
+1895:                 console.warn('Register server request failed, falling back to local storage:', error);
+1896:             }
+1897:             
+1898:             if (!serverSuccess) {
+1899:                 // Local fallback registration
+1900:                 const users = getLocalUsers();
+1901:                 if (users.some(u => u.username === username)) {
+1902:                     showNotification('Username is already taken.');
+1903:                     return;
+1904:                 }
+1905:                 saveLocalUser({ username, password });
+1906:                 currentUser = username;
+1907:                 localStorage.setItem('ebiui_current_user', currentUser);
+1908:                 showUserProfile(currentUser);
+1909:                 showNotification('Registered successfully in offline/local mode!');
+1910:             }
+1911:             
+1912:             if (usernameInput) usernameInput.value = '';
+1913:             if (passwordInput) passwordInput.value = '';
+1914:             loadComments();
+1915:         });
+1916:     }
+1917: 
+1918:     // Login Form Handler
+1919:     if (loginForm) {
+1920:         loginForm.addEventListener('submit', async (e) => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

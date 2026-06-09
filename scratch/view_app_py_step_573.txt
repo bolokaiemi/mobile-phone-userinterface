@@ -1,0 +1,29 @@
+Created At: 2026-06-06T23:24:53Z
+Completed At: 2026-06-06T23:24:53Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/scratch/verify.py`
+Total Lines: 109
+Total Bytes: 4920
+Showing lines 75 to 95
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+75:     test_booking = {
+76:         "billing_name": "Test Student Billing",
+77:         "course_name": "HTML5 Fundamentals",
+78:         "guest_email": "student@example.com",
+79:         "username": "test_verification_student_123"
+80:     }
+81:     # Register the user first to link user_id successfully
+82:     test_user = {
+83:         "username": "test_verification_student_123",
+84:         "password": "securepassword123"
+85:     }
+86:     test_endpoint('http://localhost:8080/api/register', method='POST', data=test_user)
+87: 
+88:     status, res = test_endpoint('http://localhost:8080/api/book-lesson', method='POST', data=test_booking)
+89:     assert status == 201, f"Expected 201, got {status}: {res}"
+90:     assert 'booking' in res, "Expected 'booking' key in response"
+91:     assert res['booking']['billing_name'] == "Test Student Billing"
+92:     assert res['booking']['course_name'] == "HTML5 Fundamentals"
+93:     assert 'zoom_link' in res['booking']
+94:     assert res['booking']['zoom_link'].startswith('https://zoom.us/j/')
+95:     print("[SUCCESS] Book lesson endpoint verified successfully.")
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

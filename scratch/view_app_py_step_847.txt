@@ -1,0 +1,34 @@
+Created At: 2026-06-07T20:39:15Z
+Completed At: 2026-06-07T20:39:15Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 1520 to 1545
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1520:         }
+1521:     }
+1522: 
+1523:     function showUserProfile(username) {
+1524:         if (profileUsernameText) profileUsernameText.textContent = username;
+1525:         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
+1526:         if (studentDashboard) studentDashboard.style.display = 'block';
+1527:         
+1528:         // Synchronize top navbar session badge
+1529:         if (navUserBadge) navUserBadge.style.display = 'flex';
+1530:         if (navUsernameBadge) navUsernameBadge.textContent = username;
+1531:         if (navUserAvatar) {
+1532:             navUserAvatar.textContent = username.charAt(0).toUpperCase();
+1533:         }
+1534: 
+1535:         loadCourses();
+1536:         loadBookings();
+1537:         
+1538:         // Smooth scroll to the student dashboard/courses section
+1539:         setTimeout(() => {
+1540:             if (studentDashboard) {
+1541:                 studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+1542:             }
+1543:             executePendingAction();
+1544:         }, 150);
+1545:     }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

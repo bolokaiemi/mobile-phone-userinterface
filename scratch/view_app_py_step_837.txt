@@ -1,0 +1,64 @@
+Created At: 2026-06-07T20:39:01Z
+Completed At: 2026-06-07T20:39:01Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 2020 to 2075
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2020:     // Submit Public Review Handler
+2021:     if (commentSubmitBtn && commentTextInput) {
+2022:         commentSubmitBtn.addEventListener('click', async () => {
+2023:             const text = commentTextInput.value.trim();
+2024:             if (!text) {
+2025:                 showNotification('Review content cannot be empty.');
+2026:                 return;
+2027:             }
+2028: 
+2029:             const guestNameInput = document.getElementById('review-guest-name');
+2030:             const guestName = guestNameInput ? guestNameInput.value.trim() : '';
+2031:             const rating = currentRating || 5;
+2032: 
+2033:             const displayAuthor = currentUser || guestName || 'Anonymous Guest';
+2034: 
+2035:             const localCommentObj = {
+2036:                 id: 'local_' + Date.now(),
+2037:                 username: displayAuthor,
+2038:                 rating: rating,
+2039:                 text: text,
+2040:                 created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+2041:             };
+2042: 
+2043:             // Save locally immediately
+2044:             saveLocalComment(localCommentObj);
+2045: 
+2046:             // Attempt server save
+2047:             try {
+2048:                 const response = await fetch(API_BASE + '/api/comments', getFetchOptions({
+2049:                     method: 'POST',
+2050:                     headers: { 'Content-Type': 'application/json' },
+2051:                     body: JSON.stringify({ 
+2052:                         text, 
+2053:                         guest_name: guestName || 'Anonymous Guest', 
+2054:                         rating: rating,
+2055:                         username: currentUser || ''
+2056:                     })
+2057:                 }));
+2058:                 if (response.ok) {
+2059:                     const resData = await response.json();
+2060:                     console.log('Comment saved on server:', resData.comment);
+2061:                 }
+2062:             } catch (error) {
+2063:                 console.warn('Comment server post failed, saved in local database only:', error);
+2064:             }
+2065: 
+2066:             // Always display success in the UI to give instant feedback
+2067:             commentTextInput.value = '';
+2068:             if (guestNameInput) guestNameInput.value = '';
+2069:             resetStarSelector();
+2070:             showNotification('Review submitted successfully!');
+2071:             loadComments();
+2072:             showShareOverlay(text, rating);
+2073:         });
+2074:     }
+2075: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

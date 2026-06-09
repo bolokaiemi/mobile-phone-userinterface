@@ -1,0 +1,39 @@
+Created At: 2026-06-07T21:27:37Z
+Completed At: 2026-06-07T21:27:37Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 658
+Total Bytes: 27888
+Showing lines 190 to 220
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+190: 
+191: # -------------------------------------------------------------
+192: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+193: # -------------------------------------------------------------
+194: @app.route('/api/milestones', methods=['GET'])
+195: def get_milestones():
+196:     total_reviews = Comment.query.count()
+197:     total_students = User.query.count()
+198:     unlocked = (total_reviews >= REVIEWS_MILESTONE) and (total_students >= STUDENTS_MILESTONE)
+199:     return jsonify({
+200:         'total_reviews': total_reviews,
+201:         'reviews_milestone': REVIEWS_MILESTONE,
+202:         'total_students': total_students,
+203:         'students_milestone': STUDENTS_MILESTONE,
+204:         'unlocked': unlocked
+205:     })
+206: 
+207: @app.route('/api/register', methods=['POST'])
+208: def register():
+209:     # Enforce milestone-locked registration for peace of mind
+210:     total_reviews = Comment.query.count()
+211:     total_students = User.query.count()
+212:     if total_reviews < REVIEWS_MILESTONE or total_students < STUDENTS_MILESTONE:
+213:         return jsonify({
+214:             'error': f'Registration features are locked. Milestones not met: Reviews ({total_reviews}/{REVIEWS_MILESTONE}), Registered Students ({total_students}/{STUDENTS_MILESTONE}).'
+215:         }), 403
+216: 
+217:     data = request.get_json() or {}
+218:     username = data.get('username', '').strip()
+219:     email = data.get('email', '').strip()
+220:     full_name = data.get('full_name', '').strip()
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

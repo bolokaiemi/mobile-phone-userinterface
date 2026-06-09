@@ -1,0 +1,34 @@
+Created At: 2026-06-06T23:18:15Z
+Completed At: 2026-06-06T23:18:16Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2587
+Total Bytes: 120369
+Showing lines 1720 to 1745
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1720:             if (allComments.length === 0) {
+1721:                 commentsListContainer.innerHTML = `
+1722:                     <div class="comment-empty-state">
+1723:                         <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
+1724:                         No feedback posted yet. Be the first!
+1725:                     </div>
+1726:                 `;
+1727:                 return;
+1728:             }
+1729:             
+1730:             commentsListContainer.innerHTML = '';
+1731:             allComments.forEach(comment => {
+1732:                 if (!comment) return;
+1733:                 const commentEl = document.createElement('div');
+1734:                 commentEl.className = 'comment-item';
+1735:                 
+1736:                 // Format star ratings
+1737:                 const ratingCount = comment.rating || 5;
+1738:                 const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+1739:                 const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+1740:                 
+1741:                 // Delete button only shown if the current logged in user is the author or local author
+1742:                 const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
+1743:                 const deleteButton = isOwner 
+1744:                     ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+1745:                     : '';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

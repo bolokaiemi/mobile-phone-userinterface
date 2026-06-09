@@ -1,0 +1,49 @@
+Created At: 2026-06-06T22:17:35Z
+Completed At: 2026-06-06T22:17:35Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2387
+Total Bytes: 111055
+Showing lines 2210 to 2250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2210:         // 2. Populate Available Courses in Dashboard
+2211:         if (courseListUl) {
+2212:             courseListUl.innerHTML = '';
+2213:             coursesData.forEach(course => {
+2214:                 const li = document.createElement('li');
+2215:                 li.className = 'course-item-card';
+2216:                 li.innerHTML = `
+2217:                     <div class="course-main-row">
+2218:                         <div class="course-icon"><i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i></div>
+2219:                         <div class="course-info">
+2220:                             <span class="course-name">${course.title}</span>
+2221:                             <span class="course-meta">${course.meta}</span>
+2222:                         </div>
+2223:                         <div class="course-actions">
+2224:                             <button class="course-action-btn" data-id="${course.id}">
+2225:                                 <i class="fa-solid fa-graduation-cap"></i> View
+2226:                             </button>
+2227:                         </div>
+2228:                     </div>
+2229:                     <div class="live-upgrade-wrapper">
+2230:                         <label class="live-upgrade-label">
+2231:                             <input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}">
+2232:                             <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
+2233:                         </label>
+2234:                     </div>
+2235:                 `;
+2236: 
+2237:                 // Bind click to View button
+2238:                 const viewBtn = li.querySelector('.course-action-btn');
+2239:                 if (viewBtn) {
+2240:                     viewBtn.addEventListener('click', (e) => {
+2241:                         e.preventDefault();
+2242:                         openCourseModal(course, li.querySelector('.live-upgrade-checkbox'));
+2243:                     });
+2244:                 }
+2245: 
+2246:                 courseListUl.appendChild(li);
+2247:             });
+2248:         }
+2249:     }
+2250: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

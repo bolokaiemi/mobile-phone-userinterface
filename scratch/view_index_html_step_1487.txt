@@ -1,0 +1,44 @@
+Created At: 2026-06-08T04:50:41Z
+Completed At: 2026-06-08T04:50:41Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1019
+Total Bytes: 72240
+Showing lines 710 to 745
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+710:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+711:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+712:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+713:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+714:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+715:                             </div>
+716:                         </div>
+717:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+718:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+719:                     </div>
+720:                 </div>
+721: 
+722:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+723:                 <div class="share-overlay" id="share-overlay" style="display: none;">
+724:                     <div class="share-card">
+725:                         <h4 class="share-title"><i class="fa-solid fa-circle-check" style="color: #4caf50;"></i> Review Submitted!</h4>
+726:                         <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+727:                         <div class="share-buttons-grid">
+728:                             <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+729:                             <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+730:                             <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+731:                         </div>
+732:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+733:                     </div>
+734:                 </div>
+735:             </div>
+736: 
+737:             <!-- Student & Learning Portal Card -->
+738:             <div class="dash-card student-card">
+739:                 <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
+740:                 
+741:                 <!-- If Logged Out: Show Student Login Forms -->
+742:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+743:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+744:                     
+745:                     <!-- Login Form -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

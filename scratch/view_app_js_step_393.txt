@@ -1,0 +1,64 @@
+Created At: 2026-06-06T23:00:16Z
+Completed At: 2026-06-06T23:00:16Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2619
+Total Bytes: 122096
+Showing lines 2145 to 2200
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2145: 
+2146:     // -------------------------------------------------------------
+2147:     // PREMIUM LIVE TUTORING CHECKOUT HANDLERS
+2148:     // -------------------------------------------------------------
+2149:     const paymentModal = document.getElementById('payment-modal');
+2150:     const paymentCourseName = document.getElementById('payment-course-name');
+2151:     const paymentCancelBtn = document.getElementById('payment-cancel-btn');
+2152:     const premiumPaymentForm = document.getElementById('premium-payment-form');
+2153:     const paymentSubmitBtn = document.getElementById('payment-submit-btn');
+2154:     let activeUpgradeCheckbox = null;
+2155: 
+2156:     // Delegate checkbox changes in the available courses list (always visible to everyone)
+2157:     if (courseListUl) {
+2158:         courseListUl.addEventListener('change', (e) => {
+2159:             if (e.target.classList.contains('live-upgrade-checkbox')) {
+2160:                 const checkbox = e.target;
+2161:                 
+2162:                 // Configure guest email row in checkout form
+2163:                 const emailRow = document.getElementById('payment-email-row');
+2164:                 const billingEmail = document.getElementById('billing-email');
+2165:                 if (emailRow && billingEmail) {
+2166:                     if (!currentUser) {
+2167:                         emailRow.style.display = 'block';
+2168:                         billingEmail.required = true;
+2169:                     } else {
+2170:                         emailRow.style.display = 'none';
+2171:                         billingEmail.required = false;
+2172:                     }
+2173:                 }
+2174: 
+2175:                 if (checkbox.checked) {
+2176:                     activeUpgradeCheckbox = checkbox;
+2177:                     const courseName = checkbox.getAttribute('data-course');
+2178:                     if (paymentCourseName) paymentCourseName.textContent = courseName;
+2179:                     if (paymentModal) paymentModal.style.display = 'flex';
+2180:                 } else {
+2181:                     // Reset styling/label if they uncheck
+2182:                     const labelSpan = checkbox.nextElementSibling;
+2183:                     if (labelSpan) {
+2184:                         labelSpan.innerHTML = `<i class="fa-solid fa-chalkboard-user"></i> Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.`;
+2185:                         labelSpan.style.color = '';
+2186:                     }
+2187:                 }
+2188:             }
+2189:         });
+2190:     }
+2191: 
+2192:     if (paymentCancelBtn) {
+2193:         paymentCancelBtn.addEventListener('click', () => {
+2194:             if (paymentModal) paymentModal.style.display = 'none';
+2195:             if (activeUpgradeCheckbox) {
+2196:                 activeUpgradeCheckbox.checked = false;
+2197:                 activeUpgradeCheckbox = null;
+2198:             }
+2199:         });
+2200:     }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

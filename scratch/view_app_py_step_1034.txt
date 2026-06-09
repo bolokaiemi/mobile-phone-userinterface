@@ -1,0 +1,66 @@
+Created At: 2026-06-07T21:27:08Z
+Completed At: 2026-06-07T21:27:08Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2906
+Total Bytes: 137473
+Showing lines 1975 to 2080
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1975:         }
+1976:     }
+1977: 
+1978:     async function loadMilestones() {
+1979:         const studentMilestonesCard = document.getElementById('school-milestones-card');
+1980:         if (!studentMilestonesCard) return;
+1981: 
+1982:         try {
+1983:             const response = await fetch(API_BASE + '/api/admin/stats', getFetchOptions());
+1984:             if (response.ok) {
+1985:                 const data = await response.json();
+1986:                 
+1987:                 // Enrollment calculations
+1988:                 const totalStudents = data.total_students || 0;
+1989:                 const studentGoal = 20;
+1990:                 const studentPct = Math.min(Math.round((totalStudents / studentGoal) * 100), 100);
+1991:                 
+1992:                 const studentCountText = document.getElementById('milestone-students-count');
+1993:                 const studentBarFill = document.getElementById('milestone-students-bar');
+1994:                 
+1995:                 if (studentCountText) studentCountText.textContent = `${totalStudents} / ${studentGoal}`;
+1996:                 if (studentBarFill) studentBarFill.style.width = `${studentPct}%`;
+1997:                 
+1998:                 // Funding calculations (representing tuition fees, e.g. each booking represents ₦10,000)
+1999:                 const totalBookings = data.total_bookings || 0;
+2000:                 const totalFunding = totalBookings * 10000;
+2001:                 const fundingGoal = 50000;
+2002:                 const fundingPct = Math.min(Math.round((totalFunding / fu
+<truncated 3656 bytes>
+  statusBadge.style.background = 'rgba(16, 185, 129, 0.1)';
+2053:                     statusBadge.style.color = '#34d399';
+2054:                     statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+2055:                     statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> All Kick-off Milestones Met! Launch Approved!';
+2056:                 } else {
+2057:                     statusBadge.style.background = 'rgba(245, 158, 11, 0.06)';
+2058:                     statusBadge.style.color = '#fbbf24';
+2059:                     statusBadge.style.borderColor = 'rgba(245, 158, 11, 0.15)';
+2060:                     statusBadge.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Awaiting Milestones (${totalStudents}/${studentGoal} Students, ₦${totalFunding.toLocaleString()}/₦${fundingGoal.toLocaleString()} Paid)`;
+2061:                 }
+2062:             }
+2063:         }
+2064:     }
+2065: 
+2066:     // Register Form Handler
+2067:     if (registerForm) {
+2068:         registerForm.addEventListener('submit', async (e) => {
+2069:             e.preventDefault();
+2070:             const fullNameInput = document.getElementById('register-fullname');
+2071:             const emailInput = document.getElementById('register-email');
+2072:             const usernameInput = document.getElementById('register-username');
+2073:             const passwordInput = document.getElementById('register-password');
+2074:             
+2075:             const fullName = fullNameInput ? fullNameInput.value.trim() : '';
+2076:             const email = emailInput ? emailInput.value.trim() : '';
+2077:             const username = usernameInput ? usernameInput.value.trim() : '';
+2078:             const password = passwordInput ? passwordInput.value.trim() : '';
+2079: 
+2080:             if (!fullName || !email || !username || !password) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,80 @@
+Created At: 2026-06-07T20:39:19Z
+Completed At: 2026-06-07T20:39:19Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 1680 to 1785
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1680:         const isoStr = str.includes(' ') ? str.replace(' ', 'T') : str;
+1681:         const d = new Date(isoStr);
+1682:         return isNaN(d.getTime()) ? new Date(0) : d;
+1683:     }
+1684: 
+1685:     async function loadComments() {
+1686:         if (!commentsListContainer) return;
+1687:         
+1688:         let serverComments = [];
+1689:         let serverSuccess = false;
+1690:         
+1691:         try {
+1692:             const response = await fetch(API_BASE + '/api/comments', getFetchOptions());
+1693:             if (response.ok) {
+1694:                 const data = await response.json();
+1695:                 serverComments = data.comments || [];
+1696:                 serverSuccess = true;
+1697:             }
+1698:         } catch (error) {
+1699:             console.error('Error fetching comments from server:', error);
+1700:         }
+1701:         
+1702:         try {
+1703:             // Load local fallback comments
+1704:             const localComments = getLocalComments();
+1705:             let allComments = [...localComments];
+1706:             
+1707:             // Merge server comments and avoid duplication
+1708:             serverComments.forEach(sc => {
+1709:                 if (sc && !allComments.some(lc => lc && (lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username)))) {
+1710:                     allComments.push(sc);
+1711:                 }
+1712:             });
+1713:             
+1714:             // Sort by created_at desc (newest first) using safe cross-browser date parsing
+1715:             allComments.sort
+<truncated 2089 bytes>
+ `
+1752:                     <div class="comment-header">
+1753:                         <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+1754:                         <span class="comment-time">${comment.created_at || ''}</span>
+1755:                     </div>
+1756:                     ${starsHtml}
+1757:                     <div class="comment-text">${escapeHtml(comment.text)}</div>
+1758:                     ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+1759:                 `;
+1760:                 
+1761:                 commentsListContainer.appendChild(commentEl);
+1762:             });
+1763:             
+1764:             // Bind comments delete actions
+1765:             const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+1766:             deleteButtons.forEach(btn => {
+1767:                 btn.addEventListener('click', async () => {
+1768:                     const commentId = btn.getAttribute('data-id');
+1769:                     if (confirm('Are you sure you want to delete this comment?')) {
+1770:                         await deleteComment(commentId);
+1771:                     }
+1772:                 });
+1773:             });
+1774:         } catch (renderError) {
+1775:             console.error('Error rendering comments feed:', renderError);
+1776:             commentsListContainer.innerHTML = `
+1777:                 <div class="comment-empty-state" style="color: #ef4444;">
+1778:                     <i class="fa-solid fa-circle-exclamation" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+1779:                     Failed to load reviews list.
+1780:                 </div>
+1781:             `;
+1782:         }
+1783:     }
+1784: 
+1785:     // -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

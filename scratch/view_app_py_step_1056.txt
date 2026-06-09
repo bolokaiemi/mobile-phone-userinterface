@@ -1,0 +1,37 @@
+Created At: 2026-06-07T21:27:42Z
+Completed At: 2026-06-07T21:27:42Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 660
+Total Bytes: 27952
+Showing lines 192 to 220
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+192: 
+193: # -------------------------------------------------------------
+194: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+195: # -------------------------------------------------------------
+196: @app.route('/api/milestones', methods=['GET'])
+197: def get_milestones():
+198:     total_reviews = Comment.query.count()
+199:     total_students = User.query.count()
+200:     unlocked = (total_reviews >= REVIEWS_MILESTONE) and (total_students >= STUDENTS_MILESTONE)
+201:     return jsonify({
+202:         'total_reviews': total_reviews,
+203:         'reviews_milestone': REVIEWS_MILESTONE,
+204:         'total_students': total_students,
+205:         'students_milestone': STUDENTS_MILESTONE,
+206:         'unlocked': unlocked
+207:     })
+208: 
+209: @app.route('/api/register', methods=['POST'])
+210: def register():
+211:     # Enforce milestone-locked registration for peace of mind
+212:     total_reviews = Comment.query.count()
+213:     total_students = User.query.count()
+214:     if total_reviews < REVIEWS_MILESTONE or total_students < STUDENTS_MILESTONE:
+215:         return jsonify({
+216:             'error': f'Registration features are locked. Milestones not met: Reviews ({total_reviews}/{REVIEWS_MILESTONE}), Registered Students ({total_students}/{STUDENTS_MILESTONE}).'
+217:         }), 403
+218: 
+219:     data = request.get_json() or {}
+220:     username = data.get('username', '').strip()
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

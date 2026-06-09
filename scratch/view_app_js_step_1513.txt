@@ -1,0 +1,39 @@
+Created At: 2026-06-08T05:06:15Z
+Completed At: 2026-06-08T05:06:15Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3774
+Total Bytes: 81439
+Showing lines 1820 to 1850
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1820:     margin: 0 auto;
+1821: }
+1822: 
+1823: .phone-view-section {
+1824:     display: flex;
+1825:     justify-content: center;
+1826:     align-items: center;
+1827: }
+1828: 
+1829: .dashboard-panel {
+1830:     display: flex;
+1831:     flex-direction: column;
+1832:     gap: 24px;
+1833:     width: 460px;
+1834:     flex-shrink: 0;
+1835: }
+1836: 
+1837: .dash-card {
+1838:     background: var(--theme-bg-glass);
+1839:     backdrop-filter: blur(16px);
+1840:     -webkit-backdrop-filter: blur(16px);
+1841:     border: 1px solid var(--theme-border-glass);
+1842:     border-radius: 24px;
+1843:     padding: 24px;
+1844:     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+1845:     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+1846:     color: var(--theme-text-light);
+1847: }
+1848: 
+1849: .light-theme .dash-card {
+1850:     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

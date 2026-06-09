@@ -1,0 +1,136 @@
+Created At: 2026-06-06T22:16:32Z
+Completed At: 2026-06-06T22:16:32Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3348
+Total Bytes: 71785
+Showing lines 2549 to 3348
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2549: }
+2550: 
+2551: .tip-link-btn {
+2552:     font-size: 0.78rem;
+2553:     font-weight: 600;
+2554:     color: var(--theme-primary-light);
+2555:     display: flex;
+2556:     align-items: center;
+2557:     gap: 6px;
+2558:     transition: color 0.2s ease;
+2559: }
+2560: 
+2561: .light-theme .tip-link-btn {
+2562:     color: var(--theme-primary);
+2563: }
+2564: 
+2565: .tip-link-btn:hover {
+2566:     color: var(--theme-text-light);
+2567: }
+2568: 
+2569: @keyframes fadeIn {
+2570:     from { opacity: 0; transform: translateY(6px); }
+2571:     to { opacity: 1; transform: translateY(0); }
+2572: }
+2573: 
+2574: /* Premium Course Card Layout */
+2575: .course-item-card {
+2576:     display: flex;
+2577:     flex-direction: column !important;
+2578:     align-items: stretch !important;
+2579:     justify-content: flex-start !important;
+2580:     background: rgba(255, 255, 255, 0.02);
+2581:     border: 1px solid var(--theme-border-glass);
+2582:     border-radius: 12px;
+2583:     padding: 12px !important;
+2584:     gap: 10px !important;
+2585:     transition: background-color 0.2s ease;
+2586: }
+2587: 
+2588: .course-main-row {
+2589:     display: flex;
+2590:     align-items: center;
+2591:     justify-content: space-between;
+2592:     gap: 10px;
+2593: }
+2594: 
+2595: .live-upgrade-wrapper {
+2596:     border-top: 1px dashed var(--theme-border-glass);
+2597:     padding-top: 8px;
+2598:     margin-top: 4px;
+2599: }
+2600: 
+2601: .live-upgrade-label {
+2602:     display: flex;
+2603:     align-items: center;
+2604:     gap: 8px;
+2605:     font-size: 0.72rem;
+2606:     color: var(--
+<truncated 17943 bytes>
+ooter-contact-info i {
+3281:     width: 16px;
+3282:     color: var(--theme-primary-light, #3b82f6);
+3283: }
+3284: 
+3285: .light-theme .footer-contact-info i {
+3286:     color: var(--theme-primary, #2563eb);
+3287: }
+3288: 
+3289: .footer-enroll-btn {
+3290:     align-self: flex-start;
+3291:     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+3292:     border: none;
+3293:     border-radius: 8px;
+3294:     color: white;
+3295:     padding: 10px 20px;
+3296:     font-size: 0.88rem;
+3297:     font-weight: 600;
+3298:     cursor: pointer;
+3299:     display: inline-flex;
+3300:     align-items: center;
+3301:     gap: 8px;
+3302:     transition: all 0.25s ease;
+3303:     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+3304: }
+3305: 
+3306: .footer-enroll-btn:hover {
+3307:     transform: translateY(-2px);
+3308:     box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+3309:     background: linear-gradient(135deg, #60a5fa, #2563eb);
+3310: }
+3311: 
+3312: .footer-bottom {
+3313:     max-width: 1100px;
+3314:     margin: 40px auto 0 auto;
+3315:     padding: 20px 40px 0 40px;
+3316:     border-top: 1px solid rgba(255, 255, 255, 0.08);
+3317:     text-align: center;
+3318: }
+3319: 
+3320: .light-theme .footer-bottom {
+3321:     border-top: 1px solid rgba(0, 0, 0, 0.08);
+3322: }
+3323: 
+3324: .footer-bottom p {
+3325:     font-size: 0.85rem;
+3326:     color: #64748b;
+3327:     margin: 0;
+3328: }
+3329: 
+3330: /* Responsive Footer styling */
+3331: @media (max-width: 900px) {
+3332:     .footer-container {
+3333:         grid-template-columns: 1fr 1fr;
+3334:         gap: 30px;
+3335:     }
+3336: }
+3337: 
+3338: @media (max-width: 600px) {
+3339:     .footer-container {
+3340:         grid-template-columns: 1fr;
+3341:         gap: 24px;
+3342:         padding: 0 20px;
+3343:     }
+3344:     .footer-bottom {
+3345:         padding: 20px 20px 0 20px;
+3346:     }
+3347: }
+3348: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

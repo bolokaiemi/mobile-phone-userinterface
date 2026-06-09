@@ -1,0 +1,29 @@
+Created At: 2026-06-06T22:17:42Z
+Completed At: 2026-06-06T22:17:42Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2392
+Total Bytes: 112380
+Showing lines 2075 to 2095
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2075:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2076:             }
+2077: 
+2078:             // Simulate server transaction delay
+2079:             setTimeout(() => {
+2080:                 if (paymentModal) paymentModal.style.display = 'none';
+2081:                 showNotification('Upgrade successful! Mr. Bolokaiemi Ebi has been notified of your payment.');
+2082:                 
+2083:                 if (activeUpgradeCheckbox) {
+2084:                     const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+2085:                     if (labelSpan) {
+2086:                         labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+2087:                         labelSpan.style.color = '#10b981';
+2088:                     }
+2089:                     activeUpgradeCheckbox = null;
+2090:                 }
+2091: 
+2092:                 // Reset payment form fields
+2093:                 premiumPaymentForm.reset();
+2094:                 if (paymentSubmitBtn) {
+2095:                     paymentSubmitBtn.disabled = false;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

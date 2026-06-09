@@ -1,0 +1,24 @@
+Created At: 2026-06-07T21:18:32Z
+Completed At: 2026-06-07T21:18:32Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/emulator.html`
+Total Lines: 942
+Total Bytes: 67593
+Showing lines 10 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+10:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+11:     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+12:     
+13:     <!-- Font Awesome 6.6.0 for modern icons -->
+14:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+15:     
+16:     <!-- App stylesheet -->
+17: 
+18: </head>  <link rel="stylesheet" href="static/styles.css?v=4.0">
+19: <body>
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

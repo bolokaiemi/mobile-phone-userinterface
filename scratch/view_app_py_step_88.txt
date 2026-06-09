@@ -1,0 +1,70 @@
+Created At: 2026-06-06T22:17:50Z
+Completed At: 2026-06-06T22:17:50Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 760 to 867
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+760:                     </p>
+761:                     <a href="#" id="course-w3schools-link" target="_blank" class="w3schools-link-anchor">
+762:                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Open W3Schools Tutorial
+763:                     </a>
+764:                 </div>
+765: 
+766:                 <div class="school-promo-box">
+767:                     <div class="school-promo-header">
+768:                         <i class="fa-solid fa-circle-question" style="color: #f59e0b;"></i>
+769:                         <span>Need Help? Get Mentorship</span>
+770:                     </div>
+771:                     <p>If you need direct support, WhatsApp guidance, code reviews, or live 1-on-1 online lessons, enroll in <strong>Mr. Bolokaiemi Ebi's Live School</strong> below.</p>
+772:                 </div>
+773:             </div>
+774: 
+775:             <div class="course-modal-actions">
+776:                 <button class="btn-secondary" id="course-modal-close">Close</button>
+777:                 <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-chalkboard-user"></i> Enroll in Live School</button>
+778:                 <button class="btn-primary" id="course-modal-action-btn"><i class="fa-solid fa-file-pdf"></i> Access Materials</button>
+779:             </div>
+780:         </div>
+781:     </div>
+782: 
+783:     <!-- Direct Course Payment Modal -->
+784:     <div class="payment-modal" id="payment-modal" style="display: none;">
+785:         <div class="payment-modal-card"
+<truncated 3270 bytes>
+i>
+834:                     <li><a href="#" class="footer-course-link" data-course-id="js">JavaScript Programming</a></li>
+835:                     <li><a href="#" class="footer-course-link" data-course-id="python">Python & Flask Backend</a></li>
+836:                     <li><a href="#" class="footer-course-link" data-course-id="sql">SQL Database Design</a></li>
+837:                 </ul>
+838:             </div>
+839:             
+840:             <div class="footer-col contact-col">
+841:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+842:                 <ul class="footer-contact-info">
+843:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+844:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+845:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+846:                 </ul>
+847:             </div>
+848: 
+849:             <div class="footer-col action-col">
+850:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+851:                 <p class="footer-text">Need one-on-one help? Meet Mr. Bolokaiemi Ebi directly for a live session.</p>
+852:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+853:                     <i class="fa-solid fa-credit-card"></i> Book Live Session
+854:                 </button>
+855:             </div>
+856:         </div>
+857:         
+858:         <div class="footer-bottom">
+859:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+860:         </div>
+861:     </footer>
+862: 
+863:     <!-- Script loading -->
+864:     <script src="app.js?v=4.0"></script>
+865: </body>
+866: </html>
+867: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

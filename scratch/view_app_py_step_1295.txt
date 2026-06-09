@@ -1,0 +1,32 @@
+Created At: 2026-06-08T04:37:37Z
+Completed At: 2026-06-08T04:37:37Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/README.md`
+Total Lines: 123
+Total Bytes: 6997
+Showing lines 100 to 123
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+100: mobile-phone-userinterface/
+101: ├── app.py              # Flask server with SQL models, milestone controls, and REST routes
+102: ├── app.js              # State manager, ROM apps, inline editing, and milestones polling
+103: ├── index.html          # Main HTML structure and dashboard wrapper layout
+104: ├── wallpaper_neon.png  # Neon liquid wallpaper asset
+105: ├── requirements.txt    # Python package dependencies (Flask, Flask-SQLAlchemy, etc.)
+106: ├── README.md           # Project documentation
+107: ├── instance/
+108: │   └── ebiui.db        # Local SQLite database
+109: ├── static/
+110: │   └── styles.css      # Custom dashboard tokens, glassmorphism, responsive styles
+111: ├── templates/
+112: │   ├── index.html      # Synchronized template backup of index.html
+113: │   ├── admin.html      # Admin Feedback & Student Dashboard console
+114: │   └── mobilephone.html # Original static reference design file
+115: └── scratch/
+116:     └── verify.py       # Automated endpoint testing script
+117: ```
+118: 
+119: ---
+120: 
+121: ## 👥 Author
+122: - **Bolokaiemi Ebi** - *Initial UI design & Android 14 EbiUI ROM emulation*
+123: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

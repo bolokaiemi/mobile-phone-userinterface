@@ -1,0 +1,59 @@
+Created At: 2026-06-07T00:14:39Z
+Completed At: 2026-06-07T00:14:39Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 1430 to 1480
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1430:     const courseListUl = document.querySelector('.course-list');
+1431: 
+1432:     // View toggling tabs (especially on mobile layouts)
+1433:     function switchTab(targetTab) {
+1434:         if (targetTab === 'home') {
+1435:             if (navHomeTab) navHomeTab.classList.add('active');
+1436:             if (navDashboardTab) navDashboardTab.classList.remove('active');
+1437:             if (tabViewHome) tabViewHome.classList.add('active-tab-view');
+1438:             if (tabViewDashboard) tabViewDashboard.classList.remove('active-tab-view');
+1439:         } else if (targetTab === 'dashboard') {
+1440:             if (navDashboardTab) navDashboardTab.classList.add('active');
+1441:             if (navHomeTab) navHomeTab.classList.remove('active');
+1442:             if (tabViewDashboard) tabViewDashboard.classList.add('active-tab-view');
+1443:             if (tabViewHome) tabViewHome.classList.remove('active-tab-view');
+1444:             loadComments();
+1445:         }
+1446:     }
+1447: 
+1448:     if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
+1449:     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
+1450: 
+1451:     // Student Login/Register Forms Toggling Link
+1452:     const linkToRegister = document.getElementById('link-to-register');
+1453:     const linkToLogin = document.getElementById('link-to-login');
+1454: 
+1455:     if (linkToRegister) {
+1456:         linkToRegister.addEventListener('click', (e) => {
+1457:             e.preventDefault();
+1458:             if (loginForm) loginForm.style.display = 'none';
+1459:             if (registerForm) registerForm.style.display = 'flex';
+1460:             if (studentAuthTitle) studentAuthTitle.textContent = 'Register a Student Account';
+1461:         });
+1462:     }
+1463: 
+1464:     if (linkToLogin) {
+1465:         linkToLogin.addEventListener('click', (e) => {
+1466:             e.preventDefault();
+1467:             if (registerForm) registerForm.style.display = 'none';
+1468:             if (loginForm) loginForm.style.display = 'flex';
+1469:             if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+1470:         });
+1471:     }
+1472: 
+1473:     // Helper: Escape user input to prevent HTML injection XSS
+1474:     function escapeHtml(text) {
+1475:         if (text === null || text === undefined) return '';
+1476:         const str = String(text);
+1477:         const map = {
+1478:             '&': '&amp;',
+1479:             '<': '&lt;',
+1480:             '>': '&gt;',
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

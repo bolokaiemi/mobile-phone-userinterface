@@ -1,0 +1,49 @@
+Created At: 2026-06-06T23:23:58Z
+Completed At: 2026-06-06T23:23:58Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2594
+Total Bytes: 120697
+Showing lines 2020 to 2060
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2020:                 created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+2021:             };
+2022: 
+2023:             // Save locally immediately
+2024:             saveLocalComment(localCommentObj);
+2025: 
+2026:             // Attempt server save
+2027:             try {
+2028:                 const response = await fetch(API_BASE + '/api/comments', getFetchOptions({
+2029:                     method: 'POST',
+2030:                     headers: { 'Content-Type': 'application/json' },
+2031:                     body: JSON.stringify({ 
+2032:                         text, 
+2033:                         guest_name: guestName || 'Anonymous Guest', 
+2034:                         rating: rating,
+2035:                         username: currentUser || ''
+2036:                     })
+2037:                 }));
+2038:                 if (response.ok) {
+2039:                     const resData = await response.json();
+2040:                     console.log('Comment saved on server:', resData.comment);
+2041:                 }
+2042:             } catch (error) {
+2043:                 console.warn('Comment server post failed, saved in local database only:', error);
+2044:             }
+2045: 
+2046:             // Always display success in the UI to give instant feedback
+2047:             commentTextInput.value = '';
+2048:             if (guestNameInput) guestNameInput.value = '';
+2049:             resetStarSelector();
+2050:             showNotification('Review submitted successfully!');
+2051:             loadComments();
+2052:             showShareOverlay(text, rating);
+2053:         });
+2054:     }
+2055: 
+2056:     // Delete Review Action
+2057:     async function deleteComment(id) {
+2058:         // If it is a local comment, delete it from localStorage
+2059:         if (id && id.toString().startsWith('local_')) {
+2060:             try {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

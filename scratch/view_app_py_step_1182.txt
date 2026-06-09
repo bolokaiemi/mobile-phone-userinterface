@@ -1,0 +1,54 @@
+Created At: 2026-06-08T04:30:52Z
+Completed At: 2026-06-08T04:30:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2927
+Total Bytes: 138389
+Showing lines 2465 to 2510
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2465:     const paymentCancelBtn = document.getElementById('payment-cancel-btn');
+2466:     const premiumPaymentForm = document.getElementById('premium-payment-form');
+2467:     const paymentSubmitBtn = document.getElementById('payment-submit-btn');
+2468:     let activeUpgradeCheckbox = null;
+2469: 
+2470:     // Delegate click events for Book for Lesson buttons in the available courses list
+2471:     if (courseListUl) {
+2472:         courseListUl.addEventListener('click', (e) => {
+2473:             const button = e.target.closest('.live-upgrade-btn');
+2474:             if (button) {
+2475:                 e.preventDefault();
+2476:                 
+2477:                 // Configure guest email row in checkout form
+2478:                 const emailRow = document.getElementById('payment-email-row');
+2479:                 const billingEmail = document.getElementById('billing-email');
+2480:                 if (emailRow && billingEmail) {
+2481:                     if (!currentUser) {
+2482:                         emailRow.style.display = 'block';
+2483:                         billingEmail.required = true;
+2484:                     } else {
+2485:                         emailRow.style.display = 'none';
+2486:                         billingEmail.required = false;
+2487:                     }
+2488:                 }
+2489: 
+2490:                 const courseName = button.getAttribute('data-course');
+2491:                 if (paymentCourseName) paymentCourseName.textContent = courseName;
+2492:                 if (paymentModal) paymentModal.style.display = 'flex';
+2493:             }
+2494:         });
+2495:     }
+2496: 
+2497:     if (paymentCancelBtn) {
+2498:         paymentCancelBtn.addEventListener('click', () => {
+2499:             if (paymentModal) paymentModal.style.display = 'none';
+2500:         });
+2501:     }
+2502: 
+2503:     if (premiumPaymentForm) {
+2504:         premiumPaymentForm.addEventListener('submit', async (e) => {
+2505:             e.preventDefault();
+2506:             
+2507:             if (paymentSubmitBtn) {
+2508:                 paymentSubmitBtn.disabled = true;
+2509:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2510:             }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

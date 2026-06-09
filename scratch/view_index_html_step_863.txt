@@ -1,0 +1,82 @@
+Created At: 2026-06-07T20:39:50Z
+Completed At: 2026-06-07T20:39:50Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/README.md`
+Total Lines: 114
+Total Bytes: 6411
+Showing lines 1 to 114
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # EbiUI Hub: Interactive Mobile UI Emulator & Learning Portal
+2: 
+3: EbiUI is a modern, high-fidelity web-based Android 14 Custom ROM emulator. In this version, the phone emulator is wrapped in a premium modern web dashboard. The project now features a public review feed with star ratings and social media sharing integration, alongside a secure, dedicated student portal for accessing educational resources.
+4: 
+5: The application uses a **Flask** backend with **SQLAlchemy** (supporting both SQLite for local development and PostgreSQL for production deployments).
+6: 
+7: ---
+8: 
+9: ## Key Features
+10: 
+11: - 📱 **Realistic Device Chassis Mockup**: Physical-looking bezels, camera notch/punch-hole, side power/volume keys, speaker grille details, and responsive collapse.
+12: - 🌐 **Multi-Language Support (i18n)**: Toggle system languages dynamically between English (🇺🇸), Dutch (🇳🇱), German (🇩🇪), Spanish (🇪🇸), and French (🇫🇷).
+13: - 🎨 **Material You Dynamic Theming**: Shift the entire accent color system (buttons, headers, inputs) via Settings App.
+14: - 🌗 **Light / Dark Mode Selector**: Instantly switches theme configurations and display contrasts.
+15: - 🖼️ **Interactive Wallpaper Chooser**: Cycle through custom abstract backgrounds, including a premium default neon liquid wave gradient.
+16: - 💬 **Gemini AI Assistant**: A built-in terminal chat bot that handles interactive commands (`joke`, `wallpaper`, `dark`, `light`, etc.).
+17: - 📞 **Dialer / Phone App**: Operable number dial keypad emitting synthesized DTMF 
+<truncated 3323 bytes>
+equisites
+60: Make sure you have **Python 3.x** installed.
+61: 
+62: ### Installation & Run
+63: 1. Clone the repository:
+64:    ```bash
+65:    git clone https://github.com/Bolokaiemi/mobile-phone-userinterface.git
+66:    cd mobile-phone-userinterface
+67:    ```
+68: 2. Set up a virtual environment and activate it:
+69:    ```bash
+70:    python -m venv .venv
+71:    # Windows (CMD):
+72:    .venv\Scripts\activate.bat
+73:    # Windows (PowerShell):
+74:    .\.venv\Scripts\Activate.ps1
+75:    # macOS/Linux:
+76:    source .venv/bin/activate
+77:    ```
+78: 3. Install dependencies:
+79:    ```bash
+80:    pip install -r requirements.txt
+81:    ```
+82: 4. Run the Flask development server:
+83:    ```bash
+84:    python app.py
+85:    ```
+86: 5. Open your browser and navigate to **`http://localhost:8080`**.
+87: 
+88: ---
+89: 
+90: ## Project Structure
+91: 
+92: ```text
+93: mobile-phone-userinterface/
+94: ├── app.py              # Flask server with SQL models and REST API routes
+95: ├── app.js              # State management, emulator applications, and API fetch events
+96: ├── index.html          # Main HTML structure and dashboard wrapper layout
+97: ├── wallpaper_neon.png  # Neon liquid wallpaper asset
+98: ├── requirements.txt    # Python packages (Flask, Flask-SQLAlchemy, etc.)
+99: ├── README.md           # Project documentation
+100: ├── instance/
+101: │   └── ebiui.db        # Local SQLite database
+102: ├── static/
+103: │   └── styles.css      # Custom dashboard tokens, glassmorphism, responsive styles
+104: └── templates/
+105:     ├── index.html      # Synchronized template backup of index.html
+106:     ├── admin.html      # Admin Feedback & Student Dashboard console
+107:     └── mobilephone.html # Original static reference design file
+108: ```
+109: 
+110: ---
+111: 
+112: ## Author
+113: - **Bolokaiemi Ebi** - *Initial UI design & Android 14 EbiUI ROM emulation*
+114: 
+The above content shows the entire, complete file contents of the requested file.

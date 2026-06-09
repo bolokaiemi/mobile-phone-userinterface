@@ -1,0 +1,37 @@
+Created At: 2026-06-06T22:43:25Z
+Completed At: 2026-06-06T22:43:25Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 870
+Total Bytes: 59277
+Showing lines 692 to 720
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+692:                 <!-- If Logged In: Show Student Courses Dashboard -->
+693:                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
+694:                     <div class="student-profile-header">
+695:                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+696:                     </div>
+697:                     <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+698:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+699:                         <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+700:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+701:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+702:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet Teacher Direct</strong> box on any course to book a direct 1-on-1 session with Mr. Ebi.</li>
+703:                         </ul>
+704:                     </div>
+705:                 </div>
+706: 
+707:                 <!-- Available Courses (Publicly accessible) -->
+708:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+709:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+710:                     <ul class="course-list">
+711:                         <!-- Populated dynamically via JS -->
+712:                     </ul>
+713:                 </div>
+714:             </div>
+715: 
+716:             <!-- Emulator Tips Card (migrated layout) -->
+717:             <div class="dash-card tips-card">
+718:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+719:                 <ul class="tips-list">
+720:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

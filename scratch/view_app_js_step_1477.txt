@@ -1,0 +1,44 @@
+Created At: 2026-06-08T04:50:24Z
+Completed At: 2026-06-08T04:50:24Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74572
+Showing lines 700 to 735
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+700:             <!-- Unified Navigation Back Shortcut -->
+701:             <div class="dashboard-back-bar" style="margin-bottom: 20px; display: flex; justify-content: flex-start; width: 100%;">
+702:                 <button class="btn-secondary" id="dashboard-back-btn" style="padding: 10px 18px; font-size: 0.9rem; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; border: 1px solid var(--theme-border-glass); background: var(--theme-bg-glass); color: var(--text-primary); transition: all 0.3s ease;">
+703:                     <i class="fa-solid fa-arrow-left"></i> Back to Phone Emulator
+704:                 </button>
+705:             </div>
+706: 
+707:             <!-- Unified Feedback Feed & Review Card -->
+708:             <div class="dash-card comments-card">
+709:                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
+710:                 
+711:                 <!-- Live comments feed -->
+712:                 <div class="comments-list" id="comments-list-container">
+713:                     <div class="comments-loading">
+714:                         <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+715:                     </div>
+716:                 </div>
+717: 
+718:                 <!-- Public Review Input Area (No login required!) -->
+719:                 <div class="comment-input-wrapper" id="comment-input-wrapper">
+720:                     <div class="comment-input-group">
+721:                         <div class="review-meta-row">
+722:                             <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+723:                             <div class="star-rating" id="star-rating-selector">
+724:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+725:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+726:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+727:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+728:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+729:                             </div>
+730:                         </div>
+731:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+732:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+733:                     </div>
+734:                 </div>
+735: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

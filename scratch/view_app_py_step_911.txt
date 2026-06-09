@@ -1,0 +1,83 @@
+Created At: 2026-06-07T21:16:41Z
+Completed At: 2026-06-07T21:16:41Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 658
+Total Bytes: 27897
+Showing lines 1 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: from flask import Flask, send_from_directory, request, jsonify, session, make_response
+2: from flask_sqlalchemy import SQLAlchemy
+3: from werkzeug.security import generate_password_hash, check_password_hash
+4: import os
+5: from datetime import datetime
+6: from dotenv import load_dotenv
+7: # =========================================
+8: # LOAD ENV
+9: # =========================================
+10: load_dotenv()
+11: 
+12: OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+13: 
+14: 
+15: # Initialize Flask app, pointing the static files folder to the root directory
+16: # to match the native structure of your GitHub Pages deployment.
+17: app = Flask(__name__, static_folder='.', static_url_path='')
+18: app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'ebiui-secure-dev-key')
+19: 
+20: # Capture database configuration: SQLite for local dev, PostgreSQL for production on Render
+21: database_url = os.environ.get('DATABASE_URL', 'sqlite:///ebiui.db')
+22: if database_url.startswith("postgres://"):
+23:     database_url = database_url.replace("postgres://", "postgresql://", 1)
+24: 
+25: app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+26: app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+27: 
+28: # -------------------------------------------------------------
+29: # FLASK-MAIL CONFIGURATION
+30: # -------------------------------------------------------------
+31: from flask_mail import Mail, Message
+32: 
+33: app.config['MAIL_SERVER'] = os.environ.get('SMTP_SERVER', 'smtp.gmail.com')
+34: app.config['MAIL_PORT'] = int(os.environ.get('SMTP_PORT', 587))
+35: app.config['MAIL_U
+<truncated 9093 bytes>
+DENTS_MILESTONE:
+213:         return jsonify({
+214:             'error': f'Registration features are locked. Milestones not met: Reviews ({total_reviews}/{REVIEWS_MILESTONE}), Registered Students ({total_students}/{STUDENTS_MILESTONE}).'
+215:         }), 403
+216: 
+217:     data = request.get_json() or {}
+218:     username = data.get('username', '').strip()
+219:     email = data.get('email', '').strip()
+220:     full_name = data.get('full_name', '').strip()
+221:     password = data.get('password', '').strip()
+222:     
+223:     if not username or not password or not email or not full_name:
+224:         return jsonify({'error': 'All fields (Full Name, Email, Username, Password) are required.'}), 400
+225:         
+226:     if len(username) < 3 or len(password) < 4:
+227:         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
+228: 
+229:     # Ensure username is unique
+230:     existing_user = User.query.filter_by(username=username).first()
+231:     if existing_user:
+232:         return jsonify({'error': 'Username is already taken.'}), 400
+233:         
+234:     # Ensure email is unique
+235:     existing_email = User.query.filter_by(email=email).first()
+236:     if existing_email:
+237:         return jsonify({'error': 'Email address is already registered.'}), 400
+238:         
+239:     # Store hashed password to protect credentials
+240:     password_hash = generate_password_hash(password)
+241:     new_user = User(username=username, email=email, full_name=full_name, password_hash=password_hash)
+242:     db.session.add(new_user)
+243:     db.session.commit()
+244:     
+245:     # Auto-login session after registration
+246:     session['user_id'] = new_user.id
+247:     session['username'] = new_user.username
+248:     
+249:     # Send email notification alert
+250:     send_notification_email(
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

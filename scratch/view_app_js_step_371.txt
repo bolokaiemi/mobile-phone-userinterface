@@ -1,0 +1,39 @@
+Created At: 2026-06-06T22:59:52Z
+Completed At: 2026-06-06T22:59:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61485
+Showing lines 770 to 800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+770: 
+771:                 <div class="w3schools-link-box" id="course-w3schools-box">
+772:                     <div class="w3schools-link-header">
+773:                         <i class="fa-solid fa-book-open"></i> Self-Study Tutorial
+774:                     </div>
+775:                     <p class="w3schools-link-desc">
+776:                         Explore interactive lessons and exercises to learn at your own pace:
+777:                     </p>
+778:                     <a href="#" id="course-w3schools-link" target="_blank" class="w3schools-link-anchor">
+779:                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Open W3Schools Tutorial
+780:                     </a>
+781:                 </div>
+782: 
+783:                 <div class="school-promo-box">
+784:                     <div class="school-promo-header">
+785:                         <i class="fa-solid fa-circle-question" style="color: #f59e0b;"></i>
+786:                         <span>Need Help? Get Mentorship</span>
+787:                     </div>
+788:                     <p>Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+789:                 </div>
+790:             </div>
+791: 
+792:             <div class="course-modal-actions">
+793:                 <button class="btn-secondary" id="course-modal-close">Close</button>
+794:                 <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-chalkboard-user"></i> Enroll in Live School</button>
+795:                 <button class="btn-primary" id="course-modal-action-btn"><i class="fa-solid fa-file-pdf"></i> Access Materials</button>
+796:             </div>
+797:         </div>
+798:     </div>
+799: 
+800:     <!-- Direct Course Payment Modal -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

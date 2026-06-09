@@ -1,0 +1,44 @@
+Created At: 2026-06-07T00:39:12Z
+Completed At: 2026-06-07T00:39:12Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74396
+Showing lines 3375 to 3410
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3375:     font-size: 0.85rem;
+3376:     color: #64748b;
+3377:     margin: 0;
+3378: }
+3379: 
+3380: /* Responsive Footer styling */
+3381: @media (max-width: 900px) {
+3382:     .footer-container {
+3383:         grid-template-columns: 1fr 1fr;
+3384:         gap: 30px;
+3385:     }
+3386: }
+3387: 
+3388: @media (max-width: 600px) {
+3389:     .footer-container {
+3390:         grid-template-columns: 1fr;
+3391:         gap: 24px;
+3392:         padding: 0 20px;
+3393:     }
+3394:     .footer-bottom {
+3395:         padding: 20px 20px 0 20px;
+3396:     }
+3397: }
+3398: 
+3399: /* Top Navbar User Session Badge */
+3400: .nav-user-badge {
+3401:     animation: fadeIn 0.3s ease;
+3402: }
+3403: .nav-logout-btn:hover {
+3404:     color: #fca5a5 !important;
+3405:     transform: scale(1.1);
+3406: }
+3407: 
+3408: /* Zoom Lessons Dashboard styling */
+3409: .zoom-lesson-item {
+3410:     display: flex;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

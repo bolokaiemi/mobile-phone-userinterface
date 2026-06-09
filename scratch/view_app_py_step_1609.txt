@@ -1,0 +1,39 @@
+Created At: 2026-06-08T05:08:28Z
+Completed At: 2026-06-08T05:08:29Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3774
+Total Bytes: 81439
+Showing lines 3110 to 3140
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3110: /* RESPONSIVE DESIGN MEDIA QUERIES                              */
+3111: /* ------------------------------------------------------------- */
+3112: @media (max-width: 1000px) {
+3113:     body {
+3114:         padding-top: 85px !important;
+3115:         padding-left: 10px !important;
+3116:         padding-right: 10px !important;
+3117:     }
+3118:     
+3119:     .top-navbar {
+3120:         padding: 0 20px;
+3121:     }
+3122: 
+3123:     .hub-container {
+3124:         flex-direction: column;
+3125:         align-items: center;
+3126:         gap: 20px;
+3127:         padding: 0;
+3128:     }
+3129: 
+3130:     .phone-view-section, .dashboard-panel {
+3131:         display: none !important;
+3132:         width: 100% !important;
+3133:         max-width: 385px !important; /* Lock to phone chassis size on mobile tabs */
+3134:     }
+3135: 
+3136:     /* Reveal only the tab page currently selected in Javascript */
+3137:     .phone-view-section.active-tab-view, .dashboard-panel.active-tab-view {
+3138:         display: flex !important;
+3139:     }
+3140:     
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

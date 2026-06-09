@@ -1,0 +1,60 @@
+Created At: 2026-06-06T23:00:26Z
+Completed At: 2026-06-06T23:00:27Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2599
+Total Bytes: 120977
+Showing lines 2390 to 2450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2390:             });
+2391:         }
+2392: 
+2393:         // 2. Populate Available Courses in Dashboard
+2394:         if (courseListUl) {
+2395:             courseListUl.innerHTML = '';
+2396:             
+2397:             const bookedCourseNames = userBookingsList.map(b => b.course_name.trim().toLowerCase());
+2398:             
+2399:             coursesData.forEach(course => {
+2400:                 const li = document.createElement('li');
+2401:                 li.className = 'course-item-card';
+2402:                 
+2403:                 const isBooked = bookedCourseNames.includes(course.title.trim().toLowerCase()) || 
+2404:                                  bookedCourseNames.includes(`live mentorship (${course.title.trim().toLowerCase()})`) ||
+2405:                                  bookedCourseNames.includes('live mentorship (all courses)');
+2406:                                  
+2407:                 const checkboxHtml = isBooked 
+2408:                     ? `<input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}" checked disabled>`
+2409:                     : `<input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}">`;
+2410:                     
+2411:                 const spanHtml = isBooked
+2412:                     ? `<span class="live-upgrade-span" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Direct Session Active! ✔</span>`
+2413:                     : `<span class="live-upgrade-span"><i class="fa-solid fa-chalkboard-user"></i> Meet AB direct for a live section. This is wh
+<truncated 1046 bytes>
+tions" style="display: flex; gap: 8px; align-items: center;">
+2425:                             <a href="${course.w3_link || '#'}" target="_blank" class="course-w3-btn" style="text-decoration: none; background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); font-size: 0.78rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+2426:                                 <i class="fa-solid fa-book-open"></i> W3Schools
+2427:                             </a>
+2428:                             <button class="course-action-btn" data-id="${course.id}" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: inherit;">
+2429:                                 <i class="fa-solid fa-graduation-cap"></i> View Details
+2430:                             </button>
+2431:                         </div>
+2432:                     </div>
+2433:                     <div class="live-upgrade-wrapper">
+2434:                         <label class="live-upgrade-label">
+2435:                             ${checkboxHtml}
+2436:                             ${spanHtml}
+2437:                         </label>
+2438:                     </div>
+2439:                 `;
+2440: 
+2441:                 // Bind click to View button
+2442:                 const viewBtn = li.querySelector('.course-action-btn');
+2443:                 if (viewBtn) {
+2444:                     viewBtn.addEventListener('click', (e) => {
+2445:                         e.preventDefault();
+2446:                         openCourseModal(course, li.querySelector('.live-upgrade-checkbox'));
+2447:                     });
+2448:                 }
+2449: 
+2450:                 courseListUl.appendChild(li);
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,98 @@
+Created At: 2026-06-08T04:40:01Z
+Completed At: 2026-06-08T04:40:01Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3774
+Total Bytes: 81439
+Showing lines 61 to 150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+61: /* SMARTPHONE PHYSICAL CHASSIS                                   */
+62: /* ------------------------------------------------------------- */
+63: .phone-container {
+64:     position: relative;
+65:     width: 385px;
+66:     height: 800px;
+67:     background-color: #12151c;
+68:     border-radius: 48px;
+69:     border: 12px solid #1f2530;
+70:     box-shadow: 
+71:         0 25px 50px -12px rgba(0, 0, 0, 0.8),
+72:         inset 0 0 4px 3px rgba(255, 255, 255, 0.1),
+73:         0 0 0 1px rgba(255, 255, 255, 0.05);
+74:     display: flex;
+75:     flex-direction: column;
+76:     justify-content: center;
+77:     align-items: center;
+78:     z-index: 10;
+79:     transition: transform 0.3s ease;
+80: }
+81: 
+82: .phone-speaker {
+83:     position: absolute;
+84:     top: -6px;
+85:     width: 70px;
+86:     height: 4px;
+87:     background-color: #2c3340;
+88:     border-radius: 10px;
+89:     z-index: 20;
+90: }
+91: 
+92: /* Side Buttons */
+93: .phone-button {
+94:     position: absolute;
+95:     width: 3px;
+96:     background-color: #1f2530;
+97:     border-radius: 0 4px 4px 0;
+98: }
+99: .phone-button.power {
+100:     top: 180px;
+101:     right: -15px;
+102:     height: 55px;
+103: }
+104: .phone-button.volume-up {
+105:     top: 260px;
+106:     right: -15px;
+107:     height: 40px;
+108: }
+109: .phone-button.volume-down {
+110:     top: 310px;
+111:     right: -15px;
+112:     height: 40px;
+113: }
+114: 
+115: /* Phone Screen Wrapper */
+116: .phone-screen {
+117:     position: relative;
+118:     width: 100%;
+119:     height: 100%;
+120:     border-radius: 36px;
+121:     overflow: hidden;
+122:     display: flex;
+123:     flex-direction: column;
+124:     user-select: none;
+125:     box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+126:     background: #000;
+127: }
+128: 
+129: /* Wallpaper Background */
+130: .phone-wallpaper {
+131:     position: absolute;
+132:     top: 0;
+133:     left: 0;
+134:     right: 0;
+135:     bottom: 0;
+136:     background: var(--wp-grad2); /* Default */
+137:     z-index: 1;
+138:     transition: background 0.6s ease;
+139: }
+140: 
+141: /* Notch/Punch-hole Camera */
+142: .phone-notch {
+143:     position: absolute;
+144:     top: 10px;
+145:     left: 50%;
+146:     transform: translateX(-50%);
+147:     width: 35px;
+148:     height: 15px;
+149:     background-color: #000;
+150:     border-radius: 15px;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,74 @@
+Created At: 2026-06-08T05:08:47Z
+Completed At: 2026-06-08T05:08:48Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2952
+Total Bytes: 139252
+Showing lines 1560 to 1625
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1560:                 currentUser = null;
+1561:                 showAuthForms();
+1562:             }
+1563:         }
+1564:     }
+1565: 
+1566:     function showUserProfile(username) {
+1567:         if (profileUsernameText) profileUsernameText.textContent = username;
+1568:         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
+1569:         if (studentDashboard) studentDashboard.style.display = 'block';
+1570:         
+1571:         // Synchronize top navbar session badge
+1572:         if (navUserBadge) navUserBadge.style.display = 'flex';
+1573:         if (navUsernameBadge) navUsernameBadge.textContent = username;
+1574:         if (navUserAvatar) {
+1575:             navUserAvatar.textContent = username.charAt(0).toUpperCase();
+1576:         }
+1577: 
+1578:         loadCourses();
+1579:         loadBookings();
+1580:         loadMilestones();
+1581:         
+1582:         // Smooth scroll to the student dashboard/courses section
+1583:         setTimeout(() => {
+1584:             if (studentDashboard) {
+1585:                 studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+1586:             }
+1587:             executePendingAction();
+1588:         }, 150);
+1589:     }
+1590: 
+1591:     function executePendingAction() {
+1592:         if (!pendingAction) return;
+1593:         const action = pendingAction;
+1594:         pendingAction = null;
+1595: 
+1596:         if (action.type === 'view_course_materials') {
+1597:             openCourseModal(action.course);
+1598:             showNotification(`Accessing materials for: ${action.course.title}`);
+1599:             setTimeout(() => {
+1600:                 alert(`Accessing course materials for: ${action.course.title}`);
+1601:                 if (courseModal) courseModal.style.display = 'none';
+1602:             }, 600);
+1603:         }
+1604:     }
+1605: 
+1606:     function showAuthForms() {
+1607:         if (loginForm) loginForm.style.display = 'flex';
+1608:         if (registerForm) registerForm.style.display = 'none';
+1609:         if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+1610:         
+1611:         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
+1612:         if (studentDashboard) studentDashboard.style.display = 'none';
+1613: 
+1614:         // Hide top navbar session badge and Zoom lessons card
+1615:         if (navUserBadge) navUserBadge.style.display = 'none';
+1616:         if (zoomLessonsCard) zoomLessonsCard.style.display = 'none';
+1617:     }
+1618: 
+1619:     // -------------------------------------------------------------
+1620:     // PUBLIC REVIEW STAR RATING & SOCIAL SHARING LOGIC
+1621:     // -------------------------------------------------------------
+1622:     const starRatingSelector = document.getElementById('star-rating-selector');
+1623:     let currentRating = 5;
+1624: 
+1625:     if (starRatingSelector) {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

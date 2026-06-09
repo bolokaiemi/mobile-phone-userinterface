@@ -1,0 +1,34 @@
+Created At: 2026-06-06T23:00:44Z
+Completed At: 2026-06-06T23:00:44Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2586
+Total Bytes: 120382
+Showing lines 2370 to 2395
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2370:                     e.preventDefault();
+2371:                     // Close dropdown menu
+2372:                     navCoursesMenu.classList.remove('active');
+2373:                     switchTab('dashboard');
+2374:                     openCourseModal(course);
+2375:                 });
+2376:                 navCoursesMenu.appendChild(btn);
+2377:             });
+2378:         }
+2379: 
+2380:         // 2. Populate Available Courses in Dashboard
+2381:         if (courseListUl) {
+2382:             courseListUl.innerHTML = '';
+2383:             
+2384:             const bookedCourseNames = userBookingsList.map(b => b.course_name.trim().toLowerCase());
+2385:             
+2386:             coursesData.forEach(course => {
+2387:                 const li = document.createElement('li');
+2388:                 li.className = 'course-item-card';
+2389:                 
+2390:                 const isBooked = bookedCourseNames.includes(course.title.trim().toLowerCase()) || 
+2391:                                  bookedCourseNames.includes(`live mentorship (${course.title.trim().toLowerCase()})`) ||
+2392:                                  bookedCourseNames.includes('live mentorship (all courses)');
+2393:                                  
+2394:                 const checkboxHtml = isBooked 
+2395:                     ? `<input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}" checked disabled>`
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

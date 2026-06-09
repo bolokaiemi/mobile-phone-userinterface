@@ -1,0 +1,66 @@
+Created At: 2026-06-07T21:16:51Z
+Completed At: 2026-06-07T21:16:51Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/emulator.html`
+Total Lines: 942
+Total Bytes: 67593
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>Android 14 EbiUI - Interactive Mobile UI</title>
+7:     
+8:     <!-- Google Fonts for premium typography -->
+9:     <link rel="preconnect" href="https://fonts.googleapis.com">
+10:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+11:     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+12:     
+13:     <!-- Font Awesome 6.6.0 for modern icons -->
+14:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+15:     
+16:     <!-- App stylesheet -->
+17: 
+18: </head>  <link rel="stylesheet" href="static/styles.css?v=4.0">
+19: <body>
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+26:         <nav class="nav-links">
+27:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+28:   
+<truncated 3184 bytes>
+               <div class="status-left">
+73:                     <span id="status-time">16:35</span>
+74:                 </div>
+75:                 <div class="status-right">
+76:                     <!-- Globe language trigger button -->
+77:                     <i class="fa-solid fa-globe" id="status-lang-trigger" title="Change Language / Taal wijzigen / Sprache ändern"></i>
+78:                     <i class="fa-solid fa-wifi" id="status-wifi" title="Toggle Wifi"></i>
+79:                     <i class="fa-solid fa-signal" title="Signal Strength"></i>
+80:                     <div class="battery-container" id="status-battery-btn" title="Toggle Charging">
+81:                         <span id="battery-level">85%</span>
+82:                         <i class="fa-solid fa-battery-three-quarters" id="battery-icon"></i>
+83:                         <i class="fa-solid fa-bolt" id="battery-charging-icon" style="display: none;"></i>
+84:                     </div>
+85:                 </div>
+86:             </div>
+87: 
+88:             <!-- Language Dropdown Menu (Overlays on status bar trigger) -->
+89:             <div class="lang-dropdown" id="lang-dropdown">
+90:                 <button class="lang-option" data-lang="en">🇺🇸 English</button>
+91:                 <button class="lang-option" data-lang="nl">🇳🇱 Nederlands</button>
+92:                 <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+93:                 <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+94:                 <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+95:             </div>
+96: 
+97:             <!-- 2. MAIN APP LAUNCHER (HOME SCREEN) -->
+98:             <div class="screen-content" id="home-screen">
+99:                 
+100:                 <!-- TOP HEADER & TITLE -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

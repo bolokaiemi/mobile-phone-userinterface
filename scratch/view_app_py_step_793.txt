@@ -1,0 +1,51 @@
+Created At: 2026-06-07T00:50:25Z
+Completed At: 2026-06-07T00:50:25Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/walkthrough.md`
+Total Lines: 91
+Total Bytes: 7566
+Showing lines 50 to 91
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+50: - **Problem**: Clicking "Register here" or "Sign In" had no effect, and the URL hash would update to `#` without showing any forms.
+51: - **Cause**: A ReferenceError occurred on page load: `Cannot access 'activeAppId' before initialization`. This happened because `setLanguage(currentLanguage)` (line 399) was called before `activeAppId` (line 507) was declared using `let`. This crash halted all subsequent JavaScript execution, preventing event listeners for form toggles, submission, and validation from being attached.
+52: - **Solution**: Moved the declaration of `activeAppId` to the top block of the script (line 271) before `setLanguage` is called. This resolved the temporal dead zone ReferenceError, allowing the script to initialize successfully and activate the toggle event listeners.
+53: 
+54: ### 7. Added Master School Footer Section & Interactive Registration Navigation
+55: - **Problem**: The footer did not highlight the user's primary school ("Master School") nor did it provide a clear call-to-action button for new users to register.
+56: - **Solution**:
+57:   - Inserted a new dedicated **Master School** column in the footer of both [emulator.html](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/emulator.html) and [templates/index.html](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html), complete with a professional purple-to-indigo gradient **"Register Now"** action button.
+58:   - Adjusted the grid configuration in [styles.css](file:///c:/Users/Bolokaiemi/Pychar
+<truncated 157 bytes>
+i/PycharmProjects/mobileuserinterfaceProject6/app.js): clicking **"Register Now"** switches tabs to the Student Portal dashboard, displays the registration form (shifting from the login form view), smooth-scrolls to the form, and autofocusses the **Full Name** input field.
+60: 
+61: ---
+62: 
+63: ## Verification & Testing
+64: 
+65: All endpoints and database behaviors have been verified using the extended test script:
+66: ```powershell
+67: .venv\Scripts\python.exe scratch\verify.py
+68: ```
+69: 
+70: ### Test Results Output:
+71: ```text
+72: === Starting EbiUI Backend Verification ===
+73: [SUCCESS] Courses endpoint verified successfully.
+74: [SUCCESS] Admin stats endpoint verified successfully.
+75: [SUCCESS] Admin data endpoint verified successfully.
+76: [SUCCESS] Guest review posting verified successfully.
+77: [SUCCESS] Admin data feed inclusion verified successfully.
+78: [SUCCESS] Book lesson endpoint verified successfully.
+79: [SUCCESS] Bookings retrieval endpoint verified successfully.
+80: 
+81: === ALL BACKEND ENDPOINTS VERIFIED SUCCESSFULLY ===
+82: ```
+83: 
+84: ### Manual Verification Steps:
+85: 1. **Comment Posting**: Register a student, post a comment, and verify the comment ownership persists and maps to the correct user in the admin console.
+86: 2. **Zoom Lesson Checkout**: Click **Book for Lesson** on any course, fill in your details (name, email if guest, demo card number), and complete checkout. 
+87:    - For logged-in students: The "My Scheduled Zoom Lessons" card will appear instantly showing the new class and a valid Zoom join link.
+88:    - For guests: The course upgrade card locks with a green active badge showing that the session is active.
+89: 3. **SMTP Console Notification**: On lesson booking, verify that the console outputs:
+90:    `Notification email sent: [EbiUI Alert] New Lesson Booked: HTML5 Fundamentals`
+91: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

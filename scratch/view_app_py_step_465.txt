@@ -1,0 +1,49 @@
+Created At: 2026-06-06T23:18:01Z
+Completed At: 2026-06-06T23:18:01Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 660
+Total Bytes: 24122
+Showing lines 480 to 520
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+480: 
+481:             function getLocalUsers() {
+482:                 try {
+483:                     return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+484:                 } catch (e) {
+485:                     return [];
+486:                 }
+487:             }
+488: 
+489:             // Robust date parsing helper for cross-browser compatibility
+490:             function safeParseDate(dateStr) {
+491:                 if (!dateStr) return new Date(0);
+492:                 const str = String(dateStr);
+493:                 const isoStr = str.includes(' ') ? str.replace(' ', 'T') : str;
+494:                 const d = new Date(isoStr);
+495:                 return isNaN(d.getTime()) ? new Date(0) : d;
+496:             }
+497: 
+498:             // Fetch Stats and Table Data
+499:             loadDashboardData();
+500: 
+501:             async function loadDashboardData() {
+502:                 let serverStats = null;
+503:                 let serverData = null;
+504:                 
+505:                 try {
+506:                     // 1. Fetch Stats
+507:                     const statsResponse = await fetch(API_BASE + '/api/admin/stats');
+508:                     if (statsResponse.ok) {
+509:                         serverStats = await statsResponse.json();
+510:                     }
+511:                 } catch (error) {
+512:                     console.warn('Failed to fetch admin stats from server:', error);
+513:                 }
+514: 
+515:                 try {
+516:                     // 2. Fetch Review and Student Data
+517:                     const dataResponse = await fetch(API_BASE + '/api/admin/data');
+518:                     if (dataResponse.ok) {
+519:                         serverData = await dataResponse.json();
+520:                     }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

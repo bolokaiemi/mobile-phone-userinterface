@@ -1,0 +1,49 @@
+Created At: 2026-06-08T05:07:15Z
+Completed At: 2026-06-08T05:07:15Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1037
+Total Bytes: 74838
+Showing lines 860 to 900
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+860:                         <label for="dashboard-course-select" style="font-size: 0.8rem; color: var(--theme-text-muted); font-weight: 500; min-width: fit-content;"><i class="fa-solid fa-filter"></i> Choose Course:</label>
+861:                         <select id="dashboard-course-select">
+862:                             <!-- Dynamically populated options -->
+863:                         </select>
+864:                     </div>
+865: 
+866:                     <ul class="course-list">
+867:                         <!-- Populated dynamically via JS -->
+868:                     </ul>
+869:                 </div>
+870:             </div>
+871: 
+872:             <!-- Emulator Tips Card (migrated layout) -->
+873:             <div class="dash-card tips-card">
+874:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+875:                 <ul class="tips-list">
+876:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+877:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+878:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+879:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+880:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+881:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+882:                 </ul>
+883:                 <div class="tips-action-bar">
+884:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+885:                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
+886:                     </a>
+887:                 </div>
+888:             </div>
+889:         </section>
+890:     </main>
+891: </section>
+892: 
+893:     <!-- Course Access Modal -->
+894:     <div class="course-modal" id="course-modal" style="display: none;">
+895:         <div class="course-modal-card">
+896:             <div class="course-modal-header">
+897:                 <span class="course-modal-badge" id="course-modal-badge">HTML5</span>
+898:                 <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+899:             </div>
+900:             
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

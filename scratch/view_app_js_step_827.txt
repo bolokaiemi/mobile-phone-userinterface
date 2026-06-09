@@ -1,0 +1,30 @@
+Created At: 2026-06-07T20:38:46Z
+Completed At: 2026-06-07T20:38:46Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 600
+Total Bytes: 25471
+Showing lines 374 to 395
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+374: @app.route('/api/admin/stats', methods=['GET'])
+375: def admin_stats():
+376:     total_comments = Comment.query.count()
+377:     total_users = User.query.count()
+378:     
+379:     comments = Comment.query.all()
+380:     avg_rating = 0.0
+381:     if total_comments > 0:
+382:         avg_rating = sum(c.rating for c in comments) / total_comments
+383:         
+384:     # Get absolute path to the SQLite database
+385:     db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+386:     if db_uri.startswith('sqlite:///'):
+387:         db_path = os.path.abspath(os.path.join(app.instance_path, 'ebiui.db'))
+388:     else:
+389:         db_path = db_uri
+390:         
+391:     return jsonify({
+392:         'total_reviews': total_comments,
+393:         'total_students': total_users,
+394:         'average_rating': round(avg_rating, 2),
+395:         'db_path': db_path
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

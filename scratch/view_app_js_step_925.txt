@@ -1,0 +1,64 @@
+Created At: 2026-06-07T21:16:50Z
+Completed At: 2026-06-07T21:16:50Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1015
+Total Bytes: 76632
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>Android 14 EbiUI - Interactive Mobile UI</title>
+7:     
+8:     <!-- Google Fonts for premium typography -->
+9:     <link rel="preconnect" href="https://fonts.googleapis.com">
+10:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+11:     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+12:     
+13:     <!-- Font Awesome 6.6.0 for modern icons -->
+14:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+15:     
+16:     <!-- App stylesheet -->
+17:     <link rel="stylesheet" href="static/styles.css?v=4.0">
+18: </head>
+19: <body>
+20:     <!-- Floating Social Plugins Sidebar -->
+21:     <div class="floating-social-sidebar" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 9999;">
+22:         <a href="https://wa.me/2348031234567" target="_blank" title="WhatsApp Chat" style="width: 44px; height: 44px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(37,211,102,0.3)
+<truncated 4732 bytes>
+      <div class="phone-view-section active-tab-view" id="tab-view-home">
+69:             <div class="phone-container">
+70:         <!-- Physical hardware details -->
+71:         <div class="phone-speaker"></div>
+72:         <div class="phone-button power"></div>
+73:         <div class="phone-button volume-up"></div>
+74:         <div class="phone-button volume-down"></div>
+75: 
+76:         <!-- Phone screen display -->
+77:         <div class="phone-screen" id="phone-screen">
+78:             
+79:             <!-- Dynamic Wallpaper Background Overlay -->
+80:             <div class="phone-wallpaper" id="phone-wallpaper"></div>
+81:             
+82:             <!-- Camera Notch (Punch hole) -->
+83:             <div class="phone-notch"></div>
+84: 
+85:             <!-- 1. STATUS BAR -->
+86:             <div class="status-bar">
+87:                 <div class="status-left">
+88:                     <span id="status-time">16:35</span>
+89:                 </div>
+90:                 <div class="status-right">
+91:                     <!-- Globe language trigger button -->
+92:                     <i class="fa-solid fa-globe" id="status-lang-trigger" title="Change Language / Taal wijzigen / Sprache ändern"></i>
+93:                     <i class="fa-solid fa-wifi" id="status-wifi" title="Toggle Wifi"></i>
+94:                     <i class="fa-solid fa-signal" title="Signal Strength"></i>
+95:                     <div class="battery-container" id="status-battery-btn" title="Toggle Charging">
+96:                         <span id="battery-level">85%</span>
+97:                         <i class="fa-solid fa-battery-three-quarters" id="battery-icon"></i>
+98:                         <i class="fa-solid fa-bolt" id="battery-charging-icon" style="display: none;"></i>
+99:                     </div>
+100:                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

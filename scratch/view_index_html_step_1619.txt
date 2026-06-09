@@ -1,0 +1,44 @@
+Created At: 2026-06-08T05:08:40Z
+Completed At: 2026-06-08T05:08:40Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 754 to 818
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+754: 
+755:             <!-- Student & Learning Portal Card -->
+756:             <div class="dash-card student-card">
+757:                 <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
+758:                 
+759:                 <!-- If Logged Out: Show Student Login Forms -->
+760:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+761:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+762:                     
+763:                     <!-- Login Form -->
+764:                     <form class="auth-form active-form" id="login-form" style="flex-direction: column; gap: 12px; margin-top: 15px;">
+765:                         <div class="form-group">
+766:                             <input type="text" id="login-username" placeholder="Username / Student ID" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+767:                         </div>
+768:                         <div class="form-group">
+769:                             <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+770:                         </div>
+771:                         <button type="submit" class="btn-primary" style="width: 100%; p
+<truncated 3520 bytes>
+y links.</li>
+803:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+804:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet AB direct</strong> box on any course to book for a lesson (payment required before entry).</li>
+805:                         </ul>
+806:                     </div>
+807: 
+808:                     <!-- School Launch Milestones Tracker Card -->
+809:                     <div class="school-milestones-card" id="school-milestones-card" style="margin-top: 15px; background: rgba(168, 85, 247, 0.04); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 10px; padding: 14px;">
+810:                         <h4 class="student-section-title" style="color: #c084fc; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-flag-checkered"></i> School Kick-off Milestones</h4>
+811:                         <div class="milestones-progress-list" style="display: flex; flex-direction: column; gap: 12px;">
+812:                             
+813:                             <!-- Enrollment Progress -->
+814:                             <div class="milestone-progress-item">
+815:                                 <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+816:                                     <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-user-graduate"></i> Enrolled Students Goal</span>
+817:                                     <span style="color: #c084fc;" id="milestone-students-count">0 / 20</span>
+818:                                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

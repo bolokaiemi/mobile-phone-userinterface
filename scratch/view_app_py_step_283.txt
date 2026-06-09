@@ -1,0 +1,80 @@
+Created At: 2026-06-06T22:44:19Z
+Completed At: 2026-06-06T22:44:19Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 1 to 150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: /**
+2:  * Android 14 EbiUI - Interactive Emulator Application Logic
+3:  * Created by: Bolokaiemi Ebi
+4:  * Upgraded with Multi-Language Translation and Enhanced Home Navigation
+5:  */
+6: 
+7: document.addEventListener('DOMContentLoaded', () => {
+8:     // Dynamic API Base URL logic: relative in production/same-origin dev, local fallback otherwise
+9:     const isLocal = window.location.hostname === 'localhost' || 
+10:                     window.location.hostname === '127.0.0.1' || 
+11:                     window.location.protocol === 'file:';
+12:     const API_BASE = isLocal
+13:         ? (window.location.port === '8080' ? '' : 'http://127.0.0.1:8080')
+14:         : '';
+15: 
+16:     // Helper to conditionally inject credentials only on HTTP/HTTPS protocols (prevents browser block on file://)
+17:     function getFetchOptions(options = {}) {
+18:         if (window.location.protocol !== 'file:') {
+19:             options.credentials = 'include';
+20:         }
+21:         return options;
+22:     }
+23: 
+24:     // Dynamic Admin Console URL resolution
+25:     const navAdminLink = document.getElementById('nav-admin-link');
+26:     if (navAdminLink) {
+27:         navAdminLink.href = API_BASE ? API_BASE + '/admin' : '/admin';
+28:     }
+29: 
+30:     // Server connection status badge ping logic
+31:     const connectionStatusBadge = document.getElementById('connection-status-badge');
+32: 
+33:     async function checkServerConnection() {
+34:         try {
+35:             const response = await fetch(API_BASE + '/api/user', getFetchOptions());
+36:             if (response
+<truncated 4607 bytes>
+t", nl: "Microsoft", de: "Microsoft", es: "Microsoft", fr: "Microsoft" },
+117:         app_recorder: { en: "Recorder", nl: "Recorder", de: "Recorder", es: "Grabadora", fr: "Enregistreur" },
+118:         app_notes: { en: "Notes", nl: "Notities", de: "Notizen", es: "Notas", fr: "Notes" },
+119:         app_gboard: { en: "Gboard", nl: "Gboard", de: "Gboard", es: "Gboard", fr: "Gboard" },
+120:         app_ytmusic: { en: "YT Music", nl: "YT Music", de: "YT Music", es: "YT Music", fr: "YT Music" },
+121:         app_googletv: { en: "Google TV", nl: "Google TV", de: "Google TV", es: "Google TV", fr: "Google TV" },
+122:         app_gemini: { en: "Gemini AI", nl: "Gemini AI", de: "Gemini AI", es: "Gemini AI", fr: "Gemini AI" },
+123:         app_internet: { en: "Internet", nl: "Internet", de: "Internet", es: "Internet", fr: "Internet" },
+124:         app_files: { en: "Files", nl: "Bestanden", de: "Dateien", es: "Archivos", fr: "Fichiers" },
+125:         app_settings: { en: "Settings", nl: "Instellingen", de: "Einstellungen", es: "Ajustes", fr: "Paramètres" },
+126:         
+127:         // Navigation & Search placeholders
+128:         search_placeholder: {
+129:             en: "Search...",
+130:             nl: "Zoeken...",
+131:             de: "Suchen...",
+132:             es: "Buscar...",
+133:             fr: "Rechercher..."
+134:         },
+135:         nav_home_btn: {
+136:             en: "Home",
+137:             nl: "Start",
+138:             de: "Start",
+139:             es: "Inicio",
+140:             fr: "Accueil"
+141:         },
+142:         dialer_placeholder: {
+143:             en: "Dial number...",
+144:             nl: "Kies nummer...",
+145:             de: "Nummer wählen...",
+146:             es: "Marcar número...",
+147:             fr: "Composer..."
+148:         },
+149:         calling_status: {
+150:             en: "Calling...",
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

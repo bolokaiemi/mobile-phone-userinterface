@@ -1,0 +1,73 @@
+Created At: 2026-06-06T22:45:03Z
+Completed At: 2026-06-06T22:45:03Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2603
+Total Bytes: 121119
+Showing lines 2394 to 2465
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2394:     function renderCoursesUI() {
+2395:         // 1. Populate navbar dropdown
+2396:         if (navCoursesMenu) {
+2397:             navCoursesMenu.innerHTML = '';
+2398:             coursesData.forEach(course => {
+2399:                 const btn = document.createElement('button');
+2400:                 btn.className = 'dropdown-item';
+2401:                 btn.innerHTML = `<i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i> ${course.title}`;
+2402:                 btn.addEventListener('click', (e) => {
+2403:                     e.preventDefault();
+2404:                     // Close dropdown menu
+2405:                     navCoursesMenu.classList.remove('active');
+2406:                     switchTab('dashboard');
+2407:                     openCourseModal(course);
+2408:                 });
+2409:                 navCoursesMenu.appendChild(btn);
+2410:             });
+2411:         }
+2412: 
+2413:         // 2. Populate Available Courses in Dashboard
+2414:         if (courseListUl) {
+2415:             courseListUl.innerHTML = '';
+2416:             coursesData.forEach(course => {
+2417:                 const li = document.createElement('li');
+2418:                 li.className = 'course-item-card';
+2419:                 li.innerHTML = `
+2420:                     <div class="course-main-row">
+2421:                         <div class="course-icon"><i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i></div>
+2422:                         <div class="course-info">
+2423:    
+<truncated 1435 bytes>
+ily: inherit;">
+2433:                                 <i class="fa-solid fa-graduation-cap"></i> View Details
+2434:                             </button>
+2435:                         </div>
+2436:                     </div>
+2437:                     <div class="live-upgrade-wrapper">
+2438:                         <label class="live-upgrade-label">
+2439:                             <input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}">
+2440:                             <span class="live-upgrade-span"><i class="fa-solid fa-chalkboard-user"></i> Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</span>
+2441:                         </label>
+2442:                     </div>
+2443:                 `;
+2444: 
+2445:                 // Bind click to View button
+2446:                 const viewBtn = li.querySelector('.course-action-btn');
+2447:                 if (viewBtn) {
+2448:                     viewBtn.addEventListener('click', (e) => {
+2449:                         e.preventDefault();
+2450:                         openCourseModal(course, li.querySelector('.live-upgrade-checkbox'));
+2451:                     });
+2452:                 }
+2453: 
+2454:                 courseListUl.appendChild(li);
+2455:             });
+2456:         }
+2457:     }
+2458: 
+2459:     function openCourseModal(course, correspondingCheckbox = null) {
+2460:         currentSelectedCourseCheckbox = correspondingCheckbox;
+2461:         if (!correspondingCheckbox) {
+2462:             // Find it in the dashboard if not passed directly (e.g. if opened from navbar)
+2463:             if (courseListUl) {
+2464:                 const cb = courseListUl.querySelector(`.live-upgrade-checkbox[data-course="${course.title}"]`);
+2465:                 currentSelectedCourseCheckbox = cb;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

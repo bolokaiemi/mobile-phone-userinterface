@@ -1,0 +1,44 @@
+Created At: 2026-06-08T04:36:52Z
+Completed At: 2026-06-08T04:36:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3735
+Total Bytes: 80489
+Showing lines 3700 to 3735
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3700:     background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+3701:     -webkit-background-clip: text;
+3702:     -webkit-text-fill-color: transparent;
+3703: }
+3704: 
+3705: .light-theme .btn-hero-secondary {
+3706:     background: rgba(0, 0, 0, 0.03);
+3707:     color: #1e293b;
+3708:     border-color: rgba(0, 0, 0, 0.1);
+3709: }
+3710: 
+3711: .light-theme .btn-hero-secondary:hover {
+3712:     background: rgba(0, 0, 0, 0.06);
+3713:     border-color: rgba(0, 0, 0, 0.2);
+3714: }
+3715: 
+3716: .light-theme .section-title {
+3717:     background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+3718:     -webkit-background-clip: text;
+3719:     -webkit-text-fill-color: transparent;
+3720: }
+3721: 
+3722: /* Responsive adjustments */
+3723: @media (max-width: 768px) {
+3724:     .hero-title {
+3725:         font-size: 2.35rem;
+3726:     }
+3727:     .hero-subtitle {
+3728:         font-size: 1rem;
+3729:     }
+3730:     .hero-stats {
+3731:         grid-template-columns: 1fr;
+3732:         gap: 20px;
+3733:     }
+3734: }
+3735: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,39 @@
+Created At: 2026-06-06T23:24:05Z
+Completed At: 2026-06-06T23:24:05Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61475
+Showing lines 675 to 705
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+675:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+676:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+677:                     
+678:                     <!-- Login Form -->
+679:                     <form class="auth-form active-form" id="login-form">
+680:                         <div class="form-row">
+681:                             <input type="text" id="login-username" placeholder="Username" required autocomplete="username">
+682:                             <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+683:                             <button type="submit" class="btn-primary">Sign In</button>
+684:                         </div>
+685:                         <p class="auth-helper-text">New student? <a href="#" id="link-to-register">Register here</a></p>
+686:                     </form>
+687:                     
+688:                     <!-- Register Form -->
+689:                     <form class="auth-form" id="register-form" style="display: none;">
+690:                         <div class="form-row">
+691:                             <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username">
+692:                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
+693:                             <button type="submit" class="btn-primary">Register</button>
+694:                         </div>
+695:                         <p class="auth-helper-text">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
+696:                     </form>
+697:                 </div>
+698: 
+699:                 <!-- If Logged In: Show Student Courses Dashboard -->
+700:                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
+701:                     <div class="student-profile-header">
+702:                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+703:                     </div>
+704:                     <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+705:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

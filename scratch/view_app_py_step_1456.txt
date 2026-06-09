@@ -1,0 +1,40 @@
+Created At: 2026-06-08T04:48:35Z
+Completed At: 2026-06-08T04:48:35Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/README.md`
+Total Lines: 123
+Total Bytes: 6978
+Showing lines 10 to 45
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+10: 
+11: - 📱 **Realistic Device Chassis Mockup**: Physical-looking bezels, camera notch/punch-hole, side power/volume keys, speaker grille details, and responsive collapse.
+12: - 🌐 **Multi-Language Support (i18n)**: Toggle system languages dynamically between English (🇺🇸), Dutch (🇳🇱), German (🇩🇪), Spanish (🇪🇸), and French (🇫🇷).
+13: - 🎨 **Material You Dynamic Theming**: Shift the entire accent color system (buttons, headers, inputs) via the Settings App.
+14: - 🌗 **Light / Dark Mode Selector**: Instantly switches theme configurations and display contrasts.
+15: - 🖼️ **Interactive Wallpaper Chooser**: Cycle through custom abstract backgrounds, including a premium default neon liquid wave gradient.
+16: - 💬 **Gemini AI Assistant**: A built-in terminal chat bot that handles interactive commands (`joke`, `wallpaper`, `dark`, `light`, etc.).
+17: - 📞 **Dialer / Phone App**: Operable number dial keypad emitting synthesized DTMF beep tones (Web Audio API) and call connect overlays.
+18: - 💬 **WhatsApp Simulation**: Select Mr. Boss, Mom, or Gemini AI Bot from the chat log and interact using automated message delays and response scripts.
+19: - 📷 **Camera Viewfinder Filter Mode**: Toggle visual styles (grayscale, retro sepia, rose tint) with simulated photo capture screen flashes.
+20: - 🛒 **Web Preview Mode**: Simulates app launcher grids leading to official Google Play Store, PayPal, TikTok, and Chrome previews.
+21: - 📢 **Modern Landing Page Layout**: Standard visual upgrades featuring a premium **Hero Banner*
+<truncated 634 bytes>
+list **automatically refreshes (polls) every 10 seconds** in the background, skipping reload if the user is currently typing to prevent input loss.
+28:   - **Inline Feedback Editing & Deletion**: Users and guests can edit their comments inline (changing their text/rating) or delete reviews directly to fix typos. Ownership is tracked via secure session cookies, client-side username fallbacks, and localized localStorage tokens.
+29: - 🏁 **School Kick-off Milestones Widget**:
+30:   - Displays visual progress bars tracking two key launching milestones in the student dashboard:
+31:     1. **Student Enrollment**: Target of **20 students** (Current: `X / 20`).
+32:     2. **Positive Feedback**: Target of **50,000 comments** (Current: `Z / 50,000`, simulating a `49,995` baseline reviews offset so that database seeds satisfy the goal).
+33:   - Displays a dynamic status indicator showing launch readiness: amber warning for pending, green success badge for launch-approved.
+34: - 🔒 **Milestone-Locked Student Registration**:
+35:   - Enforces database-backed safety controls: student registration is locked on the backend until milestones of **5 reviews** and **3 students** are met.
+36:   - **Auto-Seeding Startup**: Seeds 5 student reviews and 3 students on server startup if the database is empty, keeping the system unlocked and ready out-of-the-box.
+37: - 🎓 **Student Dashboard & Dynamic Navbar Dropdown**:
+38:   - Secure login/logout syncs user initials avatar badges dynamically across the header.
+39:   - Clicking courses dynamically opens educational modal portals once logged in.
+40: - 📹 **Zoom Premium Live Tutoring & Console Alerts**:
+41:   - Payment gateway booking form links directly to Zoom.
+42:   - Generates secure Zoom meeting links and prints automated notification emails directly to the Flask server terminal.
+43: 
+44: ---
+45: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

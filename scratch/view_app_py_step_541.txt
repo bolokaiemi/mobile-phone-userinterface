@@ -1,0 +1,24 @@
+Created At: 2026-06-06T23:24:19Z
+Completed At: 2026-06-06T23:24:19Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 530
+Total Bytes: 21264
+Showing lines 85 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+85: # -------------------------------------------------------------
+86: # DATABASE MODELS
+87: # -------------------------------------------------------------
+88: class User(db.Model):
+89:     id = db.Column(db.Integer, primary_key=True)
+90:     username = db.Column(db.String(80), unique=True, nullable=False)
+91:     password_hash = db.Column(db.String(255), nullable=False)
+92:     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+93: 
+94: class Comment(db.Model):
+95:     id = db.Column(db.Integer, primary_key=True)
+96:     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # Optional for anonymous reviews
+97:     guest_name = db.Column(db.String(80), nullable=True) # For guest users
+98:     rating = db.Column(db.Integer, default=5, nullable=False) # Star rating (1-5)
+99:     text = db.Column(db.String(500), nullable=False)
+100:     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

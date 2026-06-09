@@ -1,0 +1,52 @@
+Created At: 2026-06-06T22:17:48Z
+Completed At: 2026-06-06T22:17:48Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 68 to 867
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+68:                 <div class="status-right">
+69:                     <!-- Globe language trigger button -->
+70:                     <i class="fa-solid fa-globe" id="status-lang-trigger" title="Change Language / Taal wijzigen / Sprache ändern"></i>
+71:                     <i class="fa-solid fa-wifi" id="status-wifi" title="Toggle Wifi"></i>
+72:                     <i class="fa-solid fa-signal" title="Signal Strength"></i>
+73:                     <div class="battery-container" id="status-battery-btn" title="Toggle Charging">
+74:                         <span id="battery-level">85%</span>
+75:                         <i class="fa-solid fa-battery-three-quarters" id="battery-icon"></i>
+76:                         <i class="fa-solid fa-bolt" id="battery-charging-icon" style="display: none;"></i>
+77:                     </div>
+78:                 </div>
+79:             </div>
+80: 
+81:             <!-- Language Dropdown Menu (Overlays on status bar trigger) -->
+82:             <div class="lang-dropdown" id="lang-dropdown">
+83:                 <button class="lang-option" data-lang="en">🇺🇸 English</button>
+84:                 <button class="lang-option" data-lang="nl">🇳🇱 Nederlands</button>
+85:                 <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+86:                 <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+87:                 <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+88:             </div>
+89: 
+90:             <!-- 2. MAIN APP LAUN
+<truncated 45283 bytes>
+oose Username" required autocomplete="username">
+685:                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
+686:                             <button type="submit" class="btn-primary">Register</button>
+687:                         </div>
+688:                         <p class="auth-helper-text">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
+689:                     </form>
+690:                 </div>
+691: 
+692:                 <!-- If Logged In: Show Student Courses Dashboard -->
+693:                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
+694:                     <div class="student-profile-header">
+695:                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+696:                     </div>
+697:                     <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+698:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+699:                         <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+700:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+701:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, sli
+<truncated 10915 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

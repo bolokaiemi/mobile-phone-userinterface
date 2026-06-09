@@ -1,0 +1,69 @@
+Created At: 2026-06-08T04:30:40Z
+Completed At: 2026-06-08T04:30:40Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 666
+Total Bytes: 28269
+Showing lines 510 to 570
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+510: 
+511: COURSES = [
+512:     {
+513:         'id': 'html5',
+514:         'badge': 'HTML5',
+515:         'title': 'HTML5 Fundamentals',
+516:         'desc': 'Master the foundations of the web: semantic structure, document hierarchy, web forms, layouts, and embedded media assets.',
+517:         'topics': 'Semantic HTML5 layouts,Form elements & inputs validation,Media elements (Audio/Video),HTML5 API integration',
+518:         'action_text': 'Download Syllabus PDF',
+519:         'icon_class': 'fa-file-pdf',
+520:         'brand_icon': 'fa-html5',
+521:         'brand_color': '#e34c26',
+522:         'meta': 'Study Guide & Syllabus (PDF)',
+523:         'w3_link': 'https://www.w3schools.com/html/'
+524:     },
+525:     {
+526:         'id': 'css3',
+527:         'badge': 'CSS3',
+528:         'title': 'CSS3 Layouts & Styling',
+529:         'desc': 'Design modern, responsive user interfaces using Flexbox, CSS Grid, custom keyframe transitions, variables, and glassmorphism styling.',
+530:         'topics': 'Flexbox & Grid layouts,CSS Custom Variables (Theming),Animations & Keyframes,Glassmorphic styling systems',
+531:         'action_text': 'Play Lecture Video',
+532:         'icon_class': 'fa-video',
+533:         'brand_icon': 'fa-css3-alt',
+534:         'brand_color': '#264de4',
+535:         'meta': 'Video Lecture & Sandbox Practice',
+536:         'w3_link': 'https://www.w3schools.com/css/'
+537:     },
+538:     {
+539:         'id': 'js',
+540:         'badge': 'JavaScript',
+541:         'title': 'JavaScript Programming',
+542:         'desc': 'Learn modern scripting with ES6+ syntax: control statements, document object model (DOM) manipulation, event handling, and API fetch transactions.',
+543:         'topics': 'ES6+ Syntax & Scope,DOM Manipulation & Event Handlers,Asynchronous Fetch API & JSON,State Management',
+544:         'action_text': 'Launch Sandbox',
+545:         'icon_class': 'fa-code',
+546:         'brand_icon': 'fa-js',
+547:         'brand_color': '#f7df1e',
+548:         'meta': 'Interactive Exercises & Sandbox',
+549:         'w3_link': 'https://www.w3schools.com/js/'
+550:     },
+551:     {
+552:         'id': 'python',
+553:         'badge': 'Python',
+554:         'title': 'Python & Flask Development',
+555:         'desc': 'Build powerful backend web applications and REST APIs using Python, object-oriented concepts, Flask routing, templates, and server deployment.',
+556:         'topics': 'Python OOP & syntax,Flask routing & templates,JSON API development,Middleware & application state',
+557:         'action_text': 'Download Source Code',
+558:         'icon_class': 'fa-file-zipper',
+559:         'brand_icon': 'fa-python',
+560:         'brand_color': '#3776ab',
+561:         'meta': 'Source Code & Backend Guide',
+562:         'w3_link': 'https://www.w3schools.com/python/'
+563:     },
+564:     {
+565:         'id': 'sql',
+566:         'badge': 'SQL & DB',
+567:         'title': 'SQL & SQLite Database',
+568:         'desc': 'Design relational database schemas, write optimized SQL queries, manage tables, and implement CRUD transactions using SQLite.',
+569:         'topics': 'Relational DB concepts,SQL queries & joins,CRUD transactions,SQLite & SQLAlchemy integration',
+570:         'action_text': 'Launch SQLite Console',
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

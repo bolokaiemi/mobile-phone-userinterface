@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+     <!-- Favicon -->
+
+    <link rel="stylesheet" href="static/styles.css?v=4.0">
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -486,6 +489,15 @@
                 }
             }
 
+            // Robust date parsing helper for cross-browser compatibility
+            function safeParseDate(dateStr) {
+                if (!dateStr) return new Date(0);
+                const str = String(dateStr);
+                const isoStr = str.includes(' ') ? str.replace(' ', 'T') : str;
+                const d = new Date(isoStr);
+                return isNaN(d.getTime()) ? new Date(0) : d;
+            }
+
             // Fetch Stats and Table Data
             loadDashboardData();
 
@@ -519,14 +531,18 @@
                 
                 if (serverData && serverData.comments) {
                     serverData.comments.forEach(sc => {
-                        if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
+                        if (sc && !allComments.some(lc => lc && (lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username)))) {
                             allComments.push(sc);
                         }
                     });
                 }
                 
-                // Sort comments by created_at desc
-                allComments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                // Sort comments by created_at desc safely
+                allComments.sort((a, b) => {
+                    const dateA = a ? a.created_at : null;
+                    const dateB = b ? b.created_at : null;
+                    return safeParseDate(dateB) - safeParseDate(dateA);
+                });
 
                 // Merge local users (registered students fallback)
                 const localUsers = getLocalUsers();
@@ -584,7 +600,9 @@
 
                 tbody.innerHTML = '';
                 comments.forEach(c => {
-                    const stars = '★'.repeat(c.rating) + '☆'.repeat(5 - c.rating);
+                    let r = parseInt(c.rating);
+                    if (isNaN(r) || r < 1 || r > 5) r = 5;
+                    const stars = '★'.repeat(r) + '☆'.repeat(5 - r);
                     const row = document.createElement('tr');
                     
                     row.innerHTML = `
@@ -612,7 +630,7 @@
 
                 container.innerHTML = '';
                 users.forEach(u => {
-                    const initial = u.username.charAt(0).toUpperCase();
+                    const initial = (u.full_name || u.username).charAt(0).toUpperCase();
                     const li = document.createElement('li');
                     li.className = 'student-item';
                     
@@ -620,7 +638,8 @@
                         <div class="student-info">
                             <div class="student-avatar">${initial}</div>
                             <div class="student-details">
-                                <div class="name">${escapeHtml(u.username)}</div>
+                                <div class="name" style="font-weight: 600; color: var(--text-light);">${escapeHtml(u.full_name || u.username)}</div>
+                                <div style="font-size: 0.72rem; color: var(--text-secondary); margin: 2px 0;">ID: ${escapeHtml(u.username)} | ${escapeHtml(u.email)}</div>
                                 <div class="date">Joined: ${u.created_at}</div>
                             </div>
                         </div>
@@ -631,6 +650,8 @@
             }
 
             function escapeHtml(text) {
+                if (text === null || text === undefined) return '';
+                const str = String(text);
                 const map = {
                     '&': '&amp;',
                     '<': '&lt;',
@@ -638,7 +659,7 @@
                     '"': '&quot;',
                     "'": '&#039;'
                 };
-                return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+                return str.replace(/[&<>"']/g, function(m) { return map[m]; });
             }
         });
     </script>

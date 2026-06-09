@@ -1,0 +1,60 @@
+Created At: 2026-06-07T21:33:19Z
+Completed At: 2026-06-07T21:33:19Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1015
+Total Bytes: 76636
+Showing lines 600 to 650
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+600:                                 <div class="wallpaper-thumb wp-grad1" data-wp="grad1"></div>
+601:                                 <div class="wallpaper-thumb wp-grad2" data-wp="grad2"></div>
+602:                                 <div class="wallpaper-thumb wp-grad3" data-wp="grad3"></div>
+603:                                 <div class="wallpaper-thumb wp-grad4" data-wp="grad4"></div>
+604:                             </div>
+605:                         </div>
+606: 
+607:                         <div class="settings-section">
+608:                             <h3 data-translate="settings_sec_about"><i class="fa-solid fa-circle-info"></i> About EbiUI</h3>
+609:                             <div class="settings-about-box">
+610:                                 <p><strong data-translate="about_model">Model:</strong> <span>Ebi Phone Pro Max</span></p>
+611:                                 <p><strong data-translate="about_version">OS Version:</strong> <span>Android 14 (EbiUI v1.0.0)</span></p>
+612:                                 <p><strong data-translate="about_developer">Developer:</strong> <span>Bolokaiemi Ebi</span></p>
+613:                                 <p><strong data-translate="about_build">Build:</strong> <span data-translate="about_build_val">Stable Core OS</span></p>
+614:                             </div>
+615:                         </div>
+616:                     </div>
+617: 
+618:                 </div>
+619:             </div>
+620: 
+621:             <!-- 4. PHYSICAL ANDROID NAVIGATION BAR -->
+622:             <div class="navi
+<truncated 60 bytes>
+d="nav-back" title="Back"><i class="fa-solid fa-play fa-rotate-180"></i></button>
+624:                 <button class="nav-btn" id="nav-home" title="Home"><i class="fa-regular fa-circle"></i></button>
+625:                 <button class="nav-btn" id="nav-recents" title="Recents"><i class="fa-solid fa-stop"></i></button>
+626:             </div>
+627: 
+628:         </div>
+629:             </div>
+630:         </div>
+631: 
+632:         <!-- Comments & Auth Dashboard Section -->
+633:         <section class="dashboard-panel" id="tab-view-dashboard">
+634:             <!-- Unified Navigation Back Shortcut -->
+635:             <div class="dashboard-back-bar" style="margin-bottom: 20px; display: flex; justify-content: flex-start; width: 100%;">
+636:                 <button class="btn-secondary" id="dashboard-back-btn" style="padding: 10px 18px; font-size: 0.9rem; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; border: 1px solid var(--theme-border-glass); background: var(--theme-bg-glass); color: var(--text-primary); transition: all 0.3s ease;">
+637:                     <i class="fa-solid fa-arrow-left"></i> Back to Phone Emulator
+638:                 </button>
+639:             </div>
+640: 
+641:             <!-- Unified Feedback Feed & Review Card -->
+642:             <div class="dash-card comments-card">
+643:                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
+644:                 
+645:                 <!-- Live comments feed -->
+646:                 <div class="comments-list" id="comments-list-container">
+647:                     <div class="comments-loading">
+648:                         <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+649:                     </div>
+650:                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

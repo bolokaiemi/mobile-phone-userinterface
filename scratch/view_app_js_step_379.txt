@@ -1,0 +1,29 @@
+Created At: 2026-06-06T23:00:02Z
+Completed At: 2026-06-06T23:00:02Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3414
+Total Bytes: 73348
+Showing lines 2620 to 2640
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2620: .live-upgrade-checkbox {
+2621:     cursor: pointer;
+2622:     accent-color: var(--theme-primary-light);
+2623: }
+2624: 
+2625: .student-section-title {
+2626:     font-size: 0.85rem;
+2627:     font-weight: 600;
+2628:     color: var(--theme-text-light);
+2629:     margin-bottom: 10px;
+2630:     display: flex;
+2631:     align-items: center;
+2632:     gap: 6px;
+2633: }
+2634: 
+2635: /* Payment Modal Dialog */
+2636: .payment-modal {
+2637:     position: fixed;
+2638:     top: 0;
+2639:     left: 0;
+2640:     width: 100%;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

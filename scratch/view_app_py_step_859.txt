@@ -1,0 +1,35 @@
+Created At: 2026-06-07T20:39:28Z
+Completed At: 2026-06-07T20:39:28Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 2590 to 2616
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2590:     // Bind Dashboard Back Button
+2591:     const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+2592:     if (dashboardBackBtn) {
+2593:         dashboardBackBtn.addEventListener('click', () => {
+2594:             switchTab('home');
+2595:         });
+2596:     }
+2597: 
+2598: 
+2599: 
+2600:     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+2601:     const allLinks = document.querySelectorAll('a');
+2602:     allLinks.forEach(link => {
+2603:         const href = link.getAttribute('href');
+2604:         if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+2605:             link.setAttribute('target', '_blank');
+2606:             link.setAttribute('rel', 'noopener noreferrer');
+2607:         }
+2608:     });
+2609: 
+2610:     // Trigger Initial Checks
+2611:     checkAuthStatus();
+2612:     loadCourses(); // Render courses for both guest and student views
+2613:     loadComments();
+2614: });
+2615: 
+2616: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

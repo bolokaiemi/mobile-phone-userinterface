@@ -1,0 +1,87 @@
+Created At: 2026-06-07T00:15:47Z
+Completed At: 2026-06-07T00:15:47Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/scratch/verify.py`
+Total Lines: 111
+Total Bytes: 5028
+Showing lines 1 to 111
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: import urllib.request
+2: import json
+3: 
+4: def test_endpoint(url, method='GET', data=None, headers=None):
+5:     if headers is None:
+6:         headers = {}
+7:     
+8:     req_data = None
+9:     if data:
+10:         req_data = json.dumps(data).encode('utf-8')
+11:         headers['Content-Type'] = 'application/json'
+12:         
+13:     req = urllib.request.Request(url, data=req_data, headers=headers, method=method)
+14:     
+15:     try:
+16:         with urllib.request.urlopen(req) as response:
+17:             status = response.status
+18:             body = response.read().decode('utf-8')
+19:             return status, json.loads(body) if body else {}
+20:     except urllib.error.HTTPError as e:
+21:         body = e.read().decode('utf-8')
+22:         return e.code, json.loads(body) if body else {}
+23:     except Exception as e:
+24:         return 500, {'error': str(e)}
+25: 
+26: def verify_all():
+27:     print("=== Starting EbiUI Backend Verification ===")
+28:     
+29:     # 1. Test Courses Endpoint
+30:     status, res = test_endpoint('http://localhost:8080/api/courses')
+31:     assert status == 200, f"Expected 200, got {status}"
+32:     assert 'courses' in res, "Expected 'courses' key in response"
+33:     assert len(res['courses']) == 5, f"Expected 5 courses, got {len(res['courses'])}"
+34:     for course in res['courses']:
+35:         assert 'w3_link' in course, f"Course {course.get('id')} is missing w3_link"
+36:         assert course['w3_link'].startswith('https://www.w3schools.com/'), f"Invalid w3_link: {course['w3_link']}"
+37:     print("[SUCCESS
+<truncated 1933 bytes>
+at" in latest_comment
+72:     print("[SUCCESS] Admin data feed inclusion verified successfully.")
+73: 
+74:     # 6. Test Book Lesson Endpoint
+75:     test_booking = {
+76:         "billing_name": "Test Student Billing",
+77:         "course_name": "HTML5 Fundamentals",
+78:         "guest_email": "student@example.com",
+79:         "username": "test_verification_student_123"
+80:     }
+81:     # Register the user first to link user_id successfully
+82:     test_user = {
+83:         "username": "test_verification_student_123",
+84:         "full_name": "Test Verification Student",
+85:         "email": "test_verification_student@example.com",
+86:         "password": "securepassword123"
+87:     }
+88:     test_endpoint('http://localhost:8080/api/register', method='POST', data=test_user)
+89: 
+90:     status, res = test_endpoint('http://localhost:8080/api/book-lesson', method='POST', data=test_booking)
+91:     assert status == 201, f"Expected 201, got {status}: {res}"
+92:     assert 'booking' in res, "Expected 'booking' key in response"
+93:     assert res['booking']['billing_name'] == "Test Student Billing"
+94:     assert res['booking']['course_name'] == "HTML5 Fundamentals"
+95:     assert 'zoom_link' in res['booking']
+96:     assert res['booking']['zoom_link'].startswith('https://zoom.us/j/')
+97:     print("[SUCCESS] Book lesson endpoint verified successfully.")
+98: 
+99:     # 7. Test Bookings GET Endpoint
+100:     status, res = test_endpoint('http://localhost:8080/api/bookings?username=test_verification_student_123')
+101:     assert status == 200, f"Expected 200, got {status}"
+102:     assert 'bookings' in res
+103:     assert len(res['bookings']) >= 1
+104:     assert res['bookings'][0]['course_name'] == "HTML5 Fundamentals"
+105:     print("[SUCCESS] Bookings retrieval endpoint verified successfully.")
+106: 
+107:     print("\n=== ALL BACKEND ENDPOINTS VERIFIED SUCCESSFULLY ===")
+108: 
+109: if __name__ == '__main__':
+110:     verify_all()
+111: 
+The above content shows the entire, complete file contents of the requested file.

@@ -1,0 +1,45 @@
+Created At: 2026-06-08T05:08:35Z
+Completed At: 2026-06-08T05:08:35Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 730 to 765
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+730:                         </a>
+731:                         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbolokaiemi.github.io%2Fmobile-phone-userinterface%2F" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; font-size: 0.75rem; border-radius: 8px; background-color: #1877f2; color: white; font-weight: 600; text-decoration: none; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+732:                             <i class="fa-brands fa-facebook-f"></i> Facebook
+733:                         </a>
+734:                         <a href="https://twitter.com/intent/tweet?text=Check%20out%20EbiUI%20Launcher%20Hub%20and%20Web%20Academy!%20&url=https%3A%2F%2Fbolokaiemi.github.io%2Fmobile-phone-userinterface%2F" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; font-size: 0.75rem; border-radius: 8px; background-color: #1da1f2; color: white; font-weight: 600; text-decoration: none; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)';" onmouseout="this.style.transform='scale(1)';">
+735:                             <i class="fa-brands fa-x-twitter"></i> Share on X
+736:                         </a>
+737:                     </div>
+738:                 </div>
+739: 
+740:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+741:                 <div class="share-overlay" id="share-overlay" style="display: none;">
+
+<truncated 156 bytes>
+caf50;"></i> Review Submitted!</h4>
+744:                         <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+745:                         <div class="share-buttons-grid">
+746:                             <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+747:                             <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+748:                             <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+749:                         </div>
+750:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+751:                     </div>
+752:                 </div>
+753:             </div>
+754: 
+755:             <!-- Student & Learning Portal Card -->
+756:             <div class="dash-card student-card">
+757:                 <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
+758:                 
+759:                 <!-- If Logged Out: Show Student Login Forms -->
+760:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+761:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+762:                     
+763:                     <!-- Login Form -->
+764:                     <form class="auth-form active-form" id="login-form" style="flex-direction: column; gap: 12px; margin-top: 15px;">
+765:                         <div class="form-group">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

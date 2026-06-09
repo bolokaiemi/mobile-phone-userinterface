@@ -1,0 +1,43 @@
+Created At: 2026-06-08T04:31:40Z
+Completed At: 2026-06-08T04:31:40Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/walkthrough.md`
+Total Lines: 114
+Total Bytes: 10739
+Showing lines 80 to 114
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+80:   - Added a **System Features Grid** using glassmorphism cards detailing EbiUI's features (Emulator, Milestones, Feed, Zoom Bookings).
+81:   - Configured global styles in [styles.css](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css) to flow sections vertically with a standard `100px` top margin buffer for the fixed header, while keeping the interactive playground wrapper fully responsive.
+82:   - Linked the Hero action buttons ("Launch Playground" and "Browse Courses") to their respective dashboard tabs and smooth scrolled the viewport to focus on the workspace.
+83: 
+84: ---
+85: 
+86: ## Verification & Testing
+87: 
+88: All endpoints and database behaviors have been verified using the extended test script:
+89: ```powershell
+90: .venv\Scripts\python.exe scratch\verify.py
+91: ```
+92: 
+93: ### Test Results Output:
+94: ```text
+95: === Starting EbiUI Backend Verification ===
+96: [SUCCESS] Courses endpoint verified successfully.
+97: [SUCCESS] Admin stats endpoint verified successfully.
+98: [SUCCESS] Admin data endpoint verified successfully.
+99: [SUCCESS] Guest review posting verified successfully.
+100: [SUCCESS] Admin data feed inclusion verified successfully.
+101: [SUCCESS] Book lesson endpoint verified successfully.
+102: [SUCCESS] Bookings retrieval endpoint verified successfully.
+103: 
+104: === ALL BACKEND ENDPOINTS VERIFIED SUCCESSFULLY ===
+105: ```
+106: 
+107: ### Manual Verification Steps:
+108: 1. **Comment Posting**: Register a student, post a comment, and verify the comment ownership persists and maps to the correct user in the admin console.
+109: 2. **Zoom Lesson Checkout**: Click **Book for Lesson** on any course, fill in your details (name, email if guest, demo card number), and complete checkout. 
+110:    - For logged-in students: The "My Scheduled Zoom Lessons" card will appear instantly showing the new class and a valid Zoom join link.
+111:    - For guests: The course upgrade card locks with a green active badge showing that the session is active.
+112: 3. **SMTP Console Notification**: On lesson booking, verify that the console outputs:
+113:    `Notification email sent: [EbiUI Alert] New Lesson Booked: HTML5 Fundamentals`
+114: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

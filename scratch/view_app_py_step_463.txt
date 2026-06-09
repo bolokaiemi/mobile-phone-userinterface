@@ -1,0 +1,44 @@
+Created At: 2026-06-06T23:17:59Z
+Completed At: 2026-06-06T23:17:59Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 660
+Total Bytes: 24122
+Showing lines 550 to 585
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+550:                         username: lu.username,
+551:                         created_at: 'Offline Mode'
+552:                     });
+553:                 });
+554:                 
+555:                 if (serverData && serverData.users) {
+556:                     serverData.users.forEach(su => {
+557:                         if (!allUsers.some(lu => lu.username === su.username)) {
+558:                             allUsers.push(su);
+559:                         }
+560:                     });
+561:                 }
+562: 
+563:                 // Calculate local stats if server stats is unavailable
+564:                 const totalComments = allComments.length;
+565:                 const totalUsers = allUsers.length;
+566:                 const avgRating = totalComments > 0 
+567:                     ? allComments.reduce((acc, c) => acc + c.rating, 0) / totalComments 
+568:                     : 0;
+569:                 
+570:                 document.getElementById('stat-reviews').textContent = serverStats ? serverStats.total_reviews : totalComments;
+571:                 document.getElementById('stat-avg').textContent = (serverStats ? serverStats.average_rating : avgRating).toFixed(1) + ' / 5.0';
+572:                 document.getElementById('stat-students').textContent = serverStats ? serverStats.total_students : totalUsers;
+573:                 document.getElementById('reviews-count-badge').textContent = (serverStats ? serverStats.total_reviews : totalComments) + ' items';
+574:                 
+575:                 const dbPathText = document.getElementById('db-filepath-text');
+576:                 if (dbPathText) {
+577:                     dbPathText.textContent = (serverStats && serverStats.db_path) ? serverStats.db_path : 'Local Browser Database (Offline)';
+578:                 }
+579: 
+580:                 renderReviews(allComments);
+581:                 renderStudents(allUsers);
+582:             }
+583: 
+584:             function renderReviews(comments) {
+585:                 const tbody = document.getElementById('reviews-table-body');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

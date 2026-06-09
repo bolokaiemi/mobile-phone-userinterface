@@ -1,0 +1,39 @@
+Created At: 2026-06-07T20:38:33Z
+Completed At: 2026-06-07T20:38:33Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 907
+Total Bytes: 64019
+Showing lines 710 to 740
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+710:                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
+711:                     <div class="student-profile-header">
+712:                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+713:                     </div>
+714:                     <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+715:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+716:                         <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+717:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+718:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+719:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet AB direct</strong> box on any course to book for a lesson (payment required before entry).</li>
+720:                         </ul>
+721:                     </div>
+722: 
+723:                     <!-- Scheduled Zoom Lessons Container -->
+724:                     <div class="zoom-lessons-card" id="zoom-lessons-card" style="margin-top: 15px; display: none; background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 10px; padding: 14px;">
+725:                         <h4 class="student-section-title" style="color: #34d399; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-video"></i> Scheduled Zoom Lessons</h4>
+726:                         <div class="zoom-lessons-list" id="zoom-lessons-list" style="display: flex; flex-direction: column; gap: 8px;">
+727:                             <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+728:                                 No Zoom lessons booked yet. Book a course below to schedule your class!
+729:                             </div>
+730:                         </div>
+731:                     </div>
+732:                 </div>
+733: 
+734:                 <!-- Available Courses (Publicly accessible) -->
+735:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+736:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+737:                     <ul class="course-list">
+738:                         <!-- Populated dynamically via JS -->
+739:                     </ul>
+740:                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

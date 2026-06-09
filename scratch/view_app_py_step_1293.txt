@@ -1,0 +1,88 @@
+Created At: 2026-06-08T04:37:36Z
+Completed At: 2026-06-08T04:37:36Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/README.md`
+Total Lines: 123
+Total Bytes: 6997
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # EbiUI Hub: Interactive Mobile UI Emulator & Academy Portal
+2: 
+3: EbiUI is a modern, high-fidelity web-based Android 14 Custom ROM emulator wrapped in a premium modern web dashboard. The project features a public review feed with star ratings and social media sharing integration, alongside a secure, dedicated student portal for accessing educational resources, booking live mentorship classes, and tracking school launch milestones.
+4: 
+5: The application uses a **Flask** backend with **SQLAlchemy** (supporting SQLite for local development and PostgreSQL for production).
+6: 
+7: ---
+8: 
+9: ## 🚀 Key Features
+10: 
+11: - 📱 **Realistic Device Chassis Mockup**: Physical-looking bezels, camera notch/punch-hole, side power/volume keys, speaker grille details, and responsive collapse.
+12: - 🌐 **Multi-Language Support (i18n)**: Toggle system languages dynamically between English (🇺🇸), Dutch (🇳🇱), German (🇩🇪), Spanish (🇪🇸), and French (🇫🇷).
+13: - 🎨 **Material You Dynamic Theming**: Shift the entire accent color system (buttons, headers, inputs) via the Settings App.
+14: - 🌗 **Light / Dark Mode Selector**: Instantly switches theme configurations and display contrasts.
+15: - 🖼️ **Interactive Wallpaper Chooser**: Cycle through custom abstract backgrounds, including a premium default neon liquid wave gradient.
+16: - 💬 **Gemini AI Assistant**: A built-in terminal chat bot that handles interactive commands (`joke`, `wallpaper`, `dark`, `light`, etc.).
+17: - 📞 **Dialer / Phone App**: Operable number dial keypad emittin
+<truncated 2841 bytes>
+ modal portals once logged in.
+40: - 📹 **Zoom Premium Live Tutoring & Console Alerts**:
+41:   - Payment gateway booking form links directly to Zoom.
+42:   - Generates secure Zoom meeting links and prints automated notification emails directly to the Flask server terminal.
+43: 
+44: ---
+45: 
+46: ## 🛠️ Technical Stack
+47: 
+48: - **Frontend Core**: Semantic HTML5, Vanilla CSS3 (flexbox, grid, glassmorphic card layouts, keyframe transitions), ES6 JavaScript
+49: - **Backend Core**: Python, Flask, Flask-SQLAlchemy (with CORS policy support)
+50: - **Database**: SQLite (local dev), PostgreSQL (production)
+51: - **Icons**: Font Awesome 6.6.0
+52: - **Typography**: Google Fonts (Outfit)
+53: 
+54: ---
+55: 
+56: ## 💻 Getting Started Locally
+57: 
+58: ### Prerequisites
+59: Make sure you have **Python 3.x** installed.
+60: 
+61: ### Installation & Run
+62: 1. Clone the repository:
+63:    ```bash
+64:    git clone https://github.com/Bolokaiemi/mobile-phone-userinterface.git
+65:    cd mobile-phone-userinterface
+66:    ```
+67: 2. Set up a virtual environment and activate it:
+68:    ```bash
+69:    python -m venv .venv
+70:    # Windows (CMD):
+71:    .venv\Scripts\activate.bat
+72:    # Windows (PowerShell):
+73:    .\.venv\Scripts\Activate.ps1
+74:    # macOS/Linux:
+75:    source .venv/bin/activate
+76:    ```
+77: 3. Install dependencies:
+78:    ```bash
+79:    pip install -r requirements.txt
+80:    ```
+81: 4. Run the Flask development server:
+82:    ```bash
+83:    python app.py
+84:    ```
+85: 5. Open your browser and navigate to **`http://localhost:8080`**.
+86: 
+87: ---
+88: 
+89: ## 🧪 Testing Backend Endpoints
+90: You can verify the status of the database and API endpoints using the automated test suite:
+91: ```bash
+92: python scratch/verify.py
+93: ```
+94: 
+95: ---
+96: 
+97: ## 📂 Project Structure
+98: 
+99: ```text
+100: mobile-phone-userinterface/
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

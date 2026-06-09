@@ -1,0 +1,49 @@
+Created At: 2026-06-06T22:43:06Z
+Completed At: 2026-06-06T22:43:06Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 444
+Total Bytes: 17833
+Showing lines 220 to 260
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+220: @app.route('/api/logout', methods=['POST', 'GET'])
+221: def logout():
+222:     session.pop('user_id', None)
+223:     session.pop('username', None)
+224:     return jsonify({'message': 'Logged out successfully.'})
+225: 
+226: @app.route('/api/user', methods=['GET'])
+227: def get_current_user():
+228:     if 'user_id' in session:
+229:         return jsonify({'user': {'username': session.get('username')}})
+230:     return jsonify({'user': None})
+231: 
+232: # -------------------------------------------------------------
+233: # COMMENTS DATABASE REST ENDPOINTS
+234: # -------------------------------------------------------------
+235: @app.route('/api/comments', methods=['GET', 'POST'])
+236: def comments():
+237:     if request.method == 'GET':
+238:         # Retrieve all database comments, newest first
+239:         all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+240:         return jsonify({'comments': [c.to_dict() for c in all_comments]})
+241:         
+242:     elif request.method == 'POST':
+243:         data = request.get_json() or {}
+244:         text = data.get('text', '').strip()
+245:         rating = data.get('rating', 5)
+246:         guest_name = data.get('guest_name', '').strip()
+247:         
+248:         if not text:
+249:             return jsonify({'error': 'Comment content cannot be empty.'}), 400
+250:             
+251:         if len(text) > 500:
+252:             return jsonify({'error': 'Comment exceeds the 500 character limit.'}), 400
+253:             
+254:         try:
+255:             rating = int(rating)
+256:             if rating < 1 or rating > 5:
+257:                 rating = 5
+258:         except (ValueError, TypeError):
+259:             rating = 5
+260: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

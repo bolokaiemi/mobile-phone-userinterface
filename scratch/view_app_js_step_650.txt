@@ -1,0 +1,79 @@
+Created At: 2026-06-07T00:15:01Z
+Completed At: 2026-06-07T00:15:02Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 1680 to 1750
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1680:         const d = new Date(isoStr);
+1681:         return isNaN(d.getTime()) ? new Date(0) : d;
+1682:     }
+1683: 
+1684:     async function loadComments() {
+1685:         if (!commentsListContainer) return;
+1686:         
+1687:         let serverComments = [];
+1688:         let serverSuccess = false;
+1689:         
+1690:         try {
+1691:             const response = await fetch(API_BASE + '/api/comments', getFetchOptions());
+1692:             if (response.ok) {
+1693:                 const data = await response.json();
+1694:                 serverComments = data.comments || [];
+1695:                 serverSuccess = true;
+1696:             }
+1697:         } catch (error) {
+1698:             console.error('Error fetching comments from server:', error);
+1699:         }
+1700:         
+1701:         try {
+1702:             // Load local fallback comments
+1703:             const localComments = getLocalComments();
+1704:             let allComments = [...localComments];
+1705:             
+1706:             // Merge server comments and avoid duplication
+1707:             serverComments.forEach(sc => {
+1708:                 if (sc && !allComments.some(lc => lc && (lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username)))) {
+1709:                     allComments.push(sc);
+1710:                 }
+1711:             });
+1712:             
+1713:             // Sort by created_at desc (newest first) using safe cross-browser date parsing
+1714:             allComments.sort((a, b) => {
+1715:                 const dateA = a ? a.created_at : null;
+1716
+<truncated 152 bytes>
+
+1719:             
+1720:             if (allComments.length === 0) {
+1721:                 commentsListContainer.innerHTML = `
+1722:                     <div class="comment-empty-state">
+1723:                         <i class="fa-regular fa-comment-dots" style="font-size: 1.5rem; display: block; margin-bottom: 8px; opacity: 0.5;"></i>
+1724:                         No feedback posted yet. Be the first!
+1725:                     </div>
+1726:                 `;
+1727:                 return;
+1728:             }
+1729:             
+1730:             commentsListContainer.innerHTML = '';
+1731:             allComments.forEach(comment => {
+1732:                 if (!comment) return;
+1733:                 const commentEl = document.createElement('div');
+1734:                 commentEl.className = 'comment-item';
+1735:                 
+1736:                 // Format star ratings
+1737:                 let ratingCount = parseInt(comment.rating);
+1738:                 if (isNaN(ratingCount) || ratingCount < 1 || ratingCount > 5) {
+1739:                     ratingCount = 5;
+1740:                 }
+1741:                 const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
+1742:                 const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
+1743:                 
+1744:                 // Delete button only shown if the current logged in user is the author or local author
+1745:                 const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
+1746:                 const deleteButton = isOwner 
+1747:                     ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
+1748:                     : '';
+1749:                 
+1750:                 commentEl.innerHTML = `
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

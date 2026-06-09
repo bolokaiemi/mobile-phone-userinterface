@@ -1,0 +1,34 @@
+Created At: 2026-06-07T00:39:42Z
+Completed At: 2026-06-07T00:39:42Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/walkthrough.md`
+Total Lines: 84
+Total Bytes: 6402
+Showing lines 40 to 65
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+40:   - Bound navbar logout buttons to a unified logout function that clears local session cache, updates UI states, and resets available course upgrades.
+41: 
+42: ### 5. Zoom Premium Booking System & Console Emails
+43: - **Problem**: Live session upgrades previously simulated bookings locally.
+44: - **Solution**:
+45:   - Created database model `Booking`.
+46:   - Added a backend `/api/book-lesson` POST endpoint that generates a unique, password-secured Zoom meeting invitation link (`https://zoom.us/j/...`) and sends a detailed SMTP notification email using `Flask-Mail` directly to the tutor.
+47:   - Created a **My Scheduled Zoom Lessons** section inside the student dashboard to display join links in real time and automatically mark booked classes with a green active check badge: **Direct Session Active! ✔**.
+48: 
+49: ### 6. Fixed JavaScript Crash on Startup (Form Toggling & Links Bug)
+50: - **Problem**: Clicking "Register here" or "Sign In" had no effect, and the URL hash would update to `#` without showing any forms.
+51: - **Cause**: A ReferenceError occurred on page load: `Cannot access 'activeAppId' before initialization`. This happened because `setLanguage(currentLanguage)` (line 399) was called before `activeAppId` (line 507) was declared using `let`. This crash halted all subsequent JavaScript execution, preventing event listeners for form toggles, submission, and validation from being attached.
+52: - **Solution**: Moved the declaration of `activeAppId` to the top block of the script (line 271) before `setLanguage` is called. This resolved the temporal dead zone ReferenceError, allowing the script to initialize successfully and activate the toggle event listeners.
+53: 
+54: ---
+55: 
+56: ## Verification & Testing
+57: 
+58: All endpoints and database behaviors have been verified using the extended test script:
+59: ```powershell
+60: .venv\Scripts\python.exe scratch\verify.py
+61: ```
+62: 
+63: ### Test Results Output:
+64: ```text
+65: === Starting EbiUI Backend Verification ===
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

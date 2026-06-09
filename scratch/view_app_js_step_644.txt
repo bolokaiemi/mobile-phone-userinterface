@@ -1,0 +1,59 @@
+Created At: 2026-06-07T00:14:59Z
+Completed At: 2026-06-07T00:14:59Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 310 to 360
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+310:         // Translate simulated initial bubble for Gemini if it hasn't been closed
+311:         const geminiInitial = document.getElementById('gemini-initial-bubble');
+312:         if (geminiInitial) {
+313:             geminiInitial.innerHTML = translations.gemini_greeting[lang];
+314:         }
+315: 
+316:         // Send confirmation toast
+317:         const confirmationMessages = {
+318:             en: "System Language: English",
+319:             nl: "Systeemtaal: Nederlands",
+320:             de: "Systemsprache: Deutsch",
+321:             es: "Idioma del Sistema: Español",
+322:             fr: "Langue du Système: Français"
+323:         };
+324:         showNotification(confirmationMessages[lang]);
+325:     }
+326: 
+327:     // Toggle dropdown status bar language menu
+328:     if (statusLangTrigger) {
+329:         statusLangTrigger.addEventListener('click', (e) => {
+330:             e.stopPropagation();
+331:             langDropdown.classList.toggle('active');
+332:         });
+333:     }
+334: 
+335:     // Bind dropdown options
+336:     langOptions.forEach(opt => {
+337:         opt.addEventListener('click', () => {
+338:             const lang = opt.getAttribute('data-lang');
+339:             setLanguage(lang);
+340:         });
+341:     });
+342: 
+343:     // Close language selector when clicking outside
+344:     document.addEventListener('click', () => {
+345:         if (langDropdown) langDropdown.classList.remove('active');
+346:     });
+347: 
+348:     // Bind settings dropdown language selection
+349:     if (settingsLangSelect) {
+350:         settingsLangSelect.addEventListener('change', () => {
+351:             setLanguage(settingsLangSelect.value);
+352:         });
+353:     }
+354: 
+355:     // -------------------------------------------------------------
+356:     // DYNAMIC TIME & DATE
+357:     // -------------------------------------------------------------
+358:     function updateClock() {
+359:         const now = new Date();
+360:         
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,59 @@
+Created At: 2026-06-06T22:44:58Z
+Completed At: 2026-06-06T22:44:58Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2539
+Total Bytes: 118230
+Showing lines 2195 to 2245
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2195:             if (activeUpgradeCheckbox) {
+2196:                 activeUpgradeCheckbox.checked = false;
+2197:                 activeUpgradeCheckbox = null;
+2198:             }
+2199:         });
+2200:     }
+2201: 
+2202:     if (premiumPaymentForm) {
+2203:         premiumPaymentForm.addEventListener('submit', async (e) => {
+2204:             e.preventDefault();
+2205:             
+2206:             if (paymentSubmitBtn) {
+2207:                 paymentSubmitBtn.disabled = true;
+2208:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2209:             }
+2210: 
+2211:             // Simulate server transaction delay
+2212:             setTimeout(() => {
+2213:                 if (paymentModal) paymentModal.style.display = 'none';
+2214:                 
+2215:                 const billingEmailVal = document.getElementById('billing-email') ? document.getElementById('billing-email').value.trim() : '';
+2216:                 if (!currentUser && billingEmailVal) {
+2217:                     showNotification(`Upgrade successful! Lesson details sent to ${billingEmailVal}. AB has been notified of your payment.`);
+2218:                 } else {
+2219:                     showNotification('Upgrade successful! AB has been notified of your payment.');
+2220:                 }
+2221:                 
+2222:                 if (activeUpgradeCheckbox) {
+2223:                     const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+2224:                     if (labelSpan) {
+2225:                         labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+2226:                         labelSpan.style.color = '#10b981';
+2227:                     }
+2228:                     activeUpgradeCheckbox = null;
+2229:                 }
+2230: 
+2231:                 // Reset payment form fields
+2232:                 premiumPaymentForm.reset();
+2233:                 if (paymentSubmitBtn) {
+2234:                     paymentSubmitBtn.disabled = false;
+2235:                     paymentSubmitBtn.innerHTML = `Complete Checkout`;
+2236:                 }
+2237:             }, 1800);
+2238:         });
+2239:     }
+2240: 
+2241:     // -------------------------------------------------------------
+2242:     // DYNAMIC COURSES LOADING & MODAL BINDINGS
+2243:     // -------------------------------------------------------------
+2244:     const DEFAULT_COURSES = [
+2245:         {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

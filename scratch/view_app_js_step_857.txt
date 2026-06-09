@@ -1,0 +1,36 @@
+Created At: 2026-06-07T20:39:25Z
+Completed At: 2026-06-07T20:39:25Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 1835 to 1862
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1835:             item.innerHTML = `
+1836:                 <div class="zoom-lesson-info">
+1837:                     <span class="zoom-lesson-title">${escapeHtml(booking.course_name)}</span>
+1838:                     <span class="zoom-lesson-date"><i class="fa-regular fa-clock"></i> Booked: ${dateStr}</span>
+1839:                 </div>
+1840:                 <a href="${booking.zoom_link}" target="_blank" class="zoom-join-btn">
+1841:                     <i class="fa-solid fa-video"></i> Join Zoom
+1842:                 </a>
+1843:             `;
+1844:             zoomLessonsList.appendChild(item);
+1845:         });
+1846:     }
+1847: 
+1848:     function renderBookingsOfflineFallback() {
+1849:         try {
+1850:             const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+1851:             userBookingsList = localBookings.filter(b => b.username === currentUser);
+1852:             renderBookingsUI(userBookingsList);
+1853:             renderCoursesUI();
+1854:         } catch (e) {
+1855:             console.error('Offline bookings fallback error:', e);
+1856:         }
+1857:     }
+1858: 
+1859:     // Register Form Handler
+1860:     if (registerForm) {
+1861:         registerForm.addEventListener('submit', async (e) => {
+1862:             e.preventDefault();
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

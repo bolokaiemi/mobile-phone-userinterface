@@ -1,0 +1,76 @@
+Created At: 2026-06-07T00:15:52Z
+Completed At: 2026-06-07T00:15:53Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2614
+Total Bytes: 121663
+Showing lines 1850 to 1920
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1850:             const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+1851:             userBookingsList = localBookings.filter(b => b.username === currentUser);
+1852:             renderBookingsUI(userBookingsList);
+1853:             renderCoursesUI();
+1854:         } catch (e) {
+1855:             console.error('Offline bookings fallback error:', e);
+1856:         }
+1857:     }
+1858: 
+1859:     // Register Form Handler
+1860:     if (registerForm) {
+1861:         registerForm.addEventListener('submit', async (e) => {
+1862:             e.preventDefault();
+1863:             const fullNameInput = document.getElementById('register-fullname');
+1864:             const emailInput = document.getElementById('register-email');
+1865:             const usernameInput = document.getElementById('register-username');
+1866:             const passwordInput = document.getElementById('register-password');
+1867:             
+1868:             const fullName = fullNameInput ? fullNameInput.value.trim() : '';
+1869:             const email = emailInput ? emailInput.value.trim() : '';
+1870:             const username = usernameInput ? usernameInput.value.trim() : '';
+1871:             const password = passwordInput ? passwordInput.value.trim() : '';
+1872: 
+1873:             if (!fullName || !email || !username || !password) {
+1874:                 showNotification('All fields are required.');
+1875:                 return;
+1876:             }
+1877: 
+1878:             // Attempt server register
+1879:             let serverSuccess = false;
+1880:   
+<truncated 301 bytes>
+         username, 
+1886:                         password, 
+1887:                         email, 
+1888:                         full_name: fullName 
+1889:                     })
+1890:                 }));
+1891:                 
+1892:                 const data = await response.json();
+1893:                 
+1894:                 if (response.ok) {
+1895:                     currentUser = data.user.username;
+1896:                     localStorage.setItem('ebiui_current_user', currentUser);
+1897:                     saveLocalUser({ username, password, email, full_name: fullName });
+1898:                     showUserProfile(currentUser);
+1899:                     showNotification('Student account registered and logged in!');
+1900:                     serverSuccess = true;
+1901:                 } else {
+1902:                     if (data.error && (data.error.includes('taken') || data.error.includes('registered'))) {
+1903:                         showNotification(data.error);
+1904:                         return;
+1905:                     }
+1906:                     console.warn('Server register rejected, checking local database:', data.error);
+1907:                 }
+1908:             } catch (error) {
+1909:                 console.warn('Register server request failed, falling back to local storage:', error);
+1910:             }
+1911:             
+1912:             if (!serverSuccess) {
+1913:                 // Local fallback registration
+1914:                 const users = getLocalUsers();
+1915:                 if (users.some(u => u.username === username)) {
+1916:                     showNotification('Username is already taken.');
+1917:                     return;
+1918:                 }
+1919:                 if (users.some(u => u.email === email)) {
+1920:                     showNotification('Email address is already registered.');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

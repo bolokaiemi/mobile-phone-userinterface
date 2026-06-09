@@ -1,0 +1,39 @@
+Created At: 2026-06-06T22:18:39Z
+Completed At: 2026-06-06T22:18:39Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2419
+Total Bytes: 113283
+Showing lines 2370 to 2400
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2370: 
+2371:     // Bind Footer Enroll Button
+2372:     const footerEnrollBtn = document.getElementById('footer-enroll-btn');
+2373:     if (footerEnrollBtn) {
+2374:         footerEnrollBtn.addEventListener('click', (e) => {
+2375:             e.preventDefault();
+2376:             switchTab('dashboard');
+2377:             
+2378:             if (currentUser) {
+2379:                 // Trigger the general checkout modal
+2380:                 const paymentCourseName = document.getElementById('payment-course-name');
+2381:                 if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+2382:                 const paymentModal = document.getElementById('payment-modal');
+2383:                 if (paymentModal) paymentModal.style.display = 'flex';
+2384:                 
+2385:                 // Set active checkbox to null or find one if available
+2386:                 activeUpgradeCheckbox = null;
+2387:             } else {
+2388:                 showNotification('Please register or sign in as a student first to book a live session.');
+2389:                 const loginUserEl = document.getElementById('login-username');
+2390:                 if (loginUserEl) loginUserEl.focus();
+2391:             }
+2392:         });
+2393:     }
+2394: 
+2395:     // Bind Dashboard Back Button
+2396:     const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+2397:     if (dashboardBackBtn) {
+2398:         dashboardBackBtn.addEventListener('click', () => {
+2399:             switchTab('home');
+2400:         });
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

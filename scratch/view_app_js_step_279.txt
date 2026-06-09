@@ -1,0 +1,83 @@
+Created At: 2026-06-06T22:44:17Z
+Completed At: 2026-06-06T22:44:17Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3414
+Total Bytes: 73348
+Showing lines 3340 to 3414
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3340:         grid-template-columns: 1fr 1fr;
+3341:         gap: 30px;
+3342:     }
+3343: }
+3344: 
+3345: @media (max-width: 600px) {
+3346:     .footer-container {
+3347:         grid-template-columns: 1fr;
+3348:         gap: 24px;
+3349:         padding: 0 20px;
+3350:     }
+3351:     .footer-bottom {
+3352:         padding: 20px 20px 0 20px;
+3353:     }
+3354: }
+3355: 
+3356: /* Top Navbar User Session Badge */
+3357: .nav-user-badge {
+3358:     animation: fadeIn 0.3s ease;
+3359: }
+3360: .nav-logout-btn:hover {
+3361:     color: #fca5a5 !important;
+3362:     transform: scale(1.1);
+3363: }
+3364: 
+3365: /* Zoom Lessons Dashboard styling */
+3366: .zoom-lesson-item {
+3367:     display: flex;
+3368:     justify-content: space-between;
+3369:     align-items: center;
+3370:     background: rgba(255, 255, 255, 0.03);
+3371:     border: 1px solid rgba(255, 255, 255, 0.06);
+3372:     border-radius: 8px;
+3373:     padding: 10px 14px;
+3374:     transition: all 0.2s ease;
+3375: }
+3376: .zoom-lesson-item:hover {
+3377:     background: rgba(16, 185, 129, 0.08);
+3378:     border-color: rgba(16, 185, 129, 0.3);
+3379:     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+3380: }
+3381: .zoom-lesson-info {
+3382:     display: flex;
+3383:     flex-direction: column;
+3384:     gap: 4px;
+3385: }
+3386: .zoom-lesson-title {
+3387:     font-size: 0.82rem;
+3388:     font-weight: 600;
+3389:     color: #f1f5f9;
+3390: }
+3391: .zoom-lesson-date {
+3392:     font-size: 0.72rem;
+3393:     color: #94a3b8;
+3394: }
+3395: .zoom-join-btn {
+3396:     text-decoration: none;
+3397:     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+3398:     color: white;
+3399:     font-size: 0.78rem;
+3400:     font-weight: 600;
+3401:     padding: 6px 14px;
+3402:     border-radius: 6px;
+3403:     display: inline-flex;
+3404:     align-items: center;
+3405:     gap: 6px;
+3406:     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+3407:     transition: all 0.2s ease;
+3408: }
+3409: .zoom-join-btn:hover {
+3410:     transform: translateY(-1px);
+3411:     box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+3412:     opacity: 0.95;
+3413: }
+3414: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,59 @@
+Created At: 2026-06-07T00:39:10Z
+Completed At: 2026-06-07T00:39:10Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74396
+Showing lines 3240 to 3290
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3240: }
+3241: 
+3242: .light-theme .hub-footer {
+3243:     background: rgba(248, 250, 252, 0.95);
+3244:     border-top: 1px solid rgba(0, 0, 0, 0.08);
+3245:     color: #475569;
+3246: }
+3247: 
+3248: .footer-container {
+3249:     max-width: 1100px;
+3250:     margin: 0 auto;
+3251:     padding: 0 40px;
+3252:     display: grid;
+3253:     grid-template-columns: 2fr 1.5fr 1.5fr 2fr;
+3254:     gap: 40px;
+3255: }
+3256: 
+3257: .footer-col {
+3258:     display: flex;
+3259:     flex-direction: column;
+3260:     gap: 16px;
+3261: }
+3262: 
+3263: .footer-title {
+3264:     font-size: 1.1rem;
+3265:     font-weight: 600;
+3266:     color: #ffffff;
+3267:     margin: 0;
+3268:     display: flex;
+3269:     align-items: center;
+3270:     gap: 8px;
+3271: }
+3272: 
+3273: .light-theme .footer-title {
+3274:     color: #0f172a;
+3275: }
+3276: 
+3277: .footer-text {
+3278:     font-size: 0.88rem;
+3279:     line-height: 1.6;
+3280:     margin: 0;
+3281:     color: #94a3b8;
+3282: }
+3283: 
+3284: .light-theme .footer-text {
+3285:     color: #64748b;
+3286: }
+3287: 
+3288: .footer-links, .footer-contact-info {
+3289:     list-style: none;
+3290:     padding: 0;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

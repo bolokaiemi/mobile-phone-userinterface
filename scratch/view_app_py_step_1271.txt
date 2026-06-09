@@ -1,0 +1,50 @@
+Created At: 2026-06-08T04:36:48Z
+Completed At: 2026-06-08T04:36:48Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1091
+Total Bytes: 81503
+Showing lines 870 to 950
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+870:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+871:                 <ul class="tips-list">
+872:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+873:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+874:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+875:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+876:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+877:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+878:                 </ul>
+879:                 <div class="tips-action-bar">
+880:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+881:                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
+882:                     </a>
+883:                 </div>
+884:             </div>
+885: 
+886:             <!-- Social Connect Plugins Card -->
+887:            
+<truncated 5330 bytes>
+div>
+929: 
+930:                     <!-- YouTube Video Lectures -->
+931:                     <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255, 0, 0, 0.05); border: 1px solid rgba(255, 0, 0, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+932:                         <div style="display: flex; align-items: center; gap: 10px;">
+933:                             <span style="font-size: 1.35rem; color: #ff0000; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,0,0,0.1); border-radius: 50%;"><i class="fa-brands fa-youtube"></i></span>
+934:                             <div>
+935:                                 <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">YouTube Academy</h4>
+936:                                 <span style="font-size: 0.72rem; color: var(--text-secondary);">Video courses & lessons</span>
+937:                             </div>
+938:                         </div>
+939:                         <a href="https://youtube.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #ff0000; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);"><i class="fa-solid fa-bell"></i> Subscribe</a>
+940:                     </div>
+941:                 </div>
+942:             </div>
+943:         </section>
+944:     </main>
+945: </section>
+946: 
+947:     <!-- Course Access Modal -->
+948:     <div class="course-modal" id="course-modal" style="display: none;">
+949:         <div class="course-modal-card">
+950:             <div class="course-modal-header">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

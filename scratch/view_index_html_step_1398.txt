@@ -1,0 +1,34 @@
+Created At: 2026-06-08T04:44:09Z
+Completed At: 2026-06-08T04:44:09Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1035
+Total Bytes: 74586
+Showing lines 1000 to 1025
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1000:                 <p class="footer-text">
+1001:                     Join Master School's intensive Web Development Career Path. Get mentored by industry pros and land your dream tech job.
+1002:                 </p>
+1003:                 <a href="https://www.masterschool.com" target="_blank" class="footer-enroll-btn" id="footer-register-school-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: white;">
+1004:                     <i class="fa-solid fa-up-right-from-square"></i> Join Master School
+1005:                 </a>
+1006:             </div>
+1007:             
+1008:             <div class="footer-col contact-col">
+1009:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+1010:                 <ul class="footer-contact-info">
+1011:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+1012:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+1013:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+1014:                 </ul>
+1015:             </div>
+1016: 
+1017:             <div class="footer-col action-col">
+1018:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+1019:                 <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+1020:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+1021:                     <i class="fa-solid fa-credit-card"></i> Book for Lesson
+1022:                 </button>
+1023:             </div>
+1024:         </div>
+1025:         
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

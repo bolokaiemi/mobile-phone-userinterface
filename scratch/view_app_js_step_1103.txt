@@ -1,0 +1,49 @@
+Created At: 2026-06-07T21:33:36Z
+Completed At: 2026-06-07T21:33:36Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74402
+Showing lines 1660 to 1700
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1660: .top-navbar {
+1661:     position: fixed;
+1662:     top: 0;
+1663:     left: 0;
+1664:     width: 100%;
+1665:     height: 70px;
+1666:     z-index: 100;
+1667:     background: rgba(10, 14, 20, 0.85);
+1668:     backdrop-filter: blur(20px);
+1669:     -webkit-backdrop-filter: blur(20px);
+1670:     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+1671:     display: flex;
+1672:     align-items: center;
+1673:     justify-content: space-between;
+1674:     padding: 0 40px;
+1675:     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+1676: }
+1677: 
+1678: .light-theme .top-navbar {
+1679:     background: rgba(255, 255, 255, 0.85);
+1680:     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+1681:     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+1682: }
+1683: 
+1684: .nav-brand {
+1685:     font-size: 1.25rem;
+1686:     font-weight: 700;
+1687:     letter-spacing: 0.5px;
+1688:     background: linear-gradient(135deg, var(--theme-primary-light), var(--theme-primary));
+1689:     -webkit-background-clip: text;
+1690:     -webkit-text-fill-color: transparent;
+1691:     display: flex;
+1692:     align-items: center;
+1693:     gap: 10px;
+1694: }
+1695: 
+1696: .nav-brand i {
+1697:     color: var(--theme-primary-light);
+1698:     -webkit-text-fill-color: initial;
+1699:     background: none;
+1700: }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

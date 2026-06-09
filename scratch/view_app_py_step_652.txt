@@ -1,0 +1,59 @@
+Created At: 2026-06-07T00:15:02Z
+Completed At: 2026-06-07T00:15:03Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 1750 to 1800
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1750:                 commentEl.innerHTML = `
+1751:                     <div class="comment-header">
+1752:                         <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+1753:                         <span class="comment-time">${comment.created_at || ''}</span>
+1754:                     </div>
+1755:                     ${starsHtml}
+1756:                     <div class="comment-text">${escapeHtml(comment.text)}</div>
+1757:                     ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+1758:                 `;
+1759:                 
+1760:                 commentsListContainer.appendChild(commentEl);
+1761:             });
+1762:             
+1763:             // Bind comments delete actions
+1764:             const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+1765:             deleteButtons.forEach(btn => {
+1766:                 btn.addEventListener('click', async () => {
+1767:                     const commentId = btn.getAttribute('data-id');
+1768:                     if (confirm('Are you sure you want to delete this comment?')) {
+1769:                         await deleteComment(commentId);
+1770:                     }
+1771:                 });
+1772:             });
+1773:         } catch (renderError) {
+1774:             console.error('Error rendering comments feed:', renderError);
+1775:             commentsListContainer.innerHTML = `
+1776:                 <div class="comment-empty-state" style="color: #ef4444;">
+1777:                     <i class="fa-solid fa-circle-exclamation" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+1778:                     Failed to load reviews list.
+1779:                 </div>
+1780:             `;
+1781:         }
+1782:     }
+1783: 
+1784:     // -------------------------------------------------------------
+1785:     // ZOOM BOOKINGS LOADING & RENDERING
+1786:     // -------------------------------------------------------------
+1787:     async function loadBookings() {
+1788:         if (!zoomLessonsCard || !zoomLessonsList) return;
+1789:         
+1790:         if (!currentUser) {
+1791:             zoomLessonsCard.style.display = 'none';
+1792:             userBookingsList = [];
+1793:             return;
+1794:         }
+1795:         
+1796:         zoomLessonsCard.style.display = 'block';
+1797:         
+1798:         try {
+1799:             const url = API_BASE + '/api/bookings' + (currentUser ? `?username=${encodeURIComponent(currentUser)}` : '');
+1800:             const response = await fetch(url, getFetchOptions());
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

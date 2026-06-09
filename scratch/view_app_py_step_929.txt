@@ -1,0 +1,57 @@
+Created At: 2026-06-07T21:16:53Z
+Completed At: 2026-06-07T21:16:53Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1015
+Total Bytes: 76632
+Showing lines 750 to 900
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+750:                                     <div class="milestone-progress-bar-fill" id="milestone-students-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #7c3aed); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+751:                                 </div>
+752:                             </div>
+753:                             
+754:                             <!-- Funding Progress -->
+755:                             <div class="milestone-progress-item">
+756:                                 <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+757:                                     <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-wallet"></i> Tuition Funding Goal (₦)</span>
+758:                                     <span style="color: #34d399;" id="milestone-funding-count">₦0 / ₦50,000</span>
+759:                                 </div>
+760:                                 <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+761:                                     <div class="milestone-progress-bar-fill" id="milestone-funding-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #059669); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+762:                                 </div>
+763:                         
+<truncated 10963 bytes>
+   </div>
+868:         </section>
+869:     </main>
+870: 
+871:     <!-- Course Access Modal -->
+872:     <div class="course-modal" id="course-modal" style="display: none;">
+873:         <div class="course-modal-card">
+874:             <div class="course-modal-header">
+875:                 <span class="course-modal-badge" id="course-modal-badge">HTML5</span>
+876:                 <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+877:             </div>
+878:             
+879:             <div class="course-modal-body">
+880:                 <p class="course-modal-desc" id="course-modal-desc">Learn the foundation of web development, including semantic tags, forms, media elements, and accessibility guidelines.</p>
+881:                 
+882:                 <div class="course-topics-box">
+883:                     <h5><i class="fa-solid fa-list-check"></i> What you will learn:</h5>
+884:                     <ul id="course-topics-list">
+885:                         <!-- topics injected dynamically -->
+886:                     </ul>
+887:                 </div>
+888: 
+889:                 <div class="w3schools-link-box" id="course-w3schools-box">
+890:                     <div class="w3schools-link-header">
+891:                         <i class="fa-solid fa-book-open"></i> Self-Study Tutorial
+892:                     </div>
+893:                     <p class="w3schools-link-desc">
+894:                         Explore interactive lessons and exercises to learn at your own pace:
+895:                     </p>
+896:                     <a href="#" id="course-w3schools-link" target="_blank" class="w3schools-link-anchor">
+897:                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Open W3Schools Tutorial
+898:                     </a>
+899:                 </div>
+900: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

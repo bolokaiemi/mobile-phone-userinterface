@@ -1,0 +1,64 @@
+Created At: 2026-06-08T04:37:09Z
+Completed At: 2026-06-08T04:37:09Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74582
+Showing lines 980 to 1033
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+980:                 <p class="footer-text">
+981:                     An advanced interactive Android 14 Emulator and comprehensive Web Development Academy. Learn frontend & backend technologies step-by-step.
+982:                 </p>
+983:             </div>
+984:             
+985:             <div class="footer-col links-col">
+986:                 <h5 class="footer-title"><i class="fa-solid fa-graduation-cap"></i> Free Courses</h5>
+987:                 <ul class="footer-links">
+988:                     <li><a href="https://www.w3schools.com/html/" target="_blank">HTML5 Fundamentals</a></li>
+989:                     <li><a href="https://www.w3schools.com/css/" target="_blank">CSS3 Layouts & Styling</a></li>
+990:                     <li><a href="https://www.w3schools.com/js/" target="_blank">JavaScript Programming</a></li>
+991:                     <li><a href="https://www.w3schools.com/python/" target="_blank">Python & Flask Backend</a></li>
+992:                     <li><a href="https://www.w3schools.com/sql/" target="_blank">SQL Database Design</a></li>
+993:                 </ul>
+994:             </div>
+995: 
+996:             <div class="footer-col education-col">
+997:                 <h5 class="footer-title"><i class="fa-solid fa-school"></i> Master School</h5>
+998:                 <p class="footer-text">
+999:                     Join Master School's intensive Web Development Career Path. Get mentored by industry pros and land your dream tech job.
+1000:                 </p>
+1001:                 <a href="https://www.masterschool.com
+<truncated 68 bytes>
+ol-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: white;">
+1002:                     <i class="fa-solid fa-up-right-from-square"></i> Join Master School
+1003:                 </a>
+1004:             </div>
+1005:             
+1006:             <div class="footer-col contact-col">
+1007:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+1008:                 <ul class="footer-contact-info">
+1009:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+1010:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+1011:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+1012:                 </ul>
+1013:             </div>
+1014: 
+1015:             <div class="footer-col action-col">
+1016:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+1017:                 <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+1018:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+1019:                     <i class="fa-solid fa-credit-card"></i> Book for Lesson
+1020:                 </button>
+1021:             </div>
+1022:         </div>
+1023:         
+1024:         <div class="footer-bottom">
+1025:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+1026:         </div>
+1027:     </footer>
+1028: 
+1029:     <!-- Script loading -->
+1030:     <script src="app.js?v=4.0"></script>
+1031: </body>
+1032: </html>
+1033: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,36 @@
+Created At: 2026-06-07T21:34:08Z
+Completed At: 2026-06-07T21:34:08Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74402
+Showing lines 3430 to 3457
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3430:     font-size: 0.82rem;
+3431:     font-weight: 600;
+3432:     color: #f1f5f9;
+3433: }
+3434: .zoom-lesson-date {
+3435:     font-size: 0.72rem;
+3436:     color: #94a3b8;
+3437: }
+3438: .zoom-join-btn {
+3439:     text-decoration: none;
+3440:     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+3441:     color: white;
+3442:     font-size: 0.78rem;
+3443:     font-weight: 600;
+3444:     padding: 6px 14px;
+3445:     border-radius: 6px;
+3446:     display: inline-flex;
+3447:     align-items: center;
+3448:     gap: 6px;
+3449:     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+3450:     transition: all 0.2s ease;
+3451: }
+3452: .zoom-join-btn:hover {
+3453:     transform: translateY(-1px);
+3454:     box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+3455:     opacity: 0.95;
+3456: }
+3457: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

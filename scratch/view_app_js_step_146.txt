@@ -1,0 +1,49 @@
+Created At: 2026-06-06T22:18:44Z
+Completed At: 2026-06-06T22:18:44Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2426
+Total Bytes: 113499
+Showing lines 2090 to 2130
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2090:                 activeUpgradeCheckbox = null;
+2091:             }
+2092:         });
+2093:     }
+2094: 
+2095:     if (premiumPaymentForm) {
+2096:         premiumPaymentForm.addEventListener('submit', async (e) => {
+2097:             e.preventDefault();
+2098:             
+2099:             if (paymentSubmitBtn) {
+2100:                 paymentSubmitBtn.disabled = true;
+2101:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2102:             }
+2103: 
+2104:             // Simulate server transaction delay
+2105:             setTimeout(() => {
+2106:                 if (paymentModal) paymentModal.style.display = 'none';
+2107:                 showNotification('Upgrade successful! AB has been notified of your payment.');
+2108:                 
+2109:                 if (activeUpgradeCheckbox) {
+2110:                     const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+2111:                     if (labelSpan) {
+2112:                         labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+2113:                         labelSpan.style.color = '#10b981';
+2114:                     }
+2115:                     activeUpgradeCheckbox = null;
+2116:                 }
+2117: 
+2118:                 // Reset payment form fields
+2119:                 premiumPaymentForm.reset();
+2120:                 if (paymentSubmitBtn) {
+2121:                     paymentSubmitBtn.disabled = false;
+2122:                     paymentSubmitBtn.innerHTML = `Complete Checkout`;
+2123:                 }
+2124:             }, 1800);
+2125:         });
+2126:     }
+2127: 
+2128:     // -------------------------------------------------------------
+2129:     // DYNAMIC COURSES LOADING & MODAL BINDINGS
+2130:     // -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

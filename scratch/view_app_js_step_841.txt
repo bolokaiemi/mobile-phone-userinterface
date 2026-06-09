@@ -1,0 +1,44 @@
+Created At: 2026-06-07T20:39:05Z
+Completed At: 2026-06-07T20:39:05Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 2095 to 2130
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2095:                 method: 'DELETE'
+2096:             }));
+2097: 
+2098:             if (response.ok) {
+2099:                 showNotification('Review deleted.');
+2100:                 loadComments();
+2101:             } else {
+2102:                 const data = await response.json();
+2103:                 showNotification(data.error || 'Failed to delete review.');
+2104:             }
+2105:         } catch (error) {
+2106:             console.error('Delete review error, attempting local removal:', error);
+2107:             // Fallback: search and remove local match
+2108:             try {
+2109:                 let comments = getLocalComments();
+2110:                 comments = comments.filter(c => c.id !== id);
+2111:                 localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+2112:                 showNotification('Review deleted locally.');
+2113:                 loadComments();
+2114:             } catch (e) {
+2115:                 showNotification('Connection error.');
+2116:             }
+2117:         }
+2118:     }
+2119: 
+2120:     // -------------------------------------------------------------
+2121:     // INTERACTIVE COURSE ACCESS MODAL HANDLERS
+2122:     // -------------------------------------------------------------
+2123:     const courseModal = document.getElementById('course-modal');
+2124:     const courseModalBadge = document.getElementById('course-modal-badge');
+2125:     const courseModalTitle = document.getElementById('course-modal-title');
+2126:     const courseModalDesc = document.getElementById('course-modal-desc');
+2127:     const courseTopicsList = document.getElementById('course-topics-list');
+2128:     const courseModalClose = document.getElementById('course-modal-close');
+2129:     const courseModalUpgradeBtn = document.getElementById('course-modal-upgrade-btn');
+2130:     const courseModalActionBtn = document.getElementById('course-modal-action-btn');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

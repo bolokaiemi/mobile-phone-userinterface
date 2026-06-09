@@ -1,0 +1,50 @@
+Created At: 2026-06-06T23:00:29Z
+Completed At: 2026-06-06T23:00:29Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2599
+Total Bytes: 120977
+Showing lines 2459 to 2500
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2459:             if (courseListUl) {
+2460:                 const cb = courseListUl.querySelector(`.live-upgrade-checkbox[data-course="${course.title}"]`);
+2461:                 currentSelectedCourseCheckbox = cb;
+2462:             }
+2463:         }
+2464: 
+2465:         if (courseModalBadge) courseModalBadge.textContent = course.badge;
+2466:         if (courseModalTitle) courseModalTitle.textContent = course.title;
+2467:         if (courseModalDesc) courseModalDesc.textContent = course.desc;
+2468: 
+2469:         if (courseTopicsList) {
+2470:             courseTopicsList.innerHTML = '';
+2471:             const topics = course.topics ? course.topics.split(',') : [];
+2472:             topics.forEach(topic => {
+2473:                 const li = document.createElement('li');
+2474:                 li.textContent = topic;
+2475:                 courseTopicsList.appendChild(li);
+2476:             });
+2477:         }
+2478: 
+2479:         // Dynamically bind W3Schools link details
+2480:         const w3schoolsLink = document.getElementById('course-w3schools-link');
+2481:         const w3schoolsBox = document.getElementById('course-w3schools-box');
+2482:         if (w3schoolsBox && w3schoolsLink) {
+2483:             if (course.w3_link) {
+2484:                 w3schoolsLink.href = course.w3_link;
+2485:                 w3schoolsBox.style.display = 'block';
+2486:             } else {
+2487:                 w3schoolsBox.style.display = 'none';
+2488:             }
+2489:         }
+2490: 
+2491:         if (courseModalActionBtn) {
+2492:             courseModalActionBtn.innerHTML = `<i class="fa-solid ${course.icon_class || 'fa-file-pdf'}"></i> ${course.action_text}`;
+2493:             courseModalActionBtn.onclick = () => {
+2494:                 if (!currentUser) {
+2495:                     showNotification('Please register or sign in as a student to access official course materials.');
+2496:                     pendingAction = { type: 'view_course_materials', course: course };
+2497:                     switchTab('dashboard');
+2498:                     const loginUserEl = document.getElementById('login-username');
+2499:                     if (loginUserEl) loginUserEl.focus();
+2500:                     if (courseModal) courseModal.style.display = 'none';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

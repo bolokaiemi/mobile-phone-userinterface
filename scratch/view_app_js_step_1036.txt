@@ -1,0 +1,78 @@
+Created At: 2026-06-07T21:27:10Z
+Completed At: 2026-06-07T21:27:11Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 658
+Total Bytes: 27888
+Showing lines 130 to 230
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+130:             'billing_name': self.billing_name,
+131:             'course_name': self.course_name,
+132:             'zoom_link': self.zoom_link,
+133:             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+134:         }
+135: 
+136: # Milestone targets to control registration features
+137: REVIEWS_MILESTONE = 5
+138: STUDENTS_MILESTONE = 3
+139: 
+140: # Automatically create/upgrade SQL tables on application start
+141: with app.app_context():
+142:     try:
+143:         # Check if email column exists in User table
+144:         db.session.execute(db.text("SELECT email FROM user LIMIT 1"))
+145:     except Exception:
+146:         # Recreate tables to apply the new schema
+147:         print("[EbiUI Database] Recreating database tables for new schema...")
+148:         db.drop_all()
+149:     db.create_all()
+150: 
+151:     # Seed default users if table is empty to satisfy the student milestone
+152:     if User.query.count() == 0:
+153:         print("[EbiUI Database] Seeding default students to satisfy milestone...")
+154:         default_students = [
+155:             {"username": "student_sarah", "full_name": "Sarah Connor", "email": "sarah@example.com", "password": "securepassword123"},
+156:             {"username": "student_john", "full_name": "John Doe", "email": "john@example.com", "password": "securepassword123"},
+157:             {"username": "student_emma", "full_name": "Emma Watson", "email": "emma@example.com", "password": "securepassword123"}
+158:         ]
+159:         for stud in default_students:
+160:             pw_hash = generate_password
+<truncated 2255 bytes>
+------------
+194: @app.route('/api/milestones', methods=['GET'])
+195: def get_milestones():
+196:     total_reviews = Comment.query.count()
+197:     total_students = User.query.count()
+198:     unlocked = (total_reviews >= REVIEWS_MILESTONE) and (total_students >= STUDENTS_MILESTONE)
+199:     return jsonify({
+200:         'total_reviews': total_reviews,
+201:         'reviews_milestone': REVIEWS_MILESTONE,
+202:         'total_students': total_students,
+203:         'students_milestone': STUDENTS_MILESTONE,
+204:         'unlocked': unlocked
+205:     })
+206: 
+207: @app.route('/api/register', methods=['POST'])
+208: def register():
+209:     # Enforce milestone-locked registration for peace of mind
+210:     total_reviews = Comment.query.count()
+211:     total_students = User.query.count()
+212:     if total_reviews < REVIEWS_MILESTONE or total_students < STUDENTS_MILESTONE:
+213:         return jsonify({
+214:             'error': f'Registration features are locked. Milestones not met: Reviews ({total_reviews}/{REVIEWS_MILESTONE}), Registered Students ({total_students}/{STUDENTS_MILESTONE}).'
+215:         }), 403
+216: 
+217:     data = request.get_json() or {}
+218:     username = data.get('username', '').strip()
+219:     email = data.get('email', '').strip()
+220:     full_name = data.get('full_name', '').strip()
+221:     password = data.get('password', '').strip()
+222:     
+223:     if not username or not password or not email or not full_name:
+224:         return jsonify({'error': 'All fields (Full Name, Email, Username, Password) are required.'}), 400
+225:         
+226:     if len(username) < 3 or len(password) < 4:
+227:         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
+228: 
+229:     # Ensure username is unique
+230:     existing_user = User.query.filter_by(username=username).first()
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

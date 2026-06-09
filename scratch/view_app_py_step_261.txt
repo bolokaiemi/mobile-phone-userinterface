@@ -1,0 +1,79 @@
+Created At: 2026-06-06T22:44:08Z
+Completed At: 2026-06-06T22:44:08Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 1880 to 2200
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1880:                 const response = await fetch(API_BASE + '/api/logout', getFetchOptions({ 
+1881:                     method: 'POST'
+1882:                 }));
+1883:             } catch (error) {
+1884:                 console.warn('Logout server connection failed:', error);
+1885:             }
+1886:             currentUser = null;
+1887:             showAuthForms();
+1888:             showNotification('Logged out successfully.');
+1889:             loadComments();
+1890:         });
+1891:     }
+1892: 
+1893:     // Submit Public Review Handler
+1894:     if (commentSubmitBtn && commentTextInput) {
+1895:         commentSubmitBtn.addEventListener('click', async () => {
+1896:             const text = commentTextInput.value.trim();
+1897:             if (!text) {
+1898:                 showNotification('Review content cannot be empty.');
+1899:                 return;
+1900:             }
+1901: 
+1902:             const guestNameInput = document.getElementById('review-guest-name');
+1903:             const guestName = guestNameInput ? guestNameInput.value.trim() : '';
+1904:             const rating = currentRating || 5;
+1905: 
+1906:             const displayAuthor = currentUser || guestName || 'Anonymous Guest';
+1907: 
+1908:             const localCommentObj = {
+1909:                 id: 'local_' + Date.now(),
+1910:                 username: displayAuthor,
+1911:                 rating: rating,
+1912:                 text: text,
+1913:                 created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+1914:             };
+1915: 
+1916:             //
+<truncated 13017 bytes>
+ transactions.',
+2169:             topics: 'ES6+ Syntax & Scope,DOM Manipulation & Event Handlers,Asynchronous Fetch API & JSON,State Management',
+2170:             action_text: 'Launch Sandbox',
+2171:             icon_class: 'fa-code',
+2172:             brand_icon: 'fa-js',
+2173:             brand_color: '#f7df1e',
+2174:             meta: 'Interactive Exercises & Sandbox',
+2175:             w3_link: 'https://www.w3schools.com/js/'
+2176:         },
+2177:         {
+2178:             id: 'python',
+2179:             badge: 'Python',
+2180:             title: 'Python & Flask Development',
+2181:             desc: 'Build powerful backend web applications and REST APIs using Python, object-oriented concepts, Flask routing, templates, and server deployment.',
+2182:             topics: 'Python OOP & syntax,Flask routing & templates,JSON API development,Middleware & application state',
+2183:             action_text: 'Download Source Code',
+2184:             icon_class: 'fa-file-zipper',
+2185:             brand_icon: 'fa-python',
+2186:             brand_color: '#3776ab',
+2187:             meta: 'Source Code & Backend Guide',
+2188:             w3_link: 'https://www.w3schools.com/python/'
+2189:         },
+2190:         {
+2191:             id: 'sql',
+2192:             badge: 'SQL & DB',
+2193:             title: 'SQL & SQLite Database',
+2194:             desc: 'Design relational database schemas, write optimized SQL queries, manage tables, and implement CRUD transactions using SQLite.',
+2195:             topics: 'Relational DB concepts,SQL queries & joins,CRUD transactions,SQLite & SQLAlchemy integration',
+2196:             action_text: 'Launch SQLite Console',
+2197:             icon_class: 'fa-database',
+2198:             brand_icon: 'fa-database',
+2199:             brand_color: '#003b57',
+2200:             meta: 'SQLite Sandbox & Query Guide',
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

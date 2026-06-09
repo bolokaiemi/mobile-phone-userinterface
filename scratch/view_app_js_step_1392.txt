@@ -1,0 +1,29 @@
+Created At: 2026-06-08T04:44:03Z
+Completed At: 2026-06-08T04:44:03Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74582
+Showing lines 1000 to 1020
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1000:                 </p>
+1001:                 <a href="https://www.masterschool.com" target="_blank" class="footer-enroll-btn" id="footer-register-school-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: white;">
+1002:                     <i class="fa-solid fa-up-right-from-square"></i> Join Master School
+1003:                 </a>
+1004:             </div>
+1005:             
+1006:             <div class="footer-col contact-col">
+1007:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+1008:                 <ul class="footer-contact-info">
+1009:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+1010:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+1011:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+1012:                 </ul>
+1013:             </div>
+1014: 
+1015:             <div class="footer-col action-col">
+1016:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+1017:                 <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+1018:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+1019:                     <i class="fa-solid fa-credit-card"></i> Book for Lesson
+1020:                 </button>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

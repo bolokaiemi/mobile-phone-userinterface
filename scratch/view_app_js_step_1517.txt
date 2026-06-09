@@ -1,0 +1,49 @@
+Created At: 2026-06-08T05:06:20Z
+Completed At: 2026-06-08T05:06:20Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1037
+Total Bytes: 74838
+Showing lines 610 to 650
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+610:                     </div>
+611: 
+612:                     <!-- SETTINGS APP -->
+613:                     <div class="sim-app" id="app-settings">
+614:                         <!-- New Language Selector Settings Card -->
+615:                         <div class="settings-section">
+616:                             <h3 data-translate="settings_sec_lang"><i class="fa-solid fa-language"></i> Language</h3>
+617:                             <div class="settings-row">
+618:                                 <span data-translate="settings_sys_lang">System Language</span>
+619:                                 <select id="settings-lang-select" class="settings-select">
+620:                                     <option value="en">🇺🇸 English</option>
+621:                                     <option value="nl">🇳🇱 Nederlands</option>
+622:                                     <option value="de">🇩🇪 Deutsch</option>
+623:                                     <option value="es">🇪🇸 Español</option>
+624:                                     <option value="fr">🇫🇷 Français</option>
+625:                                 </select>
+626:                             </div>
+627:                         </div>
+628: 
+629:                         <div class="settings-section">
+630:                             <h3 data-translate="settings_sec_theme"><i class="fa-solid fa-paintbrush"></i> Display & Theme</h3>
+631:                             <div class="settings-row">
+632:                                 <span data-translate="settings_dark_mode">Dark Mode</span>
+633:                                 <label class="switch">
+634:                                     <input type="checkbox" id="settings-darkmode-toggle">
+635:                                     <span class="slider round"></span>
+636:                                 </label>
+637:                             </div>
+638:                             <div class="settings-row">
+639:                                 <span data-translate="settings_theme_color">Theme Primary Color</span>
+640:                                 <div class="color-picker-row">
+641:                                     <span class="color-dot default" data-hue="220" title="Blue"></span>
+642:                                     <span class="color-dot violet" data-hue="280" title="Purple"></span>
+643:                                     <span class="color-dot green" data-hue="140" title="Green"></span>
+644:                                     <span class="color-dot orange" data-hue="30" title="Orange"></span>
+645:                                 </div>
+646:                             </div>
+647:                         </div>
+648:                         
+649:                         <div class="settings-section">
+650:                             <h3 data-translate="settings_sec_wallpaper"><i class="fa-solid fa-image"></i> Change Wallpaper</h3>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

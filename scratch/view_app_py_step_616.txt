@@ -1,0 +1,87 @@
+Created At: 2026-06-07T00:14:44Z
+Completed At: 2026-06-07T00:14:44Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 1490 to 1570
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1490:     async function checkAuthStatus() {
+1491:         try {
+1492:             const response = await fetch(API_BASE + '/api/user', getFetchOptions());
+1493:             const data = await response.json();
+1494:             if (data.user) {
+1495:                 currentUser = data.user.username;
+1496:                 localStorage.setItem('ebiui_current_user', currentUser);
+1497:                 showUserProfile(currentUser);
+1498:             } else {
+1499:                 // Try localStorage fallback
+1500:                 const localUser = localStorage.getItem('ebiui_current_user');
+1501:                 if (localUser) {
+1502:                     currentUser = localUser;
+1503:                     showUserProfile(currentUser);
+1504:                 } else {
+1505:                     currentUser = null;
+1506:                     showAuthForms();
+1507:                 }
+1508:             }
+1509:         } catch (error) {
+1510:             console.error('Error checking authentication status, trying local storage:', error);
+1511:             const localUser = localStorage.getItem('ebiui_current_user');
+1512:             if (localUser) {
+1513:                 currentUser = localUser;
+1514:                 showUserProfile(currentUser);
+1515:             } else {
+1516:                 currentUser = null;
+1517:                 showAuthForms();
+1518:             }
+1519:         }
+1520:     }
+1521: 
+1522:     function showUserProfile(username) {
+1523:         if (profileUsernameText) profileUsernameText.textContent = username;
+1524:         if (studentAuthWrappe
+<truncated 260 bytes>
+;
+1529:         if (navUsernameBadge) navUsernameBadge.textContent = username;
+1530:         if (navUserAvatar) {
+1531:             navUserAvatar.textContent = username.charAt(0).toUpperCase();
+1532:         }
+1533: 
+1534:         loadCourses();
+1535:         loadBookings();
+1536:         
+1537:         // Smooth scroll to the student dashboard/courses section
+1538:         setTimeout(() => {
+1539:             if (studentDashboard) {
+1540:                 studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+1541:             }
+1542:             executePendingAction();
+1543:         }, 150);
+1544:     }
+1545: 
+1546:     function executePendingAction() {
+1547:         if (!pendingAction) return;
+1548:         const action = pendingAction;
+1549:         pendingAction = null;
+1550: 
+1551:         if (action.type === 'view_course_materials') {
+1552:             openCourseModal(action.course);
+1553:             showNotification(`Accessing materials for: ${action.course.title}`);
+1554:             setTimeout(() => {
+1555:                 alert(`Accessing course materials for: ${action.course.title}`);
+1556:                 if (courseModal) courseModal.style.display = 'none';
+1557:             }, 600);
+1558:         }
+1559:     }
+1560: 
+1561:     function showAuthForms() {
+1562:         if (loginForm) loginForm.style.display = 'flex';
+1563:         if (registerForm) registerForm.style.display = 'none';
+1564:         if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+1565:         
+1566:         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
+1567:         if (studentDashboard) studentDashboard.style.display = 'none';
+1568: 
+1569:         // Hide top navbar session badge and Zoom lessons card
+1570:         if (navUserBadge) navUserBadge.style.display = 'none';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

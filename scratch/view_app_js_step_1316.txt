@@ -1,0 +1,118 @@
+Created At: 2026-06-08T04:39:27Z
+Completed At: 2026-06-08T04:39:27Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/mobilephone.html`
+Total Lines: 409
+Total Bytes: 16308
+Showing lines 1 to 409
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>my first mobile device</title>
+7:     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+8:     
+9: 
+10:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+11: </head>
+12: <style>
+13:   /* General body styling */
+14: body {
+15:     font-family: Arial, sans-serif;
+16:     background-color: darkblue;
+17:     margin: 20px;
+18:     text-align: center;
+19: }
+20: 
+21: /* Header styling */
+22: h1 {
+23:     color: white;
+24:     margin-bottom: 20px;
+25:     font-size: 24px;
+26: }
+27: 
+28: /* Header styling */
+29: header {
+30:     display: flex;
+31:     justify-content: space-between;
+32:     align-items: center;
+33:     background-color: #0073e6;
+34:     padding: 10px;
+35:     border-radius: 8px;
+36:   }
+37:   
+38:   header h1 {
+39:     color: white;
+40:     font-size: 2rem;
+41:   }
+42:   
+43:   header nav a {
+44:     margin-left: 10px;
+45:     color: white;
+46:     text-decoration: none;
+47:     font-size: 1.2rem;
+48:   }
+49:   
+50:   header nav a img, header nav a i {
+51:     vertical-align: middle;
+52:   }
+53: 
+54: 
+55: 
+56: 
+57: /* Links styling */
+58: a {
+59:     text-decoration: none;
+60:     margin: 5px;
+61:     display: inline-blo
+<truncated 14713 bytes>
+e/apps/details?id=com.google.android.apps.nbu.files">
+363:                                                           <img src="https://play-lh.googleusercontent.com/1nfAdJs2Ep2q1skM7QwJ1uHooWSbpFkbIBHhAX6EmdzEKmtk42713TiTU28mWlkcFKPA=w480-h960-rw" alt="files" width="70">
+364:                                                           <p>Files</p>
+365:                                                               </a> 
+366: 
+367: 
+368: <h3 style="background-color: blueviolet;">
+369: 
+370: 
+371: <div class="box-container">
+372:   <a href="https://play.google.com/store/apps/details?id=com.google.android.googlequicksearchbox"> <div class="box" id="googlesearch"></div>
+373: <img src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1=w480-h960-rw" alt="googleicon" width="20">
+374: 
+375: 
+376: <a href="https://play.google.com/store/search?q=google%20microphone%20free&c=apps&gl=DE">
+377:   <div class="box" id="googlemicrophone"></div>
+378:   <img src="https://play-lh.googleusercontent.com/ORzWxi-sIo_hCgSa6uzVvBUE4osKUqRVzHnniUUxA2WXD7BnZ95BNVpWFLUTKRyJRdU=w480-h960-rw" alt="googlemicrophone" width="20">
+379:  
+380:  
+381:   <a href="https://play.google.com/store/search?q=google+lens+kostenlos&c=apps&gl=DE">
+382:     <div class="box" id="googlelens"></div>
+383:     <img src="https://play-lh.googleusercontent.com/Lf4wqYukj9swF-Gl2wvbus6cGoOoCylxbXTVmCO-6-eHWfhPNK78PngENEsWhEBiBw=w480-h960-rw" alt="googlelens" width="20">
+384:   
+385: 
+386: </div>
+387: </a>
+388: </h3>
+389: 
+390: 
+391: <footer>
+392:   <a href="#"><i class="fa-regular fa-circle" ></i></a>
+393:   <a href="#"><i class="fa-solid fa-stop"></i></a>
+394:   <a href="#"><i class="fa-solid fa-play"></i></a>
+395:   <a href=""><i class="fa-regular fa-layer-group"></i></a>
+396:   </footer>
+397: 
+398:   
+399: 
+400: 
+401: 
+402: <p style="background-color: greenyellow;"></p>
+403:     
+404: 
+405: 
+406:     
+407: </body>
+408: </html>
+409: 
+The above content shows the entire, complete file contents of the requested file.

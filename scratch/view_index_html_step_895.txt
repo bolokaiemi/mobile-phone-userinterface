@@ -1,0 +1,19 @@
+Created At: 2026-06-07T21:16:20Z
+Completed At: 2026-06-07T21:16:20Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 942
+Total Bytes: 67599
+Showing lines 15 to 25
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+15:     
+16:     <!-- App stylesheet -->
+17:     <link rel="stylesheet" href="static/styles.css?v=4.0">
+18: </head>
+19: <body>
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

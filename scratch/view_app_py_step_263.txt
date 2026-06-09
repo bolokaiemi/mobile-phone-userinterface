@@ -1,0 +1,88 @@
+Created At: 2026-06-06T22:44:09Z
+Completed At: 2026-06-06T22:44:09Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 2200 to 2432
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2200:             meta: 'SQLite Sandbox & Query Guide',
+2201:             w3_link: 'https://www.w3schools.com/sql/'
+2202:         }
+2203:     ];
+2204: 
+2205:     let coursesData = [];
+2206: 
+2207:     async function loadCourses() {
+2208:         try {
+2209:             const response = await fetch(API_BASE + '/api/courses', getFetchOptions());
+2210:             if (response.ok) {
+2211:                 const data = await response.json();
+2212:                 coursesData = data.courses || DEFAULT_COURSES;
+2213:             } else {
+2214:                 coursesData = DEFAULT_COURSES;
+2215:             }
+2216:         } catch (error) {
+2217:             console.error('Error loading courses from backend, falling back to local list:', error);
+2218:             coursesData = DEFAULT_COURSES;
+2219:         }
+2220:         renderCoursesUI();
+2221:     }
+2222: 
+2223:     function renderCoursesUI() {
+2224:         // 1. Populate navbar dropdown
+2225:         if (navCoursesMenu) {
+2226:             navCoursesMenu.innerHTML = '';
+2227:             coursesData.forEach(course => {
+2228:                 const btn = document.createElement('button');
+2229:                 btn.className = 'dropdown-item';
+2230:                 btn.innerHTML = `<i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i> ${course.title}`;
+2231:                 btn.addEventListener('click', (e) => {
+2232:                     e.preventDefault();
+2233:                     // Close dropdown menu
+2234:                     navCoursesMenu.classList.remove('ac
+<truncated 8493 bytes>
+tyle.display = 'block';
+2390:                     billingEmail.required = true;
+2391:                 } else {
+2392:                     emailRow.style.display = 'none';
+2393:                     billingEmail.required = false;
+2394:                 }
+2395:             }
+2396: 
+2397:             // Trigger the general checkout modal
+2398:             const paymentCourseName = document.getElementById('payment-course-name');
+2399:             if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+2400:             const paymentModal = document.getElementById('payment-modal');
+2401:             if (paymentModal) paymentModal.style.display = 'flex';
+2402:             
+2403:             // Set active checkbox to null or find one if available
+2404:             activeUpgradeCheckbox = null;
+2405:         });
+2406:     }
+2407: 
+2408:     // Bind Dashboard Back Button
+2409:     const dashboardBackBtn = document.getElementById('dashboard-back-btn');
+2410:     if (dashboardBackBtn) {
+2411:         dashboardBackBtn.addEventListener('click', () => {
+2412:             switchTab('home');
+2413:         });
+2414:     }
+2415: 
+2416:     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
+2417:     const allLinks = document.querySelectorAll('a');
+2418:     allLinks.forEach(link => {
+2419:         const href = link.getAttribute('href');
+2420:         if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+2421:             link.setAttribute('target', '_blank');
+2422:             link.setAttribute('rel', 'noopener noreferrer');
+2423:         }
+2424:     });
+2425: 
+2426:     // Trigger Initial Checks
+2427:     checkAuthStatus();
+2428:     loadCourses(); // Render courses for both guest and student views
+2429:     loadComments();
+2430: });
+2431: 
+2432: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,44 @@
+Created At: 2026-06-06T23:00:33Z
+Completed At: 2026-06-06T23:00:33Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2599
+Total Bytes: 120977
+Showing lines 2110 to 2145
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2110:             currentSelectedCourseCheckbox = null;
+2111:         });
+2112:     }
+2113: 
+2114:     if (courseModalUpgradeBtn) {
+2115:         courseModalUpgradeBtn.addEventListener('click', () => {
+2116:             if (courseModal) courseModal.style.display = 'none';
+2117: 
+2118:             // Configure guest email row in checkout form
+2119:             const emailRow = document.getElementById('payment-email-row');
+2120:             const billingEmail = document.getElementById('billing-email');
+2121:             if (emailRow && billingEmail) {
+2122:                 if (!currentUser) {
+2123:                     emailRow.style.display = 'block';
+2124:                     billingEmail.required = true;
+2125:                 } else {
+2126:                     emailRow.style.display = 'none';
+2127:                     billingEmail.required = false;
+2128:                 }
+2129:             }
+2130: 
+2131:             if (currentSelectedCourseCheckbox) {
+2132:                 // Check it to trigger the checkout modal
+2133:                 currentSelectedCourseCheckbox.checked = true;
+2134:                 // Dispatch change event to trigger checkbox change event handler
+2135:                 currentSelectedCourseCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+2136:                 currentSelectedCourseCheckbox = null;
+2137:             } else {
+2138:                 // Opened from dropdown/footer where checkbox context doesn't exist
+2139:                 const courseTitle = courseModalTitle ? courseModalTitle.textContent : 'Selected Course';
+2140:                 if (paymentCourseName) paymentCourseName.textContent = courseTitle;
+2141:                 if (paymentModal) paymentModal.style.display = 'flex';
+2142:             }
+2143:         });
+2144:     }
+2145: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

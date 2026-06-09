@@ -1,0 +1,26 @@
+Created At: 2026-06-07T21:16:25Z
+Completed At: 2026-06-07T21:16:25Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 942
+Total Bytes: 67599
+Showing lines 780 to 797
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+780:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+781:                 <ul class="tips-list">
+782:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+783:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+784:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+785:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+786:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+787:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+788:                 </ul>
+789:                 <div class="tips-action-bar">
+790:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+791:                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
+792:                     </a>
+793:                 </div>
+794:             </div>
+795:         </section>
+796:     </main>
+797: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

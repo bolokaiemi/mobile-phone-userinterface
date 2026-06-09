@@ -1,0 +1,74 @@
+Created At: 2026-06-07T00:58:52Z
+Completed At: 2026-06-07T00:58:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 600
+Total Bytes: 25471
+Showing lines 300 to 365
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+300: # -------------------------------------------------------------
+301: # COMMENTS DATABASE REST ENDPOINTS
+302: # -------------------------------------------------------------
+303: @app.route('/api/comments', methods=['GET', 'POST'])
+304: def comments():
+305:     if request.method == 'GET':
+306:         # Retrieve all database comments, newest first
+307:         all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+308:         return jsonify({'comments': [c.to_dict() for c in all_comments]})
+309:         
+310:     elif request.method == 'POST':
+311:         data = request.get_json() or {}
+312:         text = data.get('text', '').strip()
+313:         rating = data.get('rating', 5)
+314:         guest_name = data.get('guest_name', '').strip()
+315:         
+316:         if not text:
+317:             return jsonify({'error': 'Comment content cannot be empty.'}), 400
+318:             
+319:         if len(text) > 500:
+320:             return jsonify({'error': 'Comment exceeds the 500 character limit.'}), 400
+321:             
+322:         try:
+323:             rating = int(rating)
+324:             if rating < 1 or rating > 5:
+325:                 rating = 5
+326:         except (ValueError, TypeError):
+327:             rating = 5
+328: 
+329:         # Save comment: link user_id if logged in, or lookup by username payload if cookies are blocked
+330:         user = None
+331:         if 'user_id' in session:
+332:             user = User.query.get(session['user_id'])
+333:             
+334:         username_payload = data.get('username', '').strip()
+335:         if not user and username_payload:
+336:             user = User.query.filter_by(username=username_payload).first()
+337:             
+338:         if user:
+339:             new_comment = Comment(user_id=user.id, text=text, rating=rating)
+340:         else:
+341:             if not guest_name or guest_name == 'Anonymous Guest':
+342:                 guest_name = username_payload or 'Anonymous Guest'
+343:             new_comment = Comment(user_id=None, guest_name=guest_name, text=text, rating=rating)
+344:             
+345:         db.session.add(new_comment)
+346:         db.session.commit()
+347:         
+348:         return jsonify({
+349:             'message': 'Comment posted!',
+350:             'comment': new_comment.to_dict()
+351:         }), 201
+352: 
+353: @app.route('/api/comments/<int:comment_id>', methods=['DELETE'])
+354: def delete_comment(comment_id):
+355:     if 'user_id' not in session:
+356:         return jsonify({'error': 'Authentication required.'}), 401
+357:         
+358:     comment = Comment.query.get_or_404(comment_id)
+359:     
+360:     # Enforce database owner security checks
+361:     if comment.user_id != session['user_id']:
+362:         return jsonify({'error': 'Permission denied. You can only delete your own comments.'}), 403
+363:         
+364:     db.session.delete(comment)
+365:     db.session.commit()
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

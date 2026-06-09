@@ -1,0 +1,158 @@
+Created At: 2026-06-08T04:40:41Z
+Completed At: 2026-06-08T04:40:41Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/mobilephone.html`
+Total Lines: 409
+Total Bytes: 16308
+Showing lines 1 to 150
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>my first mobile device</title>
+7:     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+8:     
+9: 
+10:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+11: </head>
+12: <style>
+13:   /* General body styling */
+14: body {
+15:     font-family: Arial, sans-serif;
+16:     background-color: darkblue;
+17:     margin: 20px;
+18:     text-align: center;
+19: }
+20: 
+21: /* Header styling */
+22: h1 {
+23:     color: white;
+24:     margin-bottom: 20px;
+25:     font-size: 24px;
+26: }
+27: 
+28: /* Header styling */
+29: header {
+30:     display: flex;
+31:     justify-content: space-between;
+32:     align-items: center;
+33:     background-color: #0073e6;
+34:     padding: 10px;
+35:     border-radius: 8px;
+36:   }
+37:   
+38:   header h1 {
+39:     color: white;
+40:     font-size: 2rem;
+41:   }
+42:   
+43:   header nav a {
+44:     margin-left: 10px;
+45:     color: white;
+46:     text-decoration: none;
+47:     font-size: 1.2rem;
+48:   }
+49:   
+50:   header nav a img, header nav a i {
+51:     vertical-align: middle;
+52:   }
+53: 
+54: 
+55: 
+56: 
+57: /* Links styling */
+58: a {
+59:     text-decoration: none;
+60:     margin: 5px;
+61:     display: inline-block;
+62: }
+63: 
+64: /* Icons styling */
+65: a i {
+66:     font-size: 30px;
+67:     color: #555;
+68:     transition: color 0.3s ease;
+69: 
+70: 
+71:     @media (max-width: 600px) {
+72:         /*Styles for mobile devices*/
+73:         moobile devices*/
+74:         form/
+75:         width: 100%;
+76:         padding: 10px;
+77:     }
+78: }
+79: 
+80: /* Hover effect for icons */
+81: a:hover i {
+82:     color: #007bff;
+83: }
+84: 
+85: /* Images styling */
+86: a img {
+87:     border-radius: 10px;
+88:     transition: transform 0.3s ease;
+89: }
+90: 
+91: /* Hover effect for images */
+92: a:hover img {
+93:     transform: scale(1.1);
+94: }
+95: 
+96: /* Specific icon color styles (customize as needed) */
+97: .fa-alarm-clock {
+98:     color: #e67e22;
+99: }
+100: 
+101: .fa-whatsapp {
+102:     color: #25d366;
+103: }
+104: 
+105: .fa-paypal {
+106:     color: #003087;
+107: }
+108: 
+109: .fa-x-twitter {
+110:     color: #1da1f2;
+111: }
+112: 
+113: .fa-wifi {
+114:     color: #28a745;
+115: }
+116: 
+117: /* Responsive design for smaller screens */
+118: @media (max-width: 600px) {
+119:     a {
+120:         margin: 10px;
+121:     }
+122: 
+123:     a i {
+124:         font-size: 36px;
+125:     }
+126: 
+127:     a img {
+128:         width: 80px;
+129:     }
+130: }
+131: p{
+132:     color: white;
+133: }
+134: 
+135: .box-container{
+136:     width: 90%;
+137:     max-width: 400px;
+138:     margin: 20px auto;
+139:     padding: 15px;
+140:     background-color: black;
+141:     border-radius: 8px;
+142:     box-shadow: 0 4px 8px rgba(0, 0,0,0.1);
+143: 
+144: }
+145: 
+146: </style>
+147: <body>
+148:   <div class="box-container">
+149: 
+150:    
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,44 @@
+Created At: 2026-06-07T21:33:11Z
+Completed At: 2026-06-07T21:33:11Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1015
+Total Bytes: 76636
+Showing lines 660 to 730
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+660:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+661:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+662:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+663:                             </div>
+664:                         </div>
+665:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+666:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+667:                     </div>
+668:                 </div>
+669: 
+670:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+671:                 <div class="share-overlay" id="share-overlay" style="display: none;">
+672:                     <div class="share-card">
+673:                         <h4 class="share-title"><i class="fa-solid fa-circle-check" style="color: #4caf50;"></i> Review Submitted!</h4>
+674:                         <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+675:                         <div class="share-buttons-grid">
+676:                             <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+677:                             <a href="#"
+<truncated 3561 bytes>
+me" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+715:                         </div>
+716:                         <div class="form-group">
+717:                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+718:                         </div>
+719:                         <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; border-radius: 8px; font-weight: 600;">Register Account</button>
+720:                         <p class="auth-helper-text" style="text-align: center; margin-top: 6px;">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
+721:                     </form>
+722:                 </div>
+723: 
+724:                 <!-- If Logged In: Show Student Courses Dashboard -->
+725:                 <div class="student-dashboard" id="student-dashboard" style="display: none;">
+726:                     <div class="student-profile-header">
+727:                         <span class="user-status-text">Welcome back, <strong id="profile-username-text">username</strong>! | <a href="#" id="auth-logout-btn">Sign Out</a></span>
+728:                     </div>
+729:                     <div class="student-welcome-info" style="margin-top: 12px; padding: 12px 15px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 8px; font-size: 0.9rem; line-height: 1.45;">
+730:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

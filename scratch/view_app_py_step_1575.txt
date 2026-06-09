@@ -1,0 +1,69 @@
+Created At: 2026-06-08T05:07:58Z
+Completed At: 2026-06-08T05:07:59Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 900 to 1039
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+900:                 <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+901:             </div>
+902:             
+903:             <div class="course-modal-body">
+904:                 <p class="course-modal-desc" id="course-modal-desc">Learn the foundation of web development, including semantic tags, forms, media elements, and accessibility guidelines.</p>
+905:                 
+906:                 <div class="course-topics-box">
+907:                     <h5><i class="fa-solid fa-list-check"></i> What you will learn:</h5>
+908:                     <ul id="course-topics-list">
+909:                         <!-- topics injected dynamically -->
+910:                     </ul>
+911:                 </div>
+912: 
+913:                 <div class="w3schools-link-box" id="course-w3schools-box">
+914:                     <div class="w3schools-link-header">
+915:                         <i class="fa-solid fa-book-open"></i> Self-Study Tutorial
+916:                     </div>
+917:                     <p class="w3schools-link-desc">
+918:                         Explore interactive lessons and exercises to learn at your own pace:
+919:                     </p>
+920:                     <a href="#" id="course-w3schools-link" target="_blank" class="w3schools-link-anchor">
+921:                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Open W3Schools Tutorial
+922:                     </a>
+923:                 </div>
+924: 
+925:                 <div class="school-promo-box">
+926:                  
+<truncated 5606 bytes>
+ster-school-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: white;">
+1008:                     <i class="fa-solid fa-up-right-from-square"></i> Join Master School
+1009:                 </a>
+1010:             </div>
+1011:             
+1012:             <div class="footer-col contact-col">
+1013:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+1014:                 <ul class="footer-contact-info">
+1015:                     <li><i class="fa-solid fa-phone"></i> +49 179 326 4196</li>
+1016:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+1017:                     <li><i class="fa-solid fa-location-dot"></i> Herne, Germany</li>
+1018:                 </ul>
+1019:             </div>
+1020: 
+1021:             <div class="footer-col action-col">
+1022:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+1023:                 <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+1024:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+1025:                     <i class="fa-solid fa-credit-card"></i> Book for Lesson
+1026:                 </button>
+1027:             </div>
+1028:         </div>
+1029:         
+1030:         <div class="footer-bottom">
+1031:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+1032:         </div>
+1033:     </footer>
+1034: 
+1035:     <!-- Script loading -->
+1036:     <script src="app.js?v=4.0"></script>
+1037: </body>
+1038: </html>
+1039: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

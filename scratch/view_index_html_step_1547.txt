@@ -1,0 +1,55 @@
+Created At: 2026-06-08T05:07:20Z
+Completed At: 2026-06-08T05:07:21Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1037
+Total Bytes: 74838
+Showing lines 750 to 891
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+750:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+751:                     </div>
+752:                 </div>
+753:             </div>
+754: 
+755:             <!-- Student & Learning Portal Card -->
+756:             <div class="dash-card student-card">
+757:                 <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
+758:                 
+759:                 <!-- If Logged Out: Show Student Login Forms -->
+760:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+761:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+762:                     
+763:                     <!-- Login Form -->
+764:                     <form class="auth-form active-form" id="login-form" style="flex-direction: column; gap: 12px; margin-top: 15px;">
+765:                         <div class="form-group">
+766:                             <input type="text" id="login-username" placeholder="Username / Student ID" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+767:                         </div>
+768:                         <div class="form-group">
+769:                             <input type="password" id="login-password" placeholder="Password" required autocomplete="
+<truncated 10296 bytes>
+       <ul class="course-list">
+867:                         <!-- Populated dynamically via JS -->
+868:                     </ul>
+869:                 </div>
+870:             </div>
+871: 
+872:             <!-- Emulator Tips Card (migrated layout) -->
+873:             <div class="dash-card tips-card">
+874:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+875:                 <ul class="tips-list">
+876:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+877:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+878:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+879:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+880:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+881:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+882:                 </ul>
+883:                 <div class="tips-action-bar">
+884:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+885:                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
+886:                     </a>
+887:                 </div>
+888:             </div>
+889:         </section>
+890:     </main>
+891: </section>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

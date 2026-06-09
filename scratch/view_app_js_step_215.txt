@@ -1,0 +1,16 @@
+Created At: 2026-06-06T22:43:15Z
+Completed At: 2026-06-06T22:43:15Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 452
+Total Bytes: 18198
+Showing lines 445 to 452
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+445:     return jsonify({'courses': COURSES})
+446: 
+447: if __name__ == '__main__':
+448:     # Capture PORT from environment variables (defaults to 8000 for local development)
+449:     PORT = int(os.environ.get('PORT', 8080))
+450:     print(f"Starting Flask development server at http://localhost:{PORT}")
+451:     app.run(host='0.0.0.0', port=PORT, debug=True)
+452: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

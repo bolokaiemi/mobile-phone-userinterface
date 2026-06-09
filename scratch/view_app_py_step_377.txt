@@ -1,0 +1,49 @@
+Created At: 2026-06-06T23:00:01Z
+Completed At: 2026-06-06T23:00:01Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3414
+Total Bytes: 73348
+Showing lines 2580 to 2620
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2580:     background: rgba(255, 255, 255, 0.02);
+2581:     border: 1px solid var(--theme-border-glass);
+2582:     border-radius: 12px;
+2583:     padding: 12px !important;
+2584:     gap: 10px !important;
+2585:     transition: background-color 0.2s ease;
+2586: }
+2587: 
+2588: .course-main-row {
+2589:     display: flex;
+2590:     align-items: center;
+2591:     justify-content: space-between;
+2592:     gap: 10px;
+2593: }
+2594: 
+2595: .live-upgrade-wrapper {
+2596:     border-top: 1px dashed var(--theme-border-glass);
+2597:     padding-top: 8px;
+2598:     margin-top: 4px;
+2599: }
+2600: 
+2601: .live-upgrade-label {
+2602:     display: flex;
+2603:     align-items: center;
+2604:     gap: 8px;
+2605:     font-size: 0.72rem;
+2606:     color: var(--theme-text-muted);
+2607:     cursor: pointer;
+2608:     user-select: none;
+2609:     transition: color 0.15s ease;
+2610: }
+2611: 
+2612: .live-upgrade-label:hover {
+2613:     color: var(--theme-primary-light);
+2614: }
+2615: 
+2616: .light-theme .live-upgrade-label:hover {
+2617:     color: var(--theme-primary);
+2618: }
+2619: 
+2620: .live-upgrade-checkbox {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

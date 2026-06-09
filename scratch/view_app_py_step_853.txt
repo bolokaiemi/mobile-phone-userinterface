@@ -1,0 +1,69 @@
+Created At: 2026-06-07T20:39:20Z
+Completed At: 2026-06-07T20:39:21Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2616
+Total Bytes: 121665
+Showing lines 2060 to 2120
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2060:                     console.log('Comment saved on server:', resData.comment);
+2061:                 }
+2062:             } catch (error) {
+2063:                 console.warn('Comment server post failed, saved in local database only:', error);
+2064:             }
+2065: 
+2066:             // Always display success in the UI to give instant feedback
+2067:             commentTextInput.value = '';
+2068:             if (guestNameInput) guestNameInput.value = '';
+2069:             resetStarSelector();
+2070:             showNotification('Review submitted successfully!');
+2071:             loadComments();
+2072:             showShareOverlay(text, rating);
+2073:         });
+2074:     }
+2075: 
+2076:     // Delete Review Action
+2077:     async function deleteComment(id) {
+2078:         // If it is a local comment, delete it from localStorage
+2079:         if (id && id.toString().startsWith('local_')) {
+2080:             try {
+2081:                 let comments = getLocalComments();
+2082:                 comments = comments.filter(c => c.id !== id);
+2083:                 localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+2084:                 showNotification('Review deleted.');
+2085:                 loadComments();
+2086:                 return;
+2087:             } catch (e) {
+2088:                 console.error(e);
+2089:             }
+2090:         }
+2091: 
+2092:         // Otherwise attempt server delete
+2093:         try {
+2094:             const response = await fetch(API_BASE + `/api/comments/${id}`, getFetchOptions({
+2095:                 method: 'DELETE'
+2096:             }));
+2097: 
+2098:             if (response.ok) {
+2099:                 showNotification('Review deleted.');
+2100:                 loadComments();
+2101:             } else {
+2102:                 const data = await response.json();
+2103:                 showNotification(data.error || 'Failed to delete review.');
+2104:             }
+2105:         } catch (error) {
+2106:             console.error('Delete review error, attempting local removal:', error);
+2107:             // Fallback: search and remove local match
+2108:             try {
+2109:                 let comments = getLocalComments();
+2110:                 comments = comments.filter(c => c.id !== id);
+2111:                 localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+2112:                 showNotification('Review deleted locally.');
+2113:                 loadComments();
+2114:             } catch (e) {
+2115:                 showNotification('Connection error.');
+2116:             }
+2117:         }
+2118:     }
+2119: 
+2120:     // -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

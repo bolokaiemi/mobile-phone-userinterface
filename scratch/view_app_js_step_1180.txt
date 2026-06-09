@@ -1,0 +1,29 @@
+Created At: 2026-06-08T04:30:48Z
+Completed At: 2026-06-08T04:30:48Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1082
+Total Bytes: 80635
+Showing lines 845 to 865
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+845:                             </div>
+846:                         </div>
+847:                     </div>
+848:                 </div>
+849: 
+850:                 <!-- Available Courses (Publicly accessible) -->
+851:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+852:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+853:                     <ul class="course-list">
+854:                         <!-- Populated dynamically via JS -->
+855:                     </ul>
+856:                 </div>
+857:             </div>
+858: 
+859:             <!-- Emulator Tips Card (migrated layout) -->
+860:             <div class="dash-card tips-card">
+861:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+862:                 <ul class="tips-list">
+863:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+864:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+865:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

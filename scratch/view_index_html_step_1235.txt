@@ -1,0 +1,49 @@
+Created At: 2026-06-08T04:36:13Z
+Completed At: 2026-06-08T04:36:13Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74805
+Showing lines 840 to 880
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+840:                     <div class="zoom-lessons-card" id="zoom-lessons-card" style="margin-top: 15px; display: none; background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 10px; padding: 14px;">
+841:                         <h4 class="student-section-title" style="color: #34d399; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-video"></i> Scheduled Zoom Lessons</h4>
+842:                         <div class="zoom-lessons-list" id="zoom-lessons-list" style="display: flex; flex-direction: column; gap: 8px;">
+843:                             <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+844:                                 No Zoom lessons booked yet. Book a course below to schedule your class!
+845:                             </div>
+846:                         </div>
+847:                     </div>
+848:                 </div>
+849: 
+850:                 <!-- Available Courses (Publicly accessible) -->
+851:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+852:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+853:                     
+854:                     <!-- Dynamic selector to avoid list repetition -->
+855:     
+<truncated 582 bytes>
+ white; outline: none; cursor: pointer; font-family: inherit;">
+858:                             <!-- Dynamically populated options -->
+859:                         </select>
+860:                     </div>
+861: 
+862:                     <ul class="course-list">
+863:                         <!-- Populated dynamically via JS -->
+864:                     </ul>
+865:                 </div>
+866:             </div>
+867: 
+868:             <!-- Emulator Tips Card (migrated layout) -->
+869:             <div class="dash-card tips-card">
+870:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+871:                 <ul class="tips-list">
+872:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+873:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+874:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+875:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+876:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+877:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+878:                 </ul>
+879:                 <div class="tips-action-bar">
+880:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

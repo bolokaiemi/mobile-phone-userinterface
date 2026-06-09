@@ -1,0 +1,29 @@
+Created At: 2026-06-06T22:17:39Z
+Completed At: 2026-06-06T22:17:39Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2392
+Total Bytes: 112251
+Showing lines 2040 to 2060
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2040:                 }
+2041: 
+2042:                 if (checkbox.checked) {
+2043:                     activeUpgradeCheckbox = checkbox;
+2044:                     const courseName = checkbox.getAttribute('data-course');
+2045:                     if (paymentCourseName) paymentCourseName.textContent = courseName;
+2046:                     if (paymentModal) paymentModal.style.display = 'flex';
+2047:                 } else {
+2048:                     // Reset styling/label if they uncheck
+2049:                     const labelSpan = checkbox.nextElementSibling;
+2050:                     if (labelSpan) {
+2051:                         labelSpan.innerHTML = `Meet Teacher Direct (Live 1-on-1)`;
+2052:                         labelSpan.style.color = '';
+2053:                     }
+2054:                 }
+2055:             }
+2056:         });
+2057:     }
+2058: 
+2059:     if (paymentCancelBtn) {
+2060:         paymentCancelBtn.addEventListener('click', () => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

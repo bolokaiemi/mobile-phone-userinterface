@@ -1,0 +1,29 @@
+Created At: 2026-06-06T22:18:24Z
+Completed At: 2026-06-06T22:18:25Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3348
+Total Bytes: 71785
+Showing lines 3060 to 3080
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3060:         width: 100% !important;
+3061:         max-width: 440px !important; /* Give dashboard card slightly more breathing room if needed */
+3062:     }
+3063: }
+3064: 
+3065: @media (min-width: 1001px) {
+3066:     /* Enforce side-by-side display on desktop resolutions, regardless of mobile tab classes */
+3067:     .phone-view-section {
+3068:         display: flex !important;
+3069:     }
+3070:     
+3071:     .dashboard-panel {
+3072:         display: flex !important;
+3073:     }
+3074: }
+3075: 
+3076: /* Connection Status Badge Styling */
+3077: .connection-badge {
+3078:     display: inline-flex;
+3079:     align-items: center;
+3080:     gap: 6px;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,21 @@
+Created At: 2026-06-06T23:24:23Z
+Completed At: 2026-06-06T23:24:23Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 532
+Total Bytes: 21387
+Showing lines 130 to 142
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+130:             'billing_name': self.billing_name,
+131:             'course_name': self.course_name,
+132:             'zoom_link': self.zoom_link,
+133:             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+134:         }
+135: 
+136: # Automatically create SQL tables on application start
+137: with app.app_context():
+138:     db.create_all()
+139: 
+140: # -------------------------------------------------------------
+141: # WEB PAGE TEMPLATE/STATIC ROUTES
+142: # -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

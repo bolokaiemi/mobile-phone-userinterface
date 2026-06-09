@@ -1,0 +1,56 @@
+Created At: 2026-06-06T22:17:45Z
+Completed At: 2026-06-06T22:17:45Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 820 to 867
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+820:     <footer class="hub-footer">
+821:         <div class="footer-container">
+822:             <div class="footer-col about-col">
+823:                 <h5 class="footer-title"><i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher</h5>
+824:                 <p class="footer-text">
+825:                     An advanced interactive Android 14 Emulator and comprehensive Web Development Academy. Learn frontend & backend technologies step-by-step.
+826:                 </p>
+827:             </div>
+828:             
+829:             <div class="footer-col links-col">
+830:                 <h5 class="footer-title"><i class="fa-solid fa-graduation-cap"></i> Free Courses</h5>
+831:                 <ul class="footer-links">
+832:                     <li><a href="#" class="footer-course-link" data-course-id="html5">HTML5 Fundamentals</a></li>
+833:                     <li><a href="#" class="footer-course-link" data-course-id="css3">CSS3 Layouts & Styling</a></li>
+834:                     <li><a href="#" class="footer-course-link" data-course-id="js">JavaScript Programming</a></li>
+835:                     <li><a href="#" class="footer-course-link" data-course-id="python">Python & Flask Backend</a></li>
+836:                     <li><a href="#" class="footer-course-link" data-course-id="sql">SQL Database Design</a></li>
+837:                 </ul>
+838:             </div>
+839:             
+840:             <div class="footer-col contact-col">
+841:                 <h5 class="footer-title"><i class="fa-solid fa-envelope"></i> Contact Me</h5>
+842:                 <ul class="footer-contact-info">
+843:                     <li><i class="fa-solid fa-phone"></i> +234 803 123 4567</li>
+844:                     <li><i class="fa-solid fa-envelope-open-text"></i> support@ebiui-academy.com</li>
+845:                     <li><i class="fa-solid fa-location-dot"></i> Port Harcourt, Nigeria</li>
+846:                 </ul>
+847:             </div>
+848: 
+849:             <div class="footer-col action-col">
+850:                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
+851:                 <p class="footer-text">Need one-on-one help? Meet Mr. Bolokaiemi Ebi directly for a live session.</p>
+852:                 <button class="footer-enroll-btn" id="footer-enroll-btn">
+853:                     <i class="fa-solid fa-credit-card"></i> Book Live Session
+854:                 </button>
+855:             </div>
+856:         </div>
+857:         
+858:         <div class="footer-bottom">
+859:             <p>&copy; 2026 EbiUI Launcher Hub. All Rights Reserved. Created by Bolokaiemi Ebi.</p>
+860:         </div>
+861:     </footer>
+862: 
+863:     <!-- Script loading -->
+864:     <script src="app.js?v=4.0"></script>
+865: </body>
+866: </html>
+867: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

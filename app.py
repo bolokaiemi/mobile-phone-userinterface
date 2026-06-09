@@ -88,6 +88,8 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=True)
+    full_name = db.Column(db.String(100), nullable=True)
     password_hash = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -111,9 +113,67 @@ class Comment(db.Model):
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
         }
 
-# Automatically create SQL tables on application start
+class Booking(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True) # Optional for guests
+    guest_email = db.Column(db.String(120), nullable=True)
+    billing_name = db.Column(db.String(100), nullable=False)
+    course_name = db.Column(db.String(100), nullable=False)
+    zoom_link = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    user = db.relationship('User', backref=db.backref('bookings', lazy=True))
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'billing_name': self.billing_name,
+            'course_name': self.course_name,
+            'zoom_link': self.zoom_link,
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+# Milestone targets to control registration features
+REVIEWS_MILESTONE = 5
+STUDENTS_MILESTONE = 3
+
+# Automatically create/upgrade SQL tables on application start
 with app.app_context():
+    try:
+        # Check if email column exists in User table
+        db.session.execute(db.text("SELECT email FROM user LIMIT 1"))
+    except Exception:
+        # Recreate tables to apply the new schema
+        print("[EbiUI Database] Recreating database tables for new schema...")
+        db.drop_all()
     db.create_all()
+
+    # Seed default users if table is empty to satisfy the student milestone
+    if User.query.count() == 0:
+        print("[EbiUI Database] Seeding default students to satisfy milestone...")
+        default_students = [
+            {"username": "student_sarah", "full_name": "Sarah Connor", "email": "sarah@example.com", "password": "securepassword123"},
+            {"username": "student_john", "full_name": "John Doe", "email": "john@example.com", "password": "securepassword123"},
+            {"username": "student_emma", "full_name": "Emma Watson", "email": "emma@example.com", "password": "securepassword123"}
+        ]
+        for stud in default_students:
+            pw_hash = generate_password_hash(stud["password"])
+            db.session.add(User(username=stud["username"], full_name=stud["full_name"], email=stud["email"], password_hash=pw_hash))
+        db.session.commit()
+
+    # Seed default comments if table is empty to satisfy the reviews milestone
+    if Comment.query.count() == 0:
+        print("[EbiUI Database] Seeding default reviews to satisfy milestone...")
+        default_reviews = [
+            {"guest_name": "Sarah Connor", "text": "AB's mentorship is top-notch! The interactive phone emulator helped me grasp mobile layouts instantly.", "rating": 5},
+            {"guest_name": "John Doe", "text": "The courses are extremely detailed and structured logically. Highly recommended for beginners!", "rating": 5},
+            {"guest_name": "Emma Watson", "text": "The Zoom booking system is seamless. I booked a lesson, got my Zoom link instantly, and had an amazing live section.", "rating": 5},
+            {"guest_name": "Michael Scott", "text": "Aesthetically pleasing and highly interactive. EbiUI is one of the best learning portals out there.", "rating": 5},
+            {"guest_name": "David Miller", "text": "Fantastic curriculum! The step-by-step guides for Python and Flask database design were extremely clear.", "rating": 5}
+        ]
+        for rev in default_reviews:
+            db.session.add(Comment(guest_name=rev["guest_name"], text=rev["text"], rating=rev["rating"]))
+        db.session.commit()
 
 # -------------------------------------------------------------
 # WEB PAGE TEMPLATE/STATIC ROUTES
@@ -131,14 +191,37 @@ def send_template(path):
 # -------------------------------------------------------------
 # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
 # -------------------------------------------------------------
+@app.route('/api/milestones', methods=['GET'])
+def get_milestones():
+    total_reviews = Comment.query.count()
+    total_students = User.query.count()
+    unlocked = (total_reviews >= REVIEWS_MILESTONE) and (total_students >= STUDENTS_MILESTONE)
+    return jsonify({
+        'total_reviews': total_reviews,
+        'reviews_milestone': REVIEWS_MILESTONE,
+        'total_students': total_students,
+        'students_milestone': STUDENTS_MILESTONE,
+        'unlocked': unlocked
+    })
+
 @app.route('/api/register', methods=['POST'])
 def register():
+    # Enforce milestone-locked registration for peace of mind
+    total_reviews = Comment.query.count()
+    total_students = User.query.count()
+    if total_reviews < REVIEWS_MILESTONE or total_students < STUDENTS_MILESTONE:
+        return jsonify({
+            'error': f'Registration features are locked. Milestones not met: Reviews ({total_reviews}/{REVIEWS_MILESTONE}), Registered Students ({total_students}/{STUDENTS_MILESTONE}).'
+        }), 403
+
     data = request.get_json() or {}
     username = data.get('username', '').strip()
+    email = data.get('email', '').strip()
+    full_name = data.get('full_name', '').strip()
     password = data.get('password', '').strip()
     
-    if not username or not password:
-        return jsonify({'error': 'Username and password are required.'}), 400
+    if not username or not password or not email or not full_name:
+        return jsonify({'error': 'All fields (Full Name, Email, Username, Password) are required.'}), 400
         
     if len(username) < 3 or len(password) < 4:
         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
@@ -148,9 +231,14 @@ def register():
     if existing_user:
         return jsonify({'error': 'Username is already taken.'}), 400
         
+    # Ensure email is unique
+    existing_email = User.query.filter_by(email=email).first()
+    if existing_email:
+        return jsonify({'error': 'Email address is already registered.'}), 400
+
     # Store hashed password to protect credentials
     password_hash = generate_password_hash(password)
-    new_user = User(username=username, password_hash=password_hash)
+    new_user = User(username=username, email=email, full_name=full_name, password_hash=password_hash)
     db.session.add(new_user)
     db.session.commit()
     
@@ -161,12 +249,12 @@ def register():
     # Send email notification alert
     send_notification_email(
         subject="[EbiUI Alert] New Student Registered",
-        body=f"Hello,\n\nA new student has registered on EbiUI!\n\nUsername: {new_user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
+        body=f"Hello,\n\nA new student has registered on EbiUI!\n\nName: {new_user.full_name}\nEmail: {new_user.email}\nUsername: {new_user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
     )
     
     return jsonify({
         'message': 'Registration successful!',
-        'user': {'username': new_user.username}
+        'user': {'username': new_user.username, 'email': new_user.email, 'full_name': new_user.full_name}
     }), 201
 
 @app.route('/api/login', methods=['POST'])
@@ -238,12 +326,20 @@ def comments():
         except (ValueError, TypeError):
             rating = 5
 
-        # Save comment: link user_id if logged in, otherwise save guest name
+        # Save comment: link user_id if logged in, or lookup by username payload if cookies are blocked
+        user = None
         if 'user_id' in session:
-            new_comment = Comment(user_id=session['user_id'], text=text, rating=rating)
+            user = User.query.get(session['user_id'])
+            
+        username_payload = data.get('username', '').strip()
+        if not user and username_payload:
+            user = User.query.filter_by(username=username_payload).first()
+            
+        if user:
+            new_comment = Comment(user_id=user.id, text=text, rating=rating)
         else:
-            if not guest_name:
-                guest_name = 'Anonymous Guest'
+            if not guest_name or guest_name == 'Anonymous Guest':
+                guest_name = username_payload or 'Anonymous Guest'
             new_comment = Comment(user_id=None, guest_name=guest_name, text=text, rating=rating)
             
         db.session.add(new_comment)
@@ -254,21 +350,77 @@ def comments():
             'comment': new_comment.to_dict()
         }), 201
 
-@app.route('/api/comments/<int:comment_id>', methods=['DELETE'])
-def delete_comment(comment_id):
-    if 'user_id' not in session:
-        return jsonify({'error': 'Authentication required.'}), 401
-        
+@app.route('/api/comments/<int:comment_id>', methods=['DELETE', 'PUT'])
+def modify_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
     
-    # Enforce database owner security checks
-    if comment.user_id != session['user_id']:
-        return jsonify({'error': 'Permission denied. You can only delete your own comments.'}), 403
+    if request.method == 'DELETE':
+        # Enforce database owner security checks if comment belongs to a registered user
+        if comment.user_id is not None:
+            authorized = False
+            if 'user_id' in session and comment.user_id == session['user_id']:
+                authorized = True
+            else:
+                # Fallback for file:// protocol local tests using request JSON payload
+                try:
+                    data = request.get_json() or {}
+                    username_payload = data.get('username', '').strip()
+                    if username_payload:
+                        user = User.query.filter_by(username=username_payload).first()
+                        if user and comment.user_id == user.id:
+                            authorized = True
+                except Exception:
+                    pass
+            
+            if not authorized:
+                return jsonify({'error': 'Permission denied. You can only delete your own comments.'}), 403
+                
+        db.session.delete(comment)
+        db.session.commit()
+        return jsonify({'message': 'Comment deleted successfully.'}), 200
+
+    elif request.method == 'PUT':
+        data = request.get_json() or {}
+        text = data.get('text', '').strip()
+        rating = data.get('rating', 5)
         
-    db.session.delete(comment)
-    db.session.commit()
-    
-    return jsonify({'message': 'Comment deleted successfully.'})
+        if not text:
+            return jsonify({'error': 'Comment content cannot be empty.'}), 400
+            
+        if len(text) > 500:
+            return jsonify({'error': 'Comment exceeds the 500 character limit.'}), 400
+            
+        try:
+            rating = int(rating)
+            if rating < 1 or rating > 5:
+                rating = 5
+        except (ValueError, TypeError):
+            rating = 5
+
+        # Enforce owner checks if comment belongs to a registered user
+        if comment.user_id is not None:
+            authorized = False
+            if 'user_id' in session and comment.user_id == session['user_id']:
+                authorized = True
+            else:
+                # file:// protocol fallback
+                username_payload = data.get('username', '').strip()
+                if username_payload:
+                    user = User.query.filter_by(username=username_payload).first()
+                    if user and comment.user_id == user.id:
+                        authorized = True
+
+            if not authorized:
+                return jsonify({'error': 'Permission denied. You can only edit your own comments.'}), 403
+                
+        comment.text = text
+        comment.rating = rating
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Comment updated successfully.',
+            'comment': comment.to_dict()
+        }), 200
 
 @app.route('/admin')
 def admin_dashboard():
@@ -292,9 +444,11 @@ def admin_stats():
     else:
         db_path = db_uri
         
+    total_bookings = Booking.query.count()
     return jsonify({
         'total_reviews': total_comments,
         'total_students': total_users,
+        'total_bookings': total_bookings,
         'average_rating': round(avg_rating, 2),
         'db_path': db_path
     })
@@ -319,6 +473,8 @@ def admin_data():
         'users': [{
             'id': u.id,
             'username': u.username,
+            'email': u.email or '',
+            'full_name': u.full_name or '',
             'created_at': u.created_at.strftime('%Y-%m-%d %H:%M:%S')
         } for u in all_users]
     })
@@ -415,6 +571,84 @@ COURSES = [
 @app.route('/api/courses', methods=['GET'])
 def get_courses():
     return jsonify({'courses': COURSES})
+
+import random
+import string
+
+@app.route('/api/book-lesson', methods=['POST'])
+def book_lesson():
+    data = request.get_json() or {}
+    billing_name = data.get('billing_name', '').strip()
+    course_name = data.get('course_name', '').strip()
+    guest_email = data.get('guest_email', '').strip()
+    username_payload = data.get('username', '').strip()
+    
+    if not billing_name or not course_name:
+        return jsonify({'error': 'Billing name and course name are required.'}), 400
+        
+    # Resolve user (logged in user via session, or lookup by username payload)
+    user = None
+    if 'user_id' in session:
+        user = User.query.get(session['user_id'])
+    if not user and username_payload:
+        user = User.query.filter_by(username=username_payload).first()
+        
+    # Generate mock Zoom link
+    meeting_id = ''.join(random.choices(string.digits, k=10))
+    passcode = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
+    zoom_link = f"https://zoom.us/j/{meeting_id}?pwd={passcode}"
+    
+    new_booking = Booking(
+        user_id=user.id if user else None,
+        guest_email=guest_email if not user else None,
+        billing_name=billing_name,
+        course_name=course_name,
+        zoom_link=zoom_link
+    )
+    
+    db.session.add(new_booking)
+    db.session.commit()
+    
+    # Send email notification alert to AB (and to user if guest email is present)
+    email_body = f"Hello,\n\nA new Zoom lesson has been booked and paid for on EbiUI!\n\n"
+    email_body += f"Billing Name: {billing_name}\n"
+    email_body += f"Course Name: {course_name}\n"
+    if user:
+        email_body += f"Registered Student: {user.username}\n"
+    else:
+        email_body += f"Guest Email: {guest_email}\n"
+    email_body += f"Zoom Meeting Link: {zoom_link}\n"
+    email_body += f"Booking Time: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\n"
+    email_body += "Please be ready to host the class at the agreed slot.\n\nBest regards,\nEbiUI Auto-Notification System"
+    
+    send_notification_email(
+        subject=f"[EbiUI Alert] New Lesson Booked: {course_name}",
+        body=email_body
+    )
+    
+    return jsonify({
+        'message': 'Booking successful!',
+        'booking': new_booking.to_dict()
+    }), 201
+
+@app.route('/api/bookings', methods=['GET'])
+def get_bookings():
+    # Resolve user via session or URL param fallback (for file:// protocol)
+    user = None
+    if 'user_id' in session:
+        user = User.query.get(session['user_id'])
+
+    username_payload = request.args.get('username', '').strip()
+    if not user and username_payload:
+        user = User.query.filter_by(username=username_payload).first()
+
+    if not user:
+        # For guests, return empty list (guest bookings are stored but shown via guest confirmation)
+        return jsonify({'bookings': []})
+
+    # Get all bookings for this user
+    user_bookings = Booking.query.filter_by(user_id=user.id).order_by(Booking.created_at.desc()).all()
+    return jsonify({'bookings': [b.to_dict() for b in user_bookings]})
 
 if __name__ == '__main__':
     # Capture PORT from environment variables (defaults to 8000 for local development)

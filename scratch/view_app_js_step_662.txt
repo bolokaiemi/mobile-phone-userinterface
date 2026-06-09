@@ -1,0 +1,39 @@
+Created At: 2026-06-07T00:15:10Z
+Completed At: 2026-06-07T00:15:10Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 380 to 410
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+380:         if (currentLanguage === 'de') locale = 'de-DE';
+381:         if (currentLanguage === 'es') locale = 'es-ES';
+382:         if (currentLanguage === 'fr') locale = 'fr-FR';
+383: 
+384:         const dateOptions = { 
+385:             timeZone: 'Europe/Berlin',
+386:             weekday: 'long', 
+387:             month: 'long', 
+388:             day: 'numeric' 
+389:         };
+390:         const dateString = now.toLocaleDateString(locale, dateOptions);
+391:         if (widgetDate) widgetDate.textContent = dateString;
+392:     }
+393:     
+394:     // Run clock updates
+395:     updateClock();
+396:     setInterval(updateClock, 1000);
+397: 
+398:     // Initialize Language
+399:     setLanguage(currentLanguage);
+400: 
+401:     // -------------------------------------------------------------
+402:     // STATUS BAR TOGGLES
+403:     // -------------------------------------------------------------
+404:     let wifiActive = true;
+405:     if (statusWifi) {
+406:         statusWifi.addEventListener('click', () => {
+407:             wifiActive = !wifiActive;
+408:             if (wifiActive) {
+409:                 statusWifi.className = 'fa-solid fa-wifi';
+410:                 statusWifi.style.color = '';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

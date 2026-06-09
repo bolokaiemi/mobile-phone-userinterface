@@ -1,0 +1,34 @@
+Created At: 2026-06-08T05:08:11Z
+Completed At: 2026-06-08T05:08:11Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 660 to 685
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+660:                             <h3 data-translate="settings_sec_about"><i class="fa-solid fa-circle-info"></i> About EbiUI</h3>
+661:                             <div class="settings-about-box">
+662:                                 <p><strong data-translate="about_model">Model:</strong> <span>Ebi Phone Pro Max</span></p>
+663:                                 <p><strong data-translate="about_version">OS Version:</strong> <span>Android 14 (EbiUI v1.0.0)</span></p>
+664:                                 <p><strong data-translate="about_developer">Developer:</strong> <span>Bolokaiemi Ebi</span></p>
+665:                                 <p><strong data-translate="about_build">Build:</strong> <span data-translate="about_build_val">Stable Core OS</span></p>
+666:                             </div>
+667:                         </div>
+668:                     </div>
+669: 
+670:                 </div>
+671:             </div>
+672: 
+673:             <!-- 4. PHYSICAL ANDROID NAVIGATION BAR -->
+674:             <div class="navigation-bar">
+675:                 <button class="nav-btn" id="nav-back" title="Back"><i class="fa-solid fa-play fa-rotate-180"></i></button>
+676:                 <button class="nav-btn" id="nav-home" title="Home"><i class="fa-regular fa-circle"></i></button>
+677:                 <button class="nav-btn" id="nav-recents" title="Recents"><i class="fa-solid fa-stop"></i></button>
+678:             </div>
+679: 
+680:         </div>
+681:             </div>
+682:         </div>
+683: 
+684:         <!-- Comments & Auth Dashboard Section -->
+685:         <section class="dashboard-panel" id="tab-view-dashboard">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

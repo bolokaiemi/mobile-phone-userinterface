@@ -1,0 +1,32 @@
+Created At: 2026-06-07T20:38:50Z
+Completed At: 2026-06-07T20:38:50Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 602
+Total Bytes: 25556
+Showing lines 350 to 373
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+350:             'comment': new_comment.to_dict()
+351:         }), 201
+352: 
+353: @app.route('/api/comments/<int:comment_id>', methods=['DELETE'])
+354: def delete_comment(comment_id):
+355:     if 'user_id' not in session:
+356:         return jsonify({'error': 'Authentication required.'}), 401
+357:         
+358:     comment = Comment.query.get_or_404(comment_id)
+359:     
+360:     # Enforce database owner security checks
+361:     if comment.user_id != session['user_id']:
+362:         return jsonify({'error': 'Permission denied. You can only delete your own comments.'}), 403
+363:         
+364:     db.session.delete(comment)
+365:     db.session.commit()
+366:     
+367:     return jsonify({'message': 'Comment deleted successfully.'})
+368: 
+369: @app.route('/admin')
+370: def admin_dashboard():
+371:     # Serve the admin dashboard HTML file from templates directory
+372:     return send_from_directory('templates', 'admin.html')
+373: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

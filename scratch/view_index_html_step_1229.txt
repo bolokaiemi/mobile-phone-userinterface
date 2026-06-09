@@ -1,0 +1,25 @@
+Created At: 2026-06-08T04:36:07Z
+Completed At: 2026-06-08T04:36:08Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/task.md`
+Total Lines: 17
+Total Bytes: 1120
+Showing lines 1 to 17
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: - [x] Upgrade Flask backend and SQLite models for Zoom bookings
+2:   - [x] Add `Booking` SQLAlchemy model in `app.py`
+3:   - [x] Update `/api/comments` POST to check for payload `username` fallback in `app.py`
+4:   - [x] Add `/api/book-lesson` POST endpoint to generate Zoom links & send emails in `app.py`
+5:   - [x] Add `/api/bookings` GET endpoint to retrieve bookings list in `app.py`
+6: - [x] Add top navbar session badge and scheduled lessons card to index views
+7:   - [x] Add navbar badge and Zoom lessons card in `index.html`
+8:   - [x] Add navbar badge and Zoom lessons card in `templates/index.html`
+9: - [x] Add styles for navbar badge and Zoom lessons card
+10:   - [x] Add primary styles in `static/styles.css`
+11: - [x] Implement frontend application logic updates
+12:   - [x] Send payload `username` in review posts inside `app.js`
+13:   - [x] Update `checkAuthStatus` / `showUserProfile` to sync top navbar user badge in `app.js`
+14:   - [x] Integrate Zoom booking submissions to `/api/book-lesson` inside `app.js`
+15:   - [x] Render scheduled lessons list in the student portal inside `app.js`
+16: - [x] Verify functionality locally and write walkthrough
+17: 
+The above content shows the entire, complete file contents of the requested file.

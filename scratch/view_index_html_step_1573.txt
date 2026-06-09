@@ -1,0 +1,57 @@
+Created At: 2026-06-08T05:07:57Z
+Completed At: 2026-06-08T05:07:57Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1039
+Total Bytes: 74842
+Showing lines 680 to 765
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+680:         </div>
+681:             </div>
+682:         </div>
+683: 
+684:         <!-- Comments & Auth Dashboard Section -->
+685:         <section class="dashboard-panel" id="tab-view-dashboard">
+686:             <!-- Unified Navigation Back Shortcut -->
+687:             <div class="dashboard-back-bar" style="margin-bottom: 20px; display: flex; justify-content: flex-start; width: 100%;">
+688:                 <button class="btn-secondary" id="dashboard-back-btn" style="padding: 10px 18px; font-size: 0.9rem; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; border: 1px solid var(--theme-border-glass); background: var(--theme-bg-glass); color: var(--text-primary); transition: all 0.3s ease;">
+689:                     <i class="fa-solid fa-arrow-left"></i> Back to Phone Emulator
+690:                 </button>
+691:             </div>
+692: 
+693:             <!-- Unified Feedback Feed & Review Card -->
+694:             <div class="dash-card comments-card">
+695:                 <h3 class="card-title"><i class="fa-solid fa-comment-dots"></i> Feedback Feed</h3>
+696:                 
+697:                 <!-- Live comments feed -->
+698:                 <div class="comments-list" id="comments-list-container">
+699:                     <div class="comments-loading">
+700:                         <i class="fa-solid fa-circle-notch fa-spin"></i> Loading feedback...
+701:                     </div>
+702:                 </div>
+703: 
+704:                 <!-- Public Review Input Area (No l
+<truncated 4533 bytes>
+caf50;"></i> Review Submitted!</h4>
+744:                         <p class="share-desc">Thank you for your feedback. Share your review on social media!</p>
+745:                         <div class="share-buttons-grid">
+746:                             <a href="#" class="share-btn whatsapp" id="share-whatsapp" target="_blank"><i class="fa-brands fa-whatsapp"></i> share on WhatsApp</a>
+747:                             <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+748:                             <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+749:                         </div>
+750:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+751:                     </div>
+752:                 </div>
+753:             </div>
+754: 
+755:             <!-- Student & Learning Portal Card -->
+756:             <div class="dash-card student-card">
+757:                 <h3 class="card-title"><i class="fa-solid fa-graduation-cap"></i> Student Learning Portal</h3>
+758:                 
+759:                 <!-- If Logged Out: Show Student Login Forms -->
+760:                 <div class="student-auth-wrapper" id="student-auth-wrapper">
+761:                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
+762:                     
+763:                     <!-- Login Form -->
+764:                     <form class="auth-form active-form" id="login-form" style="flex-direction: column; gap: 12px; margin-top: 15px;">
+765:                         <div class="form-group">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

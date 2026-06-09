@@ -1,0 +1,29 @@
+Created At: 2026-06-07T21:16:22Z
+Completed At: 2026-06-07T21:16:22Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 942
+Total Bytes: 67599
+Showing lines 795 to 815
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+795:         </section>
+796:     </main>
+797: 
+798:     <!-- Course Access Modal -->
+799:     <div class="course-modal" id="course-modal" style="display: none;">
+800:         <div class="course-modal-card">
+801:             <div class="course-modal-header">
+802:                 <span class="course-modal-badge" id="course-modal-badge">HTML5</span>
+803:                 <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+804:             </div>
+805:             
+806:             <div class="course-modal-body">
+807:                 <p class="course-modal-desc" id="course-modal-desc">Learn the foundation of web development, including semantic tags, forms, media elements, and accessibility guidelines.</p>
+808:                 
+809:                 <div class="course-topics-box">
+810:                     <h5><i class="fa-solid fa-list-check"></i> What you will learn:</h5>
+811:                     <ul id="course-topics-list">
+812:                         <!-- topics injected dynamically -->
+813:                     </ul>
+814:                 </div>
+815: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

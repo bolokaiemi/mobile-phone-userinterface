@@ -1,0 +1,49 @@
+Created At: 2026-06-07T21:16:15Z
+Completed At: 2026-06-07T21:16:15Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3457
+Total Bytes: 74402
+Showing lines 1780 to 1820
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1780:     max-width: 1050px;
+1781:     margin: 0 auto;
+1782: }
+1783: 
+1784: .phone-view-section {
+1785:     display: flex;
+1786:     justify-content: center;
+1787:     align-items: center;
+1788: }
+1789: 
+1790: .dashboard-panel {
+1791:     display: flex;
+1792:     flex-direction: column;
+1793:     gap: 24px;
+1794:     width: 460px;
+1795:     flex-shrink: 0;
+1796: }
+1797: 
+1798: .dash-card {
+1799:     background: var(--theme-bg-glass);
+1800:     backdrop-filter: blur(16px);
+1801:     -webkit-backdrop-filter: blur(16px);
+1802:     border: 1px solid var(--theme-border-glass);
+1803:     border-radius: 24px;
+1804:     padding: 24px;
+1805:     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+1806:     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+1807:     color: var(--theme-text-light);
+1808: }
+1809: 
+1810: .light-theme .dash-card {
+1811:     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+1812: }
+1813: 
+1814: .dash-card:hover {
+1815:     border-color: rgba(var(--theme-hue), 85%, 55%, 0.3);
+1816: }
+1817: 
+1818: .card-title {
+1819:     font-size: 1.1rem;
+1820:     font-weight: 700;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

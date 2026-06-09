@@ -1,0 +1,24 @@
+Created At: 2026-06-06T22:43:56Z
+Completed At: 2026-06-06T22:43:56Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 1900 to 1915
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1900:             }
+1901: 
+1902:             const guestNameInput = document.getElementById('review-guest-name');
+1903:             const guestName = guestNameInput ? guestNameInput.value.trim() : '';
+1904:             const rating = currentRating || 5;
+1905: 
+1906:             const displayAuthor = currentUser || guestName || 'Anonymous Guest';
+1907: 
+1908:             const localCommentObj = {
+1909:                 id: 'local_' + Date.now(),
+1910:                 username: displayAuthor,
+1911:                 rating: rating,
+1912:                 text: text,
+1913:                 created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+1914:             };
+1915: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,29 @@
+Created At: 2026-06-07T00:15:54Z
+Completed At: 2026-06-07T00:15:54Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2614
+Total Bytes: 121663
+Showing lines 1920 to 1940
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1920:                     showNotification('Email address is already registered.');
+1921:                     return;
+1922:                 }
+1923:                 saveLocalUser({ username, password, email, full_name: fullName });
+1924:                 currentUser = username;
+1925:                 localStorage.setItem('ebiui_current_user', currentUser);
+1926:                 showUserProfile(currentUser);
+1927:                 showNotification('Registered successfully in offline/local mode!');
+1928:             }
+1929:             
+1930:             if (fullNameInput) fullNameInput.value = '';
+1931:             if (emailInput) emailInput.value = '';
+1932:             if (usernameInput) usernameInput.value = '';
+1933:             if (passwordInput) passwordInput.value = '';
+1934:             loadComments();
+1935:         });
+1936:     }
+1937: 
+1938:     // Login Form Handler
+1939:     if (loginForm) {
+1940:         loginForm.addEventListener('submit', async (e) => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

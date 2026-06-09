@@ -1,0 +1,54 @@
+Created At: 2026-06-07T00:48:24Z
+Completed At: 2026-06-07T00:48:24Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 548
+Total Bytes: 22287
+Showing lines 160 to 205
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+160: # -------------------------------------------------------------
+161: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+162: # -------------------------------------------------------------
+163: @app.route('/api/register', methods=['POST'])
+164: def register():
+165:     data = request.get_json() or {}
+166:     username = data.get('username', '').strip()
+167:     email = data.get('email', '').strip()
+168:     full_name = data.get('full_name', '').strip()
+169:     password = data.get('password', '').strip()
+170:     
+171:     if not username or not password or not email or not full_name:
+172:         return jsonify({'error': 'All fields (Full Name, Email, Username, Password) are required.'}), 400
+173:         
+174:     if len(username) < 3 or len(password) < 4:
+175:         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
+176: 
+177:     # Ensure username is unique
+178:     existing_user = User.query.filter_by(username=username).first()
+179:     if existing_user:
+180:         return jsonify({'error': 'Username is already taken.'}), 400
+181:         
+182:     # Ensure email is unique
+183:     existing_email = User.query.filter_by(email=email).first()
+184:     if existing_email:
+185:         return jsonify({'error': 'Email address is already registered.'}), 400
+186:         
+187:     # Store hashed password to protect credentials
+188:     password_hash = generate_password_hash(password)
+189:     new_user = User(username=username, email=email, full_name=full_name, password_hash=password_hash)
+190:     db.session.add(new_user)
+191:     db.session.commit()
+192:     
+193:     # Auto-login session after registration
+194:     session['user_id'] = new_user.id
+195:     session['username'] = new_user.username
+196:     
+197:     # Send email notification alert
+198:     send_notification_email(
+199:         subject="[EbiUI Alert] New Student Registered",
+200:         body=f"Hello,\n\nA new student has registered on EbiUI!\n\nName: {new_user.full_name}\nEmail: {new_user.email}\nUsername: {new_user.username}\nTime: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC\n\nBest regards,\nEbiUI Auto-Notification System"
+201:     )
+202:     
+203:     return jsonify({
+204:         'message': 'Registration successful!',
+205:         'user': {'username': new_user.username, 'email': new_user.email, 'full_name': new_user.full_name}
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,34 @@
+Created At: 2026-06-08T05:08:34Z
+Completed At: 2026-06-08T05:08:34Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1051
+Total Bytes: 76205
+Showing lines 95 to 120
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+95:                 <p class="feature-text">Safeguard your platform using automated checks. Features unlock automatically once community targets are achieved.</p>
+96:             </div>
+97:             <div class="feature-card">
+98:                 <div class="feature-icon" style="color: #34d399; background: rgba(52,211,153,0.1);"><i class="fa-solid fa-arrows-rotate"></i></div>
+99:                 <h3 class="feature-title">Auto-Refreshed Reviews</h3>
+100:                 <p class="feature-text">Submit, edit, or delete feedback with ease. The feedback feed polls updates automatically while preserving active inputs.</p>
+101:             </div>
+102:             <div class="feature-card">
+103:                 <div class="feature-icon" style="color: #f472b6; background: rgba(244,114,182,0.1);"><i class="fa-solid fa-video"></i></div>
+104:                 <h3 class="feature-title">Premium Zoom Bookings</h3>
+105:                 <p class="feature-text">Book Zoom tutoring lessons directly from the courses list. Generate invitations, send mail alerts, and join from your dashboard.</p>
+106:             </div>
+107:         </div>
+108:     </section>
+109: 
+110:     <!-- MAIN INTERACTIVE PLAYGROUND -->
+111:     <section class="playground-section" id="playground">
+112:         <div class="section-header">
+113:             <h2 class="section-title"><i class="fa-solid fa-cubes"></i> Interactive Workspace</h2>
+114:             <p class="section-desc">Experience the ROM simulation directly below. Select courses, schedule lessons, and post your feedback.</p>
+115:         </div>
+116:         
+117:         <!-- 2. MAIN HUB CONTENT CONTAINER -->
+118:         <main class="hub-container">
+119:             <!-- Phone View Section -->
+120:             <div class="phone-view-section active-tab-view" id="tab-view-home">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

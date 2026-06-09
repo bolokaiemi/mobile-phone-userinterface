@@ -15,8 +15,25 @@
     
     <!-- App stylesheet -->
     <link rel="stylesheet" href="static/styles.css?v=4.0">
+     <!-- Favicon -->
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Floating Social Plugins Sidebar -->
+    <div class="floating-social-sidebar" style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 9999;">
+        <a href="https://wa.me/2348031234567" target="_blank" title="WhatsApp Chat" style="width: 44px; height: 44px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(37,211,102,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" title="Facebook Page" style="width: 44px; height: 44px; background: #1877f2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(24,119,242,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" title="Instagram Profile" style="width: 44px; height: 44px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(225,48,108,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://youtube.com" target="_blank" title="YouTube Academy" style="width: 44px; height: 44px; background: #ff0000; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 4px 12px rgba(255,0,0,0.3); transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.transform='scale(1.15)';" onmouseout="this.style.transform='scale(1)';">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+    </div>
     <!-- 1. TOP HUB NAVIGATION BAR -->
     <header class="top-navbar">
         <div class="nav-brand">
@@ -25,7 +42,7 @@
         </div>
         <nav class="nav-links">
             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
-            <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Comments Feed</button>
+            <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Portal & Reviews</button>
             
             <!-- Courses Dropdown -->
             <div class="nav-dropdown-wrapper" id="nav-courses-dropdown-wrapper" style="display: inline-block;">
@@ -33,6 +50,13 @@
                     <i class="fa-solid fa-graduation-cap"></i> Courses <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
                 </button>
                 <div class="nav-dropdown-menu" id="nav-courses-menu"></div>
+            </div>
+
+            <!-- User Session Profile Badge -->
+            <div id="nav-user-badge" class="nav-user-badge" style="display: none; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--theme-border-glass); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">
+                <span class="user-avatar-small" id="nav-user-avatar" style="width: 24px; height: 24px; border-radius: 50%; background: var(--theme-primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">U</span>
+                <span class="user-name-text" id="nav-username-badge" style="font-size: 0.82rem; font-weight: 600; color: #f1f5f9;">Student</span>
+                <button id="nav-logout-btn" class="nav-logout-btn" title="Sign Out" style="background: transparent; border: none; color: #f87171; cursor: pointer; font-size: 0.85rem; padding: 2px 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s;"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
 
             <a href="https://github.com/bolokaiemi/mobile-phone-userinterface" class="nav-link-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -669,23 +693,33 @@
                     <h4 class="auth-section-title" id="student-auth-title">Log in to Access Course Materials</h4>
                     
                     <!-- Login Form -->
-                    <form class="auth-form active-form" id="login-form">
-                        <div class="form-row">
-                            <input type="text" id="login-username" placeholder="Username" required autocomplete="username">
-                            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
-                            <button type="submit" class="btn-primary">Sign In</button>
+                    <form class="auth-form active-form" id="login-form" style="flex-direction: column; gap: 12px; margin-top: 15px;">
+                        <div class="form-group">
+                            <input type="text" id="login-username" placeholder="Username / Student ID" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
                         </div>
-                        <p class="auth-helper-text">New student? <a href="#" id="link-to-register">Register here</a></p>
+                        <div class="form-group">
+                            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; border-radius: 8px; font-weight: 600;">Sign In</button>
+                        <p class="auth-helper-text" style="text-align: center; margin-top: 6px;">New student? <a href="#" id="link-to-register">Register here</a></p>
                     </form>
                     
                     <!-- Register Form -->
-                    <form class="auth-form" id="register-form" style="display: none;">
-                        <div class="form-row">
-                            <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username">
-                            <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password">
-                            <button type="submit" class="btn-primary">Register</button>
+                    <form class="auth-form" id="register-form" style="display: none; flex-direction: column; gap: 12px; margin-top: 15px;">
+                        <div class="form-group">
+                            <input type="text" id="register-fullname" placeholder="Full Name" required autocomplete="name" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
                         </div>
-                        <p class="auth-helper-text">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
+                        <div class="form-group">
+                            <input type="email" id="register-email" placeholder="Email Address" required autocomplete="email" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; border-radius: 8px; font-weight: 600;">Register Account</button>
+                        <p class="auth-helper-text" style="text-align: center; margin-top: 6px;">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
                     </form>
                 </div>
 
@@ -699,8 +733,53 @@
                         <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
-                            <li><strong>Live Mentorship:</strong> Check the <strong>Meet Teacher Direct</strong> box on any course to book a direct 1-on-1 session with Mr. Ebi.</li>
+                            <li><strong>Live Mentorship:</strong> Check the <strong>Meet AB direct</strong> box on any course to book for a lesson (payment required before entry).</li>
                         </ul>
+                    </div>
+
+                    <!-- School Launch Milestones Tracker Card -->
+                    <div class="school-milestones-card" id="school-milestones-card" style="margin-top: 15px; background: rgba(168, 85, 247, 0.04); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 10px; padding: 14px;">
+                        <h4 class="student-section-title" style="color: #c084fc; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-flag-checkered"></i> School Kick-off Milestones</h4>
+                        <div class="milestones-progress-list" style="display: flex; flex-direction: column; gap: 12px;">
+
+                            <!-- Enrollment Progress -->
+                            <div class="milestone-progress-item">
+                                <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                                    <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-user-graduate"></i> Enrolled Students Goal</span>
+                                    <span style="color: #c084fc;" id="milestone-students-count">0 / 20</span>
+                                </div>
+                                <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                                    <div class="milestone-progress-bar-fill" id="milestone-students-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #7c3aed); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+                                </div>
+                            </div>
+
+                            <!-- Positive Comments Progress -->
+                            <div class="milestone-progress-item">
+                                <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+                                    <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-comments"></i> Positive Comments Goal</span>
+                                    <span style="color: #34d399;" id="milestone-comments-count">0 / 50,000</span>
+                                </div>
+                                <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                                    <div class="milestone-progress-bar-fill" id="milestone-comments-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10b981, #059669); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+                                </div>
+                            </div>
+
+                            <!-- Kickoff Status Badge -->
+                            <div class="milestone-status-badge" id="milestone-status-badge" style="margin-top: 4px; font-size: 0.78rem; font-weight: 600; text-align: center; padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.04); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.06);">
+                                Checking kick-off status...
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Scheduled Zoom Lessons Container -->
+                    <div class="zoom-lessons-card" id="zoom-lessons-card" style="margin-top: 15px; display: none; background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 10px; padding: 14px;">
+                        <h4 class="student-section-title" style="color: #34d399; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-video"></i> Scheduled Zoom Lessons</h4>
+                        <div class="zoom-lessons-list" id="zoom-lessons-list" style="display: flex; flex-direction: column; gap: 8px;">
+                            <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+                                No Zoom lessons booked yet. Book a course below to schedule your class!
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -728,6 +807,64 @@
                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
                     </a>
+                </div>
+            </div>
+
+            <!-- Social Connect Plugins Card -->
+            <div class="dash-card social-plugins-card" id="social-plugins-card" style="margin-top: 15px;">
+                <h3 class="card-title" style="color: #60a5fa;"><i class="fa-solid fa-share-nodes"></i> Social Media Connect</h3>
+                <p style="margin-bottom: 15px; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4;">
+                    Connect with Mr. Bolokaiemi Ebi directly on social networks or follow EbiUI updates!
+                </p>
+                <div class="social-plugins-list" style="display: flex; flex-direction: column; gap: 12px;">
+
+                    <!-- WhatsApp Chat Plugin -->
+                    <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.35rem; color: #25d366; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(37,211,102,0.1); border-radius: 50%;"><i class="fa-brands fa-whatsapp"></i></span>
+                            <div>
+                                <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">WhatsApp Direct</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-secondary);">Chat with AB direct</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/2348031234567" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #25d366; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);"><i class="fa-solid fa-paper-plane"></i> Chat Direct</a>
+                    </div>
+
+                    <!-- Facebook Page Plugin -->
+                    <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(24, 119, 242, 0.05); border: 1px solid rgba(24, 119, 242, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.35rem; color: #1877f2; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(24,119,242,0.1); border-radius: 50%;"><i class="fa-brands fa-facebook-f"></i></span>
+                            <div>
+                                <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">Facebook Hub</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-secondary);">Join our custom ROM community</span>
+                            </div>
+                        </div>
+                        <a href="https://facebook.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #1877f2; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(24, 119, 242, 0.2);"><i class="fa-solid fa-thumbs-up"></i> Follow Page</a>
+                    </div>
+
+                    <!-- Instagram Design Showcase -->
+                    <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(225, 48, 108, 0.05); border: 1px solid rgba(225, 48, 108, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.35rem; color: #e1306c; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(225,48,108,0.1); border-radius: 50%;"><i class="fa-brands fa-instagram"></i></span>
+                            <div>
+                                <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">Instagram ROM</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-secondary);">ROM screenshots showcase</span>
+                            </div>
+                        </div>
+                        <a href="https://instagram.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(225, 48, 108, 0.2);"><i class="fa-solid fa-camera"></i> Follow Hub</a>
+                    </div>
+
+                    <!-- YouTube Video Lectures -->
+                    <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255, 0, 0, 0.05); border: 1px solid rgba(255, 0, 0, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.35rem; color: #ff0000; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,0,0,0.1); border-radius: 50%;"><i class="fa-brands fa-youtube"></i></span>
+                            <div>
+                                <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">YouTube Academy</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-secondary);">Video courses & lessons</span>
+                            </div>
+                        </div>
+                        <a href="https://youtube.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #ff0000; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);"><i class="fa-solid fa-bell"></i> Subscribe</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -768,13 +905,13 @@
                         <i class="fa-solid fa-circle-question" style="color: #f59e0b;"></i>
                         <span>Need Help? Get Mentorship</span>
                     </div>
-                    <p>If you need direct support, WhatsApp guidance, code reviews, or live 1-on-1 online lessons, enroll in <strong>Mr. Bolokaiemi Ebi's Live School</strong> below.</p>
+                    <p>Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
                 </div>
             </div>
 
             <div class="course-modal-actions">
                 <button class="btn-secondary" id="course-modal-close">Close</button>
-                <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-chalkboard-user"></i> Enroll in Live School</button>
+                <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-credit-card"></i> Book for Lesson</button>
                 <button class="btn-primary" id="course-modal-action-btn"><i class="fa-solid fa-file-pdf"></i> Access Materials</button>
             </div>
         </div>
@@ -784,7 +921,7 @@
     <div class="payment-modal" id="payment-modal" style="display: none;">
         <div class="payment-modal-card">
             <h4 class="payment-modal-title"><i class="fa-solid fa-chalkboard-user"></i> Live Direct Tutoring Premium Upgrade</h4>
-            <p class="payment-modal-desc">Upgrade your access for <strong id="payment-course-name">Course Name</strong> to meet <strong>Mr. Bolokaiemi Ebi</strong> directly as your teacher.</p>
+            <p class="payment-modal-desc">Upgrade your access for <strong id="payment-course-name">Course Name</strong> to meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
             
             <div class="payment-features-list">
                 <div><i class="fa-solid fa-check"></i> Live 1-on-1 online classes (1 hr/session)</div>
@@ -798,6 +935,9 @@
             </div>
             
             <form id="premium-payment-form">
+                <div class="payment-form-row" id="payment-email-row" style="display: none;">
+                    <input type="email" id="billing-email" placeholder="Email Address (for lesson details)">
+                </div>
                 <div class="payment-form-row">
                     <input type="text" id="billing-name" placeholder="Full Billing Name" required>
                 </div>
@@ -829,12 +969,22 @@
             <div class="footer-col links-col">
                 <h5 class="footer-title"><i class="fa-solid fa-graduation-cap"></i> Free Courses</h5>
                 <ul class="footer-links">
-                    <li><a href="#" class="footer-course-link" data-course-id="html5">HTML5 Fundamentals</a></li>
-                    <li><a href="#" class="footer-course-link" data-course-id="css3">CSS3 Layouts & Styling</a></li>
-                    <li><a href="#" class="footer-course-link" data-course-id="js">JavaScript Programming</a></li>
-                    <li><a href="#" class="footer-course-link" data-course-id="python">Python & Flask Backend</a></li>
-                    <li><a href="#" class="footer-course-link" data-course-id="sql">SQL Database Design</a></li>
+                    <li><a href="https://www.w3schools.com/html/" target="_blank">HTML5 Fundamentals</a></li>
+                    <li><a href="https://www.w3schools.com/css/" target="_blank">CSS3 Layouts & Styling</a></li>
+                    <li><a href="https://www.w3schools.com/js/" target="_blank">JavaScript Programming</a></li>
+                    <li><a href="https://www.w3schools.com/python/" target="_blank">Python & Flask Backend</a></li>
+                    <li><a href="https://www.w3schools.com/sql/" target="_blank">SQL Database Design</a></li>
                 </ul>
+            </div>
+
+            <div class="footer-col education-col">
+                <h5 class="footer-title"><i class="fa-solid fa-school"></i> Master School</h5>
+                <p class="footer-text">
+                    Join Master School's intensive Web Development Career Path. Get mentored by industry pros and land your dream tech job.
+                </p>
+                <a href="https://www.masterschool.com" target="_blank" class="footer-enroll-btn" id="footer-register-school-btn" style="background: linear-gradient(135deg, #a855f7, #7c3aed); border: none; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; color: white;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Join Master School
+                </a>
             </div>
             
             <div class="footer-col contact-col">
@@ -848,9 +998,9 @@
 
             <div class="footer-col action-col">
                 <h5 class="footer-title"><i class="fa-solid fa-chalkboard-user"></i> Live Mentorship</h5>
-                <p class="footer-text">Need one-on-one help? Meet Mr. Bolokaiemi Ebi directly for a live session.</p>
+                <p class="footer-text">Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
                 <button class="footer-enroll-btn" id="footer-enroll-btn">
-                    <i class="fa-solid fa-credit-card"></i> Book Live Session
+                    <i class="fa-solid fa-credit-card"></i> Book for Lesson
                 </button>
             </div>
         </div>

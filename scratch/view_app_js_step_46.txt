@@ -1,0 +1,66 @@
+Created At: 2026-06-06T22:16:45Z
+Completed At: 2026-06-06T22:16:45Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2387
+Total Bytes: 111055
+Showing lines 62 to 250
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+62:     // MULTI-LANGUAGE TRANSLATION DICTIONARY
+63:     // -------------------------------------------------------------
+64:     const translations = {
+65:         sub_title: {
+66:             en: "Android 14 Custom ROM",
+67:             nl: "Android 14 Aangepaste ROM",
+68:             de: "Android 14 Custom-ROM",
+69:             es: "ROM Personalizada Android 14",
+70:             fr: "ROM Personnalisée Android 14"
+71:         },
+72:         weather_desc: {
+73:             en: "Partly Cloudy",
+74:             nl: "Gedeeltelijk Bewolkt",
+75:             de: "Leicht Bewölkt",
+76:             es: "Parcialmente Nublado",
+77:             fr: "Partiellement Nuageux"
+78:         },
+79:         weather_city: {
+80:             en: "Herne, DE",
+81:             nl: "Herne, Deutschland",
+82:             de: "Herne, Deutschland",
+83:             es: "Herne, Deutschland",
+84:             fr: "Herne, Deutschland"
+85:         },
+86:         sys_bar_title: {
+87:             en: "System Bar",
+88:             nl: "Systeembalk",
+89:             de: "Systemleiste",
+90:             es: "Barra de Control",
+91:             fr: "Barre de Contrôle"
+92:         },
+93:         // Launcher App Labels
+94:         app_playstore: { en: "Play Store", nl: "Play Store", de: "Play Store", es: "Play Store", fr: "Play Store" },
+95:         app_call: { en: "Phone", nl: "Telefoon", de: "Telefon", es: "Teléfono", fr: "Téléphone" },
+96:         app_paypal: { en: "PayPal", nl: "PayPal", de: "PayPal", es: "PayPal", fr: "PayPal" },
+97:         app_drive: { en: "Drive", nl: "Drive", de: "Drive", 
+<truncated 10963 bytes>
+a simular la carga!", fr: "Cliquez sur l'icône de batterie en haut à droite pour simuler la charge !" },
+231:         tips_item_5: { en: "Fully responsive! Try resizing your browser window or view on a phone.", nl: "Volledig responsive! Probeer uw browservenster te verkleinen of bekijk het op een telefoon.", de: "Vollständig responsiv! Ändere die Größe des Browserfensters oder öffne es auf dem Handy.", es: "¡Totalmente responsivo! Intenta cambiar el tamaño del navegador o míralo en un teléfono.", fr: "Entièrement réactif ! Essayez de redimensionner votre navigateur ou visualisez sur un téléphone." },
+232:         tips_view_original: { en: "View Raw Original Page", nl: "Bekijk de Originele Pagina", de: "Originale Seite Anzeigen", es: "Ver Página Original", fr: "Voir la page originale" }
+233:     };
+234: 
+235:     // -------------------------------------------------------------
+236:     // DOM ELEMENTS
+237:     // -------------------------------------------------------------
+238:     const statusTime = document.getElementById('status-time');
+239:     const widgetTime = document.getElementById('widget-time');
+240:     const widgetDate = document.getElementById('widget-date');
+241:     const statusBatteryBtn = document.getElementById('status-battery-btn');
+242:     const batteryLevelText = document.getElementById('battery-level');
+243:     const batteryIcon = document.getElementById('battery-icon');
+244:     const batteryChargingIcon = document.getElementById('battery-charging-icon');
+245:     const statusWifi = document.getElementById('status-wifi');
+246: 
+247:     // Language Dropdown Triggers
+248:     const statusLangTrigger = document.getElementById('status-lang-trigger');
+249:     const langDropdown = document.getElementById('lang-dropdown');
+250:     const langOptions = document.querySelectorAll('.lang-option');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

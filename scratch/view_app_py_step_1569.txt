@@ -1,0 +1,40 @@
+Created At: 2026-06-08T05:07:52Z
+Completed At: 2026-06-08T05:07:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1051
+Total Bytes: 76205
+Showing lines 710 to 760
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+710:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+711:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+712:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+713:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+714:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+715:                             </div>
+716:                         </div>
+717:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+718:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+719:                     </div>
+720:                 </div>
+721: 
+722:                 <!-- Permanent Feedback Quick Share Bar -->
+723:                 <div class="feedback-quick-share" style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--theme-border-glass); text-align: center;">
+724:                     <span style="font-size: 0.78rem; color: var(--theme-text-muted); font-weight: 600; display: block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+725:                         <i class="fa-solid fa-share-nodes"></i> Quick Share Ebi
+<truncated 2868 bytes>
+ share on WhatsApp</a>
+747:                             <a href="#" class="share-btn facebook" id="share-facebook" target="_blank"><i class="fa-brands fa-facebook-f"></i> share on Facebook</a>
+748:                             <a href="#" class="share-btn instagram" id="share-instagram" target="_blank"><i class="fa-brands fa-instagram"></i> share on Instagram</a>
+749:                         </div>
+750:                         <button class="btn-secondary btn-sm" id="close-share-btn" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; margin-top: 4px;">Done</button>
+751:                <!-- Emulator Tips Card (migrated layout) -->
+752:             <div class="dash-card tips-card">
+753:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+754:                 <ul class="tips-list">
+755:                     <li><i class="fa-solid fa-mouse-pointer"></i> Click app icons to open live mini-applications!</li>
+756:                     <li><i class="fa-solid fa-gear"></i> Open <strong>Settings</strong> inside EbiUI to toggle Dark Mode, change accents, and change wallpapers.</li>
+757:                     <li><i class="fa-solid fa-clock"></i> Status bar shows live clock. Click the clock widget or weather card!</li>
+758:                     <li><i class="fa-solid fa-battery-half"></i> Click the battery icon in the top right to simulate charging!</li>
+759:                     <li><i class="fa-solid fa-globe"></i> Switch language tags globally in the status bar or Settings.</li>
+760:                     <li><i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i> <strong>Notice:</strong> This is a web-based design simulation. Do not download any files or apps to your local computer; simply click, view, and interact with the UI online.</li>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,24 @@
+Created At: 2026-06-08T04:36:59Z
+Completed At: 2026-06-08T04:36:59Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1033
+Total Bytes: 74805
+Showing lines 850 to 865
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+850:                 <!-- Available Courses (Publicly accessible) -->
+851:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+852:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+853:                     
+854:                     <!-- Dynamic selector to avoid list repetition -->
+855:                     <div class="course-selector-wrapper" style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+856:                         <label for="dashboard-course-select" style="font-size: 0.8rem; color: var(--theme-text-muted); font-weight: 500; min-width: fit-content;"><i class="fa-solid fa-filter"></i> Choose Course:</label>
+857:                         <select id="dashboard-course-select" style="width: 100%; padding: 8px 12px; font-size: 0.82rem; border-radius: 8px; background: rgba(0,0,0,0.25); border: 1px solid var(--theme-border-glass); color: white; outline: none; cursor: pointer; font-family: inherit;">
+858:                             <!-- Dynamically populated options -->
+859:                         </select>
+860:                     </div>
+861: 
+862:                     <ul class="course-list">
+863:                         <!-- Populated dynamically via JS -->
+864:                     </ul>
+865:                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

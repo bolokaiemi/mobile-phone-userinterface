@@ -1,0 +1,39 @@
+Created At: 2026-06-07T21:16:10Z
+Completed At: 2026-06-07T21:16:10Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 942
+Total Bytes: 67599
+Showing lines 695 to 735
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+695:                         <div class="form-group">
+696:                             <input type="email" id="register-email" placeholder="Email Address" required autocomplete="email" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+697:                         </div>
+698:                         <div class="form-group">
+699:                             <input type="text" id="register-username" placeholder="Choose Username" required autocomplete="username" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+700:                         </div>
+701:                         <div class="form-group">
+702:                             <input type="password" id="register-password" placeholder="Choose Password" required autocomplete="new-password" style="background: rgba(0,0,0,0.2); border: 1px solid var(--theme-border-glass); padding: 10px; border-radius: 8px; color: white;">
+703:                         </div>
+704:                         <button type="submit" class="btn-primary" style="width: 100%; padding: 10px; border-radius: 8px; font-weight: 600;">Register Account</button>
+705:                         <p class="auth-helper-text" style="text-align: center; margin-top: 6px;">Already registered? <a href="#" id="link-to-login">Sign In</a></p>
+706:                     </form>
+707:                 </div>
+708: 
+709:                 <!-- If Logged In: Show Student Courses Dashboar
+<truncated 1561 bytes>
+               </div>
+722: 
+723:                     <!-- School Launch Milestones Tracker Card -->
+724:                     <div class="school-milestones-card" id="school-milestones-card" style="margin-top: 15px; background: rgba(168, 85, 247, 0.04); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 10px; padding: 14px;">
+725:                         <h4 class="student-section-title" style="color: #c084fc; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-flag-checkered"></i> School Kick-off Milestones</h4>
+726:                         <div class="milestones-progress-list" style="display: flex; flex-direction: column; gap: 12px;">
+727:                             
+728:                             <!-- Enrollment Progress -->
+729:                             <div class="milestone-progress-item">
+730:                                 <div class="milestone-meta" style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 4px;">
+731:                                     <span style="color: var(--text-primary); font-weight: 500;"><i class="fa-solid fa-user-graduate"></i> Enrolled Students Goal</span>
+732:                                     <span style="color: #c084fc;" id="milestone-students-count">0 / 20</span>
+733:                                 </div>
+734:                                 <div class="milestone-progress-bar-bg" style="width: 100%; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+735:                                     <div class="milestone-progress-bar-fill" id="milestone-students-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #a855f7, #7c3aed); border-radius: 3px; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

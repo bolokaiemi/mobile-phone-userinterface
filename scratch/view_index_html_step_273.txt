@@ -1,0 +1,39 @@
+Created At: 2026-06-06T22:44:14Z
+Completed At: 2026-06-06T22:44:14Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61482
+Showing lines 705 to 735
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+705:                         <p style="margin-bottom: 8px; color: #60a5fa;"><i class="fa-solid fa-circle-info"></i> <strong>What would you like to do next?</strong></p>
+706:                         <ul style="margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+707:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+708:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+709:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet Teacher Direct</strong> box on any course to book a direct 1-on-1 session with Mr. Ebi.</li>
+710:                         </ul>
+711:                     </div>
+712: 
+713:                     <!-- Scheduled Zoom Lessons Container -->
+714:                     <div class="zoom-lessons-card" id="zoom-lessons-card" style="margin-top: 15px; display: none; background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 10px; padding: 14px;">
+715:                         <h4 class="student-section-title" style="color: #34d399; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-video"></i> Scheduled Zoom Lessons</h4>
+716:                         <div class="zoom-lessons-list" id="zoom-lessons-list" style="display: flex; flex-direction: column; gap: 8px;">
+717:                             <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+718:                                 No Zoom lessons booked yet. Book a course below to schedule your class!
+719:                             </div>
+720:                         </div>
+721:                     </div>
+722:                 </div>
+723: 
+724:                 <!-- Available Courses (Publicly accessible) -->
+725:                 <div class="courses-dashboard-section" style="margin-top: 15px; border-top: 1px solid var(--theme-border-glass); padding-top: 15px;">
+726:                     <h4 class="student-section-title"><i class="fa-solid fa-graduation-cap"></i> Available Courses</h4>
+727:                     <ul class="course-list">
+728:                         <!-- Populated dynamically via JS -->
+729:                     </ul>
+730:                 </div>
+731:             </div>
+732: 
+733:             <!-- Emulator Tips Card (migrated layout) -->
+734:             <div class="dash-card tips-card">
+735:                 <h3 class="card-title"><i class="fa-solid fa-circle-info"></i> Emulator Tips</h3>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

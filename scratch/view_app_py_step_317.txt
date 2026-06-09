@@ -1,0 +1,34 @@
+Created At: 2026-06-06T22:44:46Z
+Completed At: 2026-06-06T22:44:46Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2453
+Total Bytes: 114890
+Showing lines 1750 to 1775
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1750:                     ${starsHtml}
+1751:                     <div class="comment-text">${escapeHtml(comment.text)}</div>
+1752:                     ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+1753:                 `;
+1754:                 
+1755:                 commentsListContainer.appendChild(commentEl);
+1756:             });
+1757:             
+1758:             // Bind comments delete actions
+1759:             const deleteButtons = commentsListContainer.querySelectorAll('.btn-delete');
+1760:             deleteButtons.forEach(btn => {
+1761:                 btn.addEventListener('click', async () => {
+1762:                     const commentId = btn.getAttribute('data-id');
+1763:                     if (confirm('Are you sure you want to delete this comment?')) {
+1764:                         await deleteComment(commentId);
+1765:                     }
+1766:                 });
+1767:             });
+1768:         } catch (renderError) {
+1769:             console.error('Error rendering comments feed:', renderError);
+1770:             commentsListContainer.innerHTML = `
+1771:                 <div class="comment-empty-state" style="color: #ef4444;">
+1772:                     <i class="fa-solid fa-circle-exclamation" style="font-size: 1.5rem; display: block; margin-bottom: 8px;"></i>
+1773:                     Failed to load reviews list.
+1774:                 </div>
+1775:             `;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

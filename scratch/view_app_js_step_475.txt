@@ -1,0 +1,34 @@
+Created At: 2026-06-06T23:18:09Z
+Completed At: 2026-06-06T23:18:09Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2585
+Total Bytes: 120268
+Showing lines 1460 to 1485
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1460:             if (studentAuthTitle) studentAuthTitle.textContent = 'Register a Student Account';
+1461:         });
+1462:     }
+1463: 
+1464:     if (linkToLogin) {
+1465:         linkToLogin.addEventListener('click', (e) => {
+1466:             e.preventDefault();
+1467:             if (registerForm) registerForm.style.display = 'none';
+1468:             if (loginForm) loginForm.style.display = 'flex';
+1469:             if (studentAuthTitle) studentAuthTitle.textContent = 'Log in to Access Course Materials';
+1470:         });
+1471:     }
+1472: 
+1473:     // Helper: Escape user input to prevent HTML injection XSS
+1474:     function escapeHtml(text) {
+1475:         const map = {
+1476:             '&': '&amp;',
+1477:             '<': '&lt;',
+1478:             '>': '&gt;',
+1479:             '"': '&quot;',
+1480:             "'": '&#039;'
+1481:         };
+1482:         return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+1483:     }
+1484: 
+1485:     // -------------------------------------------------------------
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,53 @@
+Created At: 2026-06-06T22:17:21Z
+Completed At: 2026-06-06T22:17:21Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 647
+Total Bytes: 23524
+Showing lines 480 to 524
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+480: 
+481:             function getLocalUsers() {
+482:                 try {
+483:                     return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+484:                 } catch (e) {
+485:                     return [];
+486:                 }
+487:             }
+488: 
+489:             // Fetch Stats and Table Data
+490:             loadDashboardData();
+491: 
+492:             async function loadDashboardData() {
+493:                 let serverStats = null;
+494:                 let serverData = null;
+495:                 
+496:                 try {
+497:                     // 1. Fetch Stats
+498:                     const statsResponse = await fetch(API_BASE + '/api/admin/stats');
+499:                     if (statsResponse.ok) {
+500:                         serverStats = await statsResponse.json();
+501:                     }
+502:                 } catch (error) {
+503:                     console.warn('Failed to fetch admin stats from server:', error);
+504:                 }
+505: 
+506:                 try {
+507:                     // 2. Fetch Review and Student Data
+508:                     const dataResponse = await fetch(API_BASE + '/api/admin/data');
+509:                     if (dataResponse.ok) {
+510:                         serverData = await dataResponse.json();
+511:                     }
+512:                 } catch (error) {
+513:                     console.warn('Failed to fetch admin data from server:', error);
+514:                 }
+515: 
+516:                 // Merge local comments
+517:                 const localComments = getLocalComments();
+518:                 let allComments = [...localComments];
+519:                 
+520:                 if (serverData && serverData.comments) {
+521:                     serverData.comments.forEach(sc => {
+522:                         if (!allComments.some(lc => lc.id === sc.id || (lc.text === sc.text && lc.username === sc.username))) {
+523:                             allComments.push(sc);
+524:                         }
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

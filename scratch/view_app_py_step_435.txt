@@ -1,0 +1,25 @@
+Created At: 2026-06-06T23:00:51Z
+Completed At: 2026-06-06T23:00:51Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2593
+Total Bytes: 120681
+Showing lines 2449 to 2465
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2449:     function openCourseModal(course) {
+2450:         currentSelectedCourseCheckbox = correspondingCheckbox;
+2451:         if (!correspondingCheckbox) {
+2452:             // Find it in the dashboard if not passed directly (e.g. if opened from navbar)
+2453:             if (courseListUl) {
+2454:                 const cb = courseListUl.querySelector(`.live-upgrade-checkbox[data-course="${course.title}"]`);
+2455:                 currentSelectedCourseCheckbox = cb;
+2456:             }
+2457:         }
+2458: 
+2459:         if (courseModalBadge) courseModalBadge.textContent = course.badge;
+2460:         if (courseModalTitle) courseModalTitle.textContent = course.title;
+2461:         if (courseModalDesc) courseModalDesc.textContent = course.desc;
+2462: 
+2463:         if (courseTopicsList) {
+2464:             courseTopicsList.innerHTML = '';
+2465:             const topics = course.topics ? course.topics.split(',') : [];
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

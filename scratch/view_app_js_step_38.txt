@@ -1,0 +1,73 @@
+Created At: 2026-06-06T22:16:26Z
+Completed At: 2026-06-06T22:16:26Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 1 to 67
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: <!DOCTYPE html>
+2: <html lang="en">
+3: <head>
+4:     <meta charset="UTF-8">
+5:     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6:     <title>Android 14 EbiUI - Interactive Mobile UI</title>
+7:     
+8:     <!-- Google Fonts for premium typography -->
+9:     <link rel="preconnect" href="https://fonts.googleapis.com">
+10:     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+11:     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+12:     
+13:     <!-- Font Awesome 6.6.0 for modern icons -->
+14:     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+15:     
+16:     <!-- App stylesheet -->
+17:     <link rel="stylesheet" href="static/styles.css?v=4.0">
+18: </head>
+19: <body>
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+26:         <nav class="nav-links">
+27:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+28:     
+<truncated 318 bytes>
+                 <button class="nav-tab dropdown-trigger" id="nav-courses-btn">
+33:                     <i class="fa-solid fa-graduation-cap"></i> Courses <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+34:                 </button>
+35:                 <div class="nav-dropdown-menu" id="nav-courses-menu"></div>
+36:             </div>
+37: 
+38:             <a href="https://github.com/bolokaiemi/mobile-phone-userinterface" class="nav-link-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+39:             <a href="/admin" id="nav-admin-link" class="nav-link-btn" target="_blank"><i class="fa-solid fa-gears"></i> Admin Console</a>
+40:         </nav>
+41:     </header>
+42: 
+43:     <!-- 2. MAIN HUB CONTENT CONTAINER -->
+44:     <main class="hub-container">
+45:         <!-- Phone View Section -->
+46:         <div class="phone-view-section active-tab-view" id="tab-view-home">
+47:             <div class="phone-container">
+48:         <!-- Physical hardware details -->
+49:         <div class="phone-speaker"></div>
+50:         <div class="phone-button power"></div>
+51:         <div class="phone-button volume-up"></div>
+52:         <div class="phone-button volume-down"></div>
+53: 
+54:         <!-- Phone screen display -->
+55:         <div class="phone-screen" id="phone-screen">
+56:             
+57:             <!-- Dynamic Wallpaper Background Overlay -->
+58:             <div class="phone-wallpaper" id="phone-wallpaper"></div>
+59:             
+60:             <!-- Camera Notch (Punch hole) -->
+61:             <div class="phone-notch"></div>
+62: 
+63:             <!-- 1. STATUS BAR -->
+64:             <div class="status-bar">
+65:                 <div class="status-left">
+66:                     <span id="status-time">16:35</span>
+67:                 </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

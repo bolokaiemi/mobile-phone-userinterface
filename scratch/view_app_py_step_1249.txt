@@ -1,0 +1,89 @@
+Created At: 2026-06-08T04:36:27Z
+Completed At: 2026-06-08T04:36:27Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3735
+Total Bytes: 80489
+Showing lines 1550 to 1630
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1550: /* Language Selector Dropdown */
+1551: .lang-dropdown {
+1552:     position: absolute;
+1553:     top: 48px;
+1554:     right: 18px;
+1555:     background: rgba(18, 18, 18, 0.95);
+1556:     border: 1px solid rgba(255, 255, 255, 0.12);
+1557:     backdrop-filter: blur(25px);
+1558:     -webkit-backdrop-filter: blur(25px);
+1559:     border-radius: 16px;
+1560:     padding: 8px 0;
+1561:     display: none;
+1562:     flex-direction: column;
+1563:     z-index: 200;
+1564:     width: 140px;
+1565:     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+1566:     animation: dropdownFadeIn 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+1567: }
+1568: .lang-dropdown.active {
+1569:     display: flex;
+1570: }
+1571: 
+1572: @keyframes dropdownFadeIn {
+1573:     from {
+1574:         opacity: 0;
+1575:         transform: translateY(-8px);
+1576:     }
+1577:     to {
+1578:         opacity: 1;
+1579:         transform: translateY(0);
+1580:     }
+1581: }
+1582: 
+1583: .lang-option {
+1584:     background: none;
+1585:     border: none;
+1586:     outline: none;
+1587:     color: #fff;
+1588:     font-size: 0.82rem;
+1589:     font-weight: 500;
+1590:     padding: 10px 16px;
+1591:     text-align: left;
+1592:     cursor: pointer;
+1593:     transition: background-color 0.2s, padding-left 0.2s;
+1594:     display: flex;
+1595:     align-items: center;
+1596:     gap: 8px;
+1597: }
+1598: .lang-option:hover {
+1599:     background-color: rgba(255, 255, 255, 0.08);
+1600:     padding-left: 20px;
+1601: }
+1602: 
+1603: /* Settings Dropdown Select Element */
+1604: .settings-select {
+1605:     background-color: #262930;
+1606:     border: 1px solid rgba(255, 255, 255, 0.12);
+1607:     color: white;
+1608:     padding: 6px 12px;
+1609:     border-radius: 8px;
+1610:     font-size: 0.8rem;
+1611:     font-weight: 500;
+1612:     outline: none;
+1613:     cursor: pointer;
+1614:     transition: border-color 0.2s;
+1615: }
+1616: .settings-select:focus {
+1617:     border-color: var(--theme-primary);
+1618: }
+1619: 
+1620: /* App Overlay Header Home Button */
+1621: .app-header-home-btn {
+1622:     background-color: rgba(255, 255, 255, 0.08);
+1623:     border: 1px solid rgba(255, 255, 255, 0.1);
+1624:     border-radius: 12px;
+1625:     padding: 6px 12px;
+1626:     color: var(--theme-primary-light);
+1627:     font-size: 0.78rem;
+1628:     font-weight: 600;
+1629:     cursor: pointer;
+1630:     display: flex;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

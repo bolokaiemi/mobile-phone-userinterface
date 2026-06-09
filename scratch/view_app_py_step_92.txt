@@ -1,0 +1,67 @@
+Created At: 2026-06-06T22:17:53Z
+Completed At: 2026-06-06T22:17:53Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 867
+Total Bytes: 59034
+Showing lines 760 to 820
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+760:                     </p>
+761:                     <a href="#" id="course-w3schools-link" target="_blank" class="w3schools-link-anchor">
+762:                         <i class="fa-solid fa-arrow-up-right-from-square"></i> Open W3Schools Tutorial
+763:                     </a>
+764:                 </div>
+765: 
+766:                 <div class="school-promo-box">
+767:                     <div class="school-promo-header">
+768:                         <i class="fa-solid fa-circle-question" style="color: #f59e0b;"></i>
+769:                         <span>Need Help? Get Mentorship</span>
+770:                     </div>
+771:                     <p>If you need direct support, WhatsApp guidance, code reviews, or live 1-on-1 online lessons, enroll in <strong>Mr. Bolokaiemi Ebi's Live School</strong> below.</p>
+772:                 </div>
+773:             </div>
+774: 
+775:             <div class="course-modal-actions">
+776:                 <button class="btn-secondary" id="course-modal-close">Close</button>
+777:                 <button class="btn-live-enroll" id="course-modal-upgrade-btn"><i class="fa-solid fa-chalkboard-user"></i> Enroll in Live School</button>
+778:                 <button class="btn-primary" id="course-modal-action-btn"><i class="fa-solid fa-file-pdf"></i> Access Materials</button>
+779:             </div>
+780:         </div>
+781:     </div>
+782: 
+783:     <!-- Direct Course Payment Modal -->
+784:     <div class="payment-modal" id="payment-modal" style="display: none;">
+785:         <div class="payment-modal-card">
+786:   
+<truncated 454 bytes>
+k"></i> Live 1-on-1 online classes (1 hr/session)</div>
+791:                 <div><i class="fa-solid fa-check"></i> Custom project-based curriculum</div>
+792:                 <div><i class="fa-solid fa-check"></i> Direct WhatsApp assistance & code reviews</div>
+793:             </div>
+794:             
+795:             <div class="pricing-summary-box">
+796:                 <span class="price-label">Direct Tutor Price:</span>
+797:                 <span class="price-value">$199 <span class="price-period">/ month</span></span>
+798:             </div>
+799:             
+800:             <form id="premium-payment-form">
+801:                 <div class="payment-form-row">
+802:                     <input type="text" id="billing-name" placeholder="Full Billing Name" required>
+803:                 </div>
+804:                 <div class="payment-form-row card-row">
+805:                     <input type="text" id="card-number" placeholder="Card Number (Demo: 4111 ...)" required>
+806:                 </div>
+807:                 <div class="payment-form-row card-meta-row" style="display: flex; justify-content: space-between;">
+808:                     <input type="text" id="card-expiry" placeholder="MM/YY" required style="width: 45%;">
+809:                     <input type="text" id="card-cvc" placeholder="CVC" required style="width: 45%;">
+810:                 </div>
+811:                 <div class="payment-modal-actions">
+812:                     <button type="button" class="btn-secondary" id="payment-cancel-btn">Cancel</button>
+813:                     <button type="submit" class="btn-primary" id="payment-submit-btn">Complete Checkout</button>
+814:                 </div>
+815:             </form>
+816:         </div>
+817:     </div>
+818: 
+819:     <!-- 3. PREMIUM HUB FOOTER -->
+820:     <footer class="hub-footer">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,48 @@
+Created At: 2026-06-07T00:48:43Z
+Completed At: 2026-06-07T00:48:43Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 548
+Total Bytes: 22287
+Showing lines 136 to 175
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+136: # Automatically create/upgrade SQL tables on application start
+137: with app.app_context():
+138:     try:
+139:         # Check if email column exists in User table
+140:         db.session.execute(db.text("SELECT email FROM user LIMIT 1"))
+141:     except Exception:
+142:         # Recreate tables to apply the new schema
+143:         print("[EbiUI Database] Recreating database tables for new schema...")
+144:         db.drop_all()
+145:     db.create_all()
+146: 
+147: # -------------------------------------------------------------
+148: # WEB PAGE TEMPLATE/STATIC ROUTES
+149: # -------------------------------------------------------------
+150: @app.route('/')
+151: def emulator():
+152:     # Serve the main emulator.html file from the root directory
+153:     return app.send_static_file('emulator.html')
+154: 
+155: @app.route('/templates/<path:path>')
+156: def send_template(path):
+157:     # Serve reference files like templates/mobilephone.html
+158:     return send_from_directory('templates', path)
+159: 
+160: # -------------------------------------------------------------
+161: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+162: # -------------------------------------------------------------
+163: @app.route('/api/register', methods=['POST'])
+164: def register():
+165:     data = request.get_json() or {}
+166:     username = data.get('username', '').strip()
+167:     email = data.get('email', '').strip()
+168:     full_name = data.get('full_name', '').strip()
+169:     password = data.get('password', '').strip()
+170:     
+171:     if not username or not password or not email or not full_name:
+172:         return jsonify({'error': 'All fields (Full Name, Email, Username, Password) are required.'}), 400
+173:         
+174:     if len(username) < 3 or len(password) < 4:
+175:         return jsonify({'error': 'Username must be at least 3 characters and password at least 4.'}), 400
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

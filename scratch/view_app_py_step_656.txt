@@ -1,0 +1,66 @@
+Created At: 2026-06-07T00:15:05Z
+Completed At: 2026-06-07T00:15:05Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 230 to 310
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+230:         tips_item_4: { en: "Click the battery icon in the top right to simulate charging!", nl: "Klik op het batterij-icoon rechtsboven om opladen te simuleren!", de: "Klicke oben rechts auf das Batteriesymbol, um das Laden zu simulieren!", es: "¡Haz clic en el icono de la batería en la esquina superior derecha para simular la carga!", fr: "Cliquez sur l'icône de batterie en haut à droite pour simuler la charge !" },
+231:         tips_item_5: { en: "Fully responsive! Try resizing your browser window or view on a phone.", nl: "Volledig responsive! Probeer uw browservenster te verkleinen of bekijk het op een telefoon.", de: "Vollständig responsiv! Ändere die Größe des Browserfensters oder öffne es auf dem Handy.", es: "¡Totalmente responsivo! Intenta cambiar el tamaño del navegador o míralo en un teléfono.", fr: "Entièrement réactif ! Essayez de redimensionner votre navigateur ou visualisez sur un téléphone." },
+232:         tips_view_original: { en: "View Raw Original Page", nl: "Bekijk de Originele Pagina", de: "Originale Seite Anzeigen", es: "Ver Página Original", fr: "Voir la page originale" }
+233:     };
+234: 
+235:     // -------------------------------------------------------------
+236:     // DOM ELEMENTS
+237:     // -------------------------------------------------------------
+238:     const statusTime = document.getElementById('status-time');
+239:     const widgetTime = document.getElementById('widget-time');
+240:     const widgetDate = document.getElementById('widget-date');
+241:     const statusBatteryBtn = document.getElemen
+<truncated 1423 bytes>
+nt
+267:     const phoneWallpaper = document.getElementById('phone-wallpaper');
+268: 
+269:     // -------------------------------------------------------------
+270:     // LANGUAGE STATE & MANAGEMENT (i18n)
+271:     // -------------------------------------------------------------
+272:     let currentLanguage = localStorage.getItem('ebiui_language') || 'en';
+273: 
+274:     function setLanguage(lang) {
+275:         currentLanguage = lang;
+276:         localStorage.setItem('ebiui_language', lang);
+277: 
+278:         // Update all data-translate elements
+279:         document.querySelectorAll('[data-translate]').forEach(el => {
+280:             const key = el.getAttribute('data-translate');
+281:             if (translations[key] && translations[key][lang]) {
+282:                 el.innerHTML = translations[key][lang];
+283:             }
+284:         });
+285: 
+286:         // Update placeholders
+287:         document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+288:             const key = el.getAttribute('data-translate-placeholder');
+289:             if (translations[key] && translations[key][lang]) {
+290:                 el.placeholder = translations[key][lang];
+291:             }
+292:         });
+293: 
+294:         // Sync Select menus
+295:         if (settingsLangSelect) {
+296:             settingsLangSelect.value = lang;
+297:         }
+298: 
+299:         // Close lang dropdown overlay
+300:         if (langDropdown) {
+301:             langDropdown.classList.remove('active');
+302:         }
+303: 
+304:         // Refresh time calculations & widgets
+305:         updateClock();
+306: 
+307:         // If Notes is open, reload the list to reflect note templates
+308:         if (activeAppId === 'notes') loadNotesList();
+309:         
+310:         // Translate simulated initial bubble for Gemini if it hasn't been closed
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

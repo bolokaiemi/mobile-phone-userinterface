@@ -1,0 +1,24 @@
+Created At: 2026-06-06T22:17:59Z
+Completed At: 2026-06-06T22:17:59Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 867
+Total Bytes: 59009
+Showing lines 20 to 35
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+20:     <!-- 1. TOP HUB NAVIGATION BAR -->
+21:     <header class="top-navbar">
+22:         <div class="nav-brand">
+23:             <i class="fa-solid fa-mobile-screen-button"></i> EbiUI Launcher Hub
+24:             <span id="connection-status-badge" class="connection-badge offline"><i class="fa-solid fa-circle"></i> Server Offline</span>
+25:         </div>
+26:         <nav class="nav-links">
+27:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+28:             <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Comments Feed</button>
+29:             
+30:             <!-- Courses Dropdown -->
+31:             <div class="nav-dropdown-wrapper" id="nav-courses-dropdown-wrapper" style="display: inline-block;">
+32:                 <button class="nav-tab dropdown-trigger" id="nav-courses-btn">
+33:                     <i class="fa-solid fa-graduation-cap"></i> Courses <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+34:                 </button>
+35:                 <div class="nav-dropdown-menu" id="nav-courses-menu"></div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,88 @@
+Created At: 2026-06-07T00:14:41Z
+Completed At: 2026-06-07T00:14:41Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 1330 to 1430
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1330: 
+1331:     // Default setups
+1332:     const defaultDot = document.querySelector('.color-dot.default');
+1333:     if (defaultDot) defaultDot.classList.add('active');
+1334: 
+1335:     const defaultWpThumb = document.querySelector('.wallpaper-thumb[data-wp="grad2"]');
+1336:     if (defaultWpThumb) defaultWpThumb.classList.add('active');
+1337: 
+1338:     // -------------------------------------------------------------
+1339:     // INTERACTIVE GOOGLE SEARCH WIDGET
+1340:     // -------------------------------------------------------------
+1341:     const launcherSearchInput = document.getElementById('launcher-search-input');
+1342:     if (launcherSearchInput) {
+1343:         launcherSearchInput.addEventListener('keypress', (e) => {
+1344:             if (e.key === 'Enter') {
+1345:                 const query = launcherSearchInput.value.trim();
+1346:                 if (query) {
+1347:                     openApp('chrome', 'Chrome', `https://www.google.com/search?q=${encodeURIComponent(query)}`);
+1348:                     launcherSearchInput.value = '';
+1349:                 }
+1350:             }
+1351:         });
+1352:     }
+1353: 
+1354:     // -------------------------------------------------------------
+1355:     // HUB NAVIGATION & AUTH/COMMENT DASHBOARD LOGIC
+1356:     // -------------------------------------------------------------
+1357:     const navHomeTab = document.getElementById('nav-home-tab');
+1358:     const navDashboardTab = document.getElementById('nav-dashboard-tab');
+1359:     const tabViewHome = document.getElementById('tab-view-home');
+1
+<truncated 1592 bytes>
+;
+1384:     let pendingAction = null;
+1385:     let userBookingsList = [];
+1386: 
+1387:     function getLocalComments() {
+1388:         try {
+1389:             const comments = JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+1390:             return Array.isArray(comments) ? comments : [];
+1391:         } catch (e) {
+1392:             return [];
+1393:         }
+1394:     }
+1395: 
+1396:     function saveLocalComment(comment) {
+1397:         try {
+1398:             const comments = getLocalComments();
+1399:             comments.unshift(comment);
+1400:             localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+1401:         } catch (e) {
+1402:             console.error('Local comments save error:', e);
+1403:         }
+1404:     }
+1405: 
+1406:     function getLocalUsers() {
+1407:         try {
+1408:             return JSON.parse(localStorage.getItem('ebiui_local_users') || '[]');
+1409:         } catch (e) {
+1410:             return [];
+1411:         }
+1412:     }
+1413: 
+1414:     function saveLocalUser(user) {
+1415:         try {
+1416:             const users = getLocalUsers();
+1417:             if (!users.some(u => u.username === user.username)) {
+1418:                 users.push(user);
+1419:                 localStorage.setItem('ebiui_local_users', JSON.stringify(users));
+1420:             }
+1421:         } catch (e) {
+1422:             console.error('Local user save error:', e);
+1423:         }
+1424:     }
+1425: 
+1426:     // Courses Dropdown and Dynamic List Selectors
+1427:     const navCoursesDropdownWrapper = document.getElementById('nav-courses-dropdown-wrapper');
+1428:     const navCoursesMenu = document.getElementById('nav-courses-menu');
+1429:     const navCoursesBtn = document.getElementById('nav-courses-btn');
+1430:     const courseListUl = document.querySelector('.course-list');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

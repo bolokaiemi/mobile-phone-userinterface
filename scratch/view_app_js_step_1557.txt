@@ -1,0 +1,44 @@
+Created At: 2026-06-08T05:07:42Z
+Completed At: 2026-06-08T05:07:42Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/task.md`
+Total Lines: 36
+Total Bytes: 2391
+Showing lines 1 to 36
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: - [x] Upgrade Flask backend and SQLite models for Zoom bookings
+2:   - [x] Add `Booking` SQLAlchemy model in `app.py`
+3:   - [x] Update `/api/comments` POST to check for payload `username` fallback in `app.py`
+4:   - [x] Add `/api/book-lesson` POST endpoint to generate Zoom links & send emails in `app.py`
+5:   - [x] Add `/api/bookings` GET endpoint to retrieve bookings list in `app.py`
+6: - [x] Add top navbar session badge and scheduled lessons card to index views
+7:   - [x] Add navbar badge and Zoom lessons card in `index.html`
+8:   - [x] Add navbar badge and Zoom lessons card in `templates/index.html`
+9: - [x] Add styles for navbar badge and Zoom lessons card
+10:   - [x] Add primary styles in `static/styles.css`
+11: - [x] Implement frontend application logic updates
+12:   - [x] Send payload `username` in review posts inside `app.js`
+13:   - [x] Update `checkAuthStatus` / `showUserProfile` to sync top navbar user badge in `app.js`
+14:   - [x] Integrate Zoom booking submissions to `/api/book-lesson` inside `app.js`
+15:   - [x] Render scheduled lessons list in the student portal inside `app.js`
+16: - [x] Verify functionality locally and write walkthrough
+17: - [x] Resolve dropdown text visibility issues in light/dark themes
+18:   - [x] Add theme-aware CSS style rules for `#dashboard-course-select` and `.settings-select` options
+19:   - [x] Remove overriding inline styles from select elements in HTML templates
+20: - [x] De-duplicate redundant social media links
+21:   - [x] Remove the redundant dashboard "Social Media Connect" card from `templates/index.html` and `index.html`
+22:   - [x] Ensure the global floating social sidebar is retained as the single point of entry
+23: - [x] Resolve CSS clash and parser errors on the original page
+24:   - [x] Remove reference to styles.css from templates/mobilephone.html to prevent layout clash
+25:   - [x] Fix invalid nested media query and syntax errors in templates/mobilephone.html style tag
+26: - [x] Update footer contact details and WhatsApp links
+27:   - [x] Change phone number to +491793264196 in index.html, templates/index.html, and WhatsApp links
+28:   - [x] Change contact location to Herne, Germany in index.html and templates/index.html
+29: - [x] Integrate permanent Quick Share bar and remove redundant floating sidebar
+30:   - [x] Remove the floating social sidebar from index.html and templates/index.html
+31:   - [x] Add permanent WhatsApp, Facebook, and X share buttons directly under the comment submit section
+32: 
+33: 
+34: 
+35: 
+36: 
+The above content shows the entire, complete file contents of the requested file.

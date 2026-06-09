@@ -1,0 +1,34 @@
+Created At: 2026-06-06T22:44:52Z
+Completed At: 2026-06-06T22:44:52Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2527
+Total Bytes: 117927
+Showing lines 1965 to 1990
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1965:             loadComments();
+1966:         });
+1967:     }
+1968: 
+1969:     // Logout Action
+1970:     if (authLogoutBtn) {
+1971:         authLogoutBtn.addEventListener('click', async (e) => {
+1972:             e.preventDefault();
+1973:             localStorage.removeItem('ebiui_current_user');
+1974:             try {
+1975:                 const response = await fetch(API_BASE + '/api/logout', getFetchOptions({ 
+1976:                     method: 'POST'
+1977:                 }));
+1978:             } catch (error) {
+1979:                 console.warn('Logout server connection failed:', error);
+1980:             }
+1981:             currentUser = null;
+1982:             showAuthForms();
+1983:             showNotification('Logged out successfully.');
+1984:             loadComments();
+1985:         });
+1986:     }
+1987: 
+1988:     // Submit Public Review Handler
+1989:     if (commentSubmitBtn && commentTextInput) {
+1990:         commentSubmitBtn.addEventListener('click', async () => {
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

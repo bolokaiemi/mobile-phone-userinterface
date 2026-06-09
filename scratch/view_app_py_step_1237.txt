@@ -1,0 +1,69 @@
+Created At: 2026-06-08T04:36:14Z
+Completed At: 2026-06-08T04:36:14Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2952
+Total Bytes: 139252
+Showing lines 2700 to 2760
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2700:                     navCoursesMenu.classList.remove('active');
+2701:                     switchTab('dashboard');
+2702:                     openCourseModal(course);
+2703:                 });
+2704:                 navCoursesMenu.appendChild(btn);
+2705:             });
+2706:         }
+2707: 
+2708:         // 2. Populate Available Courses in Dashboard
+2709:         const courseSelect = document.getElementById('dashboard-course-select');
+2710:         if (courseSelect) {
+2711:             const currentSelectedValue = courseSelect.value;
+2712:             
+2713:             // Populate options if empty
+2714:             if (courseSelect.options.length === 0) {
+2715:                 coursesData.forEach(course => {
+2716:                     const opt = document.createElement('option');
+2717:                     opt.value = course.id;
+2718:                     opt.textContent = course.title;
+2719:                     courseSelect.appendChild(opt);
+2720:                 });
+2721:                 
+2722:                 // Redraw on select change
+2723:                 courseSelect.addEventListener('change', () => {
+2724:                     renderSelectedCourse(courseSelect.value);
+2725:                 });
+2726:             }
+2727:             
+2728:             // Draw the selected course (preserve previous selection if any)
+2729:             renderSelectedCourse(currentSelectedValue || coursesData[0].id);
+2730:         }
+2731: 
+2732:         function renderSelectedCourse(courseId) {
+2733:             if (!courseListUl) return;
+2734:             courseListUl.innerHTML = '';
+2735:             
+2736:             const course = coursesData.find(c => c.id === courseId);
+2737:             if (!course) return;
+2738: 
+2739:             const bookedCourseNames = userBookingsList.map(b => b.course_name.trim().toLowerCase());
+2740:             
+2741:             // Merge local guest bookings
+2742:             try {
+2743:                 const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+2744:                 localBookings.forEach(b => {
+2745:                     if (b.course_name) {
+2746:                         const name = b.course_name.trim().toLowerCase();
+2747:                         if (!bookedCourseNames.includes(name)) {
+2748:                             bookedCourseNames.push(name);
+2749:                         }
+2750:                     }
+2751:                 });
+2752:             } catch (e) {}
+2753:             
+2754:             const li = document.createElement('li');
+2755:             li.className = 'course-item-card selected-course-item';
+2756:             
+2757:             const isBooked = bookedCourseNames.includes(course.title.trim().toLowerCase()) || 
+2758:                              bookedCourseNames.includes(`live mentorship (${course.title.trim().toLowerCase()})`) ||
+2759:                              bookedCourseNames.includes('live mentorship (all courses)');
+2760:                              
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

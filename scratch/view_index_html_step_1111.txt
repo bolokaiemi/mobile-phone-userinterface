@@ -1,0 +1,29 @@
+Created At: 2026-06-07T21:33:45Z
+Completed At: 2026-06-07T21:33:46Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 1015
+Total Bytes: 76636
+Showing lines 860 to 880
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+860:                                 <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">YouTube Academy</h4>
+861:                                 <span style="font-size: 0.72rem; color: var(--text-secondary);">Video courses & lessons</span>
+862:                             </div>
+863:                         </div>
+864:                         <a href="https://youtube.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #ff0000; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);"><i class="fa-solid fa-bell"></i> Subscribe</a>
+865:                     </div>
+866:                 </div>
+867:             </div>
+868:         </section>
+869:     </main>
+870: 
+871:     <!-- Course Access Modal -->
+872:     <div class="course-modal" id="course-modal" style="display: none;">
+873:         <div class="course-modal-card">
+874:             <div class="course-modal-header">
+875:                 <span class="course-modal-badge" id="course-modal-badge">HTML5</span>
+876:                 <h4 class="course-modal-title" id="course-modal-title">HTML5 Fundamentals</h4>
+877:             </div>
+878:             
+879:             <div class="course-modal-body">
+880:                 <p class="course-modal-desc" id="course-modal-desc">Learn the foundation of web development, including semantic tags, forms, media elements, and accessibility guidelines.</p>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

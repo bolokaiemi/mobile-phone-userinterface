@@ -1,0 +1,39 @@
+Created At: 2026-06-06T22:44:12Z
+Completed At: 2026-06-06T22:44:12Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/index.html`
+Total Lines: 887
+Total Bytes: 61482
+Showing lines 25 to 55
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+25:         </div>
+26:         <nav class="nav-links">
+27:             <button class="nav-tab active" id="nav-home-tab" data-tab="home"><i class="fa-solid fa-house"></i> Home (Emulator)</button>
+28:             <button class="nav-tab" id="nav-dashboard-tab" data-tab="dashboard"><i class="fa-solid fa-comments"></i> Portal & Reviews</button>
+29:             
+30:             <!-- Courses Dropdown -->
+31:             <div class="nav-dropdown-wrapper" id="nav-courses-dropdown-wrapper" style="display: inline-block;">
+32:                 <button class="nav-tab dropdown-trigger" id="nav-courses-btn">
+33:                     <i class="fa-solid fa-graduation-cap"></i> Courses <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 4px;"></i>
+34:                 </button>
+35:                 <div class="nav-dropdown-menu" id="nav-courses-menu"></div>
+36:             </div>
+37: 
+38:             <!-- User Session Profile Badge -->
+39:             <div id="nav-user-badge" class="nav-user-badge" style="display: none; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--theme-border-glass); border-radius: 20px; padding: 4px 12px; margin-left: 10px;">
+40:                 <span class="user-avatar-small" id="nav-user-avatar" style="width: 24px; height: 24px; border-radius: 50%; background: var(--theme-primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">U</span>
+41:                 <span class="user-name-text" id="nav-username-badge" style="font-size: 0.82rem; font-weight: 600; color: #f1f5f9;">Student</span>
+42:                 <button id="nav-logout-btn" class="nav-logout-btn" title="Sign Out" style="background: transparent; border: none; color: #f87171; cursor: pointer; font-size: 0.85rem; padding: 2px 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s;"><i class="fa-solid fa-right-from-bracket"></i></button>
+43:             </div>
+44: 
+45:             <a href="https://github.com/bolokaiemi/mobile-phone-userinterface" class="nav-link-btn" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+46:             <a href="/admin" id="nav-admin-link" class="nav-link-btn" target="_blank"><i class="fa-solid fa-gears"></i> Admin Console</a>
+47:         </nav>
+48:     </header>
+49: 
+50:     <!-- 2. MAIN HUB CONTENT CONTAINER -->
+51:     <main class="hub-container">
+52:         <!-- Phone View Section -->
+53:         <div class="phone-view-section active-tab-view" id="tab-view-home">
+54:             <div class="phone-container">
+55:         <!-- Physical hardware details -->
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,66 @@
+Created At: 2026-06-08T05:07:44Z
+Completed At: 2026-06-08T05:07:45Z
+File Path: `file:///C:/Users/Bolokaiemi/.gemini/antigravity/brain/3c885c20-476d-4b94-94f5-1c9bbbc7f841/implementation_plan.md`
+Total Lines: 86
+Total Bytes: 4933
+Showing lines 1 to 86
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: # Implementation Plan - Feedback, Registration & Zoom Booking Upgrades
+2: 
+3: This plan details the changes to resolve the feedback section issues (especially when accessed via local file protocols), modernize login/logout session visibility in the header, and connect the booking system to Zoom with automated email notifications.
+4: 
+5: ## User Review Required
+6: 
+7: > [!IMPORTANT]
+8: > - **Session Synchronization**: Browser security blocks cookie storage when files are opened directly via the `file://` protocol. To ensure registration and comments work seamlessly for both guests and students under these conditions, we will pass the username directly in the request payload and resolve it on the server.
+9: > - **Zoom Integration**: We will add a database table for Bookings, a backend endpoint `/api/book-lesson`, and auto-generate unique simulated Zoom meeting links. These links will be stored in the database, displayed in the student portal, and emailed to the mentor.
+10: 
+11: ## Open Questions
+12: 
+13: > [!NOTE]
+14: > Do you have a preferred Zoom link prefix or standard password format for the classes, or should we use our standard secure random generation? We will proceed with secure random link generation.
+15: 
+16: ## Proposed Changes
+17: 
+18: ---
+19: 
+20: ### [Component 1: Database & Backend Server]
+21: 
+22: Modify database models and endpoints to support user lookup, comment ownership mapping, and Zoom bookings.
+23: 
+24: #### [MODIFY] [app.py](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py)
+
+<truncated 1748 bytes>
+ycharmProjects/mobileuserinterfaceProject6/templates/index.html)
+56: - Add a user profile badge and quick logout button inside `.top-navbar` for desktop/mobile visibility.
+57: - Add a "My Scheduled Zoom Lessons" card inside the `#student-dashboard` container to show active Zoom class links.
+58: 
+59: #### [MODIFY] [styles.css](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css)
+60: - Add styling for the navbar user badge, logout button, and the Zoom lessons card layout.
+61: - Use glassmorphism highlights and vibrant green gradients for Zoom active status indicators.
+62: 
+63: ---
+64: 
+65: ### [Component 3: Application Logic]
+66: 
+67: Integrate the backend Zoom bookings, session headers, and payload username fallbacks.
+68: 
+69: #### [MODIFY] [app.js](file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js)
+70: - Update `checkAuthStatus`, `showUserProfile`, and `showAuthForms` to dynamically show/hide the top navbar user badge and sync login/logout state across the entire page.
+71: - Update `commentSubmitBtn` handler to include the current `currentUser` username in the JSON request body.
+72: - Update the payment checkout form handler to submit data to `/api/book-lesson` rather than simulating locally.
+73: - On booking success, fetch the updated bookings and render them in the "My Scheduled Zoom Lessons" card.
+74: 
+75: ---
+76: 
+77: ## Verification Plan
+78: 
+79: ### Automated Tests
+80: - Extend `scratch/verify.py` to test the new `/api/book-lesson` and `/api/bookings` endpoints.
+81: 
+82: ### Manual Verification
+83: 1. Register a new user, log in, and post a comment. Verify the comment appears in the admin console with the correct username.
+84: 2. Click "Book for Lesson", check out as a guest (using email) or logged-in student, and verify a Zoom link is generated.
+85: 3. Verify the Zoom link appears in the student portal and that an email is logged to the terminal console.
+86: 
+The above content shows the entire, complete file contents of the requested file.

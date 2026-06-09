@@ -1,0 +1,33 @@
+Created At: 2026-06-06T23:24:35Z
+Completed At: 2026-06-06T23:24:35Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 546
+Total Bytes: 22198
+Showing lines 356 to 380
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+356: @app.route('/api/admin/data', methods=['GET'])
+357: def admin_data():
+358:     all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+359:     all_users = User.query.order_by(User.created_at.desc()).all()
+360:     
+361:     return jsonify({
+362:         'comments': [c.to_dict() for c in all_comments],
+363:         'users': [{
+364:             'id': u.id,
+365:             'username': u.username,
+366:             'created_at': u.created_at.strftime('%Y-%m-%d %H:%M:%S')
+367:         } for u in all_users]
+368:     })
+369: 
+370: @app.route('/api/admin/export', methods=['GET'])
+371: def admin_export_csv():
+372:     import csv
+373:     from io import StringIO
+374:     from flask import make_response
+375:     
+376:     all_comments = Comment.query.order_by(Comment.created_at.desc()).all()
+377:     
+378:     si = StringIO()
+379:     cw = csv.writer(si)
+380:     cw.writerow(['ID', 'Author/Guest Name', 'Rating (Stars)', 'Comment Text', 'Submitted At'])
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

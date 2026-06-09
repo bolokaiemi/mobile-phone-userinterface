@@ -1,0 +1,50 @@
+Created At: 2026-06-08T04:36:44Z
+Completed At: 2026-06-08T04:36:44Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 1091
+Total Bytes: 81503
+Showing lines 880 to 950
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+880:                     <a href="templates/mobilephone.html" target="_blank" class="tip-link-btn">
+881:                         <i class="fa-solid fa-file-code"></i> View Raw Original Page
+882:                     </a>
+883:                 </div>
+884:             </div>
+885: 
+886:             <!-- Social Connect Plugins Card -->
+887:             <div class="dash-card social-plugins-card" id="social-plugins-card" style="margin-top: 15px;">
+888:                 <h3 class="card-title" style="color: #60a5fa;"><i class="fa-solid fa-share-nodes"></i> Social Media Connect</h3>
+889:                 <p style="margin-bottom: 15px; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4;">
+890:                     Connect with Mr. Bolokaiemi Ebi directly on social networks or follow EbiUI updates!
+891:                 </p>
+892:                 <div class="social-plugins-list" style="display: flex; flex-direction: column; gap: 12px;">
+893:                     
+894:                     <!-- WhatsApp Chat Plugin -->
+895:                     <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(37, 211, 102, 0.05); border: 1px solid rgba(37, 211, 102, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+896:                         <div style="display: flex; align-items: center; gap: 10px;">
+897:                             <span style="font-size: 1.35rem; color: #25d366; display: flex; align-items: center; justify-content: center; width: 32px
+<truncated 4115 bytes>
+div>
+929: 
+930:                     <!-- YouTube Video Lectures -->
+931:                     <div class="social-plugin-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(255, 0, 0, 0.05); border: 1px solid rgba(255, 0, 0, 0.15); border-radius: 12px; transition: all 0.3s ease;">
+932:                         <div style="display: flex; align-items: center; gap: 10px;">
+933:                             <span style="font-size: 1.35rem; color: #ff0000; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255,0,0,0.1); border-radius: 50%;"><i class="fa-brands fa-youtube"></i></span>
+934:                             <div>
+935:                                 <h4 style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">YouTube Academy</h4>
+936:                                 <span style="font-size: 0.72rem; color: var(--text-secondary);">Video courses & lessons</span>
+937:                             </div>
+938:                         </div>
+939:                         <a href="https://youtube.com" target="_blank" class="btn-primary" style="padding: 6px 12px; font-size: 0.75rem; border-radius: 8px; background: #ff0000; color: white; border: none; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);"><i class="fa-solid fa-bell"></i> Subscribe</a>
+940:                     </div>
+941:                 </div>
+942:             </div>
+943:         </section>
+944:     </main>
+945: </section>
+946: 
+947:     <!-- Course Access Modal -->
+948:     <div class="course-modal" id="course-modal" style="display: none;">
+949:         <div class="course-modal-card">
+950:             <div class="course-modal-header">
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

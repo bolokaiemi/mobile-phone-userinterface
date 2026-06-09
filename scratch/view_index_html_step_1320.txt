@@ -1,0 +1,39 @@
+Created At: 2026-06-08T04:39:31Z
+Completed At: 2026-06-08T04:39:31Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 666
+Total Bytes: 28269
+Showing lines 180 to 210
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+180: # -------------------------------------------------------------
+181: # WEB PAGE TEMPLATE/STATIC ROUTES
+182: # -------------------------------------------------------------
+183: @app.route('/')
+184: def index():
+185:     # Serve the main index.html file from the root directory
+186:     return app.send_static_file('index.html')
+187: 
+188: @app.route('/templates/<path:path>')
+189: def send_template(path):
+190:     # Serve reference files like templates/mobilephone.html
+191:     return send_from_directory('templates', path)
+192: 
+193: # -------------------------------------------------------------
+194: # USER REGISTRATION, AUTHENTICATION, & SESSION ENDPOINTS
+195: # -------------------------------------------------------------
+196: @app.route('/api/milestones', methods=['GET'])
+197: def get_milestones():
+198:     # Simulate 49,995 baseline reviews + actual reviews in database
+199:     total_reviews = 49995 + Comment.query.count()
+200:     total_students = User.query.count()
+201:     
+202:     # Registration features unlock if the actual database has met the initial seeding thresholds
+203:     actual_reviews = Comment.query.count()
+204:     actual_students = User.query.count()
+205:     unlocked = (actual_reviews >= REVIEWS_UNLOCK_THRESHOLD) and (actual_students >= STUDENTS_UNLOCK_THRESHOLD)
+206:     
+207:     return jsonify({
+208:         'total_reviews': total_reviews,
+209:         'reviews_milestone': REVIEWS_MILESTONE,
+210:         'total_students': total_students,
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

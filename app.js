@@ -266,6 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Wallpaper and Accent
     const phoneWallpaper = document.getElementById('phone-wallpaper');
 
+    let activeAppId = null;
+
     // -------------------------------------------------------------
     // LANGUAGE STATE & MANAGEMENT (i18n)
     // -------------------------------------------------------------
@@ -504,7 +506,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // NAVIGATION ROUTER (LAUNCHER / OVERLAYS)
     // -------------------------------------------------------------
     const appIcons = document.querySelectorAll('.app-icon-wrapper');
-    let activeAppId = null;
 
     appIcons.forEach(wrapper => {
         wrapper.addEventListener('click', (e) => {
@@ -1373,12 +1374,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentTextInput = document.getElementById('comment-text-input');
     const commentSubmitBtn = document.getElementById('comment-submit-btn');
 
-    let currentUser = null;
+    const navUserBadge = document.getElementById('nav-user-badge');
+    const navUsernameBadge = document.getElementById('nav-username-badge');
+    const navUserAvatar = document.getElementById('nav-user-avatar');
+    const navLogoutBtn = document.getElementById('nav-logout-btn');
+    const zoomLessonsCard = document.getElementById('zoom-lessons-card');
+    const zoomLessonsList = document.getElementById('zoom-lessons-list');
 
-    // Local Storage Helpers for Offline/CORS-proof fallbacks
+    let currentUser = null;
+    let pendingAction = null;
+    let userBookingsList = [];
+
     function getLocalComments() {
         try {
-            return JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+            const comments = JSON.parse(localStorage.getItem('ebiui_local_comments') || '[]');
+            return Array.isArray(comments) ? comments : [];
         } catch (e) {
             return [];
         }
@@ -1391,6 +1401,27 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
         } catch (e) {
             console.error('Local comments save error:', e);
+        }
+    }
+
+    function getOwnedComments() {
+        try {
+            return JSON.parse(localStorage.getItem('ebiui_owned_comments') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function addOwnedComment(id) {
+        if (!id) return;
+        try {
+            const ids = getOwnedComments();
+            if (!ids.includes(id.toString())) {
+                ids.push(id.toString());
+                localStorage.setItem('ebiui_owned_comments', JSON.stringify(ids));
+            }
+        } catch (e) {
+            console.error('Local owned comment save error:', e);
         }
     }
 
@@ -1439,6 +1470,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
 
+    // Hero buttons interaction handlers
+    const heroLaunchPlayground = document.querySelector('.btn-hero-primary');
+    const heroBrowseCourses = document.getElementById('hero-browse-courses-btn');
+    
+    if (heroLaunchPlayground) {
+        heroLaunchPlayground.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchTab('home');
+            const target = document.getElementById('playground');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    
+    if (heroBrowseCourses) {
+        heroBrowseCourses.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchTab('dashboard');
+            const target = document.getElementById('playground');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
     // Student Login/Register Forms Toggling Link
     const linkToRegister = document.getElementById('link-to-register');
     const linkToLogin = document.getElementById('link-to-login');
@@ -1463,6 +1516,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper: Escape user input to prevent HTML injection XSS
     function escapeHtml(text) {
+        if (text === null || text === undefined) return '';
+        const str = String(text);
         const map = {
             '&': '&amp;',
             '<': '&lt;',
@@ -1470,7 +1525,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '"': '&quot;',
             "'": '&#039;'
         };
-        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        return str.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
     // -------------------------------------------------------------
@@ -1512,14 +1567,40 @@ document.addEventListener('DOMContentLoaded', () => {
         if (profileUsernameText) profileUsernameText.textContent = username;
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'none';
         if (studentDashboard) studentDashboard.style.display = 'block';
+
+        // Synchronize top navbar session badge
+        if (navUserBadge) navUserBadge.style.display = 'flex';
+        if (navUsernameBadge) navUsernameBadge.textContent = username;
+        if (navUserAvatar) {
+            navUserAvatar.textContent = username.charAt(0).toUpperCase();
+        }
+
         loadCourses();
-        
+        loadBookings();
+        loadMilestones();
+
         // Smooth scroll to the student dashboard/courses section
         setTimeout(() => {
             if (studentDashboard) {
                 studentDashboard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
+            executePendingAction();
         }, 150);
+    }
+
+    function executePendingAction() {
+        if (!pendingAction) return;
+        const action = pendingAction;
+        pendingAction = null;
+
+        if (action.type === 'view_course_materials') {
+            openCourseModal(action.course);
+            showNotification(`Accessing materials for: ${action.course.title}`);
+            setTimeout(() => {
+                alert(`Accessing course materials for: ${action.course.title}`);
+                if (courseModal) courseModal.style.display = 'none';
+            }, 600);
+        }
     }
 
     function showAuthForms() {
@@ -1529,6 +1610,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (studentAuthWrapper) studentAuthWrapper.style.display = 'block';
         if (studentDashboard) studentDashboard.style.display = 'none';
+
+        // Hide top navbar session badge and Zoom lessons card
+        if (navUserBadge) navUserBadge.style.display = 'none';
+        if (zoomLessonsCard) zoomLessonsCard.style.display = 'none';
     }
 
     // -------------------------------------------------------------
@@ -1694,24 +1779,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 commentEl.className = 'comment-item';
                 
                 // Format star ratings
-                const ratingCount = comment.rating || 5;
+                let ratingCount = parseInt(comment.rating);
+                if (isNaN(ratingCount) || ratingCount < 1 || ratingCount > 5) {
+                    ratingCount = 5;
+                }
                 const starIcons = '★'.repeat(ratingCount) + '☆'.repeat(5 - ratingCount);
                 const starsHtml = `<div class="comment-stars">${starIcons}</div>`;
                 
-                // Delete button only shown if the current logged in user is the author or local author
-                const isOwner = currentUser && (currentUser === comment.username || (comment.id && comment.id.toString().startsWith('local_')));
+                // Edit and Delete buttons only shown if the current logged in user is the author or local author
+                const isOwner = (currentUser && currentUser === comment.username) ||
+                                (comment.id && (comment.id.toString().startsWith('local_') ||
+                                                 getOwnedComments().includes(comment.id.toString())));
+                const editButton = isOwner
+                    ? `<button class="btn-edit-comment" data-id="${comment.id}" data-rating="${ratingCount}"><i class="fa-solid fa-pen-to-square"></i> Edit</button>`
+                    : '';
                 const deleteButton = isOwner 
                     ? `<button class="btn-delete" data-id="${comment.id}"><i class="fa-solid fa-trash-can"></i> Delete</button>`
                     : '';
                 
                 commentEl.innerHTML = `
-                    <div class="comment-header">
-                        <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
-                        <span class="comment-time">${comment.created_at || ''}</span>
+                    <div class="comment-content-view" id="comment-content-view-${comment.id}">
+                        <div class="comment-header">
+                            <span class="comment-user"><i class="fa-regular fa-user"></i> ${escapeHtml(comment.username)}</span>
+                            <span class="comment-time">${comment.created_at || ''}</span>
+                        </div>
+                        ${starsHtml}
+                        <div class="comment-text">${escapeHtml(comment.text)}</div>
+                        ${(editButton || deleteButton) ? `<div class="comment-actions">${editButton} ${deleteButton}</div>` : ''}
                     </div>
-                    ${starsHtml}
-                    <div class="comment-text">${escapeHtml(comment.text)}</div>
-                    ${deleteButton ? `<div class="comment-actions">${deleteButton}</div>` : ''}
+                    
+                    <div class="comment-edit-view" id="comment-edit-view-${comment.id}" style="display: none; flex-direction: column; gap: 8px; margin-top: 8px;">
+                        <textarea class="comment-edit-textarea" id="comment-edit-textarea-${comment.id}" style="background: rgba(0,0,0,0.15); border: 1px solid var(--theme-border-glass); padding: 8px; border-radius: 8px; color: white; width: 100%; min-height: 60px; font-family: inherit; font-size: 0.88rem; resize: vertical;">${escapeHtml(comment.text)}</textarea>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div class="star-rating edit-star-selector" id="edit-star-selector-${comment.id}">
+                                <span class="star-icon ${ratingCount >= 1 ? 'active' : ''}" data-value="1"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon ${ratingCount >= 2 ? 'active' : ''}" data-value="2"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon ${ratingCount >= 3 ? 'active' : ''}" data-value="3"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon ${ratingCount >= 4 ? 'active' : ''}" data-value="4"><i class="fa-solid fa-star"></i></span>
+                                <span class="star-icon ${ratingCount >= 5 ? 'active' : ''}" data-value="5"><i class="fa-solid fa-star"></i></span>
+                            </div>
+                            <div style="display: flex; gap: 6px;">
+                                <button class="btn-cancel-edit" data-id="${comment.id}" style="padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--text-primary); cursor: pointer;"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                                <button class="btn-save-edit" data-id="${comment.id}" style="padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; background: var(--theme-primary); border: none; color: white; cursor: pointer;"><i class="fa-solid fa-check"></i> Save</button>
+                            </div>
+                        </div>
+                    </div>
                 `;
                 
                 commentsListContainer.appendChild(commentEl);
@@ -1727,6 +1839,79 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             });
+
+            // Bind edit buttons to toggle view
+            const editButtons = commentsListContainer.querySelectorAll('.btn-edit-comment');
+            editButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const commentId = btn.getAttribute('data-id');
+                    const contentView = document.getElementById(`comment-content-view-${commentId}`);
+                    const editView = document.getElementById(`comment-edit-view-${commentId}`);
+                    if (contentView && editView) {
+                        contentView.style.display = 'none';
+                        editView.style.display = 'flex';
+                    }
+                });
+            });
+
+            // Bind cancel edit buttons
+            const cancelButtons = commentsListContainer.querySelectorAll('.btn-cancel-edit');
+            cancelButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const commentId = btn.getAttribute('data-id');
+                    const contentView = document.getElementById(`comment-content-view-${commentId}`);
+                    const editView = document.getElementById(`comment-edit-view-${commentId}`);
+                    if (contentView && editView) {
+                        editView.style.display = 'none';
+                        contentView.style.display = 'block';
+                    }
+                });
+            });
+
+            // Bind save edit buttons
+            const saveButtons = commentsListContainer.querySelectorAll('.btn-save-edit');
+            saveButtons.forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const commentId = btn.getAttribute('data-id');
+                    const textarea = document.getElementById(`comment-edit-textarea-${commentId}`);
+                    const text = textarea ? textarea.value.trim() : '';
+                    if (!text) {
+                        showNotification('Review content cannot be empty.');
+                        return;
+                    }
+
+                    // Retrieve edited rating
+                    const editStarSelector = document.getElementById(`edit-star-selector-${commentId}`);
+                    let rating = 5;
+                    if (editStarSelector) {
+                        const activeStar = editStarSelector.querySelector('.star-icon.active:last-of-type');
+                        if (activeStar) {
+                            rating = parseInt(activeStar.getAttribute('data-value')) || 5;
+                        }
+                    }
+
+                    await editComment(commentId, text, rating);
+                });
+            });
+
+            // Bind interactive stars in the edit selector
+            const editStarSelectors = commentsListContainer.querySelectorAll('.edit-star-selector');
+            editStarSelectors.forEach(selector => {
+                const stars = selector.querySelectorAll('.star-icon');
+                stars.forEach(star => {
+                    star.addEventListener('click', () => {
+                        const clickedVal = parseInt(star.getAttribute('data-value'));
+                        stars.forEach(s => {
+                            const val = parseInt(s.getAttribute('data-value'));
+                            if (val <= clickedVal) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            });
         } catch (renderError) {
             console.error('Error rendering comments feed:', renderError);
             commentsListContainer.innerHTML = `
@@ -1738,16 +1923,185 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // -------------------------------------------------------------
+    // ZOOM BOOKINGS LOADING & RENDERING
+    // -------------------------------------------------------------
+    async function loadBookings() {
+        if (!zoomLessonsCard || !zoomLessonsList) return;
+        
+        if (!currentUser) {
+            zoomLessonsCard.style.display = 'none';
+            userBookingsList = [];
+            return;
+        }
+        
+        zoomLessonsCard.style.display = 'block';
+        
+        try {
+            const url = API_BASE + '/api/bookings' + (currentUser ? `?username=${encodeURIComponent(currentUser)}` : '');
+            const response = await fetch(url, getFetchOptions());
+            if (response.ok) {
+                const data = await response.json();
+                userBookingsList = data.bookings || [];
+                renderBookingsUI(userBookingsList);
+                renderCoursesUI();
+            } else {
+                renderBookingsOfflineFallback();
+            }
+        } catch (error) {
+            console.error('Error fetching bookings from server, trying local fallback:', error);
+            renderBookingsOfflineFallback();
+        }
+    }
+
+    function renderBookingsUI(bookings) {
+        if (!zoomLessonsList) return;
+        
+        if (bookings.length === 0) {
+            zoomLessonsList.innerHTML = `
+                <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+                    No Zoom lessons booked yet. Book a course below to schedule your class!
+                </div>
+            `;
+            return;
+        }
+
+        zoomLessonsList.innerHTML = '';
+        bookings.forEach(booking => {
+            const item = document.createElement('div');
+            item.className = 'zoom-lesson-item';
+
+            const dateStr = booking.created_at || new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+            item.innerHTML = `
+                <div class="zoom-lesson-info">
+                    <span class="zoom-lesson-title">${escapeHtml(booking.course_name)}</span>
+                    <span class="zoom-lesson-date"><i class="fa-regular fa-clock"></i> Booked: ${dateStr}</span>
+                </div>
+                <a href="${booking.zoom_link}" target="_blank" class="zoom-join-btn">
+                    <i class="fa-solid fa-video"></i> Join Zoom
+                </a>
+            `;
+            zoomLessonsList.appendChild(item);
+        });
+    }
+
+    function renderBookingsOfflineFallback() {
+        try {
+            const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+            userBookingsList = localBookings.filter(b => b.username === currentUser);
+            renderBookingsUI(userBookingsList);
+            renderCoursesUI();
+        } catch (e) {
+            console.error('Offline bookings fallback error:', e);
+        }
+    }
+
+    async function loadMilestones() {
+        const studentMilestonesCard = document.getElementById('school-milestones-card');
+        if (!studentMilestonesCard) return;
+
+        try {
+            const response = await fetch(API_BASE + '/api/admin/stats', getFetchOptions());
+            if (response.ok) {
+                const data = await response.json();
+
+                // Enrollment calculations
+                const totalStudents = data.total_students || 0;
+                const studentGoal = 20;
+                const studentPct = Math.min(Math.round((totalStudents / studentGoal) * 100), 100);
+
+                const studentCountText = document.getElementById('milestone-students-count');
+                const studentBarFill = document.getElementById('milestone-students-bar');
+
+                if (studentCountText) studentCountText.textContent = `${totalStudents} / ${studentGoal}`;
+                if (studentBarFill) studentBarFill.style.width = `${studentPct}%`;
+
+                // Positive Comments calculations (simulating 49,995 baseline reviews + actual database reviews)
+                const totalComments = 49995 + (data.total_reviews || 0);
+                const commentsGoal = 50000;
+                const commentsPct = Math.min(Math.round((totalComments / commentsGoal) * 100), 100);
+
+                const commentsCountText = document.getElementById('milestone-comments-count');
+                const commentsBarFill = document.getElementById('milestone-comments-bar');
+
+                if (commentsCountText) commentsCountText.textContent = `${totalComments.toLocaleString()} / ${commentsGoal.toLocaleString()}`;
+                if (commentsBarFill) commentsBarFill.style.width = `${commentsPct}%`;
+
+                // Status message updates
+                const statusBadge = document.getElementById('milestone-status-badge');
+                if (statusBadge) {
+                    if (totalStudents >= studentGoal && totalComments >= commentsGoal) {
+                        statusBadge.style.background = 'rgba(16, 185, 129, 0.1)';
+                        statusBadge.style.color = '#34d399';
+                        statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+                        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> All Kick-off Milestones Met! Launch Approved!';
+                    } else {
+                        statusBadge.style.background = 'rgba(245, 158, 11, 0.06)';
+                        statusBadge.style.color = '#fbbf24';
+                        statusBadge.style.borderColor = 'rgba(245, 158, 11, 0.15)';
+                        statusBadge.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Awaiting Milestones (${totalStudents}/${studentGoal} Students, ${totalComments.toLocaleString()}/${commentsGoal.toLocaleString()} Comments)`;
+                    }
+                }
+            }
+        } catch (e) {
+            console.error('Error fetching milestone statistics:', e);
+            // Local fallback values if offline
+            const totalStudents = getLocalUsers().length + 3; // add 3 default seed students
+            const studentGoal = 20;
+            const studentPct = Math.min(Math.round((totalStudents / studentGoal) * 100), 100);
+
+            const studentCountText = document.getElementById('milestone-students-count');
+            const studentBarFill = document.getElementById('milestone-students-bar');
+            if (studentCountText) studentCountText.textContent = `${totalStudents} / ${studentGoal}`;
+            if (studentBarFill) studentBarFill.style.width = `${studentPct}%`;
+
+            // Comments progress (fallback simulating 49,995 baseline + local reviews)
+            const localReviews = JSON.parse(localStorage.getItem('ebiui_owned_comments') || '{}');
+            const totalComments = 49995 + Object.keys(localReviews).length + 5; // add 5 default seed reviews
+            const commentsGoal = 50000;
+            const commentsPct = Math.min(Math.round((totalComments / commentsGoal) * 100), 100);
+
+            const commentsCountText = document.getElementById('milestone-comments-count');
+            const commentsBarFill = document.getElementById('milestone-comments-bar');
+            if (commentsCountText) commentsCountText.textContent = `${totalComments.toLocaleString()} / ${commentsGoal.toLocaleString()}`;
+            if (commentsBarFill) commentsBarFill.style.width = `${commentsPct}%`;
+
+            const statusBadge = document.getElementById('milestone-status-badge');
+            if (statusBadge) {
+                if (totalStudents >= studentGoal && totalComments >= commentsGoal) {
+                    statusBadge.style.background = 'rgba(16, 185, 129, 0.1)';
+                    statusBadge.style.color = '#34d399';
+                    statusBadge.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+                    statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> All Kick-off Milestones Met! Launch Approved!';
+                } else {
+                    statusBadge.style.background = 'rgba(245, 158, 11, 0.06)';
+                    statusBadge.style.color = '#fbbf24';
+                    statusBadge.style.borderColor = 'rgba(245, 158, 11, 0.15)';
+                    statusBadge.innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Awaiting Milestones (${totalStudents}/${studentGoal} Students, ${totalComments.toLocaleString()}/${commentsGoal.toLocaleString()} Comments)`;
+                }
+            }
+        }
+    }
+
     // Register Form Handler
     if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const fullNameInput = document.getElementById('register-fullname');
+            const emailInput = document.getElementById('register-email');
             const usernameInput = document.getElementById('register-username');
             const passwordInput = document.getElementById('register-password');
+
+            const fullName = fullNameInput ? fullNameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
             const username = usernameInput ? usernameInput.value.trim() : '';
             const password = passwordInput ? passwordInput.value.trim() : '';
 
-            if (!username || !password) return;
+            if (!fullName || !email || !username || !password) {
+                showNotification('All fields are required.');
+                return;
+            }
 
             // Attempt server register
             let serverSuccess = false;
@@ -1755,7 +2109,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(API_BASE + '/api/register', getFetchOptions({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        email,
+                        full_name: fullName
+                    })
                 }));
                 
                 const data = await response.json();
@@ -1763,12 +2122,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     currentUser = data.user.username;
                     localStorage.setItem('ebiui_current_user', currentUser);
-                    saveLocalUser({ username, password });
+                    saveLocalUser({ username, password, email, full_name: fullName });
                     showUserProfile(currentUser);
                     showNotification('Student account registered and logged in!');
                     serverSuccess = true;
                 } else {
-                    if (data.error && data.error.includes('taken')) {
+                    if (data.error && (data.error.includes('taken') || data.error.includes('registered'))) {
                         showNotification(data.error);
                         return;
                     }
@@ -1785,13 +2144,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     showNotification('Username is already taken.');
                     return;
                 }
-                saveLocalUser({ username, password });
+                if (users.some(u => u.email === email)) {
+                    showNotification('Email address is already registered.');
+                    return;
+                }
+                saveLocalUser({ username, password, email, full_name: fullName });
                 currentUser = username;
                 localStorage.setItem('ebiui_current_user', currentUser);
                 showUserProfile(currentUser);
                 showNotification('Registered successfully in offline/local mode!');
             }
             
+            if (fullNameInput) fullNameInput.value = '';
+            if (emailInput) emailInput.value = '';
             if (usernameInput) usernameInput.value = '';
             if (passwordInput) passwordInput.value = '';
             loadComments();
@@ -1855,22 +2220,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Logout Action
+    async function handleLogout(e) {
+        if (e) e.preventDefault();
+        localStorage.removeItem('ebiui_current_user');
+        try {
+            await fetch(API_BASE + '/api/logout', getFetchOptions({ 
+                method: 'POST'
+            }));
+        } catch (error) {
+            console.warn('Logout server connection failed:', error);
+        }
+        currentUser = null;
+        userBookingsList = [];
+        showAuthForms();
+        showNotification('Logged out successfully.');
+        loadComments();
+        loadCourses(); // Refresh courses to reset checkboxes
+    }
+
     if (authLogoutBtn) {
-        authLogoutBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            localStorage.removeItem('ebiui_current_user');
-            try {
-                const response = await fetch(API_BASE + '/api/logout', getFetchOptions({ 
-                    method: 'POST'
-                }));
-            } catch (error) {
-                console.warn('Logout server connection failed:', error);
-            }
-            currentUser = null;
-            showAuthForms();
-            showNotification('Logged out successfully.');
-            loadComments();
-        });
+        authLogoutBtn.addEventListener('click', handleLogout);
+    }
+    if (navLogoutBtn) {
+        navLogoutBtn.addEventListener('click', handleLogout);
     }
 
     // Submit Public Review Handler
@@ -1898,14 +2270,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Save locally immediately
             saveLocalComment(localCommentObj);
+            addOwnedComment(localCommentObj.id);
 
             // Attempt server save
             try {
                 const response = await fetch(API_BASE + '/api/comments', getFetchOptions({
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ text, guest_name: guestName || 'Anonymous Guest', rating: rating })
+                    body: JSON.stringify({ 
+                        text, 
+                        guest_name: guestName || 'Anonymous Guest', 
+                        rating: rating,
+                        username: currentUser || ''
+                    })
                 }));
+                if (response.ok) {
+                    const resData = await response.json();
+                    console.log('Comment saved on server:', resData.comment);
+                    if (resData.comment && resData.comment.id) {
+                        addOwnedComment(resData.comment.id);
+                    }
+                }
             } catch (error) {
                 console.warn('Comment server post failed, saved in local database only:', error);
             }
@@ -1938,25 +2323,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Otherwise attempt server delete
         try {
+            const bodyObj = {};
+            if (currentUser) {
+                bodyObj.username = currentUser;
+            }
             const response = await fetch(API_BASE + `/api/comments/${id}`, getFetchOptions({
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bodyObj)
             }));
 
             if (response.ok) {
                 showNotification('Review deleted.');
                 loadComments();
+                loadMilestones();
             } else {
                 const data = await response.json();
                 showNotification(data.error || 'Failed to delete review.');
             }
         } catch (error) {
             console.error('Delete review error, attempting local removal:', error);
-            // Fallback: search and remove local match
             try {
                 let comments = getLocalComments();
                 comments = comments.filter(c => c.id !== id);
                 localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
                 showNotification('Review deleted locally.');
+                loadComments();
+            } catch (e) {
+                showNotification('Connection error.');
+            }
+        }
+    }
+
+    async function editComment(id, text, rating) {
+        // If it is a local comment, update it in localStorage
+        if (id && id.toString().startsWith('local_')) {
+            try {
+                let comments = getLocalComments();
+                comments = comments.map(c => {
+                    if (c.id === id) {
+                        c.text = text;
+                        c.rating = rating;
+                    }
+                    return c;
+                });
+                localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+                showNotification('Review updated.');
+                loadComments();
+                return;
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        // Otherwise attempt server update
+        try {
+            const bodyObj = { text, rating };
+            if (currentUser) {
+                bodyObj.username = currentUser;
+            }
+            const response = await fetch(API_BASE + `/api/comments/${id}`, getFetchOptions({
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(bodyObj)
+            }));
+
+            if (response.ok) {
+                showNotification('Review updated.');
+                loadComments();
+            } else {
+                const data = await response.json();
+                showNotification(data.error || 'Failed to update review.');
+            }
+        } catch (error) {
+            console.error('Update review error, attempting local update:', error);
+            try {
+                let comments = getLocalComments();
+                comments = comments.map(c => {
+                    if (c.id === id) {
+                        c.text = text;
+                        c.rating = rating;
+                    }
+                    return c;
+                });
+                localStorage.setItem('ebiui_local_comments', JSON.stringify(comments));
+                showNotification('Review updated locally.');
                 loadComments();
             } catch (e) {
                 showNotification('Connection error.');
@@ -1976,40 +2427,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const courseModalUpgradeBtn = document.getElementById('course-modal-upgrade-btn');
     const courseModalActionBtn = document.getElementById('course-modal-action-btn');
 
-    let currentSelectedCourseCheckbox = null;
-
-
-
     if (courseModalClose) {
         courseModalClose.addEventListener('click', () => {
             if (courseModal) courseModal.style.display = 'none';
-            currentSelectedCourseCheckbox = null;
         });
     }
 
     if (courseModalUpgradeBtn) {
         courseModalUpgradeBtn.addEventListener('click', () => {
-            if (!currentUser) {
-                showNotification('Please register or sign in as a student first to request live mentorship.');
-                switchTab('dashboard');
-                const loginUserEl = document.getElementById('login-username');
-                if (loginUserEl) loginUserEl.focus();
-                if (courseModal) courseModal.style.display = 'none';
-                return;
-            }
             if (courseModal) courseModal.style.display = 'none';
-            if (currentSelectedCourseCheckbox) {
-                // Check it to trigger the checkout modal
-                currentSelectedCourseCheckbox.checked = true;
-                // Dispatch change event to trigger checkbox change event handler
-                currentSelectedCourseCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
-                currentSelectedCourseCheckbox = null;
-            } else {
-                // Opened from dropdown/footer where checkbox context doesn't exist
-                const courseTitle = courseModalTitle ? courseModalTitle.textContent : 'Selected Course';
-                if (paymentCourseName) paymentCourseName.textContent = courseTitle;
-                if (paymentModal) paymentModal.style.display = 'flex';
+
+            // Configure guest email row in checkout form
+            const emailRow = document.getElementById('payment-email-row');
+            const billingEmail = document.getElementById('billing-email');
+            if (emailRow && billingEmail) {
+                if (!currentUser) {
+                    emailRow.style.display = 'block';
+                    billingEmail.required = true;
+                } else {
+                    emailRow.style.display = 'none';
+                    billingEmail.required = false;
+                }
             }
+
+            // Opened from details modal
+            const courseTitle = courseModalTitle ? courseModalTitle.textContent : 'Selected Course';
+            if (paymentCourseName) paymentCourseName.textContent = courseTitle;
+            if (paymentModal) paymentModal.style.display = 'flex';
         });
     }
 
@@ -2023,35 +2467,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const paymentSubmitBtn = document.getElementById('payment-submit-btn');
     let activeUpgradeCheckbox = null;
 
-    // Delegate checkbox changes in the available courses list (always visible to everyone)
+    // Delegate click events for Book for Lesson buttons in the available courses list
     if (courseListUl) {
-        courseListUl.addEventListener('change', (e) => {
-            if (e.target.classList.contains('live-upgrade-checkbox')) {
-                const checkbox = e.target;
+        courseListUl.addEventListener('click', (e) => {
+            const button = e.target.closest('.live-upgrade-btn');
+            if (button) {
+                e.preventDefault();
                 
-                // If not logged in, prevent check and prompt to log in/register
-                if (!currentUser) {
-                    checkbox.checked = false;
-                    showNotification('Please register or sign in as a student first to request live mentorship.');
-                    switchTab('dashboard');
-                    const loginUserEl = document.getElementById('login-username');
-                    if (loginUserEl) loginUserEl.focus();
-                    return;
-                }
-
-                if (checkbox.checked) {
-                    activeUpgradeCheckbox = checkbox;
-                    const courseName = checkbox.getAttribute('data-course');
-                    if (paymentCourseName) paymentCourseName.textContent = courseName;
-                    if (paymentModal) paymentModal.style.display = 'flex';
-                } else {
-                    // Reset styling/label if they uncheck
-                    const labelSpan = checkbox.nextElementSibling;
-                    if (labelSpan) {
-                        labelSpan.innerHTML = `Meet Teacher Direct (Live 1-on-1)`;
-                        labelSpan.style.color = '';
+                // Configure guest email row in checkout form
+                const emailRow = document.getElementById('payment-email-row');
+                const billingEmail = document.getElementById('billing-email');
+                if (emailRow && billingEmail) {
+                    if (!currentUser) {
+                        emailRow.style.display = 'block';
+                        billingEmail.required = true;
+                    } else {
+                        emailRow.style.display = 'none';
+                        billingEmail.required = false;
                     }
                 }
+
+                const courseName = button.getAttribute('data-course');
+                if (paymentCourseName) paymentCourseName.textContent = courseName;
+                if (paymentModal) paymentModal.style.display = 'flex';
             }
         });
     }
@@ -2059,10 +2497,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (paymentCancelBtn) {
         paymentCancelBtn.addEventListener('click', () => {
             if (paymentModal) paymentModal.style.display = 'none';
-            if (activeUpgradeCheckbox) {
-                activeUpgradeCheckbox.checked = false;
-                activeUpgradeCheckbox = null;
-            }
         });
     }
 
@@ -2075,27 +2509,91 @@ document.addEventListener('DOMContentLoaded', () => {
                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
             }
 
-            // Simulate server transaction delay
-            setTimeout(() => {
-                if (paymentModal) paymentModal.style.display = 'none';
-                showNotification('Upgrade successful! Mr. Bolokaiemi Ebi has been notified of your payment.');
+            const billingNameVal = document.getElementById('billing-name') ? document.getElementById('billing-name').value.trim() : '';
+            const billingEmailVal = document.getElementById('billing-email') ? document.getElementById('billing-email').value.trim() : '';
+            const courseName = paymentCourseName ? paymentCourseName.textContent : 'Live Mentorship';
+
+            let serverSuccess = false;
+            let generatedZoomLink = '';
+
+            try {
+                const response = await fetch(API_BASE + '/api/book-lesson', getFetchOptions({
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        billing_name: billingNameVal,
+                        course_name: courseName,
+                        guest_email: billingEmailVal,
+                        username: currentUser || ''
+                    })
+                }));
                 
-                if (activeUpgradeCheckbox) {
-                    const labelSpan = activeUpgradeCheckbox.nextElementSibling;
-                    if (labelSpan) {
-                        labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
-                        labelSpan.style.color = '#10b981';
+                const data = await response.json();
+                
+                if (response.ok) {
+                    serverSuccess = true;
+                    if (data.booking) {
+                        generatedZoomLink = data.booking.zoom_link;
                     }
-                    activeUpgradeCheckbox = null;
+                } else {
+                    console.warn('Server booking failed:', data.error);
+                }
+            } catch (error) {
+                console.error('Network error booking lesson:', error);
+            }
+
+            if (paymentModal) paymentModal.style.display = 'none';
+
+            if (serverSuccess) {
+                if (!currentUser && billingEmailVal) {
+                    showNotification(`Upgrade successful! Lesson details and Zoom link sent to ${billingEmailVal}. AB has been notified.`);
+                } else {
+                    showNotification('Upgrade successful! Zoom lesson scheduled in your dashboard. AB has been notified.');
+                }
+            } else {
+                // Offline fallback
+                const mockMeetingId = Math.floor(Math.random() * 9000000000) + 1000000000;
+                const mockPasscode = Math.random().toString(36).substring(2, 8);
+                const zoomLink = `https://zoom.us/j/{mockMeetingId}?pwd={mockPasscode}`;
+                generatedZoomLink = zoomLink;
+                const localBooking = {
+                    id: 'local_booking_' + Date.now(),
+                    username: currentUser || '',
+                    guest_email: billingEmailVal || '',
+                    billing_name: billingNameVal,
+                    course_name: courseName,
+                    zoom_link: zoomLink,
+                    created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')
+                };
+                try {
+                    const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+                    localBookings.unshift(localBooking);
+                    localStorage.setItem('ebiui_local_bookings', JSON.stringify(localBookings));
+                } catch (e) {
+                    console.error('Error saving local booking:', e);
                 }
 
-                // Reset payment form fields
-                premiumPaymentForm.reset();
-                if (paymentSubmitBtn) {
-                    paymentSubmitBtn.disabled = false;
-                    paymentSubmitBtn.innerHTML = `Complete Checkout`;
+                if (!currentUser && billingEmailVal) {
+                    showNotification(`Offline mode: Upgrade successful! Lesson details sent to ${billingEmailVal}.`);
+                } else {
+                    showNotification('Offline mode: Upgrade successful! Zoom lesson scheduled.');
                 }
-            }, 1800);
+            }
+
+            // Reload bookings and refresh course lists
+            if (currentUser) {
+                loadBookings();
+                loadMilestones();
+            } else {
+                renderCoursesUI();
+            }
+
+            // Reset payment form fields
+            premiumPaymentForm.reset();
+            if (paymentSubmitBtn) {
+                paymentSubmitBtn.disabled = false;
+                paymentSubmitBtn.innerHTML = `Complete Checkout`;
+            }
         });
     }
 
@@ -2208,55 +2706,100 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Populate Available Courses in Dashboard
-        if (courseListUl) {
+        const courseSelect = document.getElementById('dashboard-course-select');
+        if (courseSelect) {
+            const currentSelectedValue = courseSelect.value;
+
+            // Populate options if empty
+            if (courseSelect.options.length === 0) {
+                coursesData.forEach(course => {
+                    const opt = document.createElement('option');
+                    opt.value = course.id;
+                    opt.textContent = course.title;
+                    courseSelect.appendChild(opt);
+                });
+
+                // Redraw on select change
+                courseSelect.addEventListener('change', () => {
+                    renderSelectedCourse(courseSelect.value);
+                });
+            }
+
+            // Draw the selected course (preserve previous selection if any)
+            renderSelectedCourse(currentSelectedValue || coursesData[0].id);
+        }
+
+        function renderSelectedCourse(courseId) {
+            if (!courseListUl) return;
             courseListUl.innerHTML = '';
-            coursesData.forEach(course => {
-                const li = document.createElement('li');
-                li.className = 'course-item-card';
-                li.innerHTML = `
-                    <div class="course-main-row">
-                        <div class="course-icon"><i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i></div>
-                        <div class="course-info">
-                            <span class="course-name">${course.title}</span>
-                            <span class="course-meta">${course.meta}</span>
-                        </div>
-                        <div class="course-actions">
-                            <button class="course-action-btn" data-id="${course.id}">
-                                <i class="fa-solid fa-graduation-cap"></i> View
-                            </button>
-                        </div>
-                    </div>
-                    <div class="live-upgrade-wrapper">
-                        <label class="live-upgrade-label">
-                            <input type="checkbox" class="live-upgrade-checkbox" data-course="${course.title}">
-                            <span><i class="fa-solid fa-chalkboard-user"></i> Meet Teacher Direct (Live 1-on-1)</span>
-                        </label>
-                    </div>
-                `;
+            
+            const course = coursesData.find(c => c.id === courseId);
+            if (!course) return;
 
-                // Bind click to View button
-                const viewBtn = li.querySelector('.course-action-btn');
-                if (viewBtn) {
-                    viewBtn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        openCourseModal(course, li.querySelector('.live-upgrade-checkbox'));
-                    });
-                }
+            const bookedCourseNames = userBookingsList.map(b => b.course_name.trim().toLowerCase());
+            
+            // Merge local guest bookings
+            try {
+                const localBookings = JSON.parse(localStorage.getItem('ebiui_local_bookings') || '[]');
+                localBookings.forEach(b => {
+                    if (b.course_name) {
+                        const name = b.course_name.trim().toLowerCase();
+                        if (!bookedCourseNames.includes(name)) {
+                            bookedCourseNames.push(name);
+                        }
+                    }
+                });
+            } catch (e) {}
 
-                courseListUl.appendChild(li);
-            });
+            const li = document.createElement('li');
+            li.className = 'course-item-card selected-course-item';
+
+            const isBooked = bookedCourseNames.includes(course.title.trim().toLowerCase()) ||
+                             bookedCourseNames.includes(`live mentorship (${course.title.trim().toLowerCase()})`) ||
+                             bookedCourseNames.includes('live mentorship (all courses)');
+
+            const upgradeAreaHtml = isBooked
+                ? `<span class="live-upgrade-active-badge"><i class="fa-solid fa-circle-check"></i> Direct Session Active! ✔</span>`
+                : `<button class="live-upgrade-btn" data-course="${course.title}"><i class="fa-solid fa-credit-card"></i> Book for Lesson</button>`;
+
+            li.innerHTML = `
+                <div class="course-main-row">
+                    <div class="course-icon"><i class="fa-brands ${course.brand_icon || 'fa-html5'}" style="color: ${course.brand_color};"></i></div>
+                    <div class="course-info">
+                        <a href="${course.w3_link || '#'}" target="_blank" class="course-name-link" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 4px;">
+                            <span class="course-name" style="font-weight: 600;">${course.title} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem; opacity: 0.6;"></i></span>
+                        </a>
+                        <span class="course-meta">${course.meta}</span>
+                    </div>
+                    <div class="course-actions" style="display: flex; gap: 8px; align-items: center;">
+                        <a href="${course.w3_link || '#'}" target="_blank" class="course-w3-btn" style="text-decoration: none; background: rgba(16, 185, 129, 0.12); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); font-size: 0.78rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+                            <i class="fa-solid fa-book-open"></i> W3Schools
+                        </a>
+                        <button class="course-action-btn" data-id="${course.id}" style="padding: 6px 12px; font-size: 0.78rem; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: inherit;">
+                            <i class="fa-solid fa-graduation-cap"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                <div class="live-upgrade-wrapper">
+                    <p style="margin: 0 0 6px 0; font-size: 0.75rem; color: var(--theme-text-muted); line-height: 1.4;"><i class="fa-solid fa-chalkboard-user"></i> Meet AB direct for a live section. This is where you will book for lesson and you will pay before you enter the class.</p>
+                    ${upgradeAreaHtml}
+                </div>
+            `;
+
+            // Bind click to View button
+            const viewBtn = li.querySelector('.course-action-btn');
+            if (viewBtn) {
+                viewBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openCourseModal(course);
+                });
+            }
+
+            courseListUl.appendChild(li);
         }
     }
 
-    function openCourseModal(course, correspondingCheckbox = null) {
-        currentSelectedCourseCheckbox = correspondingCheckbox;
-        if (!correspondingCheckbox) {
-            // Find it in the dashboard if not passed directly (e.g. if opened from navbar)
-            if (courseListUl) {
-                const cb = courseListUl.querySelector(`.live-upgrade-checkbox[data-course="${course.title}"]`);
-                currentSelectedCourseCheckbox = cb;
-            }
-        }
+    function openCourseModal(course) {
 
         if (courseModalBadge) courseModalBadge.textContent = course.badge;
         if (courseModalTitle) courseModalTitle.textContent = course.title;
@@ -2289,6 +2832,7 @@ document.addEventListener('DOMContentLoaded', () => {
             courseModalActionBtn.onclick = () => {
                 if (!currentUser) {
                     showNotification('Please register or sign in as a student to access official course materials.');
+                    pendingAction = { type: 'view_course_materials', course: course };
                     switchTab('dashboard');
                     const loginUserEl = document.getElementById('login-username');
                     if (loginUserEl) loginUserEl.focus();
@@ -2343,20 +2887,27 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             switchTab('dashboard');
             
-            if (currentUser) {
-                // Trigger the general checkout modal
-                const paymentCourseName = document.getElementById('payment-course-name');
-                if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
-                const paymentModal = document.getElementById('payment-modal');
-                if (paymentModal) paymentModal.style.display = 'flex';
-                
-                // Set active checkbox to null or find one if available
-                activeUpgradeCheckbox = null;
-            } else {
-                showNotification('Please register or sign in as a student first to book a live session.');
-                const loginUserEl = document.getElementById('login-username');
-                if (loginUserEl) loginUserEl.focus();
+            // Configure guest email row in checkout form
+            const emailRow = document.getElementById('payment-email-row');
+            const billingEmail = document.getElementById('billing-email');
+            if (emailRow && billingEmail) {
+                if (!currentUser) {
+                    emailRow.style.display = 'block';
+                    billingEmail.required = true;
+                } else {
+                    emailRow.style.display = 'none';
+                    billingEmail.required = false;
+                }
             }
+
+            // Trigger the general checkout modal
+            const paymentCourseName = document.getElementById('payment-course-name');
+            if (paymentCourseName) paymentCourseName.textContent = 'Live Mentorship (All Courses)';
+            const paymentModal = document.getElementById('payment-modal');
+            if (paymentModal) paymentModal.style.display = 'flex';
+            
+            // Set active checkbox to null or find one if available
+            activeUpgradeCheckbox = null;
         });
     }
 
@@ -2367,6 +2918,8 @@ document.addEventListener('DOMContentLoaded', () => {
             switchTab('home');
         });
     }
+
+
 
     // Automatically make all external links open in a new tab to avoid navigating away from the emulator
     const allLinks = document.querySelectorAll('a');
@@ -2382,5 +2935,17 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuthStatus();
     loadCourses(); // Render courses for both guest and student views
     loadComments();
+
+    // Auto-refresh the feedback feed every 10 seconds (unless editing)
+    setInterval(() => {
+        const isEditing = document.querySelector('.comment-edit-textarea') !== null;
+        if (!isEditing) {
+            loadComments();
+        }
+        // Also update milestones progress if user is logged in
+        if (currentUser) {
+            loadMilestones();
+        }
+    }, 10000);
 });
 

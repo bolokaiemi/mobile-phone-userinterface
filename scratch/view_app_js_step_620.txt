@@ -1,0 +1,42 @@
+Created At: 2026-06-07T00:14:46Z
+Completed At: 2026-06-07T00:14:46Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/index.html`
+Total Lines: 897
+Total Bytes: 63211
+Showing lines 640 to 730
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+640:                         <div class="review-meta-row">
+641:                             <input type="text" id="review-guest-name" placeholder="Your Name (Optional)" class="review-name-input">
+642:                             <div class="star-rating" id="star-rating-selector">
+643:                                 <span class="star-icon active" data-value="1"><i class="fa-solid fa-star"></i></span>
+644:                                 <span class="star-icon active" data-value="2"><i class="fa-solid fa-star"></i></span>
+645:                                 <span class="star-icon active" data-value="3"><i class="fa-solid fa-star"></i></span>
+646:                                 <span class="star-icon active" data-value="4"><i class="fa-solid fa-star"></i></span>
+647:                                 <span class="star-icon active" data-value="5"><i class="fa-solid fa-star"></i></span>
+648:                             </div>
+649:                         </div>
+650:                         <textarea id="comment-text-input" placeholder="Write your public review on EbiUI... (max 500 characters)"></textarea>
+651:                         <button class="btn-primary" id="comment-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Review</button>
+652:                     </div>
+653:                 </div>
+654: 
+655:                 <!-- Social Sharing Overlay (appears right after submitting) -->
+656:                 <div class="share-overlay" id="share-overlay" style="display: none;">
+657:                     <div class="share-card"
+<truncated 6003 bytes>
+"margin-left: 18px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+717:                             <li><strong>Self-Study:</strong> Click <strong>View</strong> on any course below to explore free external W3Schools study links.</li>
+718:                             <li><strong>Premium Materials:</strong> Click <strong>View</strong> on any course and click <strong>Access Materials</strong> to download syllabus, slides, and source code.</li>
+719:                             <li><strong>Live Mentorship:</strong> Check the <strong>Meet AB direct</strong> box on any course to book for a lesson (payment required before entry).</li>
+720:                         </ul>
+721:                     </div>
+722: 
+723:                     <!-- Scheduled Zoom Lessons Container -->
+724:                     <div class="zoom-lessons-card" id="zoom-lessons-card" style="margin-top: 15px; display: none; background: rgba(16, 185, 129, 0.04); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 10px; padding: 14px;">
+725:                         <h4 class="student-section-title" style="color: #34d399; font-size: 0.85rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 6px;"><i class="fa-solid fa-video"></i> Scheduled Zoom Lessons</h4>
+726:                         <div class="zoom-lessons-list" id="zoom-lessons-list" style="display: flex; flex-direction: column; gap: 8px;">
+727:                             <div class="zoom-empty-state" style="font-size: 0.8rem; color: var(--text-secondary); text-align: center; padding: 12px; border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px;">
+728:                                 No Zoom lessons booked yet. Book a course below to schedule your class!
+729:                             </div>
+730:                         </div>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

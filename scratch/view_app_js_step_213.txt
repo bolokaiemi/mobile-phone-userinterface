@@ -1,0 +1,43 @@
+Created At: 2026-06-06T22:43:13Z
+Completed At: 2026-06-06T22:43:13Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 452
+Total Bytes: 18198
+Showing lines 410 to 444
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+410:         'brand_icon': 'fa-js',
+411:         'brand_color': '#f7df1e',
+412:         'meta': 'Interactive Exercises & Sandbox',
+413:         'w3_link': 'https://www.w3schools.com/js/'
+414:     },
+415:     {
+416:         'id': 'python',
+417:         'badge': 'Python',
+418:         'title': 'Python & Flask Development',
+419:         'desc': 'Build powerful backend web applications and REST APIs using Python, object-oriented concepts, Flask routing, templates, and server deployment.',
+420:         'topics': 'Python OOP & syntax,Flask routing & templates,JSON API development,Middleware & application state',
+421:         'action_text': 'Download Source Code',
+422:         'icon_class': 'fa-file-zipper',
+423:         'brand_icon': 'fa-python',
+424:         'brand_color': '#3776ab',
+425:         'meta': 'Source Code & Backend Guide',
+426:         'w3_link': 'https://www.w3schools.com/python/'
+427:     },
+428:     {
+429:         'id': 'sql',
+430:         'badge': 'SQL & DB',
+431:         'title': 'SQL & SQLite Database',
+432:         'desc': 'Design relational database schemas, write optimized SQL queries, manage tables, and implement CRUD transactions using SQLite.',
+433:         'topics': 'Relational DB concepts,SQL queries & joins,CRUD transactions,SQLite & SQLAlchemy integration',
+434:         'action_text': 'Launch SQLite Console',
+435:         'icon_class': 'fa-database',
+436:         'brand_icon': 'fa-database',
+437:         'brand_color': '#003b57',
+438:         'meta': 'SQLite Sandbox & Query Guide',
+439:         'w3_link': 'https://www.w3schools.com/sql/'
+440:     }
+441: ]
+442: 
+443: @app.route('/api/courses', methods=['GET'])
+444: def get_courses():
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

@@ -1,0 +1,39 @@
+Created At: 2026-06-06T23:17:58Z
+Completed At: 2026-06-06T23:17:58Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/templates/admin.html`
+Total Lines: 660
+Total Bytes: 24122
+Showing lines 585 to 615
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+585:                 const tbody = document.getElementById('reviews-table-body');
+586:                 if (!comments || comments.length === 0) {
+587:                     tbody.innerHTML = `
+588:                         <tr>
+589:                             <td colspan="5" class="empty-state" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+590:                                 <i class="fa-regular fa-comment-dots" style="font-size: 2rem; margin-bottom: 8px; opacity: 0.5; display:block;"></i>
+591:                                 No feedback comments recorded.
+592:                             </td>
+593:                         </tr>
+594:                     `;
+595:                     return;
+596:                 }
+597: 
+598:                 tbody.innerHTML = '';
+599:                 comments.forEach(c => {
+600:                     const stars = '★'.repeat(c.rating) + '☆'.repeat(5 - c.rating);
+601:                     const row = document.createElement('tr');
+602:                     
+603:                     row.innerHTML = `
+604:                         <td>${c.id}</td>
+605:                         <td><span class="user-pill"><i class="fa-regular fa-user"></i> ${escapeHtml(c.username)}</span></td>
+606:                         <td><span class="stars-display">${stars}</span></td>
+607:                         <td class="comment-text-col">${escapeHtml(c.text)}</td>
+608:                         <td class="date-col">${c.created_at}</td>
+609:                     `;
+610:                     tbody.appendChild(row);
+611:                 });
+612:             }
+613: 
+614:             function renderStudents(users) {
+615:                 const container = document.getElementById('student-list-container');
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

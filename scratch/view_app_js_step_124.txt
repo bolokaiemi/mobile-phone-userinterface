@@ -1,0 +1,49 @@
+Created At: 2026-06-06T22:18:21Z
+Completed At: 2026-06-06T22:18:21Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2409
+Total Bytes: 112972
+Showing lines 2280 to 2320
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+2280:             }
+2281:         }
+2282: 
+2283:         if (courseModalBadge) courseModalBadge.textContent = course.badge;
+2284:         if (courseModalTitle) courseModalTitle.textContent = course.title;
+2285:         if (courseModalDesc) courseModalDesc.textContent = course.desc;
+2286: 
+2287:         if (courseTopicsList) {
+2288:             courseTopicsList.innerHTML = '';
+2289:             const topics = course.topics ? course.topics.split(',') : [];
+2290:             topics.forEach(topic => {
+2291:                 const li = document.createElement('li');
+2292:                 li.textContent = topic;
+2293:                 courseTopicsList.appendChild(li);
+2294:             });
+2295:         }
+2296: 
+2297:         // Dynamically bind W3Schools link details
+2298:         const w3schoolsLink = document.getElementById('course-w3schools-link');
+2299:         const w3schoolsBox = document.getElementById('course-w3schools-box');
+2300:         if (w3schoolsBox && w3schoolsLink) {
+2301:             if (course.w3_link) {
+2302:                 w3schoolsLink.href = course.w3_link;
+2303:                 w3schoolsBox.style.display = 'block';
+2304:             } else {
+2305:                 w3schoolsBox.style.display = 'none';
+2306:             }
+2307:         }
+2308: 
+2309:         if (courseModalActionBtn) {
+2310:             courseModalActionBtn.innerHTML = `<i class="fa-solid ${course.icon_class || 'fa-file-pdf'}"></i> ${course.action_text}`;
+2311:             courseModalActionBtn.onclick = () => {
+2312:                 if (!currentUser) {
+2313:                     showNotification('Please register or sign in as a student to access official course materials.');
+2314:                     switchTab('dashboard');
+2315:                     const loginUserEl = document.getElementById('login-username');
+2316:                     if (loginUserEl) loginUserEl.focus();
+2317:                     if (courseModal) courseModal.style.display = 'none';
+2318:                 } else {
+2319:                     alert(`Accessing course materials for: ${course.title}`);
+2320:                     if (courseModal) courseModal.style.display = 'none';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

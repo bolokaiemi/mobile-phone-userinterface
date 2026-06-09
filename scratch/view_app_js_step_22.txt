@@ -1,0 +1,88 @@
+Created At: 2026-06-06T22:16:17Z
+Completed At: 2026-06-06T22:16:17Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2387
+Total Bytes: 111055
+Showing lines 1296 to 2095
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1296:             }
+1297:         });
+1298:     }
+1299: 
+1300:     function changeWallpaper(wpKey) {
+1301:         if (wpKey === 'grad1') phoneWallpaper.style.background = 'var(--wp-grad1)';
+1302:         if (wpKey === 'grad2') phoneWallpaper.style.background = 'var(--wp-grad2)';
+1303:         if (wpKey === 'grad3') phoneWallpaper.style.background = 'var(--wp-grad3)';
+1304:         if (wpKey === 'grad4') phoneWallpaper.style.background = 'var(--wp-grad4)';
+1305: 
+1306:         wallpaperThumbs.forEach(thumb => {
+1307:             if (thumb.getAttribute('data-wp') === wpKey) {
+1308:                 thumb.classList.add('active');
+1309:             } else {
+1310:                 thumb.classList.remove('active');
+1311:             }
+1312:         });
+1313:     }
+1314: 
+1315:     wallpaperThumbs.forEach(thumb => {
+1316:         thumb.addEventListener('click', () => {
+1317:             const wpKey = thumb.getAttribute('data-wp');
+1318:             changeWallpaper(wpKey);
+1319:             
+1320:             const wallConf = {
+1321:                 en: 'Wallpaper applied.',
+1322:                 nl: 'Achtergrond toegepast.',
+1323:                 de: 'Hintergrundbild angewendet.',
+1324:                 es: 'Fondo de pantalla aplicado.',
+1325:                 fr: 'Fond d\'écran appliqué.'
+1326:             };
+1327:             showNotification(wallConf[currentLanguage]);
+1328:         });
+1329:     });
+1330: 
+1331:     // Default setups
+1332:     const defaultDot = document.querySelector('.color-dot.default');
+1333:     if (defaultDot) defaultDot.classList.add('
+<truncated 35865 bytes>
+}
+2056:         });
+2057:     }
+2058: 
+2059:     if (paymentCancelBtn) {
+2060:         paymentCancelBtn.addEventListener('click', () => {
+2061:             if (paymentModal) paymentModal.style.display = 'none';
+2062:             if (activeUpgradeCheckbox) {
+2063:                 activeUpgradeCheckbox.checked = false;
+2064:                 activeUpgradeCheckbox = null;
+2065:             }
+2066:         });
+2067:     }
+2068: 
+2069:     if (premiumPaymentForm) {
+2070:         premiumPaymentForm.addEventListener('submit', async (e) => {
+2071:             e.preventDefault();
+2072:             
+2073:             if (paymentSubmitBtn) {
+2074:                 paymentSubmitBtn.disabled = true;
+2075:                 paymentSubmitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...`;
+2076:             }
+2077: 
+2078:             // Simulate server transaction delay
+2079:             setTimeout(() => {
+2080:                 if (paymentModal) paymentModal.style.display = 'none';
+2081:                 showNotification('Upgrade successful! Mr. Bolokaiemi Ebi has been notified of your payment.');
+2082:                 
+2083:                 if (activeUpgradeCheckbox) {
+2084:                     const labelSpan = activeUpgradeCheckbox.nextElementSibling;
+2085:                     if (labelSpan) {
+2086:                         labelSpan.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Direct Session Active! ✔`;
+2087:                         labelSpan.style.color = '#10b981';
+2088:                     }
+2089:                     activeUpgradeCheckbox = null;
+2090:                 }
+2091: 
+2092:                 // Reset payment form fields
+2093:                 premiumPaymentForm.reset();
+2094:                 if (paymentSubmitBtn) {
+2095:                     paymentSubmitBtn.disabled = false;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

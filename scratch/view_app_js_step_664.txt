@@ -1,0 +1,39 @@
+Created At: 2026-06-07T00:15:11Z
+Completed At: 2026-06-07T00:15:11Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2613
+Total Bytes: 121662
+Showing lines 490 to 520
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+490:         toast.style.borderRadius = '20px';
+491:         toast.style.fontSize = '0.78rem';
+492:         toast.style.fontWeight = '500';
+493:         toast.style.zIndex = '1000';
+494:         toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+495:         toast.style.transition = 'opacity 0.3s ease';
+496: 
+497:         setTimeout(() => {
+498:             toast.style.opacity = '0';
+499:             setTimeout(() => toast.remove(), 300);
+500:         }, 2000);
+501:     }
+502: 
+503:     // -------------------------------------------------------------
+504:     // NAVIGATION ROUTER (LAUNCHER / OVERLAYS)
+505:     // -------------------------------------------------------------
+506:     const appIcons = document.querySelectorAll('.app-icon-wrapper');
+507:     let activeAppId = null;
+508: 
+509:     appIcons.forEach(wrapper => {
+510:         wrapper.addEventListener('click', (e) => {
+511:             const appId = wrapper.getAttribute('data-app-id');
+512:             if (appId) {
+513:                 // If it has data-app-id, it is a simulated app. Prevent default link redirect and open overlay.
+514:                 e.preventDefault();
+515:                 const labelEl = wrapper.querySelector('.app-label');
+516:                 const label = labelEl ? labelEl.textContent : '';
+517:                 openApp(appId, label);
+518:             }
+519:             // Otherwise, it is a direct external anchor tag. Let the browser open the link natively.
+520:         });
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

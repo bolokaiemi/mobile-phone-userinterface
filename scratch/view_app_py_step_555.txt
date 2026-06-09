@@ -1,0 +1,29 @@
+Created At: 2026-06-06T23:24:33Z
+Completed At: 2026-06-06T23:24:33Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.py`
+Total Lines: 546
+Total Bytes: 22198
+Showing lines 335 to 355
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+335:         db_path = os.path.abspath(os.path.join(app.instance_path, 'ebiui.db'))
+336:     else:
+337:         db_path = db_uri
+338:         
+339:     return jsonify({
+340:         'total_reviews': total_comments,
+341:         'total_students': total_users,
+342:         'average_rating': round(avg_rating, 2),
+343:         'db_path': db_path
+344:     })
+345: 
+346: @app.route('/api/admin/db-download', methods=['GET'])
+347: def admin_db_download():
+348:     # Only allow downloading for SQLite database
+349:     db_uri = app.config['SQLALCHEMY_DATABASE_URI']
+350:     if db_uri.startswith('sqlite:///'):
+351:         from flask import send_from_directory
+352:         return send_from_directory(app.instance_path, 'ebiui.db', as_attachment=True)
+353:     else:
+354:         return jsonify({'error': 'Database is hosted on a remote server (PostgreSQL).'}), 400
+355: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

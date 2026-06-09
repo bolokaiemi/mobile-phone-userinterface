@@ -1,0 +1,57 @@
+Created At: 2026-06-06T22:43:39Z
+Completed At: 2026-06-06T22:43:40Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/static/styles.css`
+Total Lines: 3355
+Total Bytes: 71958
+Showing lines 3300 to 3348
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+3300:     border-radius: 8px;
+3301:     color: white;
+3302:     padding: 10px 20px;
+3303:     font-size: 0.88rem;
+3304:     font-weight: 600;
+3305:     cursor: pointer;
+3306:     display: inline-flex;
+3307:     align-items: center;
+3308:     gap: 8px;
+3309:     transition: all 0.25s ease;
+3310:     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+3311: }
+3312: 
+3313: .footer-enroll-btn:hover {
+3314:     transform: translateY(-2px);
+3315:     box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+3316:     background: linear-gradient(135deg, #60a5fa, #2563eb);
+3317: }
+3318: 
+3319: .footer-bottom {
+3320:     max-width: 1100px;
+3321:     margin: 40px auto 0 auto;
+3322:     padding: 20px 40px 0 40px;
+3323:     border-top: 1px solid rgba(255, 255, 255, 0.08);
+3324:     text-align: center;
+3325: }
+3326: 
+3327: .light-theme .footer-bottom {
+3328:     border-top: 1px solid rgba(0, 0, 0, 0.08);
+3329: }
+3330: 
+3331: .footer-bottom p {
+3332:     font-size: 0.85rem;
+3333:     color: #64748b;
+3334:     margin: 0;
+3335: }
+3336: 
+3337: /* Responsive Footer styling */
+3338: @media (max-width: 900px) {
+3339:     .footer-container {
+3340:         grid-template-columns: 1fr 1fr;
+3341:         gap: 30px;
+3342:     }
+3343: }
+3344: 
+3345: @media (max-width: 600px) {
+3346:     .footer-container {
+3347:         grid-template-columns: 1fr;
+3348:         gap: 24px;
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

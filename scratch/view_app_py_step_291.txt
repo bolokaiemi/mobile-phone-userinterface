@@ -1,0 +1,38 @@
+Created At: 2026-06-06T22:44:23Z
+Completed At: 2026-06-06T22:44:23Z
+File Path: `file:///c:/Users/Bolokaiemi/PycharmProjects/mobileuserinterfaceProject6/app.js`
+Total Lines: 2432
+Total Bytes: 113903
+Showing lines 1421 to 1450
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1421:     const navCoursesBtn = document.getElementById('nav-courses-btn');
+1422:     const courseListUl = document.querySelector('.course-list');
+1423: 
+1424:     // View toggling tabs (especially on mobile layouts)
+1425:     function switchTab(targetTab) {
+1426:         if (targetTab === 'home') {
+1427:             if (navHomeTab) navHomeTab.classList.add('active');
+1428:             if (navDashboardTab) navDashboardTab.classList.remove('active');
+1429:             if (tabViewHome) tabViewHome.classList.add('active-tab-view');
+1430:             if (tabViewDashboard) tabViewDashboard.classList.remove('active-tab-view');
+1431:         } else if (targetTab === 'dashboard') {
+1432:             if (navDashboardTab) navDashboardTab.classList.add('active');
+1433:             if (navHomeTab) navHomeTab.classList.remove('active');
+1434:             if (tabViewDashboard) tabViewDashboard.classList.add('active-tab-view');
+1435:             if (tabViewHome) tabViewHome.classList.remove('active-tab-view');
+1436:             loadComments();
+1437:         }
+1438:     }
+1439: 
+1440:     if (navHomeTab) navHomeTab.addEventListener('click', () => switchTab('home'));
+1441:     if (navDashboardTab) navDashboardTab.addEventListener('click', () => switchTab('dashboard'));
+1442: 
+1443:     // Student Login/Register Forms Toggling Link
+1444:     const linkToRegister = document.getElementById('link-to-register');
+1445:     const linkToLogin = document.getElementById('link-to-login');
+1446: 
+1447:     if (linkToRegister) {
+1448:         linkToRegister.addEventListener('click', (e) => {
+1449:             e.preventDefault();
+1450:             if (loginForm) loginForm.style.display = 'none';
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
